@@ -1,0 +1,138 @@
+/*-- scss:defaults --*/
+
+// Colors
+$primary:   #2c3e50;
+$secondary: #7f8c8d;
+$light:     #f8f9fa;
+$dark:      #212529;
+
+$body-bg:    #ffffff;
+$body-color: #2c3e50;
+
+$link-color:       #2980b9;
+$link-hover-color: #1a5276;
+
+// Typography
+$font-family-sans-serif: "EB Garamond", Garamond, Georgia, serif;
+$font-family-monospace:  "JetBrains Mono", "Fira Code", monospace;
+$headings-font-family:   "EB Garamond", Garamond, Georgia, serif;
+$headings-font-weight:   600;
+$headings-color:         #2c3e50;
+
+// Sidebar
+$sidebar-bg:            #f8f9fa;
+$sidebar-fg:            #2c3e50;
+$sidebar-border-color:  #dee2e6;
+$sidebar-width:         280px;
+
+/*-- scss:rules --*/
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// Body
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Headings
+h1, h2, h3, h4 {
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+h2 {
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 0.3rem;
+}
+
+// Callout blocks
+.callout {
+  border-radius: 4px;
+  margin: 1.5rem 0;
+}
+
+.callout-note {
+  border-left-color: #2980b9;
+}
+
+.callout-tip {
+  border-left-color: #27ae60;
+}
+
+.callout-warning {
+  border-left-color: #e67e22;
+}
+
+.callout-important {
+  border-left-color: #c0392b;
+}
+
+// Blockquote
+blockquote {
+  border-left: 4px solid #2980b9;
+  background: #eaf4fb;
+  padding: 0.75rem 1rem;
+  border-radius: 0 4px 4px 0;
+  color: #2c3e50;
+  font-style: italic;
+}
+
+// Math display
+.math.display {
+  overflow-x: auto;
+  padding: 0.5rem 0;
+}
+
+// Code blocks
+pre.sourceCode {
+  border-radius: 6px;
+  font-size: 0.875em;
+}
+
+code {
+  font-size: 0.875em;
+  color: #c0392b;
+  background-color: #f4f6f6;
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+pre code {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+// TOC
+#TOC {
+  font-size: 0.9em;
+}
+
+#TOC a {
+  color: $secondary;
+}
+
+#TOC a:hover {
+  color: $primary;
+}
+
+// Sidebar
+.sidebar nav[role="doc-toc"] {
+  font-size: 0.85em;
+}
+
+// Horizontal rule
+hr {
+  border-top: 1px solid #dee2e6;
+  margin: 2rem 0;
+}
+
+// Footer
+.nav-footer {
+  font-size: 0.85em;
+  color: $secondary;
+  border-top: 1px solid #dee2e6;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}

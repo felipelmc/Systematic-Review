@@ -1,0 +1,50 @@
+# Apresentação {.unnumbered}
+
+Este site reúne minhas anotações das aulas de **Revisão Sistemática e Avaliação de Políticas Públicas**, disciplina do programa de pós-graduação do [IESP-UERJ](https://iesp.uerj.br) (PPGCP). As anotações são produzidas em [Quarto](https://quarto.org) e publicadas automaticamente via GitHub Pages.
+
+## Sobre a disciplina
+
+A disciplina capacita estudantes a avaliar políticas públicas a partir do uso de revisões sistemáticas da literatura, articulando o debate metodológico sobre evidências com problemas substantivos de políticas públicas. A pergunta central que orienta o curso é: *"o que funciona, para quem, em que contextos e por quê?"*. São exploradas técnicas como meta-análise, sínteses qualitativas, QCA e abordagens de métodos mistos, bem como ferramentas computacionais em R para apoio às diferentes etapas do processo.
+
+**Professor:** Bruno Marques Schaefer ([brunoschaefer@iesp.uerj.br](mailto:brunoschaefer@iesp.uerj.br))
+
+**Laboratório:** [MAPE — Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ](https://iesp.uerj.br)
+
+**Período:** 1º semestre de 2026 · Sextas-feiras, 16–18h · Híbrido (20 vagas presenciais, 16 online)
+
+## Avaliação
+
+| Componente | Peso |
+|---|---|
+| Presença mínima (75%) | Condição para certificado |
+| Trabalho final (avaliação de política pública via RS, formato OQF) | 100% |
+
+## Plano de aulas
+
+| Aula | Data | Tópico |
+|---|---|---|
+| 1 | 27/03 | Tipos de revisão sistemática |
+| 2 | 10/04 | Definição do protocolo inicial |
+| 3 | 24/04 | Busca do material |
+| 4 | 11/05 | Filtragem e controle de qualidade |
+| 5 | 22/05 | Extração de dados — decomposição |
+| 6 | 05/06 | Análise de dados: perspectivas quali, quanti e mista |
+| 7 | 19/06 | Reportar e divulgar os resultados |
+
+## Leituras principais
+
+- @xiao2019guidance
+- @dacombe2018systematic
+- @rogers2008programme
+- @harrer2021doing
+- @thomas2008methods
+- @kopittke2021funciona
+- @schaefer_oqfunciona
+
+## Como usar estas notas
+
+As anotações estão organizadas por aula na barra lateral à esquerda. Cada página corresponde a uma aula e cobre os principais tópicos discutidos.
+
+::: callout-note
+Estas são anotações pessoais e podem conter imprecisões. Use-as como complemento, não como substituto do material oficial da disciplina.
+:::

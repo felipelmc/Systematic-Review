@@ -1,0 +1,49 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Revisão Sistemática e Avaliação de Políticas Públicas"
+  subtitle: "Anotações de Aula"
+  author: "Felipe Lamarca"
+  date: today
+  date-format: "DD/MM/YYYY"
+  search: true
+  repo-url: https://github.com/felipelmc/Systematic-Review
+  repo-actions: [edit, issue]
+  sharing: [twitter, linkedin]
+  sidebar:
+    style: docked
+    background: light
+
+  chapters:
+    - index.qmd
+    - part: "Aulas"
+      chapters:
+        - aulas/aula-01.qmd
+        - aulas/aula-02.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      light: [cosmo, custom.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    number-depth: 2
+    code-fold: true
+    code-tools: true
+    code-overflow: wrap
+    highlight-style: github
+    mainfont: "EB Garamond"
+    monofont: "JetBrains Mono"
+    fontsize: 1.15em
+    linestretch: 1.7
+    link-external-newwindow: true
+    html-math-method: mathjax
+    fig-align: center
+    fig-responsive: true
+    smooth-scroll: true
+    anchor-sections: true
