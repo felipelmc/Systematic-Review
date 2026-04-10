@@ -1,0 +1,73 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
+    "section": "",
+    "text": "Apresentação\nEste site reúne minhas anotações das aulas de Revisão Sistemática e Avaliação de Políticas Públicas, disciplina do programa de pós-graduação do IESP-UERJ (PPGCP). As anotações são produzidas em Quarto e publicadas automaticamente via GitHub Pages.",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#sobre-a-disciplina",
+    "href": "index.html#sobre-a-disciplina",
+    "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
+    "section": "Sobre a disciplina",
+    "text": "Sobre a disciplina\nA disciplina capacita estudantes a avaliar políticas públicas a partir do uso de revisões sistemáticas da literatura, articulando o debate metodológico sobre evidências com problemas substantivos de políticas públicas. A pergunta central que orienta o curso é: “o que funciona, para quem, em que contextos e por quê?”. São exploradas técnicas como meta-análise, sínteses qualitativas, QCA e abordagens de métodos mistos, bem como ferramentas computacionais em R para apoio às diferentes etapas do processo.\nProfessor: Bruno Marques Schaefer (brunoschaefer@iesp.uerj.br)\nLaboratório: MAPE — Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ\nPeríodo: 1º semestre de 2026 · Sextas-feiras, 16–18h · Híbrido (20 vagas presenciais, 16 online)",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#avaliação",
+    "href": "index.html#avaliação",
+    "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
+    "section": "Avaliação",
+    "text": "Avaliação\n\n\n\n\n\n\n\nComponente\nPeso\n\n\n\n\nPresença mínima (75%)\nCondição para certificado\n\n\nTrabalho final (avaliação de política pública via RS, formato OQF)\n100%",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#plano-de-aulas",
+    "href": "index.html#plano-de-aulas",
+    "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
+    "section": "Plano de aulas",
+    "text": "Plano de aulas\n\n\n\nAula\nData\nTópico\n\n\n\n\n1\n27/03\nTipos de revisão sistemática\n\n\n2\n10/04\nDefinição do protocolo inicial\n\n\n3\n24/04\nBusca do material\n\n\n4\n11/05\nFiltragem e controle de qualidade\n\n\n5\n22/05\nExtração de dados — decomposição\n\n\n6\n05/06\nAnálise de dados: perspectivas quali, quanti e mista\n\n\n7\n19/06\nReportar e divulgar os resultados",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#leituras-principais",
+    "href": "index.html#leituras-principais",
+    "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
+    "section": "Leituras principais",
+    "text": "Leituras principais\n\nXiao and Watson (2019)\nDacombe (2018)\nRogers (2008)\nHarrer et al. (2021)\nThomas and Harden (2008)\nKopittke and Ramos (2021)\nSchaefer et al. (n.d.)",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "index.html#como-usar-estas-notas",
+    "href": "index.html#como-usar-estas-notas",
+    "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
+    "section": "Como usar estas notas",
+    "text": "Como usar estas notas\nAs anotações estão organizadas por aula na barra lateral à esquerda. Cada página corresponde a uma aula e cobre os principais tópicos discutidos.\n\n\n\n\n\n\nNote\n\n\n\nEstas são anotações pessoais e podem conter imprecisões. Use-as como complemento, não como substituto do material oficial da disciplina.\n\n\n\n\n\n\n\n\nDacombe, Rod. 2018. “Systematic Reviews in Political Science: What Can the Approach Contribute to Political Research?” Political Studies Review 16 (2): 148–57.\n\n\nHarrer, Mathias et al. 2021. Doing Meta-Analysis with R: A Hands-on Guide. Chapman; Hall/CRC.\n\n\nKopittke, Alberto LW, and Marília Patta Ramos. 2021. “O Que Funciona e o Que Não Funciona Para Reduzir Homicídios No Brasil: Uma Revisão Sistemática.” Revista de Administração Pública 55: 414–37.\n\n\nRogers, Patricia J. 2008. “Using Programme Theory to Evaluate Complicated and Complex Aspects of Interventions.” Evaluation 14 (1): 29–48.\n\n\nSchaefer, Bruno Marques, Tomás Paixão Borges, and Carlos Barros Barreto Martins De Freitas. n.d. “O Que Funciona? Proposta Metodológica Para Avaliação de Políticas Públicas Através de Revisão Sistemática.” Unpublished manuscript.\n\n\nThomas, James, and Angela Harden. 2008. “Methods for the Thematic Synthesis of Qualitative Research in Systematic Reviews.” BMC Medical Research Methodology 8 (1): 45.\n\n\nXiao, Yu, and Maria Watson. 2019. “Guidance on Conducting a Systematic Literature Review.” Journal of Planning Education and Research 39 (1): 93–112.",
+    "crumbs": [
+      "Apresentação"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-01.html",
+    "href": "aulas/aula-01.html",
+    "title": "1  Aula 1",
+    "section": "",
+    "text": "Aula de apresentação — sem anotações de conteúdo.",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Aula 1</span>"
+    ]
+  }
+]
