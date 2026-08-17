@@ -14,7 +14,7 @@
     "href": "index.html#sobre-a-disciplina",
     "title": "Revisão Sistemática e Avaliação de Políticas Públicas",
     "section": "Sobre a disciplina",
-    "text": "Sobre a disciplina\nA disciplina capacita estudantes a avaliar políticas públicas a partir do uso de revisões sistemáticas da literatura, articulando o debate metodológico sobre evidências com problemas substantivos de políticas públicas. A pergunta central que orienta o curso é: “o que funciona, para quem, em que contextos e por quê?”. São exploradas técnicas como meta-análise, sínteses qualitativas, QCA e abordagens de métodos mistos, bem como ferramentas computacionais em R para apoio às diferentes etapas do processo.\nProfessor: Bruno Marques Schaefer (brunoschaefer@iesp.uerj.br)\nLaboratório: MAPE — Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ\nPeríodo: 1º semestre de 2026 · Sextas-feiras, 16–18h · Híbrido (20 vagas presenciais, 16 online)",
+    "text": "Sobre a disciplina\nA disciplina capacita estudantes a avaliar políticas públicas a partir do uso de revisões sistemáticas da literatura, articulando o debate metodológico sobre evidências com problemas substantivos de políticas públicas. A pergunta central que orienta o curso é: “o que funciona, para quem, em que contextos e por quê?”. São exploradas técnicas como meta-análise, sínteses qualitativas, QCA e abordagens de métodos mistos, bem como ferramentas computacionais em R para apoio às diferentes etapas do processo.\nProfessor: Bruno Marques Schaefer (brunoschaefer@iesp.uerj.br)\nLaboratório: MAPE — Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ\nPeríodo: 1º semestre de 2026 · Sextas-feiras, 16–18h · Híbrido (20 vagas presenciais, 16 online)\nMateriais: Repositório no Open Science Framework",
     "crumbs": [
       "Apresentação"
     ]
@@ -68,6 +68,83 @@
     "crumbs": [
       "Aulas",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Aula 1</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html",
+    "href": "aulas/aula-02.html",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "",
+    "text": "2.1 O que é um protocolo?\nO protocolo é útil para evitar um selection bias dos estudos que serao incluídos na minha pesquisa. Isso envolve:\nPensando nessas regras, precisamos pensar no que precisa constar no protocolo. A ideia do PRISMA – Preferred Reporting Items for Systematic Reviews and Meta-Analysis.",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html#o-que-é-um-protocolo",
+    "href": "aulas/aula-02.html#o-que-é-um-protocolo",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "",
+    "text": "Como eu vou buscar a literatura\nComo eu vou definir os critérios de inclusao (o que inclui, por exemplo, como eu faço pra avaliar a qualidade do estudo)\nComo eu vou extrair os estudos\nComo eu vou sintetizar os resultados",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html#tipos-de-pergunta-de-pesquisa",
+    "href": "aulas/aula-02.html#tipos-de-pergunta-de-pesquisa",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "2.2 Tipos de pergunta de pesquisa",
+    "text": "2.2 Tipos de pergunta de pesquisa\n\nO que estamos avaliando?\n\nDefinir a intervençao (X) – variável independente\nDefinir o resultado (Y) – variável dependente\nDefinir os mecanismos (M) e moderadores (Z) que conectam X e Y (Por quê? Como?) e moderam o efeito (Para quem? Quando? Onde?), respectivamente\n\n\n\nPerguntas medianas melhoradas\n\nQuais políticas sao efetivas para a reduçao do abandono escolar? — Programas de transferência de renda condicionada reduzem o abandono escolar?\nA implementaçao do reconhecimento facial possui quais efeitos? — Políticas de reconhecimento facial aumentam o número de prisoes erradas?",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html#teoria-da-mudança-teoria-do-desenho",
+    "href": "aulas/aula-02.html#teoria-da-mudança-teoria-do-desenho",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "2.3 Teoria da mudança / teoria do desenho",
+    "text": "2.3 Teoria da mudança / teoria do desenho\nA teoria da mudança ou teoria do desenho envolve pensar no modelo lógico que conecta a intervençao aos resultados. Quando pensamos em avaliacao de impacto, mesmo que uma revisao sistemática, é interessante pensar nos tipos de variáveis.\nVer códigos em R no OSF, que incluem, por exemplo, a criaçao de DAGs.",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html#tipos-de-estruturas",
+    "href": "aulas/aula-02.html#tipos-de-estruturas",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "2.4 Tipos de estruturas",
+    "text": "2.4 Tipos de estruturas\nUma estrutura conhecida é a PICO, mas há várias (SPICE, SPIDER) etc, a partir das quais podemos derivar os termos de busca.",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html#prisma-checklist",
+    "href": "aulas/aula-02.html#prisma-checklist",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "2.5 PRISMA – Checklist",
+    "text": "2.5 PRISMA – Checklist",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
+    ]
+  },
+  {
+    "objectID": "aulas/aula-02.html#pré-registro",
+    "href": "aulas/aula-02.html#pré-registro",
+    "title": "2  Definiçao do protocolo inicial",
+    "section": "2.6 Pré-registro",
+    "text": "2.6 Pré-registro",
+    "crumbs": [
+      "Aulas",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Definiçao do protocolo inicial</span>"
     ]
   }
 ]

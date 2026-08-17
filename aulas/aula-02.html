@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-1eb2a280a64a1f5f4b84ce19fa1dd180.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9f0b8f05b46c5b34c25a7b73a69d004d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1fdaafba74613d77f300250bd821fc9b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -200,8 +203,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#o-que-é-um-protocolo" id="toc-o-que-é-um-protocolo" class="nav-link active" data-scroll-target="#o-que-é-um-protocolo"><span class="header-section-number">2.1</span> O que é um protocolo?</a></li>
+  <li><a href="#tipos-de-pergunta-de-pesquisa" id="toc-tipos-de-pergunta-de-pesquisa" class="nav-link" data-scroll-target="#tipos-de-pergunta-de-pesquisa"><span class="header-section-number">2.2</span> Tipos de pergunta de pesquisa</a>
+  <ul class="collapse">
+  <li><a href="#o-que-estamos-avaliando" id="toc-o-que-estamos-avaliando" class="nav-link" data-scroll-target="#o-que-estamos-avaliando">O que estamos avaliando?</a></li>
+  <li><a href="#perguntas-medianas-melhoradas" id="toc-perguntas-medianas-melhoradas" class="nav-link" data-scroll-target="#perguntas-medianas-melhoradas">Perguntas medianas melhoradas</a></li>
+  </ul></li>
+  <li><a href="#teoria-da-mudança-teoria-do-desenho" id="toc-teoria-da-mudança-teoria-do-desenho" class="nav-link" data-scroll-target="#teoria-da-mudança-teoria-do-desenho"><span class="header-section-number">2.3</span> Teoria da mudança / teoria do desenho</a></li>
+  <li><a href="#tipos-de-estruturas" id="toc-tipos-de-estruturas" class="nav-link" data-scroll-target="#tipos-de-estruturas"><span class="header-section-number">2.4</span> Tipos de estruturas</a></li>
+  <li><a href="#prisma-checklist" id="toc-prisma-checklist" class="nav-link" data-scroll-target="#prisma-checklist"><span class="header-section-number">2.5</span> PRISMA – Checklist</a></li>
+  <li><a href="#pré-registro" id="toc-pré-registro" class="nav-link" data-scroll-target="#pré-registro"><span class="header-section-number">2.6</span> Pré-registro</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/felipelmc/Systematic-Review/edit/main/aulas/aula-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/felipelmc/Systematic-Review/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -232,10 +250,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<section id="o-que-é-um-protocolo" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="o-que-é-um-protocolo"><span class="header-section-number">2.1</span> O que é um protocolo?</h2>
+<p>O protocolo é útil para evitar um selection bias dos estudos que serao incluídos na minha pesquisa. Isso envolve:</p>
+<ul>
+<li>Como eu vou buscar a literatura</li>
+<li>Como eu vou definir os critérios de inclusao (o que inclui, por exemplo, como eu faço pra avaliar a qualidade do estudo)</li>
+<li>Como eu vou extrair os estudos</li>
+<li>Como eu vou sintetizar os resultados</li>
+</ul>
+<p>Pensando nessas regras, precisamos pensar no que precisa constar no protocolo. A ideia do PRISMA – Preferred Reporting Items for Systematic Reviews and Meta-Analysis.</p>
+</section>
+<section id="tipos-de-pergunta-de-pesquisa" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="tipos-de-pergunta-de-pesquisa"><span class="header-section-number">2.2</span> Tipos de pergunta de pesquisa</h2>
+<section id="o-que-estamos-avaliando" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-estamos-avaliando">O que estamos avaliando?</h3>
+<ul>
+<li>Definir a intervençao (X) – variável independente</li>
+<li>Definir o resultado (Y) – variável dependente</li>
+<li>Definir os mecanismos (M) e moderadores (Z) que conectam X e Y (Por quê? Como?) e moderam o efeito (Para quem? Quando? Onde?), respectivamente</li>
+</ul>
+</section>
+<section id="perguntas-medianas-melhoradas" class="level3">
+<h3 class="anchored" data-anchor-id="perguntas-medianas-melhoradas">Perguntas medianas melhoradas</h3>
+<ul>
+<li>Quais políticas sao efetivas para a reduçao do abandono escolar? — Programas de transferência de renda condicionada reduzem o abandono escolar?</li>
+<li>A implementaçao do reconhecimento facial possui quais efeitos? — Políticas de reconhecimento facial aumentam o número de prisoes erradas?</li>
+</ul>
+</section>
+</section>
+<section id="teoria-da-mudança-teoria-do-desenho" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="teoria-da-mudança-teoria-do-desenho"><span class="header-section-number">2.3</span> Teoria da mudança / teoria do desenho</h2>
+<p>A teoria da mudança ou teoria do desenho envolve pensar no modelo lógico que conecta a intervençao aos resultados. Quando pensamos em avaliacao de impacto, mesmo que uma revisao sistemática, é interessante pensar nos tipos de variáveis.</p>
+<p>Ver códigos em R no OSF, que incluem, por exemplo, a criaçao de DAGs.</p>
+</section>
+<section id="tipos-de-estruturas" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="tipos-de-estruturas"><span class="header-section-number">2.4</span> Tipos de estruturas</h2>
+<p>Uma estrutura conhecida é a PICO, mas há várias (SPICE, SPIDER) etc, a partir das quais podemos derivar os termos de busca.</p>
+</section>
+<section id="prisma-checklist" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="prisma-checklist"><span class="header-section-number">2.5</span> PRISMA – Checklist</h2>
+</section>
+<section id="pré-registro" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="pré-registro"><span class="header-section-number">2.6</span> Pré-registro</h2>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -330,16 +392,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     function toggleCodeHandler(show) {
       return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
           if (show) {
             details.open = true;
           } else {
             details.removeAttribute("open");
           }
         }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
         const fromCls = show ? "hidden" : "unhidden";
         const toCls = show ? "unhidden" : "hidden";
         for (let i=0; i<cellCodeDivs.length; i++) {
@@ -707,12 +769,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Definiçao do protocolo inicial"</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Aula 2"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2026-04-10</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## O que é um protocolo?</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>O protocolo é útil para evitar um selection bias dos estudos que serao incluídos na minha pesquisa. Isso envolve:</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Como eu vou buscar a literatura</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Como eu vou definir os critérios de inclusao (o que inclui, por exemplo, como eu faço pra avaliar a qualidade do estudo)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Como eu vou extrair os estudos</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Como eu vou sintetizar os resultados</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Pensando nessas regras, precisamos pensar no que precisa constar no protocolo. A ideia do PRISMA -- Preferred Reporting Items for  Systematic Reviews and Meta-Analysis.</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tipos de pergunta de pesquisa</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">### O que estamos avaliando?</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Definir a intervençao (X) -- variável independente</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Definir o resultado (Y) -- variável dependente</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Definir os mecanismos (M) e moderadores (Z) que conectam X e Y (Por quê? Como?) e moderam o efeito (Para quem? Quando? Onde?), respectivamente</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Perguntas medianas melhoradas</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Quais políticas sao efetivas para a reduçao do abandono escolar? --- Programas de transferência de renda condicionada reduzem o abandono escolar?</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A implementaçao do reconhecimento facial possui quais efeitos? --- Políticas de reconhecimento facial aumentam o número de prisoes erradas?</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Teoria da mudança / teoria do desenho</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>A teoria da mudança ou teoria do desenho envolve pensar no modelo lógico que conecta a intervençao aos resultados. Quando pensamos em avaliacao de impacto, mesmo que uma revisao sistemática, é interessante pensar nos tipos de variáveis.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>Ver códigos em R no OSF, que incluem, por exemplo, a criaçao de DAGs.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tipos de estruturas</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>Uma estrutura conhecida é a PICO, mas há várias (SPICE, SPIDER) etc, a partir das quais podemos derivar os termos de busca.</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## PRISMA -- Checklist</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pré-registro</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/felipelmc/Systematic-Review/edit/main/aulas/aula-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/felipelmc/Systematic-Review/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/felipelmc/Systematic-Review/edit/main/aulas/aula-02.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/felipelmc/Systematic-Review/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
