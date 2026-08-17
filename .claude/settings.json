@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/felipelmc/Desktop/Systematic-Review remote get-url origin)",
+      "Bash(git -C /Users/felipelmc/Desktop/Systematic-Review status)",
+      "Bash(git -C /Users/felipelmc/Desktop/Systematic-Review diff --stat)",
+      "Bash(git -C /Users/felipelmc/Desktop/Systematic-Review diff README.md)",
+      "Bash(git -C /Users/felipelmc/Desktop/Systematic-Review push origin main)"
+    ]
+  }
+}

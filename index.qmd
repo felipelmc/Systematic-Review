@@ -12,6 +12,8 @@ A disciplina capacita estudantes a avaliar políticas públicas a partir do uso 
 
 **Período:** 1º semestre de 2026 · Sextas-feiras, 16–18h · Híbrido (20 vagas presenciais, 16 online)
 
+**Materiais:** Repositório no [Open Science Framework](https://osf.io/zs6h4/overview)
+
 ## Avaliação
 
 | Componente | Peso |
