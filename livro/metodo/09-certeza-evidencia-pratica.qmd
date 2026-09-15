@@ -1,0 +1,401 @@
+---
+title: "Certeza da evidência e da evidência à prática"
+---
+
+Depois da síntese (@sec-08a-regras e @sec-08b-regras), a revisão ainda não respondeu à pergunta de quem decide: quanto se pode confiar em cada achado e o que ele autoriza dizer sobre a política em outro lugar, em particular no Brasil. Esta etapa tem duas partes. A primeira julga a **certeza** (*certainty*) de cada efeito, com GRADE, e a **confiança** (*confidence*) de cada achado qualitativo, com GRADE-CERQual. A segunda leva esses julgamentos à decisão: critérios de *Evidence to Decision* (EtD), transferibilidade ao contexto de uso e redação de implicações que não prometam mais do que a evidência sustenta. As decisões exigidas são: que achados recebem julgamento e com qual abordagem; qual o ponto de partida de cada corpo de evidência; que limiar de relevância (δ) e que fatores de transferibilidade foram fixados no protocolo; como cada domínio é julgado e por quem; que rótulo cada célula recebe na caixa de ferramentas; e que tipo de implicação a certeza permite. O risco de viés de cada estudo é insumo desta etapa, não seu conteúdo: as ferramentas por desenho estão na @sec-06-regras.
+
+::: {.callout-important}
+## Certeza não é risco de viés
+Risco de viés é um julgamento sobre um estudo ou um resultado de um estudo. Certeza é um julgamento sobre um **corpo de evidência para um desfecho**, que considera risco de viés entre estudos, inconsistência, indireção, imprecisão e viés de publicação [@schunemann2024completing, sec. 14.2.1]. Um conjunto de ensaios de baixo risco de viés pode ter certeza baixa (efeitos inconsistentes, população diferente da pergunta, intervalo largo). A tabela de risco de viés nunca substitui o perfil de evidência.
+:::
+
+## Decisões e regras {#sec-09-regras}
+
+### Que abordagem para cada tipo de achado
+
+| Tipo de achado | Unidade julgada | Abordagem | Fonte |
+|---|---|---|---|
+| Efeito com meta-análise | Célula da caixa (família de intervenção × construto de desfecho), randomizados e não randomizados em corpos separados | GRADE: alta, moderada, baixa, muito baixa | @schunemann2024completing [sec. 14.2.1] |
+| Efeito sem meta-análise (SWiM, direção dos efeitos) | Idem | GRADE aplicado ao resumo narrativo (tabela própria abaixo) | @murad2017rating |
+| Modificação de efeito (moderador testado por subgrupo ou meta-regressão) | Cada afirmação de que o efeito difere entre subgrupos | Credibilidade pelo ICEMAN; o efeito em cada subgrupo entra como linha própria com seu GRADE | @schandelmaier2020development; @schunemann2024completing [sec. 14.2.2] |
+| Achado qualitativo (percepção, barreira, implementação, mecanismo relatado) | Cada enunciado de achado, não a síntese inteira | GRADE-CERQual: confiança alta a muito baixa | @lewin2018making |
+| Achado de meta-agregação no método JBI | Achado sintetizado | ConQual, alternativa declarada no protocolo | @munn2014establishing |
+| Configuração contexto-mecanismo-resultado (realista) e solução de QCA | Cada CMOC ou configuração | Sem ferramenta validada: enunciado narrativo com campos fixos, sem níveis GRADE | @lewin2018applying [tabela 4]; @sec-09-realista-qca |
+| Recursos e custos | Diferença de uso de recursos entre opções | Critério do EtD, com certeza própria | @moberg2018grade [tabela 1] |
+
+### Níveis e limiares
+
+| Nível | GRADE (efeito) | CERQual (achado qualitativo) |
+|---|---|---|
+| Alta | Muita confiança de que o efeito verdadeiro está próximo da estimativa | É muito provável que o achado seja uma representação razoável do fenômeno |
+| Moderada | O efeito verdadeiro provavelmente está próximo da estimativa, mas pode ser substancialmente diferente | É provável que seja representação razoável |
+| Baixa | Confiança limitada: o efeito verdadeiro pode ser substancialmente diferente | É possível que seja representação razoável |
+| Muito baixa | Pouquíssima confiança: o efeito verdadeiro provavelmente é substancialmente diferente | Não está claro se é representação razoável |
+| Fonte | @schunemann2013grade [tabela 5.1] | @lewin2018applying [tabela 3] |
+
+Certeza é sempre relativa a um limiar ou a uma faixa: julga-se a confiança de que o efeito verdadeiro está de um lado de um limiar (zero, ou o menor efeito relevante) ou dentro de uma faixa de magnitude. Para revisões, o GRADE considera mais apropriadas abordagens pouco contextualizadas, com faixas como "nenhum, trivial, pequeno, moderado, grande", e pede que os limiares sejam declarados [@hultcrantz2017grade]. No projeto, δ e as faixas de magnitude por campo são fixados no protocolo (@sec-03-regras).
+
+### Ponto de partida e quanto rebaixar
+
+| Situação | Regra | Fonte |
+|---|---|---|
+| Corpo de ensaios randomizados | Começa em **alta** | @schunemann2024completing [sec. 14.2.1] |
+| Não randomizados avaliados com ROBINS-I (@sec-06-regras) | Podem começar em **alta**, mas em geral são rebaixados **dois níveis** por confundimento e seleção; não rebaixar exige justificativa detalhada, e o Handbook registra que há pouquíssimos exemplos em que isso foi apropriado | @schunemann2024completing [sec. 14.2.1] |
+| Não randomizados sem ROBINS-I (outra ferramenta ou nenhuma avaliação por domínio) | Começam em **baixa**. Escala de Maryland e hierarquias de desenho não são avaliação de risco de viés | @schunemann2024completing [sec. 14.2.1]; @sec-06-regras |
+| Não contar duas vezes | Quem começou em baixa não rebaixa de novo por confundidores desconhecidos; rebaixar por falha em medir ou ajustar confundidores conhecidos é legítimo | @schunemann2019grade |
+| Séries temporais interrompidas bem feitas | Poderiam, em tese, chegar a moderada sem elevação, mas os autores do GRADE não encontraram exemplos | @schunemann2019grade |
+| Quanto rebaixar | Um nível por domínio "grave", dois por "muito grave", até três no total; três por risco de viés só com ROBINS-I "crítico"; nunca abaixo de muito baixa | @schunemann2024completing [sec. 14.2.1-14.2.2] |
+| Quem julga | Idealmente duas pessoas independentes, com consenso; cada rebaixamento e elevação justificado por escrito (MECIR C74 e C75, obrigatórios) | @schunemann2024completing [sec. 14.2.1] |
+
+### Os cinco domínios, operacionalizados
+
+| Domínio | Julgar como grave quando... | Observações para políticas públicas | Fonte |
+|---|---|---|---|
+| Risco de viés | O peso da estimativa vem de estudos com limitação decisiva em um item ou limitações em vários. RoB 2 "baixo" indica sem limitação; "algumas preocupações", sem ou grave; "alto", grave ou muito grave; ROBINS-I "crítico", extremamente grave | Não fazer média entre estudos: pesar a contribuição de cada um para a estimativa. A sensibilidade sem estudos de alto risco (@sec-08a-regras) testa o julgamento | @schunemann2024completing [sec. 14.2.2]; @schunemann2013grade [sec. 5.2.1] |
+| Inconsistência | Estimativas muito diferentes, pouca sobreposição de ICs, teste de heterogeneidade com p baixo, I² grande, sem explicação | Faixas indicativas e sobrepostas de I²: < 40% pode ser baixa; 30-60% moderada; 50-90% substancial; 75-100% considerável. Com estudos grandes, diferenças pequenas geram I² alto; τ² não depende do tamanho dos estudos. Olhar também o intervalo de predição (@sec-08a-regras). Com modificador importante e bem sustentado (de preferência pré-especificado), os subgrupos podem ir para linhas ou tabelas separadas; heterogeneidade sem explicação plausível reduz a certeza | @schunemann2013grade [sec. 5.2.2]; @schunemann2024completing [sec. 14.2.2] |
+| Indireção | População, intervenção, comparador ou desfecho diferem da pergunta; comparação só indireta; desfecho substituto ou janela diferente | Inclui contexto institucional e nacional, nível de governo, implementador e estimando (tabela específica abaixo). Cada aspecto recebe "sim, provavelmente sim, provavelmente não, não" | @schunemann2024completing [sec. 14.2.2, tabela 14.2.b]; @schunemann2013grade [sec. 5.2.3] |
+| Imprecisão | O IC cruza o limiar de interesse (zero ou δ); se não cruza e o efeito é grande, a amostra total fica abaixo do tamanho ótimo de informação (OIS) | IC que cruza o limiar de forma apreciável: considerar dois ou três níveis. Para desfechos contínuos, o GRADE Handbook evita regra fixa, mas associa a diferença média padronizada de 0,2, com α = 0,05 e β = 0,20, a cerca de 400 participantes e manda considerar rebaixar abaixo disso; o cálculo convencional de tamanho amostral para d = 0,2 dá cerca de 390 por grupo (cálculo nosso), de modo que 400 no total é piso, não garantia de precisão. Não usar o número de estudos como razão de imprecisão. Autor de revisão não rebaixa por *trade-offs* entre benefício e dano: isso é juízo de decisão | @zeng2022grade; @schunemann2013grade [sec. 5.2.4.2]; @schunemann2024completing [sec. 14.1.6] |
+| Viés de publicação | Só estudos pequenos e positivos; busca pouco abrangente; estudos que ficaram em teses, anais ou periódicos não indexados | O risco pode ser maior em revisões de estudos observacionais. Testes de funil só com k ≥ 10 (@sec-08a-regras). Relato seletivo de desfechos entra em risco de viés, não aqui | @schunemann2013grade [sec. 5.2.5]; @murad2017rating [tabela 1] |
+
+| Elevação (em geral só não randomizados) | Regra | Fonte |
+|---|---|---|
+| Efeito grande | RR > 2 ou < 0,5 sem confundidores plausíveis; RR > 5 ou < 0,2 sem ameaças importantes à validade. Até dois níveis; hesitar se o IC fica bem abaixo do limiar | @schunemann2024completing [sec. 14.2.3]; @schunemann2013grade [tabela 5.3, sec. 5.3.1] |
+| Dose-resposta | Gradiente entre intensidade da exposição e desfecho; um nível | Idem |
+| Confundimento plausível contrário | Os vieses plausíveis reduziriam o efeito observado, e ainda assim ele aparece; um nível | Idem |
+
+### GRADE sem meta-análise
+
+Quando os estudos medem o desfecho de modos que não permitem agregação, a certeza continua obrigatória; o resumo narrativo segue o SWiM (@sec-08a-regras) e cada domínio é adaptado [@murad2017rating].
+
+| Domínio | Como julgar sem estimativa combinada |
+|---|---|
+| Risco de viés | Julgamento entre estudos para o desfecho; como não há análise de sensibilidade, considerar tamanho, risco de viés e peso provável de cada estudo no resumo |
+| Indireção | Julgamento global de quanto população, intervenção e desfechos dos estudos se afastam da pergunta |
+| Imprecisão | Somar participantes entre estudos; 400 ou menos é preocupante. Também é imprecisão quando os ICs de todos os estudos, ou dos maiores, incluem zero e benefício ou dano relevantes |
+| Inconsistência | Variação de direção e, sobretudo, de magnitude entre estudos |
+| Viés de publicação | Suspeitar se só há estudos pequenos positivos ou se a busca não foi abrangente; teste estatístico não é possível |
+| Elevação | Considerar se efeito grande, dose-resposta ou confundimento contrário aparecem na maioria dos estudos |
+
+Fonte: @murad2017rating [tabela 1]. A orientação não se aplica a revisões metanarrativas nem qualitativas.
+
+### Credibilidade de moderadores
+
+Um moderador que muda a implicação ("funciona melhor em redes vulneráveis") é uma afirmação de modificação de efeito. O ICEMAN tem oito perguntas para meta-análises: a comparação é dentro dos estudos, e não entre estudos; nas comparações dentro dos estudos, a modificação é parecida de estudo para estudo; nas comparações entre estudos, há muitos estudos; a direção foi hipotetizada *a priori*; um teste de interação torna o acaso improvável; poucos modificadores foram testados (ou a multiplicidade foi considerada); o modelo é de efeitos aleatórios; e, para variáveis contínuas, evitaram-se pontos de corte arbitrários. O julgamento final vai de credibilidade muito baixa a alta, faixas que correspondem, grosso modo, a probabilidades abaixo de 25%, de 25% a 50%, de 51% a 75% e acima de 75% de que a modificação exista [@schandelmaier2020development]. Regra desta base: na caixa, moderador com credibilidade baixa ou muito baixa aparece como hipótese; moderador relatado só qualitativamente recebe CERQual (@sec-08b-regras).
+
+### Indireção em avaliação de políticas
+
+GRADE nasceu em saúde, e os exemplos de indireção dos manuais são clínicos. A tabela desdobra as fontes de indireção para políticas públicas.
+
+| Aspecto | Pergunta de verificação | Por que importa | Fonte |
+|---|---|---|---|
+| População e contexto | Países, redes e populações dos estudos são comparáveis ao contexto da pergunta? | O efeito médio depende da distribuição dos fatores de suporte, que varia entre populações | @deaton2018understanding [sec. 2.3] |
+| Nível de governo e implementador | O programa foi executado pelo mesmo nível e tipo de executor? | No levantamento de Vivalt citado por Deaton e Cartwright, ECRs de desenvolvimento conduzidos por agências governamentais acharam efeitos padronizados menores que os de acadêmicos ou ONGs | @deaton2018understanding [sec. 2.5] |
+| Seleção dos locais | Onde os experimentos aconteceram, e por quê? | ECRs de desenvolvimento são mais prováveis em jurisdições politicamente competitivas, sobretudo com o governo como parceiro; o efeito pode refletir instituições e burocracias mais capazes | @corduneanuhuci2021politics [p. 1-3] |
+| Arranjos de governança, financiamento e prestação | A política depende desses arranjos? | Lições de revisões sobre esses arranjos tendem a ser sensíveis ao contexto | @lavis2009support [p. 4] |
+| Intervenção e comparador | A intervenção pode ser implementada no contexto de uso com o mesmo rigor? Tratamento e controle são os mesmos entre estudos? | GRADE sugere rebaixar se o rigor não é reproduzível no contexto de uso; harmonizar só o tratamento não basta | @schunemann2013grade [sec. 5.2.3]; @slough2023external [p. 22 da versão de trabalho] |
+| Desfecho e mensuração | O construto e a janela são os da pergunta? | Janela diferente (3 contra 12 meses) e desfecho substituto são indireção; mensurações diferentes quebram a equivalência de alvo | @schunemann2013grade [sec. 5.2.3]; @slough2023external [p. 2-3 da versão de trabalho] |
+| Estimando | O estudo identifica ATE, ATT, LATE ou efeito local na descontinuidade? | O efeito pode valer para uma subpopulação e diluir-se de forma diferente entre locais conforme a composição da amostra; o registro do estimando está na @sec-07-regras | @slough2023external [p. 12 da versão de trabalho] |
+
+::: {.callout-note}
+## Onde a proposta OQF e as normas divergem: a revisão amplia a validade externa?
+A proposta OQF e os slides apresentam a validade externa como vantagem da revisão sistemática [@schaefer2026aula1, p. 16; @schaefer_oqfunciona, p. 6, 8, 37], e a proposta cita Slough e Tyson em apoio. O resultado desses autores é condicional: estudos combinados só miram o mesmo alvo quando o mecanismo é externamente válido e os estudos são harmonizados em contraste e mensuração; os modelos de efeitos fixos e aleatórios **pressupõem** essa condição, e por isso estimar um efeito comum não demonstra validade externa [@slough2023external, p. 3, 21, 25 da versão de trabalho]. Deaton e Cartwright chamam de "extrapolação simples" a transposição sem análise dos fatores de suporte [@deaton2018understanding, sec. 2.2-2.3]. A revisão ajuda a **examinar** a validade externa (heterogeneidade, moderadores, contextos cobertos), mas não a concede. Regra do projeto: transferibilidade é julgada (indireção no GRADE, relevância no CERQual, TRANSFER), nunca presumida.
+:::
+
+### Da certeza à caixa de ferramentas
+
+A proposta OQF usa "escala do efeito" para a direção (positivo, misto ou negativo) e "força do efeito" para magnitude e significância, embora em outro trecho chame os testes combinados de medida da "escala, ou tamanho" [@schaefer_oqfunciona, p. 19-21; @schaefer2026aula1, p. 40]. A especificação metodológica desta base (@sec-especificacao-caixa) separa magnitude de confiança:
+
+| Dimensão | Termo no OQF | Termo na especificação | Conteúdo |
+|---|---|---|---|
+| Direção | Escala do efeito | **Efeito** | Positivo, Negativo, Nulo, Misto, Inconclusivo |
+| Magnitude | Força do efeito | **Escala** | Faixas de magnitude do campo fixadas no protocolo |
+| Confiança | Não existe | **Força** | Certeza GRADE da célula: alta = forte; moderada = moderada; baixa = fraca; muito baixa = insuficiente |
+| Mecanismo, moderador, percepção, implementação, custo | "Quantitativa e/ou qualitativa" | Enunciado com CERQual (ou ICEMAN, para moderador testado) e estudos de suporte | @sec-08b-regras |
+
+"Força" na caixa é força **da evidência**. O GRADE usa "forte" e "fraca" para a força **da recomendação**, e admite chamar a recomendação fraca de "condicional" justamente para não confundi-la com evidência fraca [@schunemann2013grade, sec. 6.1.2].
+
+| Rótulo de efeito | Condição (especificação da skill) | Certeza mínima |
+|---|---|---|
+| Positivo | Estimativa benéfica com IC que exclui zero; sem meta-análise, teste de sinal p < 0,05, ≥ 5 estudos, ≥ 70% benéficos, não só estudos de alto risco | Baixa |
+| Negativo | Idem, na direção danosa, inclusive efeitos perversos previstos no DAG | Baixa |
+| Nulo | IC inteiro dentro de ±δ, com δ fixado *a priori* | Moderada |
+| Misto / depende do contexto | Intervalo de predição cobre benefício e dano relevantes (k ≥ 5 e δ fixado *a priori*) **e** moderador pré-especificado ou achado qualitativo explica a variação | Certeza do efeito ao menos baixa e confiança (CERQual ou ICEMAN) do achado explicativo ao menos baixa; sem essa confiança, Inconclusivo |
+| Inconclusivo | Todos os demais casos | Não se aplica |
+
+A especificação não fixa a ordem entre "Misto" e os demais rótulos. Esta base adota a ordem da @sec-08b-regras, que o protocolo declara e que a skill aplica na versão de regra `caixa-3`: (1) sem juízo de certeza, "Pendente"; (2) certeza muito baixa, "Inconclusivo", antes de qualquer outro teste, porque nenhum rótulo pode ser mais forte que a certeza; (3) "Misto", só com k ≥ 5, δ e achado explicativo com confiança própria ao menos baixa, e "Inconclusivo" quando a explicação é alegada sem esses requisitos; (4) "Positivo" ou "Negativo"; (5) "Nulo"; (6) "Inconclusivo" nos demais casos. A exigência de confiança do achado explicativo aplica a esta regra a de credibilidade de moderadores acima: moderador de credibilidade baixa ou muito baixa aparece como hipótese e não sustenta "Misto". Quando randomizados e não randomizados têm rótulos diferentes, o painel mostra o do corpo de maior certeza, e o empate de certeza vira "Inconclusivo" (@sec-08b-caixa). Testes combinados (Fisher, Stouffer, Cooper) nunca definem rótulo (@sec-08a-regras).
+
+### Linguagem padronizada das conclusões
+
+As frases combinam tamanho do efeito e certeza, conforme a Tabela 15.6.b do Cochrane Handbook, que adota as declarações informativas do GRADE [@schunemann2024interpreting, sec. 15.6.4; @santesso2020grade]. No teste original, as declarações para certeza baixa, moderada e alta foram aceitáveis para mais de 60% dos participantes [@santesso2020grade]. A tradução abaixo é deste capítulo. A adaptação transcultural para o português brasileiro recomenda "efeito médio" no lugar de "efeito moderado", para não confundir tamanho com certeza moderada, e encontrou aceitabilidade abaixo de 50% para algumas frases de certeza baixa [@parahiba2025informative]; quando as frases publicadas dessa adaptação estiverem acessíveis, elas prevalecem. A versão para produtos de divulgação está na @sec-10-regras.
+
+| Certeza | Efeito grande | Efeito médio | Efeito pequeno e relevante | Trivial ou nenhum |
+|---|---|---|---|---|
+| Alta | X resulta em grande aumento/redução de Y | X aumenta/reduz Y | X aumenta/reduz Y ligeiramente | X resulta em pouca ou nenhuma diferença em Y |
+| Moderada | X provavelmente resulta em grande aumento/redução de Y | X provavelmente aumenta/reduz Y | X provavelmente aumenta/reduz Y ligeiramente | X provavelmente resulta em pouca ou nenhuma diferença em Y |
+| Baixa | X pode resultar em grande aumento/redução de Y | X pode aumentar/reduzir Y | X pode aumentar/reduzir Y ligeiramente | X pode resultar em pouca ou nenhuma diferença em Y |
+| Muito baixa | A evidência é muito incerta sobre o efeito de X em Y | Idem | Idem | Idem |
+
+Três regras acompanham a tabela [@schunemann2024interpreting, sec. 15.3, 15.6.4]. "Ausência de evidência de efeito" não é "evidência de ausência de efeito": se o IC inclui zero, não se escreve "não tem efeito", e se ele é compatível com benefício e dano, as duas possibilidades são mencionadas. A conclusão é lida "às cegas", invertendo a direção do resultado, para detectar enquadramento otimista. E a interpretação usa estimativas e ICs, sem a dicotomia "significativo / não significativo" (MECIR C72).
+
+### Implicações proporcionais à certeza
+
+O GRADE separa certeza e força da recomendação: certeza alta não implica recomendação forte, e recomendação forte com certeza baixa fica restrita a cinco situações paradigmáticas, como benefício de certeza baixa em situação de risco de vida [@schunemann2013grade, sec. 1.2, tabela 6.3]. Quem decide, e não recomenda, escolhe entre implementar, implementar com avaliação de impacto, fazer piloto, implementar só em alguns cenários ou populações, adiar ou não implementar [@moberg2018grade]. Revisões também podem servir para desenhar um plano de monitoramento e avaliação quando há incerteza substancial sobre o que esperar da política [@lavis2009support, p. 2]. A tabela é a regra operacional desta base, que combina essas fontes com a exigência da especificação (@sec-especificacao-caixa) de que nenhuma implicação seja mais forte que a certeza.
+
+| Certeza do efeito principal | Transferibilidade ao contexto de uso | Implicação admissível | Verbo típico |
+|---|---|---|---|
+| Alta ou moderada | Sem preocupações sérias | Opção favorecida, com condições de implementação e monitoramento | "adotar", "priorizar" |
+| Alta ou moderada | Preocupações moderadas ou sérias | Condicional aos fatores de transferibilidade; piloto ou implementação restrita | "considerar, desde que" |
+| Baixa | Qualquer | Condicional; só com avaliação de impacto ou piloto; dizer o que mudaria a conclusão | "pode ser considerada, com avaliação" |
+| Muito baixa | Qualquer | Nenhuma implicação de adoção baseada em efetividade; implicações de pesquisa e de desenho de avaliação | "a evidência não permite concluir" |
+
+As normas divergem sobre recomendações em revisões. O Cochrane Handbook diz que revisões não devem recomendar, porque pessoas diferentes tomam decisões diferentes com a mesma evidência, conforme recursos, valores, equidade, viabilidade e aceitabilidade; podem, depois de descrever certeza e balanço, apontar ações compatíveis com diferentes padrões de valores [@schunemann2024interpreting, sec. 15.1, 15.6.2]. Os Campbell Standards consideram recomendações de política desejáveis, com cautela para não ir além da evidência [@aloe2024campbell, item 7]. O formato OQF tem uma seção "Da evidência à prática: recomendações" [@schaefer2025proibicao, p. 107]. A solução desta base é chamar a seção de **implicações**, amarrá-las à tabela acima e aos critérios EtD, e deixar explícito que a decisão cabe a quem tem mandato para tomá-la.
+
+## GRADE-CERQual para achados qualitativos {#sec-09-cerqual}
+
+CERQual avalia a confiança de que cada achado de uma síntese qualitativa é uma representação razoável do fenômeno de interesse [@lewin2018applying]. Cada componente tem um análogo no GRADE, o que ajuda a alinhar a caixa de ferramentas.
+
+| Componente | Definição | Análogo no GRADE | O que gera preocupação | Fonte |
+|---|---|---|---|---|
+| Limitações metodológicas | Preocupações com desenho ou condução dos estudos que sustentam o achado | Risco de viés | Limitação que afeta **este** achado (grupo focal para tema sensível, pesquisador que também presta o serviço estudado); estudo com limitação séria que fornece a maior parte dos dados. Diretrizes de relato não servem como ferramenta de avaliação | @munthekaas2018applying |
+| Coerência | Quão claro e convincente é o ajuste entre os dados e o achado | Não tem | Dados contraditórios, ambíguos ou incompletos; casos que desafiam a explicação; explicações concorrentes não exploradas | @colvin2018applying |
+| Adequação dos dados | Riqueza e quantidade dos dados que sustentam o achado | Imprecisão | Dados "finos" ou poucos estudos para um achado que pretende valer amplamente. Não há número mínimo fixo: o julgamento depende da natureza do achado | @glenton2018applying |
+| Relevância | Aplicabilidade dos dados ao contexto da pergunta (perspectiva, população, fenômeno, cenário) | Indireção | Relevância **indireta** (um aspecto do contexto substituído por outro), **parcial** (só um subgrupo ou subtipo coberto) ou **incerta** (fator importante não descrito nos estudos) | @noyes2018applying |
+
+**Regras de julgamento** [@lewin2018making; @munthekaas2018applying]:
+
+1. Escrever antes um resumo explícito de cada achado; se ele propõe uma relação entre fatores, a relação deve estar escrita.
+2. Julgar cada componente como nenhuma ou muito pequena, pequena, moderada ou séria preocupação, sempre descrevendo a preocupação.
+3. Todo achado começa em confiança **alta**.
+4. Rebaixar em geral pelo menos um nível por componente com preocupação séria; preocupações pequenas ou moderadas podem não exigir rebaixamento, mas várias delas podem justificar um nível.
+5. Não pontuar numericamente os componentes: dá falsa precisão.
+6. Não rebaixar duas vezes pela mesma preocupação (poucos dados afetando adequação e coerência, por exemplo).
+7. Pelo menos duas pessoas da equipe fazem o julgamento, em discussão.
+8. Registrar no *Evidence Profile* e resumir na tabela *Summary of Qualitative Findings* (SoQF): resumo do achado, nível de confiança, estudos com seus contextos e, de preferência, a explicação.
+
+CERQual pressupõe uma síntese bem conduzida e relatada; aplicado a uma síntese fraca, não produz resultado útil [@lewin2018applying]. Nas revisões mistas OQF, os achados de percepção, implementação, aceitabilidade e viabilidade respondem a critérios do EtD que estudos quantitativos comparativos costumam abordar pouco [@barreto2019uso, p. 24]. O Brasil tem experiência institucional: o Ministério da Saúde usa GRADE em diretrizes, há treinamento em GRADE-CERQual, e Barreto e Lewin apontam uma tradução em português do artigo de 2015 que apresentou a abordagem [@barreto2019uso, p. 25, 34]. Se a revisão seguir o JBI, o ConQual é a alternativa: parte de alta, rebaixa um nível quando 2 ou 3 das 5 perguntas de confiabilidade (*dependability*) são respondidas "sim" e dois quando só 0 ou 1, e rebaixa por credibilidade um nível quando os achados combinam inequívocos e equívocos, dois quando são equívocos, três quando combinam equívocos e não sustentados e quatro quando não são sustentados [@munn2014establishing]. A escolha é declarada no protocolo.
+
+## Realista e QCA: enunciado narrativo, sem pseudo-GRADE {#sec-09-realista-qca}
+
+Não há ferramenta validada de certeza para configurações contexto-mecanismo-resultado nem para soluções de QCA. Os autores do CERQual listam como agenda aberta a adaptação para produtos interpretativos, como modelos lógicos e meta-etnografia, e para sínteses que integram dados quantitativos e qualitativos [@lewin2018applying, tabela 4]. Na revisão realista, a conclusão não é um veredito sobre o que funciona ou o tamanho do efeito, e sim uma revisão da teoria do programa, que leva no máximo a recomendações tentativas [@pawson2005realist, p. 32]. Atribuir ⊕⊕◯◯ a uma CMOC dá a aparência de padronização que nenhuma validação sustenta, o tipo de "impressão espúria de precisão" que críticos do movimento de políticas baseadas em evidências apontam no uso de indicadores [@faria2022movimento, p. 10].
+
+::: {.callout-warning}
+## Não fazer
+Não atribuir nível GRADE ou CERQual a CMOCs, teorias de programa refinadas ou soluções de QCA. Não somar "pontos" de estudos de suporte. Não chamar uma configuração de "forte" porque a consistência passou de um limiar.
+:::
+
+| Produto | Campos obrigatórios do enunciado | Fonte |
+|---|---|---|
+| CMOC (realista) | (a) formulação da CMOC; (b) estudos que sustentam cada elo e tipo de dado; (c) julgamento de **relevância** (o estudo aborda a teoria testada?) e de **rigor** (a inferência se sustenta?) por fonte, lembrando que não são critérios absolutos; (d) evidência contrária encontrada; (e) status: hipótese inicial, refinada ou testada | @pawson2005realist [p. 24, 30, 32] |
+| Solução de QCA | (a) configuração; (b) consistência e cobertura, com limiar de consistência pré-especificado (usualmente entre 75% e 90%); (c) cobertura da solução e casos não explicados; (d) sensibilidade a limiares alternativos de calibração; (e) risco de viés dos estudos cobertos; (f) rubrica de calibração com justificativas registradas | @kahwati2016using [p. 7-10] |
+
+Quando uma CMOC ou configuração sustenta um rótulo "Misto" ou uma implicação, o texto informa o status do enunciado e remete ao efeito correspondente, que tem seu GRADE. A condução da síntese realista e da QCA está na @sec-08b-regras.
+
+## Da evidência à decisão e transferibilidade ao Brasil {#sec-09-etd}
+
+### Critérios EtD para decisões de política pública
+
+Os *frameworks* EtD do GRADE, introduzidos por Alonso-Coello e colegas [@alonsocoello2016grade], organizam a passagem da evidência à decisão em três seções: pergunta, avaliação de critérios e conclusões [@moberg2018grade, tabela 2]. A versão para sistemas de saúde e saúde pública é a base aqui, por quatro diferenças: a decisão é tomada em nome de uma população; a pergunta parte de um problema e de opções (POCO: problema, opção, comparação, desfechos) em vez de PICO; a certeza costuma ser baixa ou muito baixa e ainda assim é preciso decidir; e equidade, aceitabilidade e viabilidade pesam mais [@moberg2018grade, tabela 2]. A especificação da skill usa uma versão reduzida (EtD-lite) com transferibilidade ao Brasil como critério explícito.
+
+| Critério EtD | Pergunta | O que a revisão OQF fornece |
+|---|---|---|
+| Prioridade do problema | O problema é prioritário (gravidade, urgência, número de afetados)? | Introdução e contexto da política |
+| Efeitos desejáveis e indesejáveis | Quão substanciais são? | Células de efeito com magnitude e GRADE, incluindo efeitos perversos do DAG (@sec-02-regras) |
+| Certeza | Qual a certeza geral da evidência de efeitos? | Tabela SoF |
+| Valores | Como os afetados valorizam os desfechos? Há variação? | Achados de percepção com CERQual |
+| Balanço | Os efeitos desejáveis superam os indesejáveis? | Julgamento explícito com as linhas anteriores |
+| Recursos e custo-efetividade | Que recursos são necessários, com que certeza? O benefício líquido compensa? | Linha "custo" da caixa; "não reportado" quando não houver |
+| Equidade | Qual o impacto sobre grupos em desvantagem? Quem arca com os custos? | Moderadores (vulnerabilidade, renda, região) com ICEMAN ou CERQual |
+| Aceitabilidade | A opção é aceitável para os atores-chave? | Achados de percepção com CERQual |
+| Viabilidade | É viável e sustentável? Há barreiras importantes? | Linha "implementação" da caixa |
+| Transferibilidade ao Brasil | Os fatores priorizados estão presentes no contexto de uso? | Avaliação TRANSFER |
+
+Fonte dos critérios: @moberg2018grade [tabela 1]; transferibilidade: @munthekaas2020transfer. Duas orientações de Moberg et al. valem para a redação: recomendações condicionais precisam dizer quais condições favorecem ou desfavorecem a opção, e monitoramento e avaliação fazem parte das conclusões quando há incerteza importante. No exemplo do artigo, a recomendação condicional ficou restrita a áreas rurais com baixo acesso a serviços, provavelmente porque os estudos tinham sido feitos nesse contexto [@moberg2018grade].
+
+### Transferibilidade: o método TRANSFER
+
+TRANSFER define transferibilidade como o grau em que o contexto da pergunta e o contexto dos estudos que sustentam o achado diferem segundo características identificadas *a priori* [@munthekaas2020transfer]. O método desloca o julgamento para o início porque muitos autores só pensam em aplicabilidade no fim, quando já não há dados de contexto nem subgrupos planejados; numa amostra de 98 revisões, só uma em cada dez discutia a aplicabilidade dos resultados [@munthekaas2020transfer]. As sete categorias de fatores encontradas no mapeamento de 25 *checklists* são população, intervenção, contexto imediato de implementação, condição de comparação, desfechos, contexto ambiental e conduta dos pesquisadores.
+
+| Estágio TRANSFER | O que fazer | Onde entra no projeto |
+|---|---|---|
+| 1. Necessidade da revisão | Com quem demanda ou usa a revisão | @sec-02-regras |
+| 2a. Refinar a pergunta | Com os usuários | @sec-02-regras |
+| 2b. Identificar e priorizar fatores | Guia de conversa; priorizar 3 a 5 fatores; buscar evidência de que importam e da direção esperada | Protocolo (@sec-03-regras) |
+| 2c. Caracterizar o contexto da revisão | Descrever o contexto (global e/ou brasileiro) em cada fator | Protocolo |
+| 3. Conduzir a revisão | Extrair os fatores no codebook | @sec-07-regras |
+| 4. Comparar estudos e contexto | Tabela estudos × fatores | Síntese |
+| 5. Avaliar a transferibilidade | Subgrupo ou regressão por fator quando k permite; preocupação por fator e global: nenhuma, pequena, moderada ou séria | Síntese e esta etapa |
+| 6. Aplicar GRADE ou CERQual | A avaliação TRANSFER sustenta a indireção ou a relevância | Esta etapa |
+| 7. Discutir com os usuários | Devolutiva antes da publicação | Relato (@sec-10-regras) |
+
+Fonte: @munthekaas2020transfer. Cartwright e Hardie organizam o mesmo problema como o caminho "de lá para cá": saber que algo funcionou onde foi estudado não basta para prever que funcionará onde se quer implementar [@cartwright2012evidence].
+
+### Fatores candidatos para o Brasil
+
+Os fatores saem das leituras e do caso. **Nível de governo e autonomia fiscal**: em média, 60% das receitas municipais são transferências, e tributos locais são cerca de 15% [@hjort2021research, p. 7 da versão de trabalho]; um efeito sobre arrecadação federal não é direto para um município. **Desigualdades regionais e populacionais**, que mudam acesso e efeito [@barreto2019uso, p. 28]. **Escassez de estudos de países de renda média e baixa**, que pode exigir pesquisa primária local em vez de transposição [@barreto2019uso, p. 29]; no experimento com prefeitos, os autores não encontraram um estudo brasileiro comparável para oferecer [@hjort2021research, p. 3, nota 5]. **Marco legal e discricionariedade das redes**, como no decreto que deixa a implementação da proibição de celulares às redes [@schaefer2025proibicao, p. 109]. **Fatores de suporte**: transferências condicionadas à ida a clínicas não melhoram a saúde onde não há clínicas funcionando [@deaton2018understanding, sec. 2.3].
+
+::: {.callout-warning}
+## Transferibilidade não é um segundo rebaixamento
+Se a indireção já foi rebaixada por diferença de contexto, a mesma diferença não rebaixa de novo no EtD nem na relevância CERQual. O CERQual alerta que usuários podem rebaixar outra vez por relevância sem perceber que isso já foi feito [@lewin2018making]. Registre em que domínio cada fator foi contabilizado.
+:::
+
+### Para quem se escrevem as implicações
+
+As implicações são lidas por burocratas e políticos com rotinas, fontes e incentivos próprios. O empacotamento dos produtos está na @sec-10-regras; aqui ficam as consequências para o conteúdo das implicações.
+
+| Achado sobre uso de evidências | Consequência para as implicações | Fonte |
+|---|---|---|
+| Prefeitos brasileiros pagam para conhecer resultados de avaliações e atualizam crenças, mas não distinguem estudos de países ricos e pobres; uma sessão de 45 minutos aumentou em 10 pontos percentuais a adoção de uma política simples e barata 15 a 24 meses depois, e os autores ressalvam que políticas caras ou complexas podem responder menos | O contexto dos estudos e a comparação com o contexto de uso vão na mensagem principal; o efeito da divulgação não autoriza implicações mais fortes | @hjort2021research [p. 1, 3-5, 31 da versão de trabalho] |
+| Em experimento com servidores federais dos EUA, a valoração de programas respondeu pouco ao impacto; comparação lado a lado e custo anual por pessoa atingida aumentaram essa sensibilidade | Apresentar opções lado a lado, com a mesma métrica de magnitude e a mesma escala de certeza | @toma2024understanding [p. 1-4 da versão aceita] |
+| Burocratas federais brasileiros recorrem mais a normas, recomendações de órgãos de controle e mídia do que a dados de monitoramento e avaliação; o uso conceitual de pesquisa é mais frequente que o instrumental, e há uso simbólico | Ligar cada implicação ao marco normativo e às exigências de controle; com certeza baixa, a revisão ainda pode reenquadrar o problema, sem virar recomendação | @koga2020analise [p. 33-35]; @gough2016systematic [p. 12, 14 do manuscrito] |
+| Decisões emergem da política e do julgamento; soluções testadas num contexto são adotadas em outro onde podem não funcionar; o movimento é recente e frágil no Brasil. Concordância com valores e oportunidade aumentam o uso | Opções condicionadas, com os valores em jogo explícitos, entregues no tempo da decisão, e não receitas universais | @faria2022movimento [p. 2, 9-10]; @lavis2009support [p. 5] |
+
+Resultados de pesquisa sugerem cursos de ação, mas não os especificam; entre uma coisa e outra há processos formais de interpretação, como o GRADE e os *toolkits* que apresentam efetividade junto com a força da evidência [@gough2016systematic, p. 9 do manuscrito]. A caixa de ferramentas OQF é um desses produtos, e por isso precisa carregar a certeza.
+
+## Passo a passo {#sec-09-passos}
+
+1. **No protocolo** (@sec-03-regras), fixar: até sete desfechos por tabela SoF [@schunemann2024completing, sec. 14.1.3]; δ e faixas de magnitude ancorados no campo (em educação, é comum comparar com o aprendizado esperado em anos [@aloe2024campbell, item 7]); abordagem de certeza por tipo de achado; moderadores com direção esperada; 3 a 5 fatores TRANSFER; ordem de aplicação dos rótulos.
+2. **Montar o perfil de evidência de cada célula**, com randomizados e não randomizados separados: estudos e participantes, risco de viés por estudo (@sec-06-regras), estimativa com IC, τ² e intervalo de predição (@sec-08a-regras) ou resumo SWiM, contextos e estimandos.
+3. **Atribuir o ponto de partida**, registrando se ROBINS-I foi usado.
+4. **Julgar os cinco domínios** e as elevações, com duas pessoas independentes e justificativa escrita; sem meta-análise, usar a tabela de Murad et al.
+5. **Montar a tabela SoF**: população e cenário, comparação, desfechos, magnitude, participantes e estudos, certeza, comentários e explicações; desfechos sem meta-análise entram com resumo narrativo [@schunemann2024completing, sec. 14.1.3, 14.1.6].
+6. **Julgar os moderadores** com o ICEMAN e os achados qualitativos com CERQual; escrever os enunciados narrativos de CMOCs e soluções de QCA.
+7. **Avaliar a transferibilidade** (TRANSFER, estágios 4 a 6), registrando em que domínio cada preocupação foi contabilizada.
+8. **Rotular as células da caixa** na ordem do protocolo e preencher o **EtD-lite**, com fonte e certeza por critério.
+9. **Redigir conclusões** com as frases padronizadas e **implicações** com a tabela de proporcionalidade; implicações para pesquisa saem dos domínios que rebaixaram a certeza (risco de viés pede estudos melhores; indireção, estudos no contexto de uso; imprecisão, mais participantes) [@schunemann2024interpreting, tabela 15.6.a].
+10. **Checar a redação às cegas** e submeter à revisão metodológica antes do portão G8.
+
+## O que as diretrizes exigem {#sec-09-diretrizes}
+
+| Diretriz | Item | Exigência |
+|---|---|---|
+| PRISMA 2020 | 15 | Descrever os métodos usados para avaliar a certeza (ou confiança) no corpo de evidência de um desfecho [@page2021prisma] |
+| PRISMA 2020 | 22 | Apresentar a avaliação de certeza para cada desfecho avaliado [@page2021prisma] |
+| PRISMA 2020 | 23a-23d | Interpretação à luz de outras evidências; limitações da evidência; limitações do processo da revisão; implicações para prática, política e pesquisa [@page2021prisma] |
+| SWiM | 6 | Descrever os métodos usados para avaliar a certeza dos achados da síntese [@campbell2020synthesis] |
+| SWiM | 8 | Para cada comparação e desfecho, descrever os achados e sua certeza, em linguagem coerente com a pergunta, indicando os estudos que contribuem [@campbell2020synthesis] |
+| Cochrane MECIR | C72 (obrigatório) | Interpretar por estimativas e ICs, sem a dicotomia "significativo / não significativo" [@schunemann2024interpreting] |
+| Cochrane MECIR | C74 e C75 (obrigatórios) | Usar as cinco considerações GRADE para cada desfecho; justificar e documentar todas as avaliações de certeza [@schunemann2024completing] |
+| Campbell Standards | 7a-7d | Interpretar magnitude à luz da credibilidade; discutir a incerteza (heterogeneidade); interpretar à luz da diretividade (generalização, validade externa e de construto); implicações na medida justificada por 7a-7c [@aloe2024campbell] |
+
+## Exemplo trabalhado {#sec-09-exemplo}
+
+### Celulares nas escolas: o que foi feito
+
+A revisão sobre proibição de celulares combinou oito estudos quantitativos causais (três experimentais, quatro de diferenças em diferenças e uma meta-análise) e treze qualitativos ou descritivos, de 12 países, nenhum do Brasil [@schaefer2025proibicao, p. 99, 104]. A meta-análise estimou g = 0,22 (IC 95% 0,02 a 0,42), com χ²₇ = 29,73 e I² = 76,5% na Figura 1 [@schaefer2025proibicao, p. 105]. O resumo diz que o efeito, embora fraco, é "consistente em diferentes metodologias e contextos" [@schaefer2025proibicao, p. 97], e o texto usa os testes de Fisher e Cooper como reforço dessa consistência [@schaefer2025proibicao, p. 104]. A caixa registra "Escala do efeito: efeito positivo" e "Força do efeito: efeito fraco" [@schaefer2025proibicao, p. 108], e o painel do MAPE mostra a proibição com efeito "Positivo" e implementação "Moderada" [@schaefer2026aula1, p. 37]. A seção de recomendações propõe responsabilidades de fiscalização compartilhadas e implementação gradual, com aviso prévio [@schaefer2025proibicao, p. 109]. Não há avaliação de certeza nem de transferibilidade.
+
+### O que deveria ser feito: GRADE reconstruído
+
+O artigo não relata risco de viés por estudo nem identifica, na figura, quais estimativas são experimentais; a reconstrução é **ilustrativa**. A reanálise com os efeitos e erros-padrão do Anexo J da proposta OQF [@schaefer_oqfunciona, p. 106], detalhada na @sec-08a-exemplo, reproduz a estimativa publicada e dá τ ≈ 0,19 e intervalo de predição de −0,28 a 0,71 (cálculo desta base, conferido em `metafor`).
+
+| Domínio | Evidência no artigo | Julgamento ilustrativo |
+|---|---|---|
+| Ponto de partida | Corpo misto; quatro estudos de diferenças em diferenças sem ROBINS-I; uma das oito estimativas é de meta-análise [@schaefer2025proibicao, p. 104] | Separar experimentos e não randomizados; o corpo não randomizado começa em baixa; a meta-análise sai do conjunto (@sec-05-regras) |
+| Risco de viés | Não avaliado; critério de inclusão de "descrição metodológica mínima" [@schaefer2025proibicao, p. 102] | Grave, porque não é possível afirmar ausência de limitação; exige RoB 2 e ROBINS-I por estudo |
+| Inconsistência | I² de 76,5%; estimativas de −0,01 a 0,67; ICs que não se sobrepõem (0,05 a 0,07 contra 0,10 a 0,68); intervalo de predição de −0,28 a 0,71; o próprio texto fala em "alta variabilidade" [@schaefer2025proibicao, p. 99, 105] | Grave |
+| Indireção | Inclui ensino superior; tipos de banimento, disciplinas e avaliações diferentes; nenhum estudo brasileiro [@schaefer2025proibicao, p. 99, 105, 109] | Grave para "educação básica no Brasil" |
+| Imprecisão | IC de 0,02 a 0,42; mais de 400 participantes no total [@schaefer_oqfunciona, p. 106] | Depende de δ: com δ hipotético de 0,10 DP, o IC cruza o limiar e o domínio é grave, mesmo com a OIS atendida |
+| Viés de publicação | Só estudos revisados por pares; os dois estimadores mais precisos perto de zero (0,06 e −0,01) e os menos precisos entre 0,39 e 0,67 [@schaefer2025proibicao, p. 102, 105]; k = 8 impede teste de funil | Suspeito |
+| **Certeza final** | | **Muito baixa** para o corpo agregado. O subconjunto experimental partiria de alta, mas indireção e imprecisão com três estudos tenderiam a rebaixá-lo; o julgamento exige separar as estimativas por desenho |
+
+**Linha da tabela SoF (ilustrativa).** Estudantes da educação básica e superior de 12 países; proibição ou restrição × ausência de restrição; desempenho acadêmico (medidas diversas); g = 0,22 (0,02 a 0,42), intervalo de predição de −0,28 a 0,71; 8 estimativas; ⊕◯◯◯ muito baixa (risco de viés, inconsistência, indireção, imprecisão).
+
+**Conclusão e rótulo.** A frase admissível é "A evidência é muito incerta sobre o efeito da proibição do uso de celulares no desempenho acadêmico"; "consistente em diferentes metodologias e contextos" não é compatível com I² de 76,5% nem com um intervalo de predição que inclui efeitos negativos. Na caixa, "Positivo" exige certeza ao menos baixa e fica bloqueado; o intervalo de predição e os achados explicativos [@schaefer2025proibicao, p. 106] abririam "Misto", mas, pela precedência recomendada nesta base, certeza muito baixa leva primeiro a "Inconclusivo". Força: insuficiente. Escala: depende das faixas que o protocolo não fixou.
+
+**Moderador de vulnerabilidade.** O artigo afirma efeitos mais fortes para alunos e escolas mais vulneráveis, citando três estudos [@schaefer2025proibicao, p. 106]. Pelo ICEMAN, contariam a favor comparações feitas dentro de cada estudo e na mesma direção, o que precisa ser conferido nos originais; contam contra a direção não ter sido hipotetizada no protocolo, cujo PICOC não lista moderadores [@schaefer2025proibicao, p. 100], e a ausência de testes de interação na revisão. Com a informação publicada, a credibilidade não passa de baixa (julgamento ilustrativo); o enunciado entra na caixa como hipótese, e subir a credibilidade exige extrair os testes de interação dos três estudos.
+
+### CERQual para um achado de implementação (ilustrativo)
+
+Achado: *quando a fiscalização da proibição recai sobre os professores, surgem tensões em sala*. Estudos de suporte: Grigic Magnusson et al. (2023), sobre gestão da proibição em salas de escolas digitalizadas, e Wikström et al. (2024), sobre o ensino médio sueco, que registram tensões como custo de pessoal [@schaefer2025proibicao, p. 106-107, 111, 113].
+
+| Componente | Julgamento | Explicação |
+|---|---|---|
+| Limitações metodológicas | Moderada preocupação | Estudos não avaliados criticamente na revisão |
+| Coerência | Moderada preocupação | A versão publicada diz que, com fiscalização docente, "o resultado foi mais baixo", uma afirmação de magnitude que dados qualitativos não mostram; o achado deve falar de tensões |
+| Adequação | Séria preocupação | Dois estudos |
+| Relevância | Moderada preocupação (relevância indireta) | Um país e escolas em que o celular já estava integrado às práticas pedagógicas; redes brasileiras têm outra infraestrutura e outra regulamentação |
+| **Confiança** | **Baixa** | Um nível por adequação e um pelo conjunto de preocupações moderadas |
+
+A implicação correspondente não seria "retirar a fiscalização dos professores", mas: *há confiança baixa de que atribuir a fiscalização só aos docentes gera tensões; redes que implementarem a Lei 15.100/2025 podem testar modelos de responsabilidade compartilhada e monitorar conflitos e cumprimento*.
+
+### EtD-lite para o Brasil
+
+A decisão de proibir já foi tomada pela Lei 15.100/2025, e o Decreto 12.385/2025 deixa às redes a forma de implementar [@schaefer2025proibicao, p. 108-109]. Em termos POCO, a pergunta útil é sobre **modelos de implementação**: problema (uso de celulares em aula), opções (guarda na entrada, restrição só em aula, fiscalização docente ou compartilhada), comparação entre elas e desfechos (desempenho, conflitos, cumprimento). Com certeza muito baixa sobre o desempenho, a opção admissível é implementar com monitoramento e avaliação de impacto, sem justificar a política pela promessa de ganho de aprendizagem [@moberg2018grade]. Equidade (efeito possivelmente maior entre vulneráveis, credibilidade baixa), aceitabilidade (professores mais favoráveis, estudantes mais resistentes a proibições totais) e viabilidade (custo monetário baixo, custos de pessoal e de conflito) entram com a confiança de cada achado [@schaefer2025proibicao, p. 106-107]. Os fatores TRANSFER prioritários seriam etapa de ensino, modelo de fiscalização, infraestrutura de guarda dos aparelhos e exceções previstas na lei para acessibilidade, inclusão e saúde [@schaefer2025proibicao, p. 98, 107].
+
+### REFIS: indireção por nível de governo e janela do desfecho
+
+No pipeline R de exemplo, o PICOC do REFIS define o contexto como "âmbito federal/estadual/municipal" e lista quatro desfechos: arrecadação, falência, emprego e *compliance* tributário futuro [@schaefer2026framework]. O script de análise tabula a esfera de implementação e a cruza com o tipo metodológico, mas agrupa os testes combinados por estratégia de identificação e por *cluster* de desfecho, não por esfera [@schaefer2026analise]. Pelas regras deste capítulo: (i) células separadas por nível de governo quando a pergunta for sobre um nível específico, ou rebaixamento por indireção quando estudos federais sustentarem uma implicação municipal, dada a estrutura de receitas dos municípios [@hjort2021research, p. 7 da versão de trabalho]; (ii) indireção de desfecho quando só houver arrecadação de curto prazo e a pergunta for sobre *compliance* futuro [@schunemann2013grade, sec. 5.2.3]; (iii) nenhuma implicação de adoção sem GRADE por célula.
+
+## Erros comuns e como evitá-los {#sec-09-erros}
+
+| Erro | Exemplo | Por que é problema | Como evitar |
+|---|---|---|---|
+| Tratar magnitude ou significância como "força" da evidência | "Força do efeito: efeito fraco" [@schaefer2025proibicao, p. 108; @schaefer2026aula1, p. 40] | Um efeito pequeno pode ter certeza alta, e um grande, muito baixa | Escala = magnitude; Força = certeza GRADE |
+| Presumir que a revisão garante validade externa | Validade externa listada como vantagem da RS [@schaefer2026aula1, p. 16] | Os modelos de meta-análise pressupõem a invariância que precisaria ser demonstrada [@slough2023external, p. 25 da versão de trabalho] | Julgar indireção e transferibilidade explicitamente |
+| Chamar de "consistente" um efeito heterogêneo | Resumo dos celulares com I² = 76,5% [@schaefer2025proibicao, p. 97, 105] | Consistência é domínio GRADE com critérios próprios | Relatar τ² e intervalo de predição e aplicar a regra de inconsistência |
+| Usar Fisher ou Cooper como prova de consistência | "Reforçando a consistência dos achados" [@schaefer2025proibicao, p. 104] | Testes de combinação não medem heterogeneidade nem certeza | @sec-08a-regras; nunca usar para rótulo |
+| Confundir avaliação de estudos com GRADE | Texto que diz que revisões Cochrane avaliam a qualidade dos estudos primários "por meio" do GRADE [@bilotta2014use, p. 72] | GRADE julga o corpo de evidência por desfecho; o estudo é avaliado com RoB 2, ROBINS-I, CASP | Tabela de risco de viés (@sec-06-regras) separada do perfil GRADE |
+| Contar o confundimento duas vezes | Começar não randomizados em baixa e rebaixar de novo por confundidores não medidos | Dupla penalização [@schunemann2019grade] | Registrar o ponto de partida e o que cada rebaixamento cobre |
+| Escrever "sem efeito" quando o IC inclui zero | "A política não funciona" com IC de −0,10 a 0,30 | Ausência de evidência não é evidência de ausência [@schunemann2024interpreting, sec. 15.6.4] | "Nulo" só com IC dentro de ±δ e certeza ≥ moderada |
+| Tratar moderador pós-hoc como achado | "Funciona melhor para vulneráveis" sem hipótese prévia nem teste de interação | Credibilidade baixa [@schandelmaier2020development] | ICEMAN; enunciar como hipótese |
+| Recomendar sem certeza | Recomendações de implementação sem julgamento de certeza [@schaefer2025proibicao, p. 109] | Implicação mais forte que a evidência | Tabela de proporcionalidade e EtD-lite |
+| Restringir a revisados por pares sem discutir viés de publicação | Critério dos celulares [@schaefer2025proibicao, p. 102] | Estudos em teses e fontes pouco indexadas ficam de fora [@schunemann2013grade, sec. 5.2.5] | Literatura cinzenta (@sec-04-regras) e julgamento explícito do domínio |
+| Dar nível GRADE a CMOC ou solução de QCA | "Configuração com certeza moderada" | Não há validação [@lewin2018applying, tabela 4] | Enunciado narrativo com campos fixos |
+| Julgar transferibilidade só no fim | Descobrir na discussão que nenhum estudo é brasileiro | Não há dados de contexto nem subgrupos planejados [@munthekaas2020transfer] | Fatores TRANSFER no protocolo |
+| Extrair o nível de governo e não usá-lo | Esfera de implementação só descritiva no REFIS [@schaefer2026analise] | Fator central de transferibilidade fica fora do julgamento | Célula ou subgrupo por nível; indireção quando não houver |
+
+## Na skill `revisao-sistematica` {#sec-09-skill}
+
+Esta etapa corresponde ao passo 10 do fluxo planejado (síntese, integração, certeza e caixa de ferramentas) e fecha no portão **G8**. A skill está em construção; o contrato segue o resumo da @sec-especificacao-contrato, com os nomes do comando `caixa` já existentes no código.
+
+- **Portão G8**: humano no modo *checkpoints*. No autopiloto vira pendência, e relatório e declaração de IA saem marcados "RASCUNHO NÃO VALIDADO", com a lista do que falta; fechar a pendência regenera o que depende dela.
+- **Juízos humanos**: GRADE, ICEMAN, CERQual, CMOCs e calibração de QCA são decisões humanas; subagentes só organizam a evidência por domínio, com trechos e páginas. Os juízos entram em `06-analise/certeza.csv` (família, construto, dimensão, certeza, abordagem GRADE ou CERQual, enunciado, estudos, justificativa, δ, moderador que explica, classe de desenho e, nas linhas de moderador ou mecanismo, a marca de que o achado explica a heterogeneidade do efeito). O G8 exige esse arquivo, com uma linha de certeza para cada célula de efeito da caixa.
+- **`rs.py caixa`** (opções `--certeza`, `--delta`, `--faixas`, `--k-min`): só aplica as regras versionadas (`regra_versao`) aos resultados de `meta.R`, `swim.R` e ao arquivo de certeza. Célula sem juízo GRADE fica "Pendente"; testes combinados são ignorados; toda linha sai com fontes e assinatura. Conferir se a ordem dos rótulos na versão da regra (`caixa-3`: Pendente, Inconclusivo por certeza muito baixa, Misto com k ≥ 5, δ e achado explicativo com confiança própria, ou Inconclusivo quando a explicação não se sustenta, Positivo ou Negativo, Nulo, Inconclusivo) e a regra da linha de painel são as declaradas no protocolo.
+- **Agentes planejados**: `revisor-metodologico` em G2 e G8, conferindo domínios, linguagem e proporcionalidade das implicações; `sintetizador-quali`, por tema.
+- **Instrução e assets**: `references/07b-sintese-qualitativa-integracao.md`; `assets/mapas/caixa_ferramentas_mapa.csv`; templates `relatorio_oqf.qmd`, `manuscrito_prisma.qmd` e `policy_brief.qmd`; checklists `prisma2020` e `swim`.
+- **Estado e limites**: Claude não edita `rs_estado.json`, `rs_log.jsonl` nem `decisoes.jsonl`, e toda sessão começa por `rs.py status`. Realista iterativa e QCA computacional ficam para a v2; nesses tipos, a skill orienta pela @sec-08b-regras e pelos enunciados narrativos, sem produzir níveis.
+
+## Como relatar {#sec-09-relato}
+
+O relato mínimo, em métodos, resultados e discussão, deve conter:
+
+1. Abordagem de certeza por tipo de achado (GRADE, ICEMAN, GRADE-CERQual, enunciado narrativo), quem julgou e como divergências foram resolvidas [@page2021prisma, item 15; @campbell2020synthesis, item 6].
+2. Limiares (δ, faixas de magnitude) e sua origem no protocolo [@hultcrantz2017grade].
+3. Ponto de partida de cada corpo e ferramenta de risco de viés que o sustenta [@schunemann2024completing, sec. 14.2.1].
+4. Tabela SoF por comparação, com certeza e explicação de cada rebaixamento ou elevação [@page2021prisma, item 22; @schunemann2024completing, sec. 14.2.1].
+5. *Evidence Profile* e SoQF para os achados qualitativos [@lewin2018making].
+6. Fatores de transferibilidade, como foram escolhidos e o julgamento por fator [@munthekaas2020transfer].
+7. Conclusões com linguagem padronizada e implicações para prática, política e pesquisa proporcionais à certeza [@page2021prisma, item 23d; @schunemann2024interpreting, sec. 15.6.4].
+8. Limitações da evidência separadas das limitações do processo da revisão [@page2021prisma, itens 23b-23c].
+
+**Exemplo de redação.**
+
+> A certeza da evidência foi avaliada com GRADE para cada combinação de intervenção e desfecho, por duas pesquisadoras de forma independente, com consenso. Ensaios randomizados partiram de certeza alta; estudos não randomizados avaliados com ROBINS-I partiram de alta e foram rebaixados conforme o julgamento de risco de viés. A imprecisão foi julgada em relação ao limiar de 0,10 desvio-padrão fixado no protocolo, e a inconsistência pela dispersão das estimativas, pelo I² e pelo intervalo de predição. A indireção considerou etapa de ensino, esfera responsável e país dos estudos, fatores priorizados com gestores de duas redes estaduais antes da busca. Achados qualitativos foram avaliados com GRADE-CERQual e moderadores com o ICEMAN. Para o desempenho acadêmico, a certeza foi muito baixa (rebaixada por risco de viés, inconsistência, indireção e imprecisão; tabela 4): a evidência é muito incerta sobre o efeito da proibição. Há confiança baixa de que atribuir a fiscalização apenas aos professores gera tensões em sala. Não recomendamos justificar a política por ganhos de aprendizagem; redes que a implementarem podem acompanhar cumprimento, conflitos e desempenho com desenho que permita avaliação de impacto.
+
+(O limiar, as avaliadoras e os gestores do exemplo são hipotéticos.)
+
+## Leituras {#sec-09-leituras}
+
+**Normas e guias**
+
+- @schunemann2024completing e @schunemann2024interpreting: capítulos 14 e 15 do Cochrane Handbook v6.5; SoF, domínios, elevações, frases por certeza e implicações.
+- @schunemann2013grade, @hultcrantz2017grade, @zeng2022grade e @schunemann2019grade: GRADE Handbook, certeza relativa a limiares, imprecisão e uso do ROBINS-I.
+- @murad2017rating: GRADE sem meta-análise; @schandelmaier2020development: ICEMAN.
+- @lewin2018applying, @lewin2018making, @munthekaas2018applying, @colvin2018applying, @glenton2018applying e @noyes2018applying: série GRADE-CERQual; @munn2014establishing: ConQual.
+- @moberg2018grade e @alonsocoello2016grade: *frameworks* EtD; @munthekaas2020transfer: TRANSFER.
+- @santesso2020grade e @parahiba2025informative: declarações informativas e adaptação ao português.
+- @page2021prisma, @campbell2020synthesis e @aloe2024campbell: itens de relato e padrões de interpretação.
+
+**Validade externa e transferibilidade**
+
+- @slough2023external, @deaton2018understanding, @cartwright2012evidence e @corduneanuhuci2021politics: equivalência de alvo, fatores de suporte e seleção dos locais de experimentos.
+
+**Leituras de apoio**
+
+Páginas de @hjort2021research e @slough2023external referem-se às versões de trabalho do repositório OSF do material didático, as de @gough2016systematic ao manuscrito e as de @toma2024understanding à versão aceita.
+
+- @schaefer_oqfunciona, @schaefer2026aula1 e @schaefer2025proibicao: proposta OQF, caixa de ferramentas e aplicação aos celulares.
+- @barreto2019uso: evidência qualitativa e GRADE-CERQual no Brasil.
+- @gough2016systematic, @lavis2009support, @koga2020analise e @faria2022movimento: revisões para política, uso de evidências pela burocracia e crítica ao movimento de políticas baseadas em evidências.
+- @hjort2021research e @toma2024understanding: experimentos sobre como decisores respondem à evidência.
+- @bilotta2014use: exemplo de confusão entre qualidade de estudo e GRADE.
+- @schaefer2026framework, @schaefer2026analise e @schaefer2026ementa: scripts do REFIS e programa de leituras sobre relato e divulgação dos resultados.

@@ -1,0 +1,540 @@
+---
+title: "Síntese quantitativa: meta-análise, síntese sem meta-análise e testes combinados"
+---
+
+Depois que os efeitos foram extraídos, convertidos para uma métrica comum e alinhados a uma direção desejada (@sec-07-regras) e que o risco de viés de cada estudo foi julgado (@sec-06-regras), a revisão decide se e como combinar os resultados numéricos. O Cochrane Handbook abre o capítulo de meta-análise com o aviso "Do not start here!": o diamante no pé do *forest plot* engana quando pergunta, elegibilidade, coleta e risco de viés não foram bem resolvidos [@deeks2024analysing, sec. 10.1]. As decisões desta etapa são seis: (i) se os estudos são comparáveis o bastante para uma média ter sentido; (ii) modelo, estimador de heterogeneidade e intervalo; (iii) como tratar vários efeitos por estudo; (iv) que moderadores investigar e com quantos estudos; (v) como examinar *small-study effects* sem "corrigir" a estimativa principal; (vi) sem meta-análise possível, que método aceitável usar e como relatá-lo pelo SWiM. O capítulo também corrige os testes combinados (Fisher, Stouffer, Winer, Cooper) e a taxa de sucesso presentes na proposta OQF e no material didático, e explica por que ficam como análise secundária. A certeza (GRADE) está na @sec-09-regras; a integração com a evidência qualitativa e a caixa de ferramentas, na @sec-08b-regras.
+
+## Decisões e regras {#sec-08a-regras}
+
+### Meta-analisar ou não
+
+A meta-análise só deve ser feita quando participantes, intervenções, comparações e desfechos forem suficientemente parecidos para a resposta ter sentido (MECIR C62, obrigatório) [@deeks2024analysing, sec. 10.10.1]; Vaessen e colegas exigem o mesmo, em termos de constructos e relações comparáveis [@vaessen2014effects, p. 53]. Razões legítimas para não meta-analisar são evidência limitada, relato incompleto, medidas de efeito diferentes e viés na evidência; o argumento da diversidade vale igualmente contra os outros métodos, e diante de heterogeneidade o Handbook pede tentar explicá-la e apresentar o intervalo de predição [@mckenzie2024synthesizing, sec. 12.1, Tabela 12.1.a].
+
+| Pergunta | Se sim | Se não | Fonte |
+|---|---|---|---|
+| 1. Os estudos passam no *checklist* de comparabilidade (tabela seguinte)? | Seguir para 2 | Reagrupar como o protocolo prevê ou sintetizar por subconjunto | @deeks2024analysing [sec. 10.10.1]; @slough2023external [p. 21-22] |
+| 2. Cada estudo contribui com um efeito independente, ou a dependência será modelada? | Seguir para 3 | Um efeito por estudo pela regra do protocolo, ou CHE + RVE | @mckenzie2024synthesizing [sec. 12.2]; @pustejovsky2022meta |
+| 3. Há estimativa e erro-padrão confiável (ou dados para calculá-los) na mesma métrica? | Seguir para 4 | Método aceitável sem meta-análise (tabela adiante); EP incorreto por *clusters* leva a resumir estimativas | @mckenzie2024synthesizing [sec. 12.2.1.1, Tabela 12.2.a] |
+| 4. Há pelo menos três estudos na célula (família de intervenção × construto)? | REML + HKSJ modificado | *Forest plot* sem diamante; com dois estudos, qualquer intervalo é insatisfatório | @sec-especificacao-regras; @deeks2024analysing [sec. 10.10.4.5]; @rover2015hartung |
+| 5. A evidência está sobretudo em risco alto, ou há suspeita forte de resultados faltantes? | Relato estruturado em tabelas e gráficos; análise restrita aos de menor risco quando houver | Seguir | @mckenzie2024synthesizing [Tabela 12.1.a]; @reeves2024including [sec. 24.6.1] |
+| 6. Os efeitos têm direções opostas e heterogeneidade grande? | Não citar só a média; mostrar intervalo de predição e explorar moderadores pré-especificados | Seguir | @deeks2024analysing [sec. 10.10.3, C69] |
+
+### *Checklist* de comparabilidade conceitual
+
+Slough e Tyson descrevem cada estudo por cenário (*setting*), contraste (a comparação entre tratamento e controle) e estratégia de mensuração [@slough2023external, p. 1-2]. Estudos só miram o mesmo alvo empírico (*target-equivalence*) se o mecanismo tiver validade externa e se forem harmonizados no contraste, incluindo o braço de controle, e na mensuração (o mesmo desfecho medido do mesmo modo) [@slough2023external, p. 15, 21-22]. Sem harmonização, a meta-análise pode não achar um mecanismo presente em todos os cenários ou "achar" um que não existe [@slough2023external, p. 3]; e a harmonização se julga por validade de constructo, com argumento substantivo [@slough2023external, p. 16]. O *checklist* abaixo é respondido por estudo antes de rodar qualquer modelo.
+
+| Dimensão | Pergunta por estudo | Exemplo (celulares) | Fonte |
+|---|---|---|---|
+| Família de intervenção | O contraste aciona o mesmo mecanismo com intensidade comparável? | Proibição na escola inteira ou só em sala de aula | @slough2023external [p. 20-21]; @schaefer2025proibicao [p. 109] |
+| Comparador | O que recebe o grupo de controle? | Escolas sem restrição (PICOC) ou turmas de experimento com celular liberado | @slough2023external [p. 22, Corolário 1]; @schaefer2025proibicao [p. 100] |
+| Construto e janela do desfecho | Mesmo constructo, mesma forma de medir, mesma distância temporal da intervenção? | Prova padronizada, teste do professor ou aprendizagem com vídeo | @slough2023external [p. 17]; @schaefer2025proibicao [p. 109] |
+| População e cenário | A população está no escopo que o PICOC declarou? | Educação básica ou ensino superior | @slough2023external [p. 12, 28]; @schaefer2025proibicao [p. 98, 109] |
+| Estimando | ATE, ITT, LATE, efeito condicional; estimativa ajustada ou bruta? | Coeficiente de diferenças em diferenças ajustado ou diferença de médias de experimento | @vaessen2014effects [p. 53]; @reeves2024including [sec. 24.6.1] |
+| Desenho | Randomizado ou não randomizado? | Três experimentos e quatro diferenças em diferenças | @reeves2024including [sec. 24.6.2.1]; @schaefer2025proibicao [p. 104] |
+| Tipo de documento | É estudo primário? | Um dos oito "estudos" é uma meta-análise | @sec-especificacao-regras; @schaefer2025proibicao [p. 104] |
+
+::: {.callout-important}
+## Regras invioláveis desta etapa
+1. Estudos randomizados e não randomizados são apresentados e analisados separadamente e não entram na mesma meta-análise [@reeves2024including, sec. 24.2.2, 24.6.2.1].
+2. Revisões sistemáticas e meta-análises nunca entram no mesmo conjunto de síntese que estudos primários: numa RS de primários, vão para a bola de neve (@sec-05-regras); em revisões rápidas e em *overviews*, podem ser usadas como fonte de evidência no nível de revisão, com controle explícito de sobreposição (CCA) e sem somar seus estudos aos primários [@garritty2021cochrane, R8; @pollock2024overviews, sec. V.4.4, V.4.7].
+3. Contagem de votos por significância estatística não é método de síntese [@mckenzie2024synthesizing, sec. 12.2.2.1].
+4. Testes combinados de valores-p nunca definem, sozinhos, o rótulo de efeito da caixa de ferramentas (@sec-especificacao-regras, item 5; @sec-08b-regras).
+5. A estimativa principal não é substituída por uma estimativa "corrigida" por viés de publicação; correções são sensibilidade [@page2024assessing, sec. 13.3.4.6; @harrer2021doing, sec. 9.3].
+6. Resultados de estudos não randomizados em risco crítico de viés ficam fora das análises [@reeves2024including, sec. 24.6.1, 24.6.2.1].
+:::
+
+### Número mínimo de estudos
+
+| Análise | Mínimo | Justificativa | Fonte |
+|---|---|---|---|
+| Agregar numa meta-análise | k ≥ 3 | Com dois ou três estudos o HKSJ tende a dar intervalos largos demais e o Wald, estreitos demais; comparar os dois em sensibilidade | @sec-especificacao-regras; @deeks2024analysing [sec. 10.10.4.5] |
+| Interpretar τ², seu IC e o intervalo de predição | k ≥ 5 | O IC de τ² (Q-profile) e o intervalo de predição só são informativos com cerca de cinco estudos ou mais | @deeks2024analysing [sec. 10.10.4.3, 10.10.4.4] |
+| Estimativa dentro de um subgrupo | ≥ 3 estudos por nível | Mesma regra de agregação | @sec-especificacao-regras |
+| Teste de diferença entre subgrupos | ≥ 4 estudos por nível e cerca de 10 estudos por característica | A AHRQ fixa quatro por subgrupo como piso para começar a considerar a análise; o Handbook pede dez observações por característica | @fu2011conducting; @deeks2024analysing [sec. 10.11.5.1] |
+| Meta-regressão com covariável contínua | ~10 estudos por covariável | Menos que isso quando a covariável é mal distribuída; a AHRQ aceita 6 a 10 como piso com estudos de tamanho moderado ou grande | @deeks2024analysing [sec. 10.11.4, 10.11.5.1]; @fu2011conducting |
+| Funil, Egger e regressões de efeito de estudo grande | k ≥ 10 e estudos de tamanhos diferentes | Poder baixo com menos estudos; não aplicar se os erros-padrão forem parecidos | @page2024assessing [sec. 13.3.4.4, 13.3.4.6] |
+| PET-PEESE | k ≥ 10, lido com cautela abaixo de 20 | Desempenho ruim com K < 20 e I² > 80% | @harrer2021doing [sec. 9.2.1.5] |
+| Modelo de seleção de três parâmetros (3PSM) | Sem piso fixo; Harrer o apresenta como aplicável mesmo com poucos estudos (p. ex., K = 15 a 20); sempre sensibilidade | Cada intervalo de p precisa ter ao menos um estudo | @harrer2021doing [sec. 9.2.3.1]; @viechtbauer2010conducting |
+| CHE + RVE | gl de Satterthwaite acima de 4 | Erro tipo I controlado quando os gl passam de 4 ou 5; gl dependem das covariáveis, não só do número de estudos | @pustejovsky2018small [arXiv v2, p. 14]; @sec-especificacao-regras |
+| Rótulo "Positivo" ou "Negativo" sem meta-análise | ≥ 5 estudos e ≥ 70% na mesma direção | Regra da caixa de ferramentas | @sec-especificacao-caixa; @sec-08b-regras |
+
+::: {.callout-note}
+## Diferença entre a especificação e as normas
+A especificação desta base (@sec-especificacao-regras, item 7) fixa k ≥ 3 por nível de subgrupo. Esse piso serve para estimar o efeito dentro de cada nível. Para testar se os níveis diferem, valem os mínimos mais exigentes das normas: quatro estudos por nível [@fu2011conducting] e, pelo Handbook, cerca de dez estudos por característica investigada [@deeks2024analysing, sec. 10.11.5.1]. Abaixo disso, a revisão apresenta as estimativas por nível lado a lado e declara que não testou a diferença.
+:::
+
+### Modelo padrão e alternativas
+
+| Escolha | Padrão | Sensibilidade ou alternativa | Fonte |
+|---|---|---|---|
+| Modelo | Efeitos aleatórios (efeito médio de uma distribuição de efeitos); padrão para não randomizados | Efeito fixo para examinar *small-study effects*, nunca escolhido por teste de heterogeneidade | @deeks2024analysing [sec. 10.10.4.1]; @reeves2024including [sec. 24.6.2.1]; @page2024assessing [sec. 13.3.4.6] |
+| Estimador de τ² | REML | Paule-Mandel (menos indicado quando os tamanhos variam muito) e DerSimonian-Laird | @deeks2024analysing [sec. 10.10.4.4]; @harrer2021doing [sec. 4.1.2.1] |
+| Intervalo do efeito médio | HKSJ modificado ($q^* = \max\{1, q\}$), t com k − 1 gl | Efeitos aleatórios convencional (Wald) em sensibilidade; com dois ou três estudos, os dois lado a lado | @rover2015hartung; @jackson2017hartung; @deeks2024analysing [sec. 10.10.4.5] |
+| Heterogeneidade | τ² com IC, τ, Q, I² com IC e intervalo de predição de 95% | Nenhuma | @deeks2024analysing [sec. 10.10.2, 10.10.4.3]; @harrer2021doing [sec. 5.2] |
+| Dependência | Um efeito por estudo pela regra do protocolo | CHE + RVE (CR2, gl de Satterthwaite), com ρ variando | @garcia2017educational [p. 935, 937-938]; @pustejovsky2022meta |
+| Moderadores | Poucos, pré-especificados, com racional teórico; teste formal de diferença | *Post hoc* só como hipótese; teste de permutação na meta-regressão | @deeks2024analysing [sec. 10.11.3.1, 10.11.5]; @harrer2021doing [sec. 8.3.3.4] |
+| Viés por resultados faltantes | ROB-ME; funil com contornos; Egger com EP modificado (SMD) e PET-PEESE se k ≥ 10 | 3PSM | @page2024assessing [sec. 13.3]; @pustejovsky2019testing; @harrer2021doing [sec. 9.2] |
+| Sensibilidade mínima | *Leave-one-out*; sem risco alto; sem conversões aproximadas; outro estimador de τ² | Restringir a estudos maiores e mais rigorosos | @deeks2024analysing [sec. 10.14]; @page2024assessing [sec. 13.3.4.6]; @sec-especificacao-regras |
+
+### Sem meta-análise: métodos aceitáveis e inaceitáveis
+
+O Handbook classifica os métodos em preferíveis (meta-análise e extensões), aceitáveis e inaceitáveis. Os aceitáveis respondem perguntas mais pobres que a meta-análise, mas são melhores que uma narrativa estudo a estudo que privilegia achados sem justificativa; qualquer que seja o método, só um desfecho por estudo entra na síntese [@mckenzie2024synthesizing, sec. 12.2].
+
+| Dados disponíveis | Método | Pergunta que responde | Gráfico associado | Limitação principal | Fonte |
+|---|---|---|---|---|---|
+| Estimativas na mesma métrica, sem variância confiável | Resumo das estimativas (mediana, IIQ, amplitude) | Qual a distribuição dos efeitos observados? | *Box plot*, *bubble plot* | Não pondera pelo tamanho do estudo | @mckenzie2024synthesizing [sec. 12.2.1.1] |
+| Valor-p exato e direção | Combinação de valores-p | Há efeito em pelo menos um estudo? | *Albatross plot* | Sem magnitude; não distingue estudo grande com efeito pequeno de estudo pequeno com efeito grande | @mckenzie2024synthesizing [sec. 12.2.1.2, Tabela 12.2.a] |
+| Só direção | Contagem de votos por direção + teste de sinal | Há alguma evidência de efeito? | *Effect direction plot*, *harvest plot* por direção | Sem magnitude; não pondera; menos poder que combinar p | @mckenzie2024synthesizing [sec. 12.2.1.3] |
+| Direção e significância | Contagem por significância | Nenhuma válida | Nenhum | Poder tende a zero com mais estudos | @mckenzie2024synthesizing [sec. 12.2.2.1] |
+| Regras mistas (significância, magnitude, "mais de 10%") | Regras subjetivas | Nenhuma válida | Nenhum | Validade de desempenho ruim, pouca reprodutibilidade | @mckenzie2024synthesizing [sec. 12.2.2.2] |
+
+### Testes combinados da proposta OQF: estatuto e uso
+
+| Teste | Como aparece no material de origem | Forma correta | Pergunta que responde | Uso aceitável |
+|---|---|---|---|---|
+| Fisher | $\chi^2 = -2\sum \ln p$ com gl = 2n [@figueiredo2014meta, p. 213]; no *script*, p bilateral [@schaefer2026analise] | A mesma estatística com p bilateral, rotulada "não direcional"; a pergunta direcional fica com o Stouffer ponderado | "Há efeito, em alguma direção, em pelo menos um estudo?" | Só com p exatos e sem estimativas; rótulo "não direcional / pelo menos um estudo" |
+| Stouffer | $\sum z/\sqrt{N}$ sem pesos [@figueiredo2014meta, p. 213] | Z ponderado com $w_i = \sqrt{n_i}$ e p unilateral | "Os estudos, ponderados por tamanho, indicam efeito na direção declarada?" | Preferível a Fisher quando só há p e n [@whitlock2005combining; @zaykin2011optimally] |
+| Winer | $\sum t/\sqrt{\sum[df/(df-2)]}$, aproximação normal com df ≥ 10 [@figueiredo2014meta, p. 213]; no *script*, z reconstruído do p [@schaefer2026analise] | A fórmula de Figueiredo com o t de cada estudo, sinal alinhado e df > 2 | Igual à do Stouffer, para estatísticas t com gl conhecidos | Quando t e gl estão disponíveis mas o EP não é confiável |
+| Cooper | $(N_p - N/2)/(\sqrt{N}/2)$ [@figueiredo2014meta, p. 213] | Teste de sinal binomial exato bilateral sobre a direção da estimativa pontual, com proporção e IC exato de Clopper-Pearson (Wilson como alternativa) | "A proporção de efeitos benéficos difere de 0,5?" | É a contagem de votos por direção; nenhum outro |
+
+::: {.callout-important}
+## Ressalva obrigatória para qualquer teste combinado
+Todo resultado de Fisher, Stouffer, Winer ou Cooper vem acompanhado desta ressalva no texto: "O teste combina valores-p (ou direções) e não informa a magnitude do efeito; não distingue estudos grandes com efeitos pequenos de estudos pequenos com efeitos grandes; quando significativo, indica apenas que há efeito em pelo menos um estudo (ou que a proporção de efeitos benéficos difere de metade); quando não significativo, com poucos estudos pequenos, não indica ausência de efeito. É análise secundária e não define o rótulo de efeito." A formulação resume as limitações da Tabela 12.2.a do Handbook [@mckenzie2024synthesizing].
+:::
+
+## Fundamentos e fórmulas {#sec-08a-fundamentos}
+
+### Efeito fixo e efeitos aleatórios
+
+Com k estudos, cada um com estimativa $y_i$ e variância $v_i$, a meta-análise de efeito fixo pelo inverso da variância calcula $\hat\theta_{F} = \sum w_i y_i / \sum w_i$, com $w_i = 1/v_i$; para o IC, supõe-se que o efeito verdadeiro é o mesmo em todos os estudos e que as diferenças observadas são só acaso [@deeks2024analysing, sec. 10.3.1, 10.10.4.1]. O modelo de efeitos aleatórios supõe que os efeitos verdadeiros seguem uma distribuição, em geral normal:
+
+$$
+y_i = \mu + u_i + \varepsilon_i, \qquad u_i \sim N(0, \tau^2), \qquad \varepsilon_i \sim N(0, v_i),
+$$
+
+e estima $\hat\mu = \sum w_i^* y_i / \sum w_i^*$, com $w_i^* = 1/(v_i + \hat\tau^2)$. Os dois coincidem sem heterogeneidade [@deeks2024analysing, sec. 10.10.4.1]. O modelo aleatório dá relativamente mais peso aos estudos pequenos e não "resolve" a heterogeneidade, só a incorpora [@deeks2024analysing, sec. 10.10.4]; se os vieses não se distribuem simetricamente, a média aleatória também é enviesada [@deeks2024analysing, sec. 10.10.4.2]; e se estudos pequenos dão resultados sistematicamente diferentes dos grandes, ela é empurrada na direção deles, de modo que, com assimetria no funil, os dois modelos ficam problemáticos [@deeks2024analysing, sec. 10.10.4.1]. O Handbook não dá recomendação universal entre os modelos e proíbe escolher pelo teste de heterogeneidade [@deeks2024analysing, sec. 10.10.4.1]; para estudos não randomizados, o aleatório é o padrão e o fixo precisa de justificativa [@reeves2024including, sec. 24.6.2.1]. A skill adota o aleatório e usa o fixo como sensibilidade.
+
+Os dois modelos pressupõem um parâmetro comum a todos os estudos (*design invariance*), o que embute a hipótese de validade externa; rodá-los não demonstra que o mecanismo generaliza, e a validade interna dos estudos é necessária mas não suficiente para identificar um efeito comum [@slough2023external, p. 24-26]. Com validade externa só local, meta-analise dentro dos subconjuntos em que ela é plausível [@slough2023external, p. 28]; com contraste não harmonizado mas mensurável numa escala comum, use a diferença de contraste como covariável de meta-regressão; e não trate o teste de τ = 0 como teste de harmonização, leitura que depende de pressupostos estruturais fortes [@slough2023external, p. 27].
+
+### Heterogeneidade: Q, τ², I² e intervalo de predição
+
+- **Q de Cochran**: $Q = \sum w_i (y_i - \hat\theta_F)^2$, comparado a uma $\chi^2_{k-1}$. Tem pouco poder com poucos estudos pequenos; Q não significativo não prova ausência de heterogeneidade, e por isso às vezes se usa P de 0,10 [@deeks2024analysing, sec. 10.10.2].
+- **τ² e τ**: variância e desvio-padrão dos efeitos verdadeiros; τ está na escala da métrica de efeito e τ² não cresce sistematicamente com o número nem com o tamanho dos estudos [@harrer2021doing, sec. 5.1.4, 5.2]. Relate com IC Q-profile, informativo com cinco estudos ou mais [@deeks2024analysing, sec. 10.10.4.4].
+- **I²**: percentual da variabilidade das estimativas que se deve à heterogeneidade e não ao erro amostral, $I^2 = \max\{0, (Q - (k-1))/Q\}$ [@harrer2021doing, sec. 5.1.2]. As faixas "0-40% pode não ser importante; 30-60% moderada; 50-90% substancial; 75-100% considerável" são guia grosseiro: a importância depende da magnitude e da direção dos efeitos e da força da evidência de heterogeneidade, e o MECIR C63 manda evitar limiares simples [@deeks2024analysing, sec. 10.10.2].
+- **Intervalo de predição (PI)**: $\hat\mu \pm t_{k-1}\sqrt{\hat\tau^2 + SE(\hat\mu)^2}$. Resume a dispersão dos efeitos verdadeiros e o efeito provável num novo estudo semelhante; use com cinco ou mais estudos e sem assimetria clara no funil [@deeks2024analysing, sec. 10.10.4.3]. PI inteiro de um lado indica benefício esperado nos contextos estudados; PI largo é comum [@harrer2021doing, sec. 5.2].
+
+::: {.callout-warning}
+## Por que I² não é heterogeneidade absoluta
+I² depende da precisão dos estudos e tende a 100% quando eles ficam muito grandes, mesmo com a mesma dispersão de efeitos verdadeiros [@harrer2021doing, sec. 5.2]. O valor também muda com a fórmula: o pacote `meta` calcula I² a partir de Q por padrão, e o `metafor`, a partir de τ², que varia com o estimador [@schwarzer2026meta]; o RevMan usa $\hat\tau^2/(\hat\tau^2 + \widetilde{SE}^2)$, que só coincide com o I² de Q quando o estimador é DerSimonian-Laird [@deeks2024analysing, sec. 10.10.4.4]. Nos celulares (@sec-08a-exemplo), os mesmos dados dão I² de 76,5% pela fórmula de Q e 96,7% pela de τ² com REML, com τ = 0,19 desvio-padrão (cálculo nosso). O que orienta decisão substantiva é τ, na escala do efeito, e o intervalo de predição.
+:::
+
+### Intervalo do efeito médio e estimador de τ²
+
+O intervalo de Wald ($\hat\mu \pm 1{,}96\,SE$) ignora a incerteza na estimativa de τ² e fica estreito demais com poucos estudos. O ajuste de Hartung-Knapp-Sidik-Jonkman (HKSJ) calcula
+
+$$
+q = \frac{1}{k-1}\sum w_i^*(y_i - \hat\mu)^2, \qquad \hat\mu \pm t_{k-1;\,0{,}975}\,\sqrt{q}\,SE(\hat\mu),
+$$
+
+isto é, reescala a variância e usa a distribuição t [@rover2015hartung; @deeks2024analysing, sec. 10.10.4.4]. Em simulações a 5%, o erro tipo I do DerSimonian-Laird com Wald passou de 30%, e o do HKSJ no máximo dobrou; em 689 meta-análises Cochrane, 25,1% dos resultados significativos por DL deixaram de sê-lo com HKSJ; mesmo o HKSJ pede cautela extra com até cinco estudos de tamanhos muito desiguais [@inthout2014hartung]. Quando os erros-padrão variam muito, o HKSJ excede o erro nominal; a versão modificada, com $q^* = \max\{1, q\}$, impede que o intervalo fique mais curto que o convencional e é recomendada com poucos estudos de precisão variável, embora fique muito conservadora com k = 2 [@rover2015hartung]. Jackson e colegas recomendam relatar a análise de efeitos aleatórios convencional como sensibilidade, e não a de efeito fixo [@jackson2017hartung]. Em R, `metafor::rma(..., test = "adhoc")` impede que o EP ajustado fique menor que o não ajustado [@viechtbauer2010conducting], e `meta::metagen(..., method.random.ci = "HK", adhoc.hakn.ci = "se")` faz a correção equivalente [@schwarzer2026meta]. Com τ² estimado em zero, o HKSJ sem modificação pode dar intervalos estreitos demais [@deeks2024analysing, sec. 10.10.4.4].
+
+Para τ², simulações recomendam Paule-Mandel ou REML, nenhum universalmente preferível, e o RevMan passou a usar REML como padrão [@deeks2024analysing, sec. 10.10.4.4]; Paule-Mandel pode ser subótimo quando os tamanhos de amostra variam drasticamente [@harrer2021doing, sec. 4.1.2.1]. Nos celulares, a escolha muda a conclusão (com DL e HKSJ o IC cruza zero), por isso o estimador vai no protocolo.
+
+### Dependência de efeitos
+
+Vários efeitos do mesmo estudo (desfechos, momentos, subgrupos ou modelos) não são independentes. Glass e Smith, com 725 comparações de 77 estudos, escreveram que "there is no sensible way to reduce each study to one observation" e por isso deixaram de lado intervalos e testes [@glass1979meta, p. 8]. Hoje há quatro soluções, em ordem de preferência operacional:
+
+1. **Um efeito por estudo por análise**, escolhido por regra do protocolo (@sec-03-regras). García e Saavedra usaram a estimativa do estudo de maior qualidade, depois a mais recente e a do modelo com controles mais completos; no tempo, a de maior exposição [@garcia2017educational, p. 933, 935]. Em não randomizados, a estimativa ajustada que minimiza o confundimento [@reeves2024including, sec. 24.6.1].
+2. **Efeito sintético por estudo**: média ponderada dos efeitos dependentes com variância ajustada por correlação assumida. Vaessen e colegas usaram r = 0,8 quando os desfechos vinham dos mesmos tratados e controles, 0,2 quando os grupos diferiam e 0,5 nos demais casos [@vaessen2014effects, p. 34-35]. Como o ρ do CHE, essa correlação é um palpite e pede sensibilidade [@harrer2021doing, sec. 10.4.2].
+3. **Modelo multinível** de três níveis, útil quando a pergunta envolve a variação dentro dos estudos [@harrer2021doing, sec. 10.1-10.2].
+4. **CHE + RVE**. O modelo de efeitos correlacionados e hierárquicos escreve $T_{ij} = \mathbf{x}_{ij}\boldsymbol\beta + u_j + v_{ij} + e_{ij}$, com heterogeneidade entre estudos (τ), dentro de estudos (ω) e uma correlação amostral ρ comum aos pares de efeitos do mesmo estudo; os autores esperam que seja a primeira escolha de modelo de trabalho em muitas aplicações, sobretudo quando há pouca informação sobre as correlações [@pustejovsky2022meta, preprint, p. 12], e o modelo deve ser escolhido pela estrutura dos dados e de preferência pré-registrada, nunca comparando resultados de modelos diferentes [@pustejovsky2022meta, preprint, p. 19]. A inferência usa erros-padrão *cluster-robust* com correção CR2, pensada para cerca de 40 estudos ou menos [@harrer2021doing, sec. 10.4.1], e gl de Satterthwaite; o erro tipo I fica controlado quando os gl passam de 4 ou 5, e como eles dependem das covariáveis, o número de estudos não basta para dispensar a correção [@pustejovsky2018small, arXiv v2, p. 14]. A skill trata gl < 4 como resultado não confiável (@sec-especificacao-regras, item 4) e repete a análise com vários valores de ρ [@harrer2021doing, sec. 10.4.2].
+
+### Subgrupos e meta-regressão
+
+Subgrupos e meta-regressão investigam modificação de efeito entre estudos e são observacionais: estudos não são sorteados entre contextos, e características podem estar confundidas entre si [@deeks2024analysing, sec. 10.11.5.6, 10.11.6]. As regras do Handbook: pré-especificar poucas características, com racional teórico; tratar análises *post hoc* como geradoras de hipóteses; considerar ajuste da significância se investigar mais de uma ou duas características; comparar subgrupos com teste formal (C67), nunca pela significância dentro de cada um; seguir o plano do protocolo (C68); e não considerar meta-regressão com menos de dez estudos [@deeks2024analysing, sec. 10.11.3.1, 10.11.4, 10.11.5]. Médias de características individuais (idade média, renda média) sujeitam a análise a viés ecológico [@deeks2024analysing, sec. 10.11.5.5]. Ausência de diferença entre subgrupos não demonstra equivalência [@harrer2021doing, sec. 7.2], e na meta-regressão o teste de permutação ajuda a detectar sobreajuste [@harrer2021doing, sec. 8.3.3.4].
+
+García e Saavedra dão um modelo em política social: moderadores com previsão teórica (valor da transferência, programa nacional ou piloto, condicionalidades), controle de região, qualidade e publicação, meta-regressão só nos domínios com estimativas suficientes e aviso de que interações não foram modeladas [@garcia2017educational, p. 938-939]. Na OQF, moderadores pré-especificados a partir da teoria do programa (@sec-02-regras) entram na análise quantitativa se k permitir; hipóteses vindas da síntese qualitativa são exploratórias (@sec-08b-regras).
+
+### *Small-study effects* e viés de publicação
+
+O funil (efeito contra erro-padrão, em escala invertida) mostra *small-study effects*, a tendência de estudos menores darem efeitos diferentes dos maiores. Viés de não publicação é só uma das causas; as outras são vieses maiores nos estudos pequenos, heterogeneidade verdadeira, artefato (SMD e OR correlacionados com o próprio EP) e acaso, por isso a assimetria não diagnostica viés de publicação [@page2024assessing, sec. 13.3.4.3, 13.3.4.5]. O julgamento formal usa a ferramenta ROB-ME, que combina resultados faltantes dentro dos estudos, potencial de estudos faltantes e funil em "baixo risco", "algumas preocupações" ou "alto risco" [@page2024assessing, sec. 13.3.5], e alimenta o domínio de viés de publicação do GRADE (@sec-09-regras).
+
+| Ferramenta | O que faz | Regra de uso | Fonte |
+|---|---|---|---|
+| Funil com contornos | Sombreia regiões de P = 0,01, 0,05 e 0,10; estudos "faltando" em região não significativa sugerem viés de relato, em região significativa sugerem outra causa | k ≥ 10 (@sec-especificacao-regras, item 7); leitura visual é subjetiva | @page2024assessing [sec. 13.3.4.3]; @vaessen2014effects [p. 65] |
+| Egger | Regressão do efeito no erro-padrão | k ≥ 10; o Egger original não é recomendado para OR e SMD | @page2024assessing [sec. 13.3.4.4] |
+| Egger com EP modificado (SMD) | Usa $\sqrt{(n_1+n_2)/(n_1 n_2)}$ como preditor, que não depende do efeito, mantendo o erro tipo I nominal | Padrão para g e d | @pustejovsky2019testing; @harrer2021doing [sec. 9.2.1.2] |
+| PET-PEESE | PET: $y_i = \beta_0 + \beta_1 SE_i$; PEESE: $y_i = \beta_0 + \beta_1 SE_i^2$, por mínimos quadrados ponderados pelo inverso da variância; se o intercepto do PET for positivo com p < 0,10 (unilateral a 5%), usar o do PEESE, senão o do PET | k ≥ 10; EP modificado com SMD; pode corrigir demais; a regressão ponderada comum (`lm`) usa erro multiplicativo, e a meta-regressão, erro aditivo: declarar a variante | @stanley2014meta; @harrer2021doing [sec. 9.2.1.5] |
+| Comparar efeito fixo e aleatório | Se o aleatório se desloca para os estudos pequenos, avaliar se estes diferem de fato ou foram divulgados seletivamente | Sempre que I² > 0 e houver preocupação com *small-study effects* | @page2024assessing [sec. 13.3.4.6] |
+| 3PSM | Modelo de seleção com um corte em p unilateral 0,025 (parâmetros μ, τ² e δ₂) | Sensibilidade; intervalos de p vazios fazem δ derivar | @viechtbauer2010conducting; @harrer2021doing [sec. 9.2.3.1] |
+
+Por que nunca corrigir a estimativa principal: os modelos de seleção supõem que nenhum outro mecanismo gera *small-study effects* e enganam se isso for falso [@page2024assessing, sec. 13.3.4.6]; nenhum método de correção domina os demais, estimativas corrigidas dos mesmos dados podem ir de zero ao efeito original, e nenhum dá resultado aceitável com I² na faixa de 75% [@harrer2021doing, sec. 9.3]. Aplique vários métodos pré-especificados e leia-os como faixa de sensibilidade. Vaessen e colegas dão o modelo de interpretação: funil com contornos sem assimetria aparente e meta-regressão atribuindo a assimetria restante ao risco de viés, com estudos mais válidos mostrando efeitos menores [@vaessen2014effects, p. 61, 65-66].
+
+### Síntese sem meta-análise
+
+**Contagem de votos por direção.** Cada efeito é classificado como benefício ou dano só pelo sinal da estimativa pontual, sem olhar significância nem magnitude. O número de benefícios $u$ entre $n$ estudos é testado contra a proporção 0,5 (teste de sinal, binomial exato), e $u/n$ é relatada com intervalo de confiança. A skill usa o intervalo exato de Clopper-Pearson [@clopper1934use], o mesmo da validação da triagem (@sec-11-regras); o Handbook sugere Wilson ou Jeffreys, que são alternativas aceitáveis [@mckenzie2024synthesizing, sec. 12.2.1.3]. No exemplo do Handbook, 10 de 12 estudos favorecem a intervenção: 83% (IC 95% de 55% a 95%), P = 0,039 bilateral, com três estudos sem direção fora da contagem [@mckenzie2024synthesizing, sec. 12.4.2.3]; esse intervalo é o de Wilson, e o de Clopper-Pearson iria de 52% a 98% (cálculo nosso). Frases como "a maioria dos estudos encontrou" são contagem implícita e precisam ser declaradas como método [@mckenzie2024synthesizing, sec. 12.2.1.3]. O teste tem pouco poder, perde denominador quando muitos estudos têm direção conflitante e não deve ser usado com suspeita de viés de publicação; padrões não devem ser descritos como "estatisticamente significativos" [@boon2021effect]. Nikolakopoulos argumenta ainda que, nesse contexto, os dados não são gerados pela distribuição binomial que o teste supõe [@nikolakopoulos2020misuse]. Por isso a skill usa o teste de sinal como descrição da incerteza, com a direção sempre pela estimativa pontual relativa à `direcao_desejada` e a significância em variável separada (@sec-especificacao-regras, item 2; @sec-07-regras).
+
+**Por que a contagem por significância é inválida.** Ela conta estudos subpotentes como evidência contra o efeito: de dois estudos com o mesmo efeito estimado, só o de maior poder vira benefício, e o poder da contagem convencional tende a zero à medida que o número de estudos cresce, salvo com estudos grandes e efeitos ao menos moderados; a versão de três grupos (significativo a favor, significativo contra, não significativo) tem o mesmo defeito [@mckenzie2024synthesizing, sec. 12.2.2.1]. É o procedimento que Figueiredo e colegas apresentam como a forma mais simples de acumular achados [@figueiredo2014meta, p. 212]. Glass e Smith já criticavam revisões que "took 'statistical significance' of differences far too seriously" [@glass1979meta, p. 2] e mostravam por quê: se só 55% a 60% das comparações apontam na direção do efeito, revisões narrativas de uma ou duas dezenas de estudos produzem confusão [@glass1979meta, p. 10]. Vaessen e colegas partem de uma leitura "ingênua" (15 de 25 estudos com relação positiva e significativa) e mostram que só a meta-análise com avaliação de risco de viés permitia concluir algo [@vaessen2014effects, p. 39, 82].
+
+**Gráficos.**
+
+- *Effect direction plot* revisado: uma linha por estudo e uma coluna por domínio de desfecho, com setas ▲ (melhora), ▼ (piora) e ◂▸ (sem mudança ou conflitante). Dentro do estudo, registra-se a direção quando todos os desfechos do domínio concordam ou quando pelo menos 70% concordam; abaixo disso, conflitante. O tamanho da seta indica o n do grupo de intervenção (> 300; 50 a 300; < 50) e a cor da linha, o risco de viés; conflitantes saem do teste de sinal bilateral [@boon2021effect]. A versão original usava significância no algoritmo, e o Handbook diz que ela precisa de desenvolvimento antes de ser recomendada [@mckenzie2024synthesizing, sec. 12.3.5].
+- *Albatross plot*: dispersão do tamanho amostral contra o p bilateral, separada pela direção, com contornos de tamanho de efeito aproximados; exige só p unilateral e n total (ou p bilateral, direção e n) [@harrison2017albatross; @mckenzie2024synthesizing, sec. 12.3.4]. Complementa a combinação de valores-p.
+- *Harvest plot*: matriz com uma linha por dimensão (por exemplo, renda, escolaridade) e uma coluna por hipótese concorrente (gradiente positivo, negativo ou nenhum); cada estudo é uma barra cuja altura indica a adequação do desenho, o tom distingue desfechos comportamentais de intermediários e a anotação conta critérios de qualidade atendidos [@ogilvie2008harvest]. Os artigos originais classificavam por significância; a versão aceitável classifica por direção [@mckenzie2024synthesizing, sec. 12.3.5].
+- *Forest plot* sem diamante, ordenado ou dividido por uma característica relevante (desenho, risco de viés, tamanho) [@mckenzie2024synthesizing, sec. 12.3.2]. Para estudos não randomizados, é a exibição padrão quando não se combina; diagnósticos de heterogeneidade continuam úteis mesmo sem estimativa conjunta [@reeves2024including, sec. 24.6.2.3].
+
+Literatura cinzenta brasileira (teses da CAPES e da BDTD, relatórios do IPEA e do TCU) entra na mesma tabela de efeitos com o mesmo *checklist*; o que não traz estimativa com EP segue para os métodos aceitáveis acima, e não para uma narrativa estudo a estudo [@mckenzie2024synthesizing, Tabela 12.1.a].
+
+### Taxa de sucesso (Cancela e Geys), reinterpretada
+
+O programa de leituras associa a "taxa de sucesso dos estudos" a Cancela e Geys [@schaefer2026ementa], e o slide sobre análise de dados mostra uma tabela sobre voto obrigatório de uma revisão com meta-análise de pesquisas agregadas publicada em *Government and Opposition* (Stockemer, 2017, p. 704): na linha do voto obrigatório com sanções, 32 estudos, 74 modelos, 72 "sucessos", 0 "fracassos", 2 "sem relação", taxa de 0,97 [@schaefer2026aula6, p. 39]. Em Cancela e Geys, que declaram misturar contagem de votos e testes combinados, a direção esperada é fixada a priori e cada coeficiente é um "teste": sucesso se significativo com o sinal esperado, fracasso se não significativo, anomalia se significativo com sinal contrário. O estudo é "sucesso" se mais da metade dos testes o for, e "fracasso" nos demais casos; o "r aproximado" = (sucessos − anomalias)/testes recebe IC $\bar r \pm 1{,}96\, s/\sqrt{n}$, e a variável "tem poder explicativo" se o IC exclui zero [@cancela2016explaining, p. 265-266]. Um mérito a preservar: só agregam operacionalizações "suficientemente equivalentes"; e os autores reconhecem que a magnitude não é considerada [@cancela2016explaining, p. 266].
+
+Isso é contagem de votos por significância [@mckenzie2024synthesizing, sec. 12.2.2.1]. Além disso, o "r" é proporção de votos, não tamanho de efeito; a taxa por teste pesa mais quem publica muitas especificações; e o resultado modal junta anomalias e fracassos. A reinterpretação aceitável:
+
+| Taxa de sucesso (como está) | Reinterpretação aceitável |
+|---|---|
+| Sucesso = significativo com sinal esperado | Benefício = estimativa pontual do modelo principal com o sinal desejado, qualquer que seja o p |
+| Unidade = teste (modelo) ou resultado modal do estudo | Unidade = estudo, com um modelo principal escolhido pela regra do protocolo |
+| Taxa e "r aproximado" com IC ± 1,96 s/√n | Proporção de benefícios u/n com IC de Clopper-Pearson e teste de sinal bilateral |
+| "Tem poder explicativo" se o IC exclui zero | "Há alguma evidência de efeito na direção declarada", sem afirmação de magnitude |
+| Sem ponderação e sem risco de viés | Sensibilidade sem estudos de risco alto; *effect direction plot* com cor por risco de viés |
+
+Quando os estudos reportam coeficiente e erro-padrão com operacionalizações comparáveis, o caminho preferível é converter para métrica comum e meta-analisar (@sec-07-regras); a contagem por direção fica para o que não pode ser convertido.
+
+### Distribuição de t normativos (Gerring e colegas)
+
+Gerring, Knutsen e Berge revisaram mais de 1.100 análises de mais de 600 artigos sobre efeitos da democracia em 30 desfechos, sem meta-análise tradicional porque a diversidade de desfechos impede padronizar coeficientes [@gerring2022democracy, p. 357, 359]. Usaram o t do modelo de referência de cada análise, com sinal "normativamente ajustado" (positivo quando a democracia se associa ao resultado desejável): só 22% são negativos [@gerring2022democracy, p. 362, 365]. Como o funil exige coeficientes e erros-padrão comparáveis, examinaram viés de limiar pela distribuição de t: 11% das análises têm |t| entre 1,96 e 2,26, sem acúmulo equivalente em 1,65 ou 2,58 [@gerring2022democracy, p. 368]. O material didático sobre análise de dados reproduz a figura [@schaefer2026aula6, p. 37].
+
+A proposta OQF sugere usar t como medida padronizada, pois "quanto maior o valor de T, maior a diferença entre grupo de controle e tratamento" [@schaefer_oqfunciona, p. 22]. Mas "the t-value is not an effect, strictly speaking": mede a estimativa relativa ao erro-padrão [@gerring2022democracy, p. 364] e cresce com a amostra, de modo que um efeito minúsculo num painel enorme pode ter t maior que um efeito grande num experimento pequeno. Os autores, ao classificar análises em "ruim", "nulo" e "bom" pelo corte de ±1,96, reconhecem o perigo desses limiares e pedem cautela com menos de 10 análises [@gerring2022democracy, p. 366]. Na skill, a distribuição de t serve para diagnosticar viés de limiar sem EP comparável e para descrever direção (proporção de t > 0); nunca para magnitude nem para classificar por significância.
+
+### Testes combinados: fórmulas corretas
+
+O material didático toma os testes de Figueiredo e colegas [@figueiredo2014meta, p. 213], e a proposta OQF os descreve como "úteis para mensurar a escala, ou tamanho, do efeito" [@schaefer_oqfunciona, p. 21], embora combinar valores-p não informe magnitude [@mckenzie2024synthesizing, Tabela 12.2.a]. Todos pressupõem estudos que respondem à mesma pergunta, testes independentes e resultados válidos [@figueiredo2014meta, p. 212]. Só são aceitáveis quando não há estimativas com EP para meta-analisar, e o método escolhido é relatado com sensibilidade a essa escolha [@mckenzie2024synthesizing, sec. 12.2.1.2]. As versões corretas, com direção declarada a priori:
+
+**Conversão de p.** O p bilateral não contém direção. Se o efeito vai na direção da hipótese, $p^{(1)} = p^{(2)}/2$; se vai na contrária, $p^{(1)} = 1 - p^{(2)}/2$. Se o estudo só informa "p < 0,05", usa-se 0,05, e o p precisa ter sido calculado respeitando *clusters* ou pareamento [@mckenzie2024synthesizing, sec. 12.2.1.2]. Valores-p bilaterais de dois estudos com direções opostas podem ser ambos pequenos e produzir um p combinado pequeno [@zaykin2011optimally].
+
+**Fisher (p bilateral, rotulado "não direcional").**
+$$
+X^2 = -2\sum_{i=1}^{k}\ln p_i^{(2)} \sim \chi^2_{2k}.
+$$
+Com p bilaterais, um X² grande indica efeito em pelo menos um estudo, em qualquer direção: efeitos opostos se somam em vez de se cancelar (dois estudos com direções opostas podem produzir um p combinado pequeno [@zaykin2011optimally]), e um único p minúsculo domina a soma. É a forma que a especificação adota, com o rótulo "não direcional" (@sec-especificacao-regras, item 5), e a mesma do *script* de análise do REFIS [@schaefer2026analise], que não traz o rótulo. Com p unilaterais, a estatística indicaria efeito na direção declarada em pelo menos um estudo [@mckenzie2024synthesizing, sec. 12.2.1.2], mas um estudo na direção contrária continuaria contribuindo quase nada sem subtrair; por isso a pergunta direcional fica com o Stouffer ponderado. Figueiredo e colegas já anotavam que o teste pode dar resultados inconsistentes quando a maioria dos estudos vai na mesma direção [@figueiredo2014meta, p. 213, nota 6].
+
+**Stouffer ponderado (Z de Lipták).**
+$$
+Z_w = \frac{\sum w_i z_i}{\sqrt{\sum w_i^2}}, \qquad z_i = \Phi^{-1}\!\left(1 - p_i^{(1)}\right), \qquad w_i = \sqrt{n_i},
+$$
+com p combinado $1 - \Phi(Z_w)$ [@zaykin2011optimally]. Tem mais poder que Fisher e que o Z sem pesos [@whitlock2005combining], e com pesos iguais a $\sqrt{n}$ tem poder comparável ao do método de Lancaster [@zaykin2011optimally]. Estudos em direções opostas se cancelam, o que o torna a versão direcional adequada.
+
+**Winer (com t, não com z).**
+$$
+Z_W = \frac{\sum t_i}{\sqrt{\sum df_i/(df_i - 2)}},
+$$
+em que $t_i$ é a estatística t do estudo com sinal alinhado à direção desejada e $df_i/(df_i-2)$ é a variância de t; a aproximação normal vale com df ≥ 10 e o teste pode dar resultados inconsistentes em amostras pequenas (N < 10) [@figueiredo2014meta, p. 213, nota 7]. O teste exige $df_i > 2$ e o t reportado. Transformar t em p, p em z e dividir pela raiz da soma das variâncias de t mistura escalas: com z no numerador, o denominador correto seria $\sqrt{k}$, que é o Stouffer.
+
+**Cooper (teste de sinal).** A fórmula usada no material didático, $Z_c = (N_p - N/2)/(\sqrt{N}/2)$ [@figueiredo2014meta, p. 213], é a aproximação normal de uma binomial com média N/2 e desvio-padrão √N/2. Com poucos estudos, use o binomial exato bilateral e relate a proporção com IC [@mckenzie2024synthesizing, sec. 12.2.1.3, 12.4.2.3], de preferência o exato de Clopper-Pearson [@clopper1934use]. Cooper é a contagem de votos por direção e só é válido se "direção" for o sinal da estimativa pontual; contar só os achados significativos em cada direção é a contagem por significância.
+
+### *Benchmarks* de interpretação da magnitude
+
+Rótulos como "pequeno" e "grande" dependem do campo e são fixados no protocolo, não escolhidos depois (@sec-especificacao-regras, item 6; @sec-03-regras). As convenções de Cohen (d = 0,2; 0,5; 0,8) não se basearam em estimativas empíricas e só são recomendadas quando não há estimativas do campo; em gerontologia, 2.941 valores de g deram 0,16, 0,38 e 0,76 nos percentis 25, 50 e 75 [@brydges2019effect, p. 1]. Para estudos causais de intervenções da educação infantil ao ensino médio com testes padronizados, Kraft propõe menos de 0,05 como pequeno, de 0,05 a menos de 0,20 como médio e 0,20 ou mais como grande, a partir de 1.942 efeitos de 747 RCTs [@kraft2020interpreting, versão do autor, p. 21]. O mesmo g = 0,22 é "pequeno" por Cohen, fica entre os percentis 25 e 50 de Brydges e é "grande" por Kraft, dentro do recorte dele. Kraft lembra ainda que ensaios pequenos e intervenções focalizadas costumam dar efeitos maiores que intervenções universais [@kraft2020interpreting, versão do autor, p. 13]. O *script* de simulação de exemplo oferece outra tradução: com d = 1, a média do grupo tratado fica no percentil 84 do controle, e a probabilidade de superioridade é Φ(d/√2) [@schaefer2026codigos].
+
+## Passo a passo {#sec-08a-passos}
+
+1. **Conferir o plano de síntese do protocolo** (@sec-03-regras): células (família de intervenção × construto), métrica, direção desejada por desfecho, regra de modelo principal, estimador, moderadores com hipótese, sensibilidades, δ e *benchmarks* do campo, métodos de viés por resultados faltantes e modelo de trabalho para dependência. Mudança vira emenda datada.
+2. **Montar a tabela de comparabilidade**: uma linha por estudo com as sete dimensões do *checklist* e o risco de viés por domínio (@sec-06-regras). Separar randomizados de não randomizados; excluir revisões e meta-análises e verificar sobreposição com os estudos primários delas; excluir não randomizados em risco crítico.
+3. **Preparar os efeitos**: um efeito por estudo por célula, com `formula_id`, EP, n por grupo, marca de conversão aproximada e trecho verbatim com página (@sec-07-regras). Conferir sinais (alerta para |g| > 2) e se o EP respeita *clusters*; dados errados são causa comum de heterogeneidade extrema [@deeks2024analysing, sec. 10.10.3].
+4. **Decidir o caminho por célula**: k ≥ 3 e efeitos com EP confiável levam à meta-análise; senão, método aceitável do SWiM. Registrar a decisão.
+5. **Rodar o modelo principal** (REML + HKSJ modificado) e extrair μ, IC, τ² com IC, τ, Q, I² com IC e PI (PI só com k ≥ 5).
+
+   ```r
+   library(metafor)
+   # dat: um efeito por estudo; yi = g alinhado à direção desejada; vi = variância
+   res <- rma(yi, vi, data = dat, method = "REML", test = "adhoc", slab = estudo)
+   res                      # mu, IC (t com k-1 gl), Q, I2 (base tau2), tau2
+   confint(res)             # IC Q-profile de tau2, tau e I2
+   predict(res)             # pi.lb, pi.ub = intervalo de predição
+   forest(res, addpred = TRUE, header = TRUE, order = "obs")
+   ```
+
+   Equivalente no pacote usado no material didático [@harrer2021doing, sec. 4.2.1; @schwarzer2026meta]:
+
+   ```r
+   library(meta)
+   m <- metagen(TE = yi, seTE = sqrt(vi), studlab = estudo, data = dat,
+                sm = "SMD", common = FALSE, method.tau = "REML",
+                method.random.ci = "HK", adhoc.hakn.ci = "se",
+                prediction = TRUE)   # I2 pela fórmula de Q (padrão do meta)
+   summary(m); forest(m)
+   ```
+
+6. **Interpretar a heterogeneidade** por τ e PI na escala do efeito, cotejando com o *benchmark* e com δ. Se o PI cobre benefício e dano relevantes, o efeito médio não resume a política; o rótulo "Misto" exige moderador pré-especificado ou achado qualitativo que explique (@sec-08b-regras).
+7. **Tratar a dependência**, se a pergunta exigir todos os efeitos por estudo:
+
+   ```r
+   library(clubSandwich)
+   V   <- vcalc(vi, cluster = estudo, obs = id_efeito, rho = 0.6, data = dat_multi)
+   che <- rma.mv(yi, V, random = ~ 1 | estudo/id_efeito, data = dat_multi,
+                 method = "REML", sparse = TRUE)
+   robust(che, cluster = estudo, clubSandwich = TRUE)   # CR2 + gl de Satterthwaite
+   coef_test(che, vcov = "CR2")                          # conferir d.f. >= 4
+   # sensibilidade: repetir com rho = 0.2 e 0.8
+   ```
+
+8. **Moderadores pré-especificados**, só com estudos suficientes (≥ 4 por nível e ~10 por característica):
+
+   ```r
+   sub <- rma(yi, vi, mods = ~ nivel_ensino, data = dat, method = "REML", test = "adhoc")
+   sub                        # teste de moderadores = diferença formal entre subgrupos
+   permutest(sub, iter = 5000)
+   ```
+
+9. **Viés por resultados faltantes** (testes só com k ≥ 10 e tamanhos variados) [@harrer2021doing, sec. 9.2.1.2, 9.2.1.5, 9.2.3.1]:
+
+   ```r
+   funnel(res, level = c(90, 95, 99), shade = c("white", "gray55", "gray75"),
+          refline = 0, legend = TRUE)                          # funil com contornos
+   dat$se_mod <- sqrt((dat$n1 + dat$n2) / (dat$n1 * dat$n2))
+   rma(yi, vi, mods = ~ se_mod, data = dat, method = "REML")  # Egger com EP de Pustejovsky-Rodgers
+   # no meta: m$n.e <- dat$n1; m$n.c <- dat$n2; metabias(m, method.bias = "Pustejovsky")
+   pet   <- lm(yi ~ se_mod,      weights = 1 / vi, data = dat)   # PET, variante WLS (erro multiplicativo)
+   peese <- lm(yi ~ I(se_mod^2), weights = 1 / vi, data = dat)   # PEESE
+   b0 <- coef(summary(pet))[1, ]                                  # intercepto: estimativa, EP, t, p
+   p_unilateral <- pt(b0["t value"], df = df.residual(pet), lower.tail = FALSE)
+   # regra: intercepto do PET > 0 com p unilateral < 0,05 (p bilateral < 0,10) -> PEESE; senão, PET
+   # sensibilidade: rma(yi, vi, mods = ~ se_mod, data = dat, method = "FE") (erro aditivo, teste z)
+   selmodel(res, type = "stepfun", steps = 0.025, alternative = "greater")  # 3PSM
+   rma(yi, vi, data = dat, method = "FE")                     # comparar com o aleatório
+   ```
+
+   Relate essas estimativas como sensibilidade, faça o julgamento ROB-ME e leve-o ao GRADE (@sec-09-regras).
+10. **Sensibilidade**: *leave-one-out*; sem estudos de risco alto; sem conversões aproximadas; outro estimador de τ²; efeitos aleatórios convencional ao lado do HKSJ; sem o estudo que concentra o peso. Resumir numa tabela, não em vários *forest plots* [@deeks2024analysing, sec. 10.14].
+
+    ```r
+    leave1out(res)
+    update(res, subset = rob != "alto")
+    update(res, subset = conversao != "aproximada")
+    update(res, method = "PM"); update(res, method = "DL"); update(res, test = "z")
+    ```
+
+11. **Sem meta-análise**: tabela estruturada por célula; contagem por direção com teste de sinal e IC de Clopper-Pearson; *effect direction plot* com cor por risco de viés; *albatross plot* se houver p e n; combinação de p com Z ponderado só se esse for o dado disponível.
+
+    ```r
+    u <- sum(dat$direcao == 1); n <- sum(dat$direcao %in% c(1, -1))
+    binom.test(u, n, p = 0.5, alternative = "two.sided")    # teste de sinal exato e IC de Clopper-Pearson
+    prop.test(u, n, correct = FALSE)$conf.int              # alternativa: IC de Wilson
+    ```
+
+12. **Testes combinados (se usados)**, com um p por estudo, direção declarada e a ressalva obrigatória:
+
+    ```r
+    X2 <- -2 * sum(log(dat$p_bilateral))
+    pchisq(X2, df = 2 * nrow(dat), lower.tail = FALSE)      # Fisher, não direcional (p bilateral)
+    p1 <- ifelse(dat$sinal == 1, dat$p_bilateral / 2, 1 - dat$p_bilateral / 2)  # p unilateral na direção declarada
+    z  <- qnorm(p1, lower.tail = FALSE)      # evita z infinito quando p1 é minúsculo
+    w  <- sqrt(dat$n)
+    Zw <- sum(w * z) / sqrt(sum(w^2)); pnorm(Zw, lower.tail = FALSE)           # Stouffer ponderado
+    stopifnot(all(dat$df > 2))
+    Zwin <- sum(dat$t_alinhado) / sqrt(sum(dat$df / (dat$df - 2)))             # Winer com t
+    pnorm(Zwin, lower.tail = FALSE)
+    ```
+
+13. **Revisão metodológica e portão G8**: um segundo revisor confere comparabilidade, direção, dependência, sensibilidade e ressalvas antes de a síntese alimentar a certeza e a caixa de ferramentas.
+
+## O que as diretrizes exigem {#sec-08a-diretrizes}
+
+**PRISMA 2020** [@page2021prisma]:
+
+| Item | Exigência |
+|---|---|
+| 12 | Medida de efeito usada por desfecho na síntese ou apresentação |
+| 13a | Processo para decidir que estudos entram em cada síntese |
+| 13b | Preparação dos dados (estatísticas faltantes, conversões) |
+| 13c | Métodos de tabulação e exibição dos resultados de estudos e sínteses |
+| 13d | Métodos de síntese com justificativa; se houve meta-análise, modelos, métodos para identificar presença e extensão da heterogeneidade e *software* |
+| 13e | Métodos para explorar causas de heterogeneidade |
+| 13f | Análises de sensibilidade |
+| 14 | Métodos para avaliar risco de viés por resultados faltantes |
+| 19 | Para cada estudo, estatísticas por grupo e estimativa com precisão, de preferência em tabelas ou gráficos |
+| 20a | Características e risco de viés dos estudos de cada síntese |
+| 20b | Resultados de todas as sínteses: estimativa, precisão e heterogeneidade; direção do efeito |
+| 20c | Resultados das investigações de heterogeneidade |
+| 20d | Resultados das análises de sensibilidade |
+| 21 | Avaliações de risco de viés por resultados faltantes |
+| 22 | Certeza da evidência por desfecho (@sec-09-regras) |
+| 27 | Disponibilidade de dados extraídos, dados das análises e código |
+
+**SWiM** (revisões com síntese sem meta-análise em pelo menos um desfecho) [@campbell2020synthesis, Tabela 1]:
+
+| Item | Conteúdo |
+|---|---|
+| 1a / 1b | Grupos da síntese (populações, intervenções, desfechos, desenhos) com racional, de preferência pela teoria da mudança; mudanças em relação ao protocolo |
+| 2 | Métrica padronizada por desfecho, por que foi escolhida e métodos de transformação |
+| 3 | Métodos de síntese usados e justificativa |
+| 4 | Critérios para priorizar estudos na síntese (desenho, risco de viés, proximidade com a pergunta) |
+| 5 | Métodos para examinar heterogeneidade dos efeitos |
+| 6 | Métodos para avaliar a certeza |
+| 7 | Métodos gráficos e tabulares; características usadas para ordenar os estudos |
+| 8 | Resultado de cada comparação e desfecho, com certeza, em linguagem coerente com a pergunta, indicando os estudos que contribuem |
+| 9 | Limitações dos métodos de síntese e dos agrupamentos |
+
+O SWiM expande itens de síntese do PRISMA e do RAMESES e não se aplica a síntese de dados qualitativos, para a qual existem ENTREQ e eMERGe [@campbell2020synthesis]. A teoria da mudança que justifica os agrupamentos (item 1a) vem da @sec-02-regras. O Handbook pede ainda que a revisão nomeie o método em vez de escrever só "síntese narrativa" [@mckenzie2024synthesizing, sec. 12.2].
+
+**MECIR (Cochrane)**:
+
+| Item | Nível | Exigência | Fonte |
+|---|---|---|---|
+| C62 | Obrigatório | Meta-analisar só estudos suficientemente similares | @deeks2024analysing [sec. 10.10.1] |
+| C63 | Obrigatório | Avaliar presença e extensão da heterogeneidade, sem limiares simples | @deeks2024analysing [sec. 10.10.2] |
+| C67 | Obrigatório | Comparar subgrupos com teste estatístico formal | @deeks2024analysing [sec. 10.11.3.1] |
+| C68 | Obrigatório | Seguir o plano de subgrupos do protocolo, sem ênfase indevida | @deeks2024analysing [sec. 10.11.5.2] |
+| C69 | Obrigatório | Considerar a heterogeneidade na interpretação, sobretudo com direções opostas | @deeks2024analysing [sec. 10.10.3] |
+| C71 | Altamente desejável | Sensibilidade para pressupostos, imputações, decisões limítrofes e risco alto | @deeks2024analysing [sec. 10.14] |
+| C73 | Altamente desejável | Considerar o impacto de vieses de não relato | @page2024assessing [sec. 13.4] |
+
+## Exemplo trabalhado {#sec-08a-exemplo}
+
+### O que o artigo dos celulares fez
+
+A revisão de Schaefer, Borges e Gomes Filho perguntou se proibir ou restringir celulares melhora o desempenho escolar, motivada pela Lei nº 15.100/2025, que vale para a educação básica [@schaefer2025proibicao, p. 98]. Dos 21 trabalhos incluídos, oito tinham desenho causal: três experimentais, quatro de seleção em observáveis (diferenças em diferenças) e uma meta-análise [@schaefer2025proibicao, p. 99, 104]. A análise quantitativa seguiu a sequência da proposta OQF [@schaefer2025proibicao, p. 103-105]:
+
+1. Contagem: sete de oito estudos com efeito positivo, seis estatisticamente significativos.
+2. Fisher = 65,74 e Cooper = 2,88 (ambos p < 0,05), lidos como rejeição de que "a direção e a significância" seriam aleatórias e como reforço da consistência.
+3. g de Hedges a partir do coeficiente do modelo principal, dos n de tratamento e controle e do DP da variável dependente, com o pacote `meta`: efeito comum de 0,22, "fraco, mas consistente".
+4. *Forest plot* com IC total [0,02; 0,42] e rodapé "χ²₇ = 29,73 (P < ,001), I² = 76,5%"; a diferença em relação à meta-análise de Böttger e Zierer é atribuída à inclusão de estudos do ensino superior.
+
+O Anexo J da proposta OQF traz o código de conversão e os dados: `esc_B` para os ids 1, 4, 3 e 5, `esc_f` para os ids 15 e 20, `esc_t(p = 0.015)` para o id 24, cujo resultado vinha de um teste de Mann-Whitney, e o id 28 "produzido a partir de Meta Análise", com TE = 0,05, seTE = 0,05 e n = 9 [@schaefer_oqfunciona, p. 103-106]. Os comentários do código identificam o id 3 como "The impact of banning mobile phones" e o id 24 como "The Effect of Cell Phones on Attention" [@schaefer_oqfunciona, p. 104-105], títulos que, na lista de referências do artigo, correspondem a um estudo em escolas secundárias suecas e a um estudo com estudantes de enfermagem [@schaefer2025proibicao, p. 111-112].
+
+### Reanálise com os dados do Anexo J
+
+Todos os números desta tabela são cálculo nosso, a partir de TE e seTE do Anexo J [@schaefer_oqfunciona, p. 106], com `metafor` e `meta`. O modelo REML + HKSJ reproduz o IC publicado; o intervalo convencional com os mesmos dados seria 0,05 a 0,38. O artigo não declara o método.
+
+| Análise | k | g (IC 95%) | Intervalo de predição | τ² (τ) |
+|---|---|---|---|---|
+| REML + HKSJ (reproduz o artigo) | 8 | 0,22 (0,02 a 0,42) | −0,28 a 0,71 | 0,037 (0,19) |
+| REML + HKSJ modificado | 8 | 0,22 (0,02 a 0,42) | −0,28 a 0,71 | 0,037 (0,19) |
+| Efeito fixo | 8 | 0,06 (0,05 a 0,07) | n/a | n/a |
+| DerSimonian-Laird + HKSJ | 8 | 0,09 (−0,04 a 0,23) | −0,11 a 0,30 | 0,004 (0,06) |
+| Sem o id 28 (meta-análise) | 7 | 0,27 (0,03 a 0,50) | −0,31 a 0,84 | 0,046 (0,21) |
+| Sem ids 28 e 24 (meta-análise e conversão de Mann-Whitney) | 6 | 0,24 (−0,03 a 0,52) | −0,38 a 0,87 | 0,048 (0,22) |
+| Id 24 recalculado com médias e DP (g = 0,87) | 8 | 0,31 (0,04 a 0,58) | −0,43 a 1,04 | 0,083 (0,29) |
+| *Leave-one-out*: sem o id 15 | 7 | 0,17 (−0,03 a 0,37) | −0,28 a 0,62 | 0,027 (0,16) |
+
+Exceto na linha de efeito fixo, todos os modelos usam intervalo de Hartung-Knapp; n/a = não se aplica.
+
+Outros resultados (cálculo nosso): o IC de τ² vai de 0,006 a 0,242; o id 1 (n = 130.482) recebe 93% do peso no modelo fixo e 20% no aleatório, e as três estimativas mais precisas somam 58% do peso aleatório; retirar qualquer um dos ids 4, 5, 15, 20 ou 24 faz o IC do modelo aleatório cruzar zero; a correlação de Spearman entre efeito e erro-padrão é 0,90, com as três estimativas mais precisas perto de zero (0,06; −0,01; 0,05) e as cinco menos precisas entre 0,39 e 0,67. Com k = 8, abaixo do mínimo de 10, esse padrão é só descritivo, sem teste de Egger.
+
+### Problemas e o que deveria ter sido feito
+
+**1. Uma meta-análise entrou como estudo primário.** O id 28 é uma meta-análise [@schaefer_oqfunciona, p. 105; @schaefer2025proibicao, p. 104], cujos estudos podem se sobrepor aos outros sete. *O que fazer*: excluir da análise e usar a meta-análise na bola de neve, verificando se os estudos primários elegíveis dela já estão no corpus.
+
+**2. Educação básica e ensino superior foram misturados.** O artigo atribui a diferença com Böttger e Zierer à inclusão do ensino superior [@schaefer2025proibicao, p. 105], mas a lei é da educação básica [@schaefer2025proibicao, p. 98], e as limitações listam quatro dimensões não harmonizadas: tipo de banimento, público, foco da intervenção e tipo de avaliação [@schaefer2025proibicao, p. 109], isto é, contraste, cenário e mensuração [@slough2023external, p. 21-22, 28]. *O que fazer*: análise principal só com educação básica e provas padronizadas; ensino superior como evidência indireta no GRADE (@sec-09-regras); estimativas por nível lado a lado, com teste de diferença só com pelo menos quatro estudos por nível [@fu2011conducting].
+
+**3. A conversão do Mann-Whitney foi feita pelo p, e errada.** O id 24 tinha U = 1859,5, Z = −2,151, P = ,015 e também médias e DPs, mas foi convertido com `esc_t(p = 0.015)`, como se fosse o p bilateral de um teste t [@schaefer_oqfunciona, p. 105]. O g usado (0,44) difere da conversão com o p bilateral correto de Z = 2,151 (0,39) e da conversão por médias e DPs (0,87) (cálculo nosso). O diagnóstico das conversões, inclusive os n divergentes dos ids 4 e 20, está na @sec-07-regras. *O que fazer aqui*: marcar a conversão como aproximada e rodar a sensibilidade sem ela; sem os ids 28 e 24, o IC inclui zero.
+
+**4. O peso do estudo maior vem de um erro-padrão que ignora o desenho.** Em `esc_B`, a variância de g sai só dos tamanhos dos grupos, não do erro-padrão do coeficiente relatado (inspeção do código do `esc` 0.5.1) [@ludecke2019esc]. Com 130.482 alunos, o id 1 fica com EP de 0,005 e 93% do peso no modelo fixo. Em desenhos com *clusters*, variâncias assim costumam estar erradas [@mckenzie2024synthesizing, sec. 12.2.1.1], e os intervalos de estudos não randomizados muito grandes são os que menos representam a incerteza verdadeira [@reeves2024including, sec. 24.6.1]. *O que fazer*: derivar o EP de g do EP do coeficiente, registrar o nível de alocação e testar a sensibilidade a esse peso.
+
+**5. I² apareceu só no rodapé e o artigo concluiu "consistente".** O *forest plot* informa I² = 76,5% [@schaefer2025proibicao, p. 105], mas o resumo fala em efeito "consistente em diferentes metodologias e contextos" [@schaefer2025proibicao, p. 97]. Não há τ², IC de τ², intervalo de predição nem declaração do estimador e do tipo de IC, que o PRISMA pede nos itens 13d e 20b [@page2021prisma]. *O que fazer*: relatar τ = 0,19 e PI de −0,28 a 0,71 (num contexto parecido, o efeito verdadeiro pode ir de pequeno prejuízo a ganho grande) e trocar "consistente" por "positivo em média, com heterogeneidade grande" (C69) [@deeks2024analysing, sec. 10.10.3].
+
+**6. O efeito médio se deslocou para os estudos pequenos, e isso não foi discutido.** O efeito fixo (0,06) é bem menor que o aleatório (0,22), e as estimativas mais precisas estão perto de zero. O Handbook manda avaliar se os pequenos diferem de fato ou foram divulgados seletivamente e, se os maiores forem mais rigorosos ou mais típicos da política na prática, considerar a análise restrita a eles [@page2024assessing, sec. 13.3.4.6]. Há uma explicação de heterogeneidade verdadeira plausível: ensaios pequenos e focalizados costumam dar efeitos maiores que intervenções universais [@kraft2020interpreting, versão do autor, p. 13], e a lei brasileira é universal. *O que fazer*: tabela de sensibilidade pré-especificada (efeito fixo, só os estudos grandes, sem cada estudo) e conclusão proporcional a ela.
+
+**7. Os testes combinados foram mal usados e não são reprodutíveis.** Com a fórmula usada no material didático, sete de oito positivos dão Zc = (7 − 4)/(√8/2) = 2,12, não 2,88. O teste de sinal exato bilateral dá p = 0,070 com 7/8 e p = 0,125 com 6/7 sem a meta-análise; a proporção de benefícios é 87,5% (IC de Clopper-Pearson de 47% a 99,7%; o de Wilson iria de 53% a 98%). O Fisher publicado (65,74) não é reprodutível sem os valores-p usados; com p bilaterais derivados de TE/seTE, o id 1 sozinho daria 145 dos 184 pontos, e no Stouffer ponderado por √n teria 93% da soma dos pesos ao quadrado (cálculos nossos). O n = 9 do id 28 não diz quantos alunos a estimativa representa, o que tira o sentido da ponderação para ele. E os testes não "reforçam" a meta-análise, porque respondem a outra pergunta [@mckenzie2024synthesizing, Tabela 12.2.a]. *O que fazer*: com g e EP disponíveis, omitir os testes; se mantidos, Z ponderado com p unilateral para a pergunta direcional, Fisher só com p bilateral e o rótulo "não direcional", e a ressalva obrigatória.
+
+**8. A contagem de "significativos" não bate com os dados.** O texto fala em seis estudos significativos [@schaefer2025proibicao, p. 104], mas pelos TE e seTE do Anexo J só os ids 1, 5, 15 e 24 têm |z| > 1,96 (cálculo nosso). *O que fazer*: significância, se relatada, em variável separada e calculada sobre o efeito sintetizado; nunca como critério de "funciona".
+
+**9. O rótulo de magnitude foi escolhido depois.** O artigo chama 0,22 de "fraco" com base num guia genérico [@schaefer2025proibicao, p. 105]; restrita a estudos causais da educação básica com provas padronizadas, a mesma estimativa seria grande pelo *benchmark* de Kraft [@kraft2020interpreting, versão do autor, p. 21]. *O que fazer*: fixar o *benchmark* do campo no protocolo.
+
+Como poderia ficar o relato, com os números da reanálise só para ilustrar (a análise principal correta, restrita à educação básica, exige reclassificar os estudos pela população):
+
+> "Oito estimativas de desempenho foram combinadas num modelo de efeitos aleatórios (REML, IC de Hartung-Knapp modificado): g = 0,22 (IC 95%: 0,02 a 0,42; τ = 0,19; I² = 76,5%; intervalo de predição de 95%: −0,28 a 0,71). As três estimativas mais precisas ficaram próximas de zero (−0,01 a 0,06), e as cinco menos precisas, entre 0,39 e 0,67; o modelo de efeito fixo deu 0,06. Com menos de dez estudos, não testamos assimetria. O intervalo passou a incluir zero ao retirar qualquer um de cinco estudos pequenos, ao usar o estimador de DerSimonian-Laird e ao excluir a meta-análise incluída por engano e a conversão aproximada de um teste de Mann-Whitney (g = 0,24; IC −0,03 a 0,52; seis estudos). A evidência é compatível com efeito médio positivo, mas não sustenta efeito consistente entre contextos nem o rótulo 'Positivo' antes da avaliação de certeza."
+
+### O código dos testes combinados do REFIS
+
+O *script* de análise do caso REFIS aplica os quatro testes aos estudos b2, no geral e por estratégia de identificação e *cluster* de desfecho, para a direção "ampla" e a "restrita" [@schaefer2026analise]. No codebook, a direção ampla é binária (1 = positivo, 0 = negativo, no sentido normativo) e a restrita vale 1 ou −1 só quando p < 0,05, e 0 quando p ≥ 0,05 [@schaefer2026codigos, aba b2_quantitativo]. Comparado às fórmulas corretas:
+
+| Função (linhas) | O que faz | Problema | Correção |
+|---|---|---|---|
+| `teste_fisher` (268-276) | −2Σ ln p com p bilateral; descarta p = 0 | Sem o rótulo de teste não direcional; um p ≈ 0 domina; p zerado por *underflow* some sem aviso na soma | Manter o p bilateral com o rótulo "não direcional / pelo menos um estudo"; log de p calculado com `log.p`; a pergunta direcional vai para o Stouffer ponderado |
+| `teste_stouffer` (278-286) | z = sinal × Φ⁻¹(1 − p/2); Σz/√k; p combinado bilateral | Sem pesos | Pesos √n; p combinado unilateral na direção declarada |
+| `teste_winer` (292-302) | O mesmo z, dividido por √Σ gl/(gl − 2); peso 1 se gl ausente ou ≤ 2 | Usa z no lugar de t; só coincide com Σt porque o p foi calculado de t por aproximação normal | Receber o t do estudo e o gl; exigir gl > 2; sem gl, não calcular Winer |
+| `teste_cooper` (307-315) | Binomial exato bilateral sobre sinais, sem os zeros | Correto como teste de sinal na direção ampla | Relatar proporção com IC de Clopper-Pearson |
+| Direção restrita (855 e codebook) | Sinal 0 para todo p ≥ 0,05; p desses estudos vira NA | Na versão "restrita", Fisher, Stouffer e Winer combinam só resultados significativos, e o Cooper conta só significativos: é contagem por significância | Eliminar a versão restrita; significância só como descrição |
+| `p_b2` e `gl_b2` (846, 851) | p = 2Φ(−\|t\|); gl = n_t + n_c − controles − 2 | Aproximação normal ignora gl pequenos; gl não considera *clusters* | `2 * pt(-abs(t), df)` com o gl do estudo |
+
+A versão corrigida está no passo 12 da @sec-08a-passos. O próprio *script* sinaliza |t| > 20 como suspeito e avisa que p = 0 sai do Fisher e domina Stouffer e Winer (linhas 872-886) [@schaefer2026analise]; na skill, esse papel cabe ao alerta de plausibilidade numérica previsto no contrato da skill (@sec-especificacao-contrato).
+
+## Erros comuns e como evitá-los {#sec-08a-erros}
+
+| Erro | Por que é problema | Como evitar |
+|---|---|---|
+| Contar como "funciona" só o que é significativo (taxa de sucesso, "seis em dez artigos") | Poder da contagem tende a zero; estudos subpotentes viram evidência contrária [@mckenzie2024synthesizing, sec. 12.2.2.1]; exemplo em @figueiredo2014meta [p. 218] | Contagem por direção com teste de sinal, ou meta-análise |
+| Tratar teste combinado como medida de "escala" do efeito [@schaefer_oqfunciona, p. 21] | Combinar p não informa magnitude [@mckenzie2024synthesizing, Tabela 12.2.a] | Magnitude só por g, IC e PI; testes com ressalva |
+| Usar t como tamanho de efeito [@schaefer_oqfunciona, p. 22] | t mede a estimativa relativa ao EP e cresce com n [@gerring2022democracy, p. 364] | Converter para métrica comum; distribuição de t só para viés de limiar |
+| Winer com z; Stouffer com p bilateral; Fisher lido como direcional; versão "restrita" só com significativos | Mistura escalas, perde direção, seleciona pela significância [@zaykin2011optimally] | Fórmulas da @sec-08a-fundamentos |
+| Incluir revisão ou meta-análise como estudo | Dupla contagem de estudos primários [@pollock2024overviews, sec. V.4.4] | Excluir da síntese de primários; bola de neve; em rápida ou *overview*, usar só no nível de revisão, com CCA (@sec-01-regras) |
+| Combinar randomizados com não randomizados, ou populações fora do PICOC | Viola a separação por desenho [@reeves2024including, sec. 24.6.2.1] e a harmonização [@slough2023external, p. 21] | *Checklist* de comparabilidade antes do modelo |
+| Vários efeitos do mesmo estudo como se fossem independentes | IC estreito demais; peso maior para quem publica mais modelos [@glass1979meta, p. 8] | Um efeito por estudo, efeito sintético ou CHE + RVE |
+| EP de g calculado só pelos n, num estudo com *clusters* | Peso inflado do estudo grande [@reeves2024including, sec. 24.6.1] | EP a partir do EP do coeficiente; sensibilidade ao peso |
+| Wald com DerSimonian-Laird como padrão | Erro tipo I inflado com poucos estudos [@inthout2014hartung] | REML + HKSJ modificado |
+| Ler I² como heterogeneidade absoluta ou omitir τ e PI | I² depende da precisão e da fórmula [@harrer2021doing, sec. 5.2; @schwarzer2026meta] | Relatar τ², τ, PI e interpretar na escala do efeito |
+| Chamar de "consistente" um resultado com I² alto e PI que cruza zero | Contraria C69 [@deeks2024analysing, sec. 10.10.3] | Linguagem guiada pelo PI e pela sensibilidade |
+| Comparar subgrupos pela significância de cada um; meta-regressão com poucos estudos | Diferença de poder lida como diferença de efeito [@deeks2024analysing, sec. 10.11.3.1, 10.11.5] | Teste formal; ≥ 4 por nível; ~10 por característica pré-especificada |
+| Egger original com SMD, funil com k < 10 ou estimativa "corrigida" como principal | Erro tipo I inflado, pouco poder, pressupostos não verificáveis [@pustejovsky2019testing; @page2024assessing, sec. 13.3.4.4, 13.3.4.6] | EP modificado; k ≥ 10; correções só como sensibilidade e no GRADE |
+| Escolher *benchmark* de magnitude depois de ver o resultado | Rótulo arbitrário [@brydges2019effect, p. 1; @kraft2020interpreting] | *Benchmark* do campo no protocolo |
+| Escrever "síntese narrativa" sem método | Irreprodutível [@mckenzie2024synthesizing, sec. 12.2] | Nomear o método e seguir o SWiM |
+
+## Na skill `revisao-sistematica` {#sec-08a-skill}
+
+O contrato abaixo segue a especificação desta base (@sec-especificacao). A skill está em construção.
+
+- **Onde fica**: etapa 10 (síntese, certeza e caixa de ferramentas), fechada pelo portão **G8**; os insumos vêm da etapa 9, cujo portão **G7** exige efeitos numéricos 100% verificados com âncora de página ou dupla extração com arbitragem. Saídas em `06-analise/`, com o evento `analise_executada` em `rs_log.jsonl`.
+- **Arquivos**: `references/07a-sintese-quantitativa.md` (destilado deste capítulo), `assets/checklists/swim`, `assets/mapas/conversoes_efeito.csv`.
+- **Comandos e scripts**: `rs.py analise preparar-efeitos` gera a tabela de efeitos a partir do master ou de um CSV com (m, sd, n), (t, df) ou (coef, se); `R/efeitos.R` aplica as conversões com `formula_id`, avisos e rejeição de meta-análise como estudo; `R/meta.R` roda REML + HKSJ modificado, τ², I², PI, *forest plot*, funil, Egger e PET-PEESE só com k ≥ 10 (com o EP modificado quando todos os estudos têm $n_1$ e $n_2$; senão com o EP de g, informado no JSON; na variante de mínimos quadrados ponderados com erro multiplicativo, como no passo 9, que é a implementação de @harrer2021doing [sec. 9.2.1.5] e fica registrada no JSON com os graus de liberdade e o t do intercepto; PEESE só quando o intercepto do PET é positivo com p unilateral < 0,05), 3PSM como sensibilidade, *leave-one-out* e `rma.mv` + CR2, e exige `metafor`; `R/swim.R` faz teste de sinal com IC de Clopper-Pearson, *effect direction plot* e *albatross plot*; a exclusão de resultados de risco crítico da análise principal, quando prevista no protocolo, vale em `meta.R`, `swim.R` e `testes_combinados.R`, sempre depois de escolhido o efeito, a direção ou o p de cada estudo, com a análise completa em sensibilidade; `R/testes_combinados.R` implementa, em R base, Stouffer ponderado com p unilateral, Winer com t, Cooper como teste de sinal e Fisher "não direcional" com p bilateral. Os scripts compartilham a interface de `R/_cli.R`.
+- **Pedido parcial "só a meta-análise"**: master ou CSV com as colunas acima; caminho `analise preparar-efeitos` → `efeitos.R` → `meta.R` (@sec-especificacao-contrato).
+- **Armadilhas com checagem**: contagem por significância; efeitos dependentes e dupla contagem; conversões ou sinais errados (`formula_id` + `direcao_desejada`, alerta para |g| > 2); agregação de evidência não comparável.
+- **Caixa de ferramentas**: `rs.py caixa` só monta a tabela rastreável; testes combinados nunca definem rótulo. As regras (Positivo, Negativo, Nulo, Inconclusivo, Misto) usam IC, PI, δ e certeza; sem meta-análise, "Positivo" exige teste de sinal com p < 0,05, pelo menos cinco estudos, pelo menos 70% benéficos e não apenas estudos de risco alto (@sec-especificacao-caixa; @sec-08b-regras).
+- **Agentes**: `extrator-efeitos` (um PDF → CSV com trecho e página, várias estimativas por estudo) antes de G7; `revisor-metodologico` em G8.
+- **Modos**: em *checkpoints*, G8 para e pede aprovação humana; no autopiloto, G8 vira pendência e o relatório sai como "RASCUNHO NÃO VALIDADO".
+- **Degradação**: sem `metafor`, não há meta-análise (SWiM e testes combinados seguem); sem R, não há síntese quantitativa (síntese qualitativa, caixa e PRISMA seguem).
+- **Testes previstos**: g a partir de médias e DP e de t contra valores de referência; testes combinados num vetor fixo; `meta.R` com conjunto de dados conhecido.
+
+## Como relatar {#sec-08a-relato}
+
+**Métodos (mínimo):** (i) critérios para agrupar estudos em cada síntese e resultado do *checklist* de comparabilidade (PRISMA 13a; SWiM 1); (ii) métrica, direção desejada e conversões, com marcação das aproximadas (PRISMA 12, 13b; SWiM 2); (iii) regra de um efeito por estudo ou modelo de dependência com ρ e correção (PRISMA 13d); (iv) modelo, estimador de τ², método do IC, medidas de heterogeneidade, intervalo de predição e *software* com versão (PRISMA 13d); (v) moderadores pré-especificados e teste usado (PRISMA 13e); (vi) análises de sensibilidade (PRISMA 13f); (vii) métodos para viés por resultados faltantes e limiar de k (PRISMA 14); (viii) se houve síntese sem meta-análise, método, pergunta respondida e gráficos (SWiM 3, 7); (ix) *benchmark* de magnitude e δ fixados no protocolo.
+
+**Resultados (mínimo):** por célula, k, número de participantes, estimativa com IC, τ² com IC, τ, I², intervalo de predição, estudos que contribuem e seu risco de viés (PRISMA 20a-20b); resultados de moderadores (20c); tabela de sensibilidade (20d); julgamento ROB-ME, com funil e testes quando k ≥ 10 ou a frase "com menos de dez estudos, não testamos assimetria" (21); ressalva obrigatória para qualquer teste combinado; dados e código disponíveis (27).
+
+**Exemplo de redação (métodos):**
+
+> "Só combinamos estudos da mesma família de intervenção e construto de desfecho, com comparador, janela, população e estimando equivalentes; randomizados e não randomizados foram analisados em separado. Cada estudo contribuiu com o efeito do modelo principal definido no protocolo, expresso como g de Hedges (positivo = melhora). Usamos efeitos aleatórios com τ² por REML e intervalo de Hartung-Knapp-Sidik-Jonkman modificado (metafor 5.0.1, R 4.5), com IC Q-profile para τ², I² e intervalo de predição de 95% quando k ≥ 5. Nível de ensino foi o único moderador pré-especificado (meta-regressão com teste de permutação, ao menos quatro estudos por nível). Na sensibilidade, excluímos cada estudo, os de risco alto e os efeitos de conversão aproximada, trocamos o estimador por Paule-Mandel e DerSimonian-Laird e comparamos com o intervalo convencional. O risco de viés por resultados faltantes foi julgado com o ROB-ME; funil com contornos, Egger com erro-padrão modificado, PET-PEESE e modelo de seleção de três parâmetros seriam usados com dez ou mais estudos. Sem meta-análise, usamos contagem pela direção da estimativa pontual com teste de sinal exato bilateral, proporção com IC de Clopper-Pearson e *effect direction plot*, seguindo o SWiM."
+
+## Leituras {#sec-08a-leituras}
+
+**Normas e guias**
+
+- @deeks2024analysing: Cochrane, cap. 10; modelos, heterogeneidade, HKSJ, predição, subgrupos.
+- @mckenzie2024synthesizing: Cochrane, cap. 12; síntese sem meta-análise e gráficos.
+- @page2024assessing: Cochrane, cap. 13; ROB-ME e funil.
+- @reeves2024including: Cochrane, cap. 24; não randomizados na síntese.
+- @page2021prisma e @campbell2020synthesis: PRISMA 2020 e SWiM.
+- @fu2011conducting: AHRQ; mínimos para subgrupos e meta-regressão.
+
+**Métodos específicos**
+
+- @harrer2021doing: tutorial em R de meta-análise.
+- @inthout2014hartung, @rover2015hartung e @jackson2017hartung: HKSJ e sua modificação.
+- @pustejovsky2022meta e @pustejovsky2018small: CHE, CR2 e gl de Satterthwaite.
+- @pustejovsky2019testing e @stanley2014meta: Egger para SMD e PET-PEESE.
+- @boon2021effect, @harrison2017albatross, @ogilvie2008harvest e @nikolakopoulos2020misuse: gráficos e limites do teste de sinal.
+- @whitlock2005combining e @zaykin2011optimally: Z ponderado.
+- @viechtbauer2010conducting, @schwarzer2026meta e @ludecke2019esc: pacotes `metafor`, `meta` e `esc`.
+- @kraft2020interpreting e @brydges2019effect: *benchmarks* por campo.
+
+**Leituras de apoio**
+
+- @figueiredo2014meta: fórmulas dos testes combinados.
+- @glass1979meta: dependência e crítica à significância.
+- @vaessen2014effects: separação por desenho, efeito sintético, funil com contornos.
+- @garcia2017educational: melhor estimativa, RVE e meta-regressão guiada por teoria.
+- @slough2023external: harmonização e validade externa.
+- @cancela2016explaining e @gerring2022democracy: taxa de sucesso e distribuição de t.
+- @schaefer2025proibicao e @schaefer_oqfunciona: caso dos celulares.
+- @schaefer2026aula6, @schaefer2026analise e @schaefer2026codigos: slides, *script* do REFIS e codebook.

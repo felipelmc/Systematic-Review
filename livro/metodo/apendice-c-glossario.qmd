@@ -1,0 +1,97 @@
+# Glossário {#sec-glossario}
+
+Termos técnicos usados nos capítulos desta parte, em ordem alfabética. As definições são curtas e resumem as dos capítulos; a coluna "Onde aparece" leva à seção em que o termo é discutido com as fontes. Siglas de normas e ferramentas trazem a referência principal.
+
+| Termo | Definição | Onde aparece |
+|---|---|---|
+| a1, a2, b1, b2 | Tipologia de estudos do material didático que cruza objetivo (interpretar ou descrever, *a*; testar ou explicar, *b*) e natureza dos dados (qualitativa, *1*; quantitativa, *2*); define o bloco do codebook e a ferramenta de risco de viés [@schaefer2026aula5] | @sec-07-regras; @sec-06-regras |
+| AMSTAR 2 | Instrumento de avaliação crítica de revisões sistemáticas, usado quando revisões são o objeto de uma revisão de revisões [@shea2017amstar] | @sec-06-ferramentas |
+| Aprendizado ativo (*active learning*) | Triagem priorizada em que o classificador reaprende a cada rótulo humano e reordena os registros restantes até um critério de parada [@vandeschoot2021open] | @sec-05-ferramentas; @sec-11-ferramentas |
+| Árbitro cego | Modelo de terceiro provedor que decide conflitos entre dois modelos vendo só "Revisor A" e "Revisor B", sem o nome dos modelos; sua regra também precisa ser validada | @sec-11-prompts |
+| Autopiloto | Modo da skill que para só nos portões G1 e G2 e transforma as demais validações humanas em pendências, marcando os produtos como rascunho não validado | @sec-especificacao-contrato |
+| Bola de neve (busca por citações) | Busca para trás, nas referências dos incluídos, e para frente, nos trabalhos que os citam; os achados são triados com os mesmos critérios e entram no ramo "outros métodos" do fluxograma [@hirt2024tarcis] | @sec-04-citacoes |
+| Caixa de ferramentas | Produto final da revisão no formato OQF: por família de intervenção e construto de desfecho, rótulos de efeito, escala, força e implementação, e enunciados sobre mecanismo, moderador, percepção e custo [@schaefer_oqfunciona] | @sec-08b-caixa |
+| Calibração (QCA) | Atribuição de graus de pertencimento a conjuntos a partir de âncoras externas e justificadas (pertença plena, ponto de indiferença, não pertença), nunca por mediana ou normalização automática; é juízo humano [@wagemann2007standards; @sampaio2024manual] | @sec-08b-metodos; @sec-09-realista-qca |
+| CCA (*corrected covered area*) | Medida da sobreposição de estudos primários entre revisões numa revisão de revisões: $(N - r)/(rc - r)$ | @sec-01-regras |
+| CERQual (GRADE-CERQual) | Abordagem para julgar a confiança em cada achado de síntese qualitativa por limitações metodológicas, coerência, adequação dos dados e relevância, em alta, moderada, baixa ou muito baixa [@lewin2018applying] | @sec-09-cerqual |
+| CHE + RVE | Modelo de trabalho de efeitos correlacionados e hierárquicos, combinado com variância robusta por *cluster* (correção CR2 e graus de liberdade de Satterthwaite), para vários efeitos por estudo [@pustejovsky2022meta; @pustejovsky2018small] | @sec-08a-fundamentos |
+| CMMO | *Framework* do material didático com Contexto, Mecanismo(s), Moderador(es) e *Outcome*; trata das "causas dos efeitos" e orienta a extração na revisão mista [@schaefer2026aula3] | @sec-02-regras |
+| CMOC | Configuração contexto-mecanismo-desfecho da revisão realista: em contexto C, o recurso da política ativa o raciocínio M, que produz o resultado O [@wong2013rameses] | @sec-08b-metodos; @sec-08b-caixa |
+| Codebook v0 | Primeira versão do formulário de extração, anexada ao protocolo, pilotada e versionada; mudanças posteriores geram nova versão | @sec-03-componentes; @sec-07-regras |
+| Contagem de votos por direção | Classificação de cada efeito como benefício ou dano só pelo sinal da estimativa pontual, testada contra 0,5 pelo teste de sinal; diferente da contagem por significância, que não é método aceitável [@mckenzie2024synthesizing] | @sec-08a-fundamentos |
+| DAG (grafo acíclico dirigido) | Diagrama causal com nós e setas sem ciclos, usado para explicitar tratamento, desfecho, mediadores, confundidores, colisores e incentivos perversos da teoria do programa | @sec-02-conceitos |
+| Deduplicação | Fusão de registros do mesmo relato vindos de fontes diferentes, por regras auditáveis; não se confunde com a ligação de relatos do mesmo estudo | @sec-05-regras |
+| δ (menor efeito de interesse) | Margem fixada no protocolo abaixo da qual um efeito é considerado irrelevante; necessária para rotular um efeito como nulo | @sec-03-componentes; @sec-08b-caixa |
+| Direção desejada | Sentido benéfico de cada desfecho (aumento ou redução), declarado no protocolo antes da extração; a direção do efeito é registrada pela estimativa pontual em relação a ele | @sec-02-regras; @sec-07-efeitos |
+| Elusão | Proporção de incluídos numa amostra aleatória dos registros excluídos por uma ferramenta; estima quantos estudos elegíveis se perderam | @sec-11-validacao |
+| EMMIE | Escala de evidência para prevenção do crime que pede informação sobre efeito, mecanismo, moderador, implementação e custo econômico; inspira as linhas da caixa de ferramentas [@johnson2015emmie] | @sec-08b-caixa |
+| Estimando (ATE, ATT, ITT, LATE) | Quantidade causal que um desenho estima: efeito médio na população (ATE), nos tratados (ATT), da oferta da política (ITT) ou local nos que cumprem a designação (LATE); estimandos diferentes não são intercambiáveis [@castro2024avaliacao] | @sec-07-desenhos |
+| Estratégia de identificação | Conjunto de hipóteses que dá interpretação causal a uma estimativa, como randomização, descontinuidade, instrumento ou tendências paralelas [@keele2015statistics] | @sec-07-desenhos |
+| Estudo, relato e registro | Registro é a entrada de uma base; relato é o documento (artigo, tese, relatório); estudo é a investigação, que pode ter vários relatos. A unidade da revisão é o estudo [@lefebvre2025searching] | @sec-05-regras |
+| Estudos-âncora | Conjunto de estudos sabidamente elegíveis, montado sem usar as strings, para medir o recall relativo da busca | @sec-04-validacao |
+| EtD (*Evidence to Decision*) | Marco que leva a evidência à decisão por critérios como benefícios e danos, certeza, recursos, equidade, aceitabilidade e viabilidade [@moberg2018grade] | @sec-09-etd |
+| Forest plot | Gráfico com a estimativa e o intervalo de cada estudo e, quando há meta-análise, a estimativa combinada | @sec-08a-fundamentos |
+| Funil formal | Sequência de filtros da proposta OQF (duplicatas, ano, idioma, tipo, dicionários de método e tema); nesta base, os filtros etiquetam e ordenam e só excluem com previsão no protocolo e validação | @sec-05-regras |
+| Funil (*funnel plot*), Egger e PET-PEESE | Ferramentas para examinar *small-study effects* (tendência de estudos pequenos darem efeitos diferentes); só com k ≥ 10 e nunca como diagnóstico de viés de publicação [@page2024assessing] | @sec-08a-fundamentos |
+| g de Hedges | Diferença padronizada de médias com correção para amostras pequenas (d multiplicado por J) | @sec-07-efeitos |
+| GRADE | Sistema para julgar a certeza de um corpo de evidência sobre um desfecho em quatro níveis (alta, moderada, baixa, muito baixa), a partir do desenho e dos domínios de rebaixamento e elevação [@balshem2011grade] | @sec-09-regras |
+| Harmonização | Conversão das exportações de bases diferentes para um esquema unificado de colunas, mapeadas por nome, com o valor original preservado | @sec-05-esquema |
+| Heterogeneidade (Q, τ², I²) | Variação dos efeitos verdadeiros entre estudos: Q testa sua presença, τ² estima sua variância na escala do efeito e I² é a parcela da variabilidade observada que não se deve ao acaso | @sec-08a-fundamentos |
+| Hierarquia de evidências | Ordenação de desenhos por validade interna para perguntas de efetividade; serve como critério de elegibilidade e descritor, não como medida de risco de viés | @sec-06-hierarquias |
+| HKSJ (Hartung-Knapp-Sidik-Jonkman) | Ajuste do intervalo de confiança da média na meta-análise de efeitos aleatórios que incorpora a incerteza na estimativa de τ²; usado na versão modificada [@rover2015hartung] | @sec-08a-fundamentos |
+| ICEMAN | Instrumento para avaliar a credibilidade de análises de modificação de efeito (subgrupos e meta-regressão) [@schandelmaier2020development] | @sec-09-regras |
+| Indireção | Domínio do GRADE que rebaixa a certeza quando população, intervenção, comparador, desfecho ou contexto dos estudos diferem da pergunta; nesta base, inclui contexto institucional, nível de governo e estimando | @sec-09-regras |
+| Intervalo de predição | Faixa em que se espera o efeito verdadeiro de um novo estudo semelhante; resume a dispersão dos efeitos e é interpretado com cinco estudos ou mais [@deeks2024analysing] | @sec-08a-fundamentos |
+| Invariantes do fluxograma | Somas que as contagens PRISMA precisam satisfazer (triados = excluídos na triagem + buscados; avaliados = buscados − não recuperados; avaliados = excluídos no texto completo + incluídos) | @sec-05-prisma |
+| *Joint display* | Quadro que junta resultados quantitativos e qualitativos para produzir inferências que nenhum dos dois daria sozinho, registrando confirmação, expansão ou discordância [@fetters2013achieving] | @sec-08b-integracao |
+| κ de Cohen | Concordância entre dois codificadores corrigida pelo acaso [@cohen1960coefficient]; depende da prevalência e do viés entre codificadores e não deve ser relatado sozinho | @sec-05-concordancia |
+| *Ledger* | Registro de identificadores, decisões por revisor com critério e trecho, e contagens derivadas, do qual saem o fluxograma e as auditorias | @sec-05-ferramentas; @sec-05-prisma |
+| Literatura cinzenta | Produção fora dos periódicos comerciais, como teses, relatórios de governo, notas técnicas e *working papers*; no Brasil, inclui BDTD, Catálogo da CAPES, IPEA, TCU, CGU e Enap | @sec-04-fontes |
+| Mapa de evidências e lacunas (EGM) | Produto que segue os princípios de uma revisão sistemática com escopo mais amplo e mostra onde há evidência e onde faltam estudos, em geral numa matriz de intervenções por desfechos [@white2020guidance] | @sec-01-regras; @sec-10-traducao |
+| Maryland Scientific Methods Scale (SMS) | Escala de 1 a 5 da capacidade do método e da sua implementação de lidar com o viés de seleção em avaliações de políticas [@madaleno2015guide] | @sec-06-hierarquias |
+| Mecanismo | Processo pelo qual a intervenção produz o resultado; na avaliação realista, combina o recurso oferecido e o raciocínio dos atores [@hedstrom2010causal; @dalkin2015whats] | @sec-07-conceitos |
+| MECIR e MECCIR | Padrões metodológicos de condução e relato das revisões da Cochrane (MECIR) e da Campbell (MECCIR, atualizados em 2024) [@higgins2022mecir; @aloe2024campbell] | @sec-04-diretrizes |
+| Meta-análise | Combinação estatística de estimativas de estudos comparáveis numa média ponderada, com modelo de efeito fixo ou de efeitos aleatórios [@deeks2024analysing] | @sec-08a-regras |
+| Meta-etnografia | Síntese interpretativa em sete fases que traduz os conceitos dos estudos uns nos outros (de forma recíproca ou refutacional) até uma linha de argumento [@dakerwhite2015blame; @france2019improving] | @sec-08b-metodos |
+| Meta-regressão | Regressão dos efeitos dos estudos em características dos estudos para investigar heterogeneidade; observacional e pouco confiável com menos de dez estudos por covariável | @sec-08a-regras |
+| MMAT | Ferramenta de avaliação de estudos primários qualitativos, quantitativos e mistos; nesta base, usada para estudos mistos [@hong2018mmat] | @sec-06-ferramentas |
+| Moderador | Característica da população, do contexto ou da intervenção que altera a direção ou a magnitude do efeito | @sec-07-conceitos |
+| OQF (O que funciona?) | Proposta metodológica de Schaefer, Borges e Freitas para avaliar políticas públicas por revisão sistemática mista e sequencial, com caixa de ferramentas e recomendações [@schaefer_oqfunciona] | @sec-01-regras |
+| PABAK | Kappa ajustado para prevalência e viés, relatado junto com κ e a concordância simples [@byrt1993bias] | @sec-05-concordancia |
+| PCC | *Framework* de revisão de escopo: *Population, Concept, Context* [@peters2024scoping] | @sec-02-regras |
+| PICOC | *Framework* de pergunta de efeito: população, intervenção, comparação, desfecho (*outcome*) e contexto; trata dos "efeitos das causas" [@petticrew2006systematic] | @sec-02-regras |
+| Portão (G1 a G9) | Ponto do fluxo da skill em que uma validação humana precisa ser aprovada antes da etapa seguinte, da pergunta (G1) ao relato (G9) | @sec-especificacao-contrato |
+| Pré-registro | Registro público do protocolo antes da triagem formal, com declaração da etapa em que a revisão estava; mudanças posteriores entram como emendas [@vandenakker2023increasing] | @sec-03-registro |
+| PRESS | Diretriz para revisão por pares de estratégias de busca eletrônica [@mcgowan2016press] | @sec-04-validacao |
+| PRISMA 2020 | Diretriz de relato de revisões sistemáticas com 27 itens e modelos de fluxograma [@page2021prisma] | @sec-10-diretrizes |
+| PRISMA-P | Extensão do PRISMA para protocolos de revisão [@moher2015prismap] | @sec-03-diretrizes |
+| PRISMA-S | Extensão do PRISMA para relato da busca, com 16 itens [@rethlefsen2021prismas] | @sec-04-diretrizes |
+| PRISMA-ScR | Extensão do PRISMA para revisões de escopo [@tricco2018prisma] | @sec-10-diretrizes |
+| PRISMA-trAIce | Lista de itens para relatar o uso de IA em revisões; não é extensão endossada pelo PRISMA e aqui serve só como lista de conferência [@holst2025prismatraice; @moher2026prismatraice] | @sec-11-normas |
+| PROGRESS-Plus | Acrônimo de fatores que estratificam oportunidades e resultados (local de residência, raça/etnia/cultura/idioma, ocupação, gênero/sexo, religião, educação, nível socioeconômico e capital social), mais outras características no "Plus"; usado como lente de equidade [@oneill2014applying] | @sec-02-conceitos |
+| Protocolo | Documento que fixa, antes de ver os estudos, como a revisão vai buscar, selecionar, avaliar, extrair e sintetizar a evidência [@lasserson2024starting] | @sec-03-regras |
+| QCA (análise qualitativa comparativa) | Método configuracional que identifica combinações de condições suficientes ou necessárias para um resultado, avaliadas por consistência e cobertura [@thomas2014using] | @sec-08b-metodos |
+| RAISE | Recomendações para o uso responsável de IA em síntese de evidências, em três documentos: prática, construção e avaliação de ferramentas, e escolha e uso de ferramentas [@thomas2026raise1] | @sec-11-normas |
+| RAMESES | Padrões de publicação para sínteses realistas [@wong2013rameses] | @sec-08b-diretrizes |
+| Recall relativo | Proporção dos estudos-âncora indexados numa base que a estratégia daquela base recupera; substitui a sensibilidade real, que não pode ser calculada | @sec-04-validacao |
+| REML | Máxima verossimilhança restrita, estimador de τ² adotado como padrão nesta base [@deeks2024analysing] | @sec-08a-regras |
+| Revisão de escopo | Revisão que mapeia conceitos, tipos de evidência e lacunas, com pergunta PCC, geralmente sem avaliar risco de viés [@peters2024scoping; @munn2018systematic] | @sec-01-regras |
+| Revisão guarda-chuva (*overview*) | Revisão cujas unidades são revisões sistemáticas, com avaliação de qualidade das revisões e controle de sobreposição [@pollock2024overviews] | @sec-01-regras |
+| Revisão rápida | Revisão que simplifica etapas para entregar em prazo curto, relatando os atalhos e seus limites [@garritty2024updated] | @sec-01-regras |
+| Revisão realista | Síntese orientada por teoria que pergunta o que funciona, para quem, em que circunstâncias e por quê, refinando configurações contexto-mecanismo-desfecho [@pawson2005realist] | @sec-08b-metodos |
+| Risco de viés (*risk of bias*) | Julgamento, por domínio e para um resultado, da chance de que falhas de desenho, condução ou análise distorçam a estimativa; não se confunde com o nível do desenho nem com a qualidade do relato | @sec-06-regras |
+| RoB 2 | Ferramenta Cochrane de risco de viés para ensaios randomizados, por domínios [@sterne2019rob2] | @sec-06-ferramentas |
+| ROB-ME | Ferramenta de risco de viés por evidência faltante numa síntese, que combina resultados faltantes dentro dos estudos, estudos faltantes e funil [@page2024assessing] | @sec-08a-fundamentos |
+| ROBINS-I V2 | Ferramenta de risco de viés para estudos não randomizados de intervenções [@sterne2025robinsi] | @sec-06-ferramentas |
+| ROBIS | Ferramenta de risco de viés de revisões sistemáticas [@whiting2016robis] | @sec-06-ferramentas |
+| Sensibilidade, especificidade e precisão | Na validação da triagem: proporção dos incluídos humanos que a ferramenta incluiu (sensibilidade ou *recall*), dos excluídos humanos que ela excluiu (especificidade) e dos incluídos pela ferramenta que eram elegíveis (precisão), com intervalos de Clopper-Pearson [@clopper1934use] | @sec-11-validacao |
+| Síntese temática | Síntese qualitativa em três estágios: codificação linha a linha, temas descritivos e temas analíticos que vão além dos estudos primários [@thomas2008methods] | @sec-08b-metodos |
+| SoF (*Summary of findings*) | Tabela que resume, por desfecho, magnitude do efeito, número de estudos e participantes, certeza GRADE e explicações [@schunemann2024completing] | @sec-09-regras |
+| SWiM | Diretriz de relato de síntese sem meta-análise, com nove itens, complementar ao PRISMA [@campbell2020synthesis] | @sec-08a-diretrizes |
+| Taxa de sucesso | Proporção de testes significativos com o sinal esperado, presente no material didático; é contagem por significância e fica substituída pela contagem por direção | @sec-08a-fundamentos |
+| Teoria do programa | Modelo causal explícito que liga insumos e atividades da intervenção à cadeia de resultados pretendidos ou observados; o modelo lógico é seu resumo [@rogers2008programme] | @sec-02-conceitos |
+| Teste de sinal | Teste binomial exato do número de estudos com efeito na direção benéfica contra a proporção 0,5 [@mckenzie2024synthesizing] | @sec-08a-fundamentos |
+| Testes combinados (Fisher, Stouffer, Winer, Cooper) | Combinações de valores-p ou estatísticas de teste apresentadas na proposta OQF; nesta base, análise secundária com direção declarada, sem informar magnitude e sem definir rótulos [@figueiredo2014meta] | @sec-08a-fundamentos |
+| TRANSFER | Método que define transferibilidade como o grau em que o contexto da pergunta e o dos estudos diferem em características identificadas *a priori*, e por isso leva o julgamento para o início da revisão [@munthekaas2020transfer] | @sec-09-etd |
+| Triagem T/A e em texto completo | Seleção em duas fases: leitura de títulos e resumos (T/A) e leitura do texto completo (TC), com critérios versionados e motivo de exclusão registrado | @sec-05-regras |
+| WSS (*work saved over sampling*) | Trabalho de triagem poupado além do que uma amostragem aleatória pouparia com o mesmo recall; costuma ser relatado a 95% de recall (WSS@95) [@cohen2006reducing] | @sec-11-validacao |

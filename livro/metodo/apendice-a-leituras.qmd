@@ -1,0 +1,140 @@
+# Leituras comentadas por etapa {#sec-leituras-curso}
+
+Este apêndice organiza, por etapa da revisão, as leituras aplicadas e os materiais que os capítulos desta parte citam, reunidos a partir do programa de leituras e do repositório OSF do material didático do curso de revisão sistemática do MAPE/IESP-UERJ [@schaefer2026ementa]. Cada linha diz o que a obra ensina e onde ela é usada. As descrições resumem o uso feito nos capítulos, onde estão as páginas citadas e as ressalvas sobre cada obra. Normas internacionais e fontes externas a esse material ficam fora desta lista e aparecem nas seções "Leituras" dos capítulos.
+
+Os capítulos são indicados pelo nome curto: [Tipos](01-fundamentos-tipos.qmd), [Pergunta](02-pergunta-teoria.qmd), [Protocolo](03-protocolo.qmd), [Busca](04-busca.qmd), [Triagem](05-organizacao-triagem.qmd), [Risco de viés](06-qualidade-risco-vies.qmd), [Decomposição](07-decomposicao.qmd), [Síntese quantitativa](08a-sintese-quantitativa.qmd), [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd), [Certeza](09-certeza-evidencia-pratica.qmd), [Relato](10-relato-divulgacao.qmd) e [IA](11-ia-na-revisao.qmd).
+
+## Proposta OQF e material didático {#sec-apa-materiais}
+
+| Material | O que ensina | Onde é usado |
+|---|---|---|
+| @schaefer_oqfunciona | Proposta metodológica "O que funciona?": as seis dimensões da revisão, PICOC, busca e funil de filtragem, decomposição em três dimensões, análise mista e sequencial e caixa de ferramentas. É a âncora didática; os capítulos mostram onde as normas pedem mais | Todos os capítulos |
+| @schaefer2025proibicao | Aplicação publicada do método à proibição de celulares nas escolas e modelo de artigo no formato OQF. Serve de exemplo trabalhado e, em alguns pontos, de caso de erro (meta-análise contada como estudo, relato incompleto) | [Tipos](01-fundamentos-tipos.qmd); [Pergunta](02-pergunta-teoria.qmd); [Protocolo](03-protocolo.qmd); [Busca](04-busca.qmd); [Triagem](05-organizacao-triagem.qmd); [Risco de viés](06-qualidade-risco-vies.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd); [Certeza](09-certeza-evidencia-pratica.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @schaefer2026ementa | Programa de leituras por módulo, com avaliação de política "no formato do OQF" | [Protocolo](03-protocolo.qmd); [Risco de viés](06-qualidade-risco-vies.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd); [Certeza](09-certeza-evidencia-pratica.qmd); [Relato](10-relato-divulgacao.qmd); [IA](11-ia-na-revisao.qmd) |
+| @schaefer2026aula1 | Tipos de revisão, escada de abstração, modelos de título e painel OQF com Intervenção, Efeito e Implementação | [Tipos](01-fundamentos-tipos.qmd); [Pergunta](02-pergunta-teoria.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd); [Certeza](09-certeza-evidencia-pratica.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @schaefer2026aula2 | Protocolo inicial: X, Y, M e Z definidos antes da busca e *frameworks* de pergunta | [Pergunta](02-pergunta-teoria.qmd); [Protocolo](03-protocolo.qmd) |
+| @schaefer2026aula3 | Blocos de busca em três idiomas, bases por área, literatura cinzenta e a regra PICOC para "efeitos das causas" e CMMO para "causas dos efeitos" | [Pergunta](02-pergunta-teoria.qmd); [Busca](04-busca.qmd) |
+| @schaefer2026aula4 | Busca exploratória, filtragem, triagem por LLMs e fluxograma no caso REFIS; tipos de estudo aceitos no funil | [Pergunta](02-pergunta-teoria.qmd); [Protocolo](03-protocolo.qmd); [Busca](04-busca.qmd); [Triagem](05-organizacao-triagem.qmd); [Risco de viés](06-qualidade-risco-vies.qmd); [IA](11-ia-na-revisao.qmd) |
+| @schaefer2026aula5 | Decomposição em dimensões formal, metodológica e substantiva; tipologia a1, a2, b1 e b2; formulários de extração e confiabilidade entre codificadores | [Triagem](05-organizacao-triagem.qmd); [Risco de viés](06-qualidade-risco-vies.qmd); [Decomposição](07-decomposicao.qmd); [IA](11-ia-na-revisao.qmd) |
+| @schaefer2026aula6 | Quadro de métodos de síntese qualitativa, testes combinados e taxa de sucesso (exemplo do voto obrigatório) | [Decomposição](07-decomposicao.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @schaefer2026codigos | *Pipeline* em R do caso REFIS: esquema unificado, funil, triagem por IA com kappa, fluxograma e codebook a1/a2/b1/b2. Fonte dos exemplos de erro comum (dicionário sem fronteira de palavra, contagens que não fecham) | [Pergunta](02-pergunta-teoria.qmd); [Busca](04-busca.qmd); [Triagem](05-organizacao-triagem.qmd); [Risco de viés](06-qualidade-risco-vies.qmd); [Decomposição](07-decomposicao.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd); [Relato](10-relato-divulgacao.qmd); [IA](11-ia-na-revisao.qmd) |
+| @schaefer2026protocolo | *Script* do protocolo *ex ante* do REFIS, em sete etapas | [Protocolo](03-protocolo.qmd) |
+| @schaefer2026framework | *Script* com PICOC e CMO do REFIS | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @schaefer2026analise | *Script* de análise do REFIS: descritivos, testes combinados e análise textual, sem meta-análise | [Protocolo](03-protocolo.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd); [Certeza](09-certeza-evidencia-pratica.qmd) |
+
+## Tipos de revisão e papel das revisões sistemáticas {#sec-apa-tipos}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @xiao2019guidance | Tipologia de revisões por propósito (descrever, testar, estender, criticar) e os passos de uma revisão de literatura sistemática, do planejamento ao relato | [Tipos](01-fundamentos-tipos.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @dacombe2018systematic | O que a revisão sistemática acrescenta à ciência política: a unidade de análise são estudos existentes | [Tipos](01-fundamentos-tipos.qmd) |
+| @sutton2019meeting | Famílias de revisões e o que cada tipo exige da busca | [Tipos](01-fundamentos-tipos.qmd) |
+| @grant2009typology | Catorze tipos de revisão e o esquema SALSA (busca, avaliação, síntese e análise); lido por meio de @price2022syntheses | [Tipos](01-fundamentos-tipos.qmd) |
+| @petticrew2006systematic | Manual de revisão sistemática nas ciências sociais: quando fazer uma revisão, formulação da pergunta, protocolo, busca de avaliações não experimentais e literatura cinzenta, triagem, hierarquias e apreciação de estudos | [Tipos](01-fundamentos-tipos.qmd); [Pergunta](02-pergunta-teoria.qmd); [Protocolo](03-protocolo.qmd); [Busca](04-busca.qmd); [Triagem](05-organizacao-triagem.qmd); [Risco de viés](06-qualidade-risco-vies.qmd) |
+| @haddaway2014policy | Papel das revisões sistemáticas em políticas e produtos de uma revisão, como os mapas sistemáticos | [Tipos](01-fundamentos-tipos.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @grizenti2024revisao | O que uma revisão sistemática é e não é, e sua contribuição para a ciência política brasileira | [Tipos](01-fundamentos-tipos.qmd) |
+| @glass1976primary | Definição de meta-análise como "análise das análises" | [Tipos](01-fundamentos-tipos.qmd) |
+| @orourke2007historical | História da combinação quantitativa de resultados, dos estudos de inoculação aos experimentos agrícolas | [Tipos](01-fundamentos-tipos.qmd) |
+| @kopittke2021funciona | Revisão brasileira sobre programas para reduzir homicídios: efetividade sem meta-análise e nível 3 da Escala de Maryland como critério de inclusão | [Tipos](01-fundamentos-tipos.qmd); [Risco de viés](06-qualidade-risco-vies.qmd) |
+| @fisher2023school | Revisão Campbell com meta-análise, protocolo registrado e seção de diferenças entre protocolo e revisão | [Tipos](01-fundamentos-tipos.qmd) |
+| @juliano2023mudanca | Revisão de escopo sobre a política de combate à pobreza de Cardoso a Lula; exemplo de tipo e de quadro de extração | [Tipos](01-fundamentos-tipos.qmd); [Decomposição](07-decomposicao.qmd) |
+| @dakerwhite2015blame | Meta-síntese por meta-etnografia, com o valor dos achados refutacionais | [Tipos](01-fundamentos-tipos.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @schaefer2019whatsapp | Revisão sobre WhatsApp e eleições; quadro de extração usado como exemplo no material didático | [Tipos](01-fundamentos-tipos.qmd); [Decomposição](07-decomposicao.qmd) |
+
+## Pergunta, teoria do programa e desenho de políticas {#sec-apa-pergunta}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @rogers2008programme | Teoria do programa para aspectos complicados e complexos de intervenções: quando simplificar e quando detalhar a cadeia causal | [Pergunta](02-pergunta-teoria.qmd) |
+| @cordoba2023teoria | Revisão integrativa sobre teoria da mudança em políticas públicas: componentes, construção participativa e limites | [Pergunta](02-pergunta-teoria.qmd) |
+| @pawson2005realist | Revisão realista: intervenções como teorias, efeitos não intencionais em cada elo, teorias rivais e conclusão como refinamento da teoria | [Pergunta](02-pergunta-teoria.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd); [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @lassance2021politica | Definições operacionais de política e de programa, usadas para delimitar a intervenção | [Pergunta](02-pergunta-teoria.qmd) |
+| @aguiar2025desenho | Guia de desenho de políticas: causalidade do problema, causa crítica, coerência e modelo lógico | [Pergunta](02-pergunta-teoria.qmd) |
+| @lima2025guia | Guia CLEAR de monitoramento e avaliação: teoria da mudança, riscos e hipóteses, falhas de teoria e de implementação | [Pergunta](02-pergunta-teoria.qmd) |
+| @lima2022desenho | Coerência, consistência e congruência aplicadas a políticas municipais | [Pergunta](02-pergunta-teoria.qmd) |
+| @pires2016governanca | Arranjos institucionais e capacidades estatais como condições de resultado de programas federais | [Pergunta](02-pergunta-teoria.qmd) |
+| @campbell2024evidence | Revisão de escopo sobre proibir celulares nas escolas: revisão prévia do caso de referência e comparação entre registro e artigo | [Pergunta](02-pergunta-teoria.qmd); [Protocolo](03-protocolo.qmd); [Busca](04-busca.qmd) |
+
+## Protocolo e busca {#sec-apa-busca}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @carrerarivera2022howto | Guia rápido de revisão com lista de conferência de planejamento; usado com ressalvas, porque admite critérios que excluem literatura cinzenta e textos inacessíveis | [Protocolo](03-protocolo.qmd) |
+| @whitehead2013searching | Introdução operacional à busca: palavras-chave, truncamento, filtros e registro | [Busca](04-busca.qmd) |
+| @lycariao2025comunidade | Evidência de que a produção lusófona é pouco visível nas bases mais usadas; argumento para incluir fontes brasileiras | [Busca](04-busca.qmd) |
+| @aguiar2023mapeando | Revisão sobre desenho de políticas feita com uma base, um idioma e um termo; caso para discutir limitações de estratégia | [Busca](04-busca.qmd) |
+| @vaneck2010software | VOSviewer para mapas de coocorrência e cocitação, como apoio exploratório | [Busca](04-busca.qmd) |
+| @aria2017bibliometrix | Pacote bibliometrix, que faz análises bibliométricas semelhantes no R | [Busca](04-busca.qmd) |
+| @arruda2022vosviewer | VOSviewer e bibliometrix como ferramentas de bibliometria exploratória | [Busca](04-busca.qmd) |
+
+## Seleção e qualidade dos estudos {#sec-apa-qualidade}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @thomas2003children | Revisão do EPPI-Centre sobre alimentação saudável de crianças: critérios de exclusão numerados, fluxo de relatos e estudos que fecha, apreciação por tipo de estudo com uso em sensibilidade e matriz que integra visões e ensaios | [Triagem](05-organizacao-triagem.qmd); [Risco de viés](06-qualidade-risco-vies.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @madaleno2015guide | Guia de pontuação da Escala de Maryland, com critérios e exemplos por método | [Risco de viés](06-qualidade-risco-vies.qmd) |
+| @nutley2013counts | O que conta como boa evidência e críticas às hierarquias de evidência | [Risco de viés](06-qualidade-risco-vies.qmd) |
+| @daly2007hierarchy | Hierarquia de evidência para pesquisa qualitativa | [Risco de viés](06-qualidade-risco-vies.qmd) |
+| @garcia2017educational | Meta-análise de transferências condicionais: qualidade avaliada em dupla e usada em sensibilidade e meta-regressão, variância robusta e moderadores guiados por teoria | [Risco de viés](06-qualidade-risco-vies.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+
+## Decomposição: desenhos, mecanismos e efeitos {#sec-apa-decomposicao}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @keele2015statistics | Inferência causal a partir das hipóteses de identificação; referência da proposta OQF para classificar a estratégia | [Decomposição](07-decomposicao.qmd) |
+| @castro2024avaliacao | Manual CLEAR de avaliação de impacto: hipóteses de identificação e estimando de cada desenho | [Decomposição](07-decomposicao.qmd) |
+| @hedstrom2010causal | O que é um mecanismo causal nas ciências sociais e por que não se reduz a uma variável interveniente | [Decomposição](07-decomposicao.qmd) |
+| @kaidesoja2021three | Três conceitos de mecanismo, com pressupostos incompatíveis, que convém não misturar | [Decomposição](07-decomposicao.qmd) |
+| @dalkin2015whats | Mecanismo na avaliação realista, separado em recurso e raciocínio | [Decomposição](07-decomposicao.qmd); [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @cintron2022heterogeneous | Como estudos de políticas sociais estimam e relatam efeitos heterogêneos | [Decomposição](07-decomposicao.qmd) |
+| @zidar2017tax | Efeitos de cortes de impostos por grupo de renda; exemplo de subgrupo que vira linha de extração | [Decomposição](07-decomposicao.qmd) |
+| @gerring2022democracy | Extração por análise (estudo, desfecho e indicador) numa revisão sobre efeitos da democracia sem meta-análise tradicional | [Decomposição](07-decomposicao.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+| @cancela2016explaining | Meta-análise de comparecimento eleitoral por "testes": taxa de sucesso e o peso extra de estudos com muitos modelos | [Decomposição](07-decomposicao.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+| @bia2026health | Protocolo JBI para evidência textual sobre políticas de instituições de longa permanência | [Decomposição](07-decomposicao.qmd) |
+| @brydges2019effect | Referências empíricas de tamanho de efeito de um campo, em lugar das convenções genéricas de Cohen | [Decomposição](07-decomposicao.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+
+## Síntese quantitativa {#sec-apa-quanti}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @figueiredo2014meta | Introdução à meta-análise para cientistas políticos e fórmulas dos testes combinados usados na proposta OQF | [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+| @glass1979meta | Meta-análise sobre tamanho de turma com várias comparações por estudo; caso antigo do problema de dependência, resolvido deixando de lado intervalos e testes | [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+| @vaessen2014effects | Revisão Campbell sobre microcrédito: comparabilidade, separação por desenho, efeito sintético e funil com contornos | [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+| @harrer2021doing | Guia prático de meta-análise em R: modelos, heterogeneidade, viés de publicação e variância robusta | [Decomposição](07-decomposicao.qmd); [Síntese quantitativa](08a-sintese-quantitativa.qmd) |
+| @slough2023external | Validade externa e meta-análise: estudos só miram o mesmo alvo quando harmonizados em contraste e mensuração | [Síntese quantitativa](08a-sintese-quantitativa.qmd); [Certeza](09-certeza-evidencia-pratica.qmd) |
+
+## Síntese qualitativa e integração {#sec-apa-quali}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @dixonwoods2006systematic | Tensões ao incorporar pesquisa qualitativa em revisões; síntese agregativa e interpretativa | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @thomas2008methods | Passo a passo da síntese temática | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @kahwati2016using | QCA dentro de uma revisão sistemática de intervenção complexa e os problemas de calibração | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd); [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @elsherif2024using | Guia introdutório de QCA como síntese em revisões de métodos mistos | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @small2011conduct | Desenhos mistos sequenciais e concorrentes, e a diferença entre misturar coleta e misturar análise | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @sampaio2024manual | Manual em português de técnicas qualitativas em ciência política, com análise de conteúdo e QCA | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+| @santos2019bolsafamilia | Revisão sobre Bolsa Família e indicadores educacionais: síntese tabular e relato de estimativas | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @fonseca2023agenda | Revisão integrativa sobre burocracia de nível de rua na pandemia, com leitura dedutiva por categorias analíticas | [Síntese qualitativa](08b-sintese-qualitativa-integracao.qmd) |
+
+## Certeza, uso da evidência e divulgação {#sec-apa-uso}
+
+| Leitura | O que ensina | Onde é usada |
+|---|---|---|
+| @barreto2019uso | Uso de evidência qualitativa e de GRADE-CERQual para decisões no Brasil e na América Latina | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @bilotta2014use | Revisões sistemáticas em política ambiental; exemplo de confusão entre avaliação de estudos e GRADE | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @gough2016systematic | Revisões sistemáticas feitas para informar políticas | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @lavis2009support | Como apoiar o uso de revisões por decisores: arranjos sensíveis ao contexto, mensagens-chave e produtos derivados | [Certeza](09-certeza-evidencia-pratica.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @koga2020analise | Uso de evidências pela burocracia federal brasileira, inclusive o uso simbólico | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @faria2022movimento | Crítica ao movimento de políticas públicas baseadas em evidências | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @corduneanuhuci2021politics | Experimentos aleatorizados são mais prováveis em jurisdições politicamente competitivas, o que limita a transferibilidade | [Certeza](09-certeza-evidencia-pratica.qmd) |
+| @hjort2021research | Experimento com 2.150 municípios brasileiros sobre como a pesquisa afeta a política: prefeitos valorizam amostras maiores, mas não distinguem onde o estudo foi feito | [Certeza](09-certeza-evidencia-pratica.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @toma2024understanding | Formuladores ficam mais sensíveis ao impacto com comparações lado a lado e métrica única | [Certeza](09-certeza-evidencia-pratica.qmd); [Relato](10-relato-divulgacao.qmd) |
+| @mehmood2023training | Experimento em que o treinamento em inferência causal aumentou a demanda de formuladores paquistaneses por evidência causal | [Relato](10-relato-divulgacao.qmd) |
+| @costa2021programas | Síntese de Evidências CLEAR nº 11, molde de síntese para decisores distribuído no material didático | [Relato](10-relato-divulgacao.qmd) |
+| @chalmers2016increasing | Como aumentar a incidência e a influência de revisões sistemáticas em políticas, com resultados novos apresentados no contexto de revisões atualizadas | [Relato](10-relato-divulgacao.qmd) |
+| @andrade2020traducao | Tradução do conhecimento na saúde pública brasileira: difusão, disseminação e métodos ativos | [Relato](10-relato-divulgacao.qmd) |
+| @andrade2024sinteses | Sínteses de evidências sob demanda no Ministério da Saúde durante a pandemia, com perguntas cocriadas e versões atualizadas | [Relato](10-relato-divulgacao.qmd) |
+
+## Leituras do programa não usadas nesta parte {#sec-apa-nao-usadas}
+
+As leituras abaixo estão no programa de leituras, mas nenhum capítulo desta parte se apoia nelas: @klenowski2010empirical, @peters2025develop, @gustafsson2018point, @alnoman2024simplifying, @ludwig2011mechanism, @jin2024policy, @hunter2014transforming, @vantwist2023smart, @bamberger2012introduction, @batista2017mais, @sousa2019sinteses, @vieira2020traduzir, @silva2022politicas, @baron2018brief e @faria2005politica.

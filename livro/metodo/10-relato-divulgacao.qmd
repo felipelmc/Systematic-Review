@@ -1,0 +1,472 @@
+---
+title: "Relato e divulgação: PRISMA, formato OQF e tradução do conhecimento"
+---
+
+Relatar é o que permite a alguém de fora conferir a revisão: o que foi buscado e quando, quem decidiu o quê, quantos registros saíram em cada fase e por quê, que efeito foi encontrado, com que certeza, e onde estão os dados e o código. Divulgar é levar os achados a quem não lê o artigo. A proposta OQF trata a divulgação como a sexta dimensão da revisão sistemática (RS) e pede que a estratégia seja planejada com o mesmo rigor das demais etapas [@schaefer_oqfunciona, p. 9, 36]; as normas acrescentam exigências verificáveis item a item [@page2021prisma]. A etapa exige quatro grupos de decisões: (i) que diretriz de relato, ou combinação de diretrizes, corresponde ao tipo de revisão; (ii) como organizar o relatório principal, que aqui segue o formato OQF; (iii) que produtos derivados fazer (síntese de evidências, resumo em linguagem simples, linha do painel OQF, mapa de evidências), para quais públicos e com que regras para transformar resultados em rótulos e frases; (iv) o que publicar como pacote aberto. O capítulo supõe a síntese, a certeza e a caixa de ferramentas já prontas: a análise está na @sec-08a-regras e na @sec-08b-regras, a certeza e as implicações na @sec-09-regras, as contagens do fluxograma na @sec-05-regras e a declaração de uso de IA na @sec-11-relato.
+
+## Decisões e regras {#sec-10-regras}
+
+### Qual diretriz de relato usar
+
+Uma diretriz de relato diz o que escrever, não como fazer a revisão. O PRISMA 2020 declara que não serve para guiar a condução nem para avaliar a qualidade metodológica de revisões [@page2021prisma]. Um checklist preenchido, portanto, não prova que a revisão é boa; prova que o leitor tem como julgá-la.
+
+::: {.callout-note}
+## Proposta OQF e normas: PRISMA não é protocolo
+A proposta OQF apresenta o PRISMA como "exemplo de protocolo" e como *template* com checklist "para a realização da RS" [@schaefer_oqfunciona, p. 10, 25-26]. O protocolo é outro documento (@sec-03-regras). O PRISMA entra no planejamento só como lembrete do que será preciso registrar para relatar depois.
+:::
+
+A regra é uma diretriz principal por tipo de revisão, mais as extensões que cobrem o que a principal não cobre. Os números de itens foram conferidos nos documentos originais.
+
+| Tipo de revisão | Diretriz principal | Complementos | Observação |
+|---|---|---|---|
+| Efetividade com meta-análise | PRISMA 2020: 27 itens, checklist de resumo com 12 itens e fluxograma [@page2021prisma] | PRISMA-S, 16 itens sobre a busca [@rethlefsen2021prismas]; explicação e elaboração com elementos essenciais por item [@page2021explanation] | Checklist preenchido, com a página de cada item, vai como apêndice |
+| Efetividade sem meta-análise | PRISMA 2020 | SWiM, 9 itens, feito para complementar o PRISMA como extensão [@campbell2020synthesis] | Os itens 13 e 20 do PRISMA são relatados seguindo o SWiM |
+| OQF mista e sequencial | PRISMA 2020 | PRISMA-S; SWiM quando não houver meta-análise; ENTREQ, 21 itens em cinco domínios, para o ramo qualitativo [@tong2012enhancing]; estrutura OQF (@sec-10-oqf) | O PRISMA 2020 vale para revisões mistas, mas manda consultar diretrizes de síntese qualitativa [@page2021prisma] |
+| Escopo | PRISMA-ScR: 20 itens essenciais e 2 opcionais [@tricco2018prisma] | PRISMA-S | Os itens 12 e 16 (avaliação crítica) começam por "se feita"; o item 8 pede a estratégia completa de ao menos uma base, e esta base exige a de todas, como no item 7 do PRISMA 2020 [@tricco2018prisma; @page2021prisma] |
+| Síntese de evidências qualitativas | ENTREQ | eMERGe, 19 critérios para as sete fases da meta-etnografia [@france2019improving] | |
+| Realista | RAMESES, 19 itens [@wong2013rameses] | | Item 1: identificar a síntese realista no título |
+| Guarda-chuva (*overview*) | PRIOR, 27 itens e 19 subitens [@gates2022reporting] | | Relatar a sobreposição entre revisões |
+| Mapa de evidências e lacunas (EGM) | Guia Campbell para EGM [@white2020guidance] | PRISMA-S | @sec-10-traducao |
+| Qualquer tipo, com uso de IA | Itens 8, 9 e 11 do PRISMA 2020, que pedem detalhes das ferramentas de automação [@page2021prisma], e a declaração da @sec-11-relato | PRISMA-trAIce só como lista de conferência [@holst2025prismatraice] | O PRISMA Executive não endossa o PRISMA-trAIce e prepara orientação oficial sobre IA [@moher2026prismatraice] |
+
+Regras de decisão:
+
+1. **Extensão não substitui o PRISMA 2020.** Uma revisão OQF sem meta-análise relata os 27 itens e, dentro dos itens de síntese, segue o SWiM [@campbell2020synthesis].
+2. **O *template* do fluxograma segue as fontes realmente consultadas.** Há quatro modelos: revisão nova ou atualizada, cada uma com "bases e registros apenas" ou com "bases, registros e outras fontes" [@prisma2020flow]. O arquivo distribuído no material didático é o de revisão nova com bases e registros apenas [@page2021prisma]. Bola de neve, repositório do IPEA, sites de órgãos e contato com autores exigem o modelo com o ramo de outras fontes.
+3. **As caixas cinzas do modelo só são preenchidas quando se aplicam**; do contrário, saem do diagrama. "Relato" inclui dissertação, *preprint* e relatório governamental [@page2021prisma].
+4. **Com limite de palavras, o detalhe vai para material suplementar** depositado em repositório aberto e permanente (OSF, Dryad, figshare), com link no texto [@page2021explanation].
+5. **A ausência também se relata.** Revisão sem registro ou sem protocolo diz isso nos itens 24a e 24b [@page2021prisma].
+
+### Que produto para que público
+
+| Produto | Público | Conteúdo mínimo | Extensão | Fonte |
+|---|---|---|---|---|
+| Relatório ou artigo (formato OQF + PRISMA) | Pares, avaliadores, equipes técnicas | Os 27 itens, distribuídos nas seções OQF | A do periódico | @page2021prisma; @schaefer2025proibicao |
+| Resumo estruturado | Todos | Os 12 itens do PRISMA 2020 para resumos | Até 250 palavras nas revisões Campbell | @page2021prisma; @campbell2021policies [p. 44] |
+| Mensagens-chave e sumário executivo | Decisores que só leem a primeira página | Mensagens em tópicos, depois sumário, depois relatório completo ("pirâmide invertida") | Uma a duas páginas | @lavis2009support [p. 4]; @schaefer_oqfunciona [p. 11] |
+| Resumo em linguagem simples | Público não especializado, imprensa | Título que enuncia o achado, "a revisão em resumo" com até 50 palavras, quadro com objetivo e número de estudos, achados por desfecho, o que significam, data da busca | 600 a 750 palavras | @campbell2016plain [p. 5-9] |
+| Síntese de evidências (*policy brief*) | Gestores de uma área | Problema, conclusões em destaque, figura-resumo, achados por intervenção com implementação, certeza, custo, método resumido | A Síntese CLEAR nº 11 tem 8 páginas com capa e referências | @costa2021programas; @lavis2009support [p. 3-5] |
+| Linha do painel OQF | Gestores e sociedade | Intervenção, resultado, efeito, implementação, custo, ficha e link | Uma linha por intervenção × resultado | @mape2026oqf |
+| Mapa de evidências e lacunas | Financiadores, pesquisadores | Matriz intervenção × desfecho, estudos por célula, tipo de estudo e confiança | Interativo ou estático | @white2020guidance |
+| Pacote aberto | Quem vai reproduzir ou atualizar | Formulários, dados extraídos, dados analisados, código, lista de registros triados com decisões | Repositório com identificador persistente | @page2021explanation [item 27] |
+
+::: {.callout-important}
+## Regras invioláveis de relato
+1. Todo número do fluxograma sai do *ledger* de decisões e passa pelas somas de conferência (@sec-05-regras); nenhuma contagem é digitada.
+2. A certeza acompanha o achado em todo lugar em que ele aparece: resumo, tabelas, resultados e conclusões [@page2021explanation, item 22], e também na caixa de ferramentas, no painel e nos produtos derivados.
+3. Nenhum rótulo (Positivo, Moderada, Baixo) é publicado sem regra escrita, versionada e aplicada à mesma tabela-fonte que alimenta o artigo.
+4. O mesmo achado usa os mesmos números e as mesmas palavras em todos os produtos [@campbell2016plain, p. 8].
+5. Registro, financiamento, conflitos de interesse, disponibilidade de dados e código e uso de IA aparecem sempre, mesmo quando a resposta é "não houve" [@page2021prisma, itens 24-27].
+:::
+
+## Estrutura do relatório no formato OQF {#sec-10-oqf}
+
+O programa de leituras pede uma avaliação de política "no formato do OQF" sem descrever o formato [@schaefer2026ementa, p. 13]. Na proposta metodológica, a linha "Divulgação" da tabela de passos prevê artigo em periódico e apresentação em seminário [@schaefer_oqfunciona, p. 12]. O modelo de fato é o artigo dos celulares: Introdução; Metodologia (2.1 busca, 2.2 seleção, 2.3 sistematização e análise); Resultados (3.1 Efeito, 3.2 Mecanismo, 3.3 Moderadores, 3.4 Percepção, 3.5 Implementação e custo); Da evidência à prática; Conclusões e limitações [@schaefer2025proibicao, p. 98-110]. A tabela mostra o que cada seção faz nesse artigo e o que acrescentar para cobrir o PRISMA 2020.
+
+| Seção OQF | O que o artigo dos celulares faz | O que acrescentar | Itens PRISMA 2020 |
+|---|---|---|---|
+| Título | Pergunta X→Y e "revisão sistemática mista e sequencial" [@schaefer2025proibicao, p. 97] | Nada; manter a identificação como RS | 1 |
+| Resumo | Resumo narrativo com g = 0,22 e mecanismos [@schaefer2025proibicao, p. 97] | Fontes e data da última busca, método de risco de viés, número de estudos e participantes, IC, limitações da evidência, financiamento, registro | 2 |
+| 1 Introdução | X→Y, Lei nº 15.100/2025, experiências de redes, roteiro [@schaefer2025proibicao, p. 98-99] | Por que nova revisão diante das anteriores (Böttger e Zierer, 2024; Campbell et al., 2024); objetivo explícito | 3, 4 |
+| 2 Metodologia | PICOC em lista [@schaefer2025proibicao, p. 100] | Critérios completos e como os estudos foram agrupados em cada síntese; registro, protocolo e desvios | 5, 24a-c |
+| 2.1 Busca | Quadro 1 com a string de cada base, *software*, recorte e idiomas; total por base [@schaefer2025proibicao, p. 101-102] | Data da última busca por base, limites e filtros, busca de citações, apêndice PRISMA-S (@sec-04-diretrizes) | 6, 7 |
+| 2.2 Seleção | Filtros com contagens; 19 estudos + 2 [@schaefer2025proibicao, p. 102]; fluxograma [@schaefer2025proibicao, p. 103] | Quantos revisores por fase, independência, desempate, dicionários e IA com validação; fluxograma do *ledger*; excluídos limítrofes com motivo | 8, 16a, 16b |
+| 2.3 Sistematização e análise | Três dimensões; g de Hedges; Fisher e Cooper [@schaefer2025proibicao, p. 103-104] | Extração (quantos, independência, contato com autores); desfechos e regra de modelo principal; ferramenta de risco de viés; conversões; modelo, estimador e *software*; heterogeneidade; sensibilidade; viés de relato; certeza; versão da regra da caixa | 9-15 |
+| 3.1 Efeito | Direção, Fisher, Cooper, g, *forest plot* [@schaefer2025proibicao, p. 104-105] | Características e risco de viés dos estudos da síntese; estimativa com IC, τ², I² e intervalo de predição no texto; certeza em cada enunciado | 17-22 |
+| 3.2 a 3.5 | Mecanismo, moderadores, percepção, implementação e custo com citações [@schaefer2025proibicao, p. 105-107] | Para cada achado qualitativo, estudos de suporte e confiança CERQual; separar moderador testado de hipótese | 20c, 22; ENTREQ |
+| 4 Da evidência à prática | Caixa de ferramentas e recomendações [@schaefer2025proibicao, p. 107-109] | Rótulos gerados pela regra, com certeza em cada linha; implicações proporcionais à certeza e transferibilidade ao Brasil (@sec-09-regras) | 23d |
+| 5 Conclusões e limitações | Limitações da heterogeneidade dos estudos [@schaefer2025proibicao, p. 109-110] | Interpretação diante de outras revisões; limitações do processo em subseção própria | 23a-c |
+| Informações adicionais | Ausentes na versão distribuída no material didático | Registro, financiamento, conflitos, dados e código, declaração de IA, checklists | 24-27 |
+
+A especificação desta base torna obrigatórias cinco melhorias sobre o formato OQF:
+
+| Melhoria | Onde entra | Regra |
+|---|---|---|
+| Certeza da evidência | Resumo, 3.1 a 3.5, caixa, painel, conclusões | GRADE por célula de efeito e CERQual por achado qualitativo (@sec-09-regras) |
+| Rótulo "Inconclusivo" | Caixa e painel | Certeza muito baixa e tudo o que não satisfaz Misto, Positivo, Negativo ou Nulo (@sec-08b-regras) |
+| Limitações do processo | Seção 5, separada das limitações da evidência | Item 23c: idiomas, bases, número de revisores, filtros automáticos, triagem por IA, relatos não recuperados, análises planejadas e não feitas [@page2021explanation] |
+| Declaração de uso de IA | Informações adicionais e métodos | Gerada do log, com validação e responsabilidade humana (@sec-11-relato) |
+| Disponibilidade de dados e código | Informações adicionais | Item 27, com endereço exato de cada material [@page2021prisma] |
+
+::: {.callout-note}
+## Formato OQF e normas: recomendações ou implicações
+O artigo dos celulares intitula a seção 4 "Da evidência à prática: recomendações" [@schaefer2025proibicao, p. 107]. O guia Campbell de resumos em linguagem simples afirma que revisões não fazem recomendações de política e pede implicações para política e pesquisa [@campbell2016plain, p. 9]; o item 23d do PRISMA 2020 fala em implicações para prática, política e pesquisa [@page2021prisma]. Esta base mantém a seção com o nome "Da evidência à prática: implicações", como na @sec-09-regras, e nenhuma implicação é mais forte do que a certeza que a sustenta.
+:::
+
+## Painel OQF: do quadro de achados aos rótulos {#sec-10-painel}
+
+A caixa de ferramentas da proposta OQF tem sete linhas (escala do efeito, força, mecanismo, moderador, implementação, percepção e custo), cada uma com o tipo de evidência que a sustenta [@schaefer_oqfunciona, p. 19-20]. O painel do MAPE resume a caixa numa linha por intervenção. No material didático sobre tipos de revisão, ele tinha três colunas (Intervenção, Efeito, Implementação), com rótulos como "Positivo" e "Moderada" seguidos de uma frase curta ("requer regras claras") [@schaefer2026aula1, p. 37]; no mesmo *deck*, a tela de celular mostra "Positivo e moderado" para os celulares [@schaefer2026aula1, p. 46]. Na versão consultada em setembro de 2026, as colunas são Intervenção, Resultado, Efeito, Implementação e Custo, com uma ficha por linha (status de revisão original ou meta-revisão, dimensão, autores, data, título e link). A seção "Como ler" define o efeito "em dimensão valorativa" como positivo, negativo ou neutro, com gradações fraco, moderado ou forte; a implementação como simples, moderada ou complexa; e o custo monetário como alto, médio, baixo ou sem informação [@mape2026oqf].
+
+A página não publica a regra que leva a cada rótulo, e há quatro tipos de inconsistência que uma regra evitaria [@mape2026oqf]:
+
+| Inconsistência | Exemplo no painel | Consequência |
+|---|---|---|
+| Legendas diferentes na mesma página | A caixa descrita na página fala em efeito "positivo, misto ou negativo"; o "Como ler" fala em "positivo, negativo ou neutro" | "Misto" e "neutro" não são a mesma coisa |
+| Categoria fora da legenda | Custo "Variável" em quatro linhas (policiamento de proximidade, blitz de alcoolemia, atividade física para idosos, Disque 100) | O leitor não sabe o que a categoria significa |
+| Rótulo e texto divergentes | Adaptação climática: rótulo "Positivo moderado", texto "efeito positivo e forte"; posse de armas: "Negativo moderado", texto "efeito moderado a forte" | Duas classificações para o mesmo achado |
+| Rótulo que mistura magnitude, significância e certeza | PrEP: "a força do efeito é moderada, visto que estudos indicam alta eficácia"; "Neutro" para políticas cujo texto descreve sobretudo problemas de implementação | "Neutro" pode querer dizer sem efeito, sem evidência ou evidência inconclusiva |
+
+Os slides definem força do efeito como "tamanho do coeficiente, significância" [@schaefer2026aula1, p. 40], juntando magnitude e significância num termo que, nesta base, designa a certeza da evidência (@sec-08b-regras). Um modelo de transparência é o *Teaching and Learning Toolkit* da Education Endowment Foundation (EEF), que publica a conversão de tamanho de efeito em meses de progresso, a regra de "cadeados" de solidez (número de estudos, com perdas por poucos ensaios randomizados, avaliações não independentes, heterogeneidade não explicada e outros motivos) e as faixas de custo por aluno [@eef2021toolkit, p. 6-9]. Com menos de dez estudos, o impacto em meses nem é comunicado [@eef2021toolkit, p. 7].
+
+### Regras para gerar o painel
+
+As regras de rótulo são a especificação metodológica desta base (@sec-especificacao-caixa), e não norma internacional; a derivação e os limiares estão na @sec-08b-regras, e a certeza na @sec-09-regras. A ordem de aplicação (versão de regra `caixa-3`) é: sem juízo de certeza, "Pendente"; certeza muito baixa, "Inconclusivo"; "Misto" (só com k ≥ 5, δ e achado explicativo com confiança própria; senão, "Inconclusivo"); "Positivo" ou "Negativo"; "Nulo"; "Inconclusivo" nos demais casos. Este capítulo trata de como exibir o resultado. A unidade é a célula: família de intervenção × construto de desfecho. Como a caixa separa randomizados e não randomizados, cada célula tem uma linha de painel que resume os corpos por desenho: vale o rótulo do corpo de maior certeza, com o outro na ficha, e rótulos diferentes com a mesma certeza viram "Inconclusivo" (@sec-08b-caixa).
+
+| Coluna do painel | Campo da tabela-fonte | Regra | Formato de exibição |
+|---|---|---|---|
+| Intervenção | Família de intervenção | Definida no protocolo | Nome usado no Brasil, quando houver |
+| Resultado | Construto de desfecho | Populações que o protocolo separa (educação básica e ensino superior, por exemplo) são linhas diferentes | Uma linha por construto |
+| Efeito | Positivo, Negativo, Nulo, Misto ou Inconclusivo; Pendente enquanto não houver juízo de certeza; na linha de painel, o resumo dos corpos por desenho | @sec-08b-regras | Rótulo · magnitude pela faixa do protocolo · certeza GRADE · k. Sem faixa declarada, a magnitude não aparece. Corpos divergentes: a ficha mostra o rótulo e a certeza de cada um |
+| Implementação | Pontuação de 0 a 5: Simples, Moderada, Complexa | @sec-08b-regras | Rótulo · pontos · confiança CERQual · frase com o principal requisito |
+| Custo | Custo unitário ou custo-efetividade, com ano e moeda | Faixas declaradas no protocolo; sem quantificação, "sem informação" | Faixa · valor · ano |
+| Ficha | Data da última busca, países dos estudos, presença de estudo brasileiro, versão da regra, link da revisão e do pacote | Obrigatória | Texto fixo |
+
+Regras de exibição:
+
+1. **O texto da linha é gerado da mesma tabela que gera o rótulo**, com as frases padronizadas por certeza da @sec-09-regras. Isso elimina a divergência entre rótulo e texto.
+2. **"Neutro" não é usado.** Nulo exige intervalo de confiança dentro de ±δ e certeza ao menos moderada; os demais casos são Inconclusivo (@sec-08b-regras). Categorias como "Variável" só entram se estiverem na legenda, com definição.
+3. **A mesma métrica para intervenções concorrentes.** Formuladores americanos ficaram mais sensíveis ao impacto de programas quando receberam comparações lado a lado ou uma métrica única de impacto [@toma2024understanding].
+4. **O contexto dos estudos aparece na ficha.** Prefeitos brasileiros valorizaram estudos com amostras maiores, mas não distinguiram estudos de países ricos e pobres [@hjort2021research]; se o leitor não faz esse desconto, o painel precisa mostrar onde a evidência foi produzida.
+
+::: {.callout-note}
+## Formato OQF e normas: a magnitude depende do campo
+O artigo dos celulares chama g = 0,22 de efeito "fraco", citando uma classificação da literatura [@schaefer2025proibicao, p. 105]; o painel diz "Positivo moderado" [@mape2026oqf]. Na tabela da EEF, a faixa de 0,19 a 0,26 equivale a três meses de progresso e é descrita como impacto moderado [@eef2021toolkit, p. 6]. As duas leituras podem ser defensáveis; o que não é defensável é deixar a faixa implícita. As faixas entram no protocolo e na legenda do painel.
+:::
+
+## Tradução do conhecimento e disseminação {#sec-10-traducao}
+
+### Síntese de evidências e *policy brief*: o modelo CLEAR
+
+A Síntese de Evidências CLEAR nº 11, do FGV EESP Clear, está na pasta "Reportar os achados" do material didático e serve de molde; a proposta OQF informa que a revisão dos celulares também saiu em formato de *policy brief* [@schaefer_oqfunciona, p. 37]. A síntese é curta: parágrafos de contexto seguidos do anúncio do que foi sintetizado (seis avaliações experimentais na China, no Egito, no Laos e no Quênia) e um quadro "Principais conclusões" com cinco frases [@costa2021programas, p. 3]; uma figura com o efeito de cada programa sobre o absenteísmo [@costa2021programas, p. 4]; e uma seção por programa com principais resultados, intervenção e desenho da avaliação [@costa2021programas, p. 4-7]. A seção do Laos liga o resultado nulo a problemas de fidelidade e aderência [@costa2021programas, p. 6], o que corresponde à linha de implementação da caixa OQF.
+
+Lavis distingue três produtos derivados de revisões: resumos de uma revisão, *overviews* que mapeiam as perguntas cobertas por várias revisões e *policy briefs*, que combinam revisões, estudos e dados do contexto para caracterizar um problema, opções e estratégias de implementação [@lavis2009support, p. 3]. O *policy brief* começa por um problema de política, e não pelas revisões que os pesquisadores têm à mão [@lavis2009support, p. 5]. Para empacotar, ele recomenda título como pergunta ou orientado a soluções, pirâmide invertida, benefícios e danos de cada opção, contexto dos estudos (aplicabilidade local) e dos participantes (equidade), formato fácil de percorrer e linguagem técnica em apêndice [@lavis2009support, p. 4].
+
+Modelo de síntese de evidências para uma revisão OQF, combinando as duas fontes:
+
+| Bloco | Conteúdo | Regra |
+|---|---|---|
+| Título | Pergunta X→Y ou mensagem principal | Sem prometer mais do que a certeza permite |
+| Mensagens-chave | Três a cinco frases, uma por dimensão relevante | Cada frase com a certeza, usando as frases padronizadas da @sec-09-regras |
+| Problema e contexto brasileiro | Marco legal, escala do problema, decisão em jogo | Começar pela política, não pela revisão [@lavis2009support, p. 5] |
+| O que foi feito | Bases, data da busca, número e desenho dos estudos, países | Leitores tendem a achar que os autores fizeram os estudos [@campbell2016plain, p. 7] |
+| Figura-resumo | Efeito por estudo ou por célula | Mesma métrica, IC visível, estudos identificados, rótulos conferidos contra o texto |
+| Achados por dimensão | Efeito, mecanismo, moderadores, percepção, implementação, custo | Estudos de suporte e contexto em cada achado |
+| Implicações | Opções e condições | Proporcionais à certeza (@sec-09-regras) |
+| Saber mais | Link da revisão completa e do pacote aberto | Obrigatório |
+
+### Resumo em linguagem simples e sumário executivo
+
+O guia Campbell de resumos em linguagem simples é o mais operacional disponível [@campbell2016plain]:
+
+1. De 600 a 750 palavras, sem notas nem referências, em linguagem direta e no presente; o achado é enunciado diretamente, sem "a análise mostra" ou "os autores argumentam" [@campbell2016plain, p. 5].
+2. Título em estilo de manchete com o achado principal; pode indicar o tamanho do efeito ou a qualidade da evidência, e revisões vazias dizem que não há evidência [@campbell2016plain, p. 6].
+3. "A revisão em resumo" com até 50 palavras; com vários desfechos principais, todos entram, para evitar relato seletivo [@campbell2016plain, p. 6].
+4. Um quadro na primeira página diz o que a revisão estudou e quantos estudos incluiu [@campbell2016plain, p. 7].
+5. Achados em subtítulos formulados como perguntas, com as mesmas palavras para o mesmo nível de efeito e consistentes com o resumo e os resultados; desfecho importante sem dados é mencionado assim mesmo [@campbell2016plain, p. 8].
+6. A seção final diz até quando se buscou e quando a revisão foi publicada [@campbell2016plain, p. 9].
+
+As frases padronizadas que combinam certeza e tamanho do efeito estão na @sec-09-regras; o guia Campbell traz uma tabela equivalente, baseada no GRADE [@campbell2016plain, p. 11]. Ele acrescenta uma regra útil para gestores: quando o intervalo inclui benefício e dano relevantes, a largura do intervalo importa mais que a estimativa pontual, e a frase deve dizer que se sabe muito pouco sobre o efeito [@campbell2016plain, p. 12].
+
+O sumário executivo segue a mesma lógica numa página e acompanha o artigo, como a proposta OQF recomenda ao listar os fatores de disseminação [@schaefer_oqfunciona, p. 11]. Os números do sumário, do resumo em linguagem simples e das mensagens-chave são copiados da tabela-fonte, nunca redigidos de memória.
+
+### Mapas de evidências e lacunas
+
+Um EGM segue os princípios de uma RS (PICOS, busca abrangente, triagem contra critérios explícitos, codificação sistemática), tem escopo mais amplo e mostra onde há evidência e onde faltam estudos; a forma usual é uma matriz com intervenções nas linhas e desfechos nas colunas [@white2020guidance]. Regras do guia que valem para o relato [@white2020guidance]:
+
+- Um "mapa de efetividade" mostra a existência de estudos, não se a intervenção funciona.
+- Como um estudo pode aparecer em várias células, contar bolhas dá impressão errada da quantidade de evidência; o total de estudos é informado à parte, de preferência separando estudos primários e revisões.
+- Distinguir estudos de publicações é recomendado, sobretudo se o mapa vai gerar revisões.
+- A estrutura deve ter poucas categorias: de quatro a seis nas linhas e nas colunas, com até cinco subcategorias cada, na lógica de "poucos buracos grandes" em vez de "muitos buracos pequenos".
+- O relatório inclui resumo em linguagem simples e discute a distribuição da evidência e as principais lacunas.
+
+Mapas sistemáticos costumam parar na avaliação do texto completo e entregar uma base pesquisável com a codificação e as lacunas [@haddaway2014policy, p. 182]. A proposta OQF é indicada para perguntas sobre uma intervenção (X→Y ou X→vários Y), não para "o que funciona para melhorar Y?" [@schaefer_oqfunciona, p. 19]. Quando a demanda do gestor é ampla, o primeiro produto adequado é um EGM, que aponta as células com evidência suficiente para revisões OQF (@sec-01-regras).
+
+### Disseminação para gestores
+
+Os fatores de disseminação efetiva que a proposta OQF adota, a partir de Petticrew e Roberts, são pergunta relevante e mensagem clara, conteúdo acessível (com resumo executivo mesmo quando o produto é um artigo), divulgação em relação com tomadores de decisão e equilíbrio entre rapidez e qualidade [@schaefer_oqfunciona, p. 11]. Para os celulares, a proposta sugere relatórios executivos, infográficos, notas técnicas e apresentações para secretarias de educação, conselhos escolares, sindicatos de professores e associações de pais [@schaefer_oqfunciona, p. 36]. Interação entre pesquisadores e decisores, oportunidade no tempo e concordância com valores e estratégias dos decisores aumentam o uso de evidência [@lavis2009support, p. 5]; informar prefeitos brasileiros sobre uma política simples e efetiva aumentou em 10 pontos percentuais a probabilidade de adotá-la [@hjort2021research], e treinamento em inferência causal aumentou a demanda de formuladores paquistaneses por evidência causal [@mehmood2023training, p. 1]. As consequências dessa literatura para a redação das implicações estão na @sec-09-regras.
+
+Andrade e Pereira separam difusão, que distribui a informação por meios tradicionais (periódicos, conferências, postagens), de disseminação, que empacota a mensagem para um público específico, com métodos ativos e disseminadores dentro das organizações [@andrade2020traducao, p. 4]. No Brasil, a maioria das ações de tradução do conhecimento em saúde ainda é de difusão, e, com a municipalização, cada gestor local decide se baseia ou não a decisão em evidências [@andrade2020traducao, p. 5]. Um exemplo de disseminação é o serviço de respostas rápidas do Ministério da Saúde: cerca de 90 estudos para 20 áreas técnicas nos dois primeiros anos da pandemia, cinco tipos de produto (inventário de referências, sumário de resumos, revisão rápida, síntese rápida para políticas, diálogo de políticas), perguntas cocriadas com os decisores e um quadro "Principais atualizações desta versão" no início de cada síntese revisada [@andrade2024sinteses]. A referência internacional é o *What Works Network* britânico, com nove centros independentes e três afiliados, que aumentam a oferta e a demanda de evidência em áreas com mais de £250 bilhões de gasto público [@evaluationtaskforce2024whatworks]; a autodescrição do OQF como *hub* para melhorar a forma como governos e organizações criam, partilham e usam evidências [@mape2026oqf] repete quase literalmente o objetivo da rede [@evaluationtaskforce2024whatworks].
+
+Regras operacionais:
+
+1. **Públicos, produtos e calendário ficam no protocolo.** Uma RS típica leva de 9 a 12 meses [@haddaway2014policy, p. 181]; Lavis separa necessidades de curto prazo (1 a 6 meses), atendidas por produtos derivados de revisões existentes, das de médio prazo (6 a 18 meses), que pedem revisões novas [@lavis2009support, p. 4].
+2. **A pergunta é discutida com os usuários antes do registro** (@sec-03-regras) [@andrade2024sinteses].
+3. **Todo produto derivado traz todos os desfechos principais**, com certeza, contexto dos estudos e link para a revisão e o pacote [@campbell2016plain, p. 6, 8; @lavis2009support, p. 4].
+4. **Disseminar, não só difundir**: definir o público de cada mensagem e o mensageiro com credibilidade para ele [@lavis2009support, p. 4; @andrade2020traducao, p. 4], e reenviar o produto quando uma janela de oportunidade se abre, como a posse de um novo governo [@lavis2009support, p. 2, 4].
+5. **Versões atualizadas abrem com o que mudou** [@andrade2024sinteses], e resultados novos são apresentados no contexto de revisões atualizadas [@chalmers2016increasing, p. 12].
+
+### Visualização dos resultados
+
+O arquivo "AJPH.2015.302915" do material didático é o editorial de Chalmers e Fox sobre a influência de revisões em políticas. Na mesma página aparece o fim do editorial de Galea e Vaughan, que promete apresentar resultados apoiados sobretudo em recursos visuais e menos em tabelas densas e texto [@galea2016public, p. 11]. As regras abaixo vêm das diretrizes de relato.
+
+| Situação | Gráfico ou tabela | Regras | Fonte |
+|---|---|---|---|
+| Meta-análise | *Forest plot* | Estudos identificados por autor e ano; ordem por característica (tamanho do efeito, peso, ano, risco de viés), não alfabética; estimativa combinada com IC; τ², I² e intervalo de predição também no texto | @page2021explanation [itens 13c, 20b] |
+| Síntese sem meta-análise | *Forest plot*, *harvest plot*, *effect direction plot*, *albatross plot*, *bubble plot*, *box and whisker* | Declarar o método e as características usadas para ordenar os estudos | @campbell2020synthesis [item 7] |
+| Efeitos não padronizados em vários desfechos | *Effect direction plot* | Direção por desfecho, com desenho, validade interna e tamanho amostral, em uma página | @thomson2013effect |
+| Só valor-p e tamanho amostral | *Albatross plot* | P unilateral (ou bilateral com direção) e n total; contornos de tamanho de efeito | @harrison2017albatross |
+| Integração quanti e quali | *Joint display* | Formatos mais comuns: estatísticas por tema e comparação lado a lado; usado em desenhos sequenciais explicativos | @guetterman2015integrating |
+| Certeza por desfecho | Tabela de resumo dos achados | Nível de certeza e motivos de rebaixamento em notas | @page2021explanation [item 22] |
+| Fluxograma interativo | Diagrama PRISMA em HTML | Caixas clicáveis que levam a métodos, resultados e arquivos de dados | @haddaway2022prisma2020 |
+| Distribuição da evidência | Matriz do EGM | Total de estudos informado à parte | @white2020guidance |
+
+## Passo a passo {#sec-10-passos}
+
+1. **No protocolo**, fixar a diretriz principal e os complementos, os produtos e seus públicos, as faixas de magnitude, δ, as faixas de custo e a versão da regra de rótulos (@sec-03-regras).
+2. **Congelar a tabela-fonte de achados** depois do portão de síntese: uma linha por célula, com estimativa, IC, intervalo de predição, k, n, certeza GRADE, achados qualitativos com CERQual e IDs dos estudos. Artigo, caixa, painel e derivados leem só essa tabela.
+3. **Gerar o fluxograma** a partir do *ledger*: escolher o *template*; separar exclusões por humanos e por ferramentas; informar o número por base; tratar "não localizado" como relato não recuperado; conferir as somas antes de desenhar [@page2021explanation, item 16a]. O pacote PRISMA2020 do R e seu aplicativo Shiny desenham o diagrama a partir de uma tabela de contagens [@haddaway2022prisma2020].
+4. **Escrever Metodologia, Resultados, Da evidência à prática e Conclusões** pela tabela da @sec-10-oqf, com strings, datas e limites no apêndice PRISMA-S, certeza em cada enunciado e limitações da evidência (23b) separadas das do processo (23c).
+5. **Escrever as informações adicionais**: registro e emendas com a mudança, o motivo e a etapa (24a-c) [@page2021explanation]; financiamento (25); conflitos (26); disponibilidade (27); declaração de IA (@sec-11-relato).
+6. **Escrever o resumo por último**, conferindo os 12 itens [@page2021prisma].
+7. **Montar caixa, painel e derivados** (resumo em linguagem simples, síntese de evidências, sumário executivo, mapa) aplicando a regra de rótulos à tabela-fonte e conferindo cada número.
+8. **Depositar o pacote aberto** com identificador persistente e pôr o link no artigo e nos derivados.
+9. **Preencher os checklists** com a página de cada item, fazer a revisão de estilo e rodar a auditoria final (tabelas abaixo).
+10. **Executar o plano de disseminação** e registrar onde e quando cada produto circulou.
+
+### Pacote aberto de dados e código
+
+O item 27 do PRISMA 2020 pede que se diga quais materiais estão públicos e onde: formulários de coleta, dados extraídos, dados usados nas análises, código e outros materiais [@page2021prisma]. A explicação detalha o arquivo de conversões de dados, as bases limpas em formato reutilizável (CSV), metadados com descrição das variáveis e README, código de linha de comando ou descrição completa dos passos em programas de apontar e clicar, e a lista de citações triadas com as decisões de elegibilidade; lembra também que registros exportados de bases bibliográficas costumam conter material protegido, e que as licenças das bases devem ser lidas antes de compartilhar [@page2021explanation, item 27]. A Campbell não exige o compartilhamento, mas o incentiva segundo os princípios FAIR [@campbell2021policies, p. 19-20].
+
+| Arquivo do pacote | Conteúdo | Item |
+|---|---|---|
+| `README` | O que é cada arquivo, versão, como reproduzir | 27 |
+| Protocolo e log de emendas | Versão registrada e cada mudança datada e justificada | 24 |
+| Log de buscas e strings | String exata por base, data, filtros, n bruto | 6, 7; PRISMA-S |
+| Registros e decisões | IDs, fonte, decisões por revisor e fase, motivos; resumos só se a licença da base permitir | 8, 16 |
+| Contagens do fluxograma | Tabela gerada do *ledger* | 16a |
+| Codebook e formulário | Variáveis, definições, regras de codificação | 9, 10 |
+| Dados extraídos | Uma linha por efeito, com página de origem | 10, 19 |
+| Risco de viés | Julgamentos por domínio com justificativa | 11, 18 |
+| Tabela de conversões | Fórmula e pressupostos por efeito convertido | 13b |
+| Código e ambiente | Scripts de análise e versões de pacotes | 13d, 27 |
+| Tabela-fonte e regra de rótulos | Células, certeza, rótulo e versão da regra | 22 |
+| Prompts, modelos e validação de IA | Prompts com *hash* e métricas de validação | 8, 9; @sec-11-relato |
+
+### Revisão de estilo
+
+A seção de métodos relata o que foi feito, no passado, e toda mudança não trivial em relação ao protocolo é reconhecida e explicada [@campbell2021policies, p. 44]. O relatório deve ser revisto pela equipe inteira antes de circular [@xiao2019guidance, passo 8]. O passe final de linguagem usa a *skill* `tirar-cara-de-ia`, prevista no fluxo da `revisao-sistematica`.
+
+| Problema | Exemplo | Como reescrever |
+|---|---|---|
+| Explicação didática do método dentro da Metodologia | Histórico da síntese de conhecimento desde os anos 1960 na seção 2 do artigo dos celulares [@schaefer2025proibicao, p. 100] | Cortar ou mover para a introdução; a Metodologia diz o que esta revisão fez |
+| Narrar o percurso em vez do método | "Agora, passamos a análise." [@schaefer_oqfunciona, p. 31] | "Dois revisores extraíram, de forma independente, ..." |
+| Parâmetro ausente | "A triagem incluiu (i) estudos empíricos revisados por pares" [@schaefer2025proibicao, p. 102] | Quem triou, quantos, com que concordância, com que ferramenta e versão |
+| Adjetivo no lugar de número | "fraco, mas consistente" [@schaefer2025proibicao, p. 105] | "g = 0,22 (IC 95% 0,02 a 0,42; I² = 76,5%)" |
+| Termo com vários sentidos | "Força do efeito" definida como "tamanho do coeficiente, significância" [@schaefer2026aula1, p. 40] | "Magnitude" para o tamanho, "certeza" para a confiança e significância só como estatística relatada |
+| Ícones no lugar de números | Círculos e *checks* na tabela de testes [@schaefer2025proibicao, p. 105] | "7 de 8 estimativas na direção benéfica" |
+| Limitação transferida para a literatura | "Não se trata [...] de uma fragilidade específica desta revisão" [@schaefer2025proibicao, p. 109] | Dizer o que a revisão fez com a heterogeneidade e o que deixou de fazer |
+| Numeração de figuras fora de ordem | "Figura 2" (fluxograma) antes da "Figura 1" (*forest plot*) [@schaefer2025proibicao, p. 102, 105] | Numerar na ordem de aparição e conferir cada chamada |
+
+### Auditoria final
+
+| Checagem | Critério de aprovação | Base |
+|---|---|---|
+| Fluxograma | Somas fecham; *template* com ramo de outras fontes quando houve; humano e automação separados; número por base | @page2021explanation [16a] |
+| Consistência numérica | Mesmos números no resumo, texto, tabelas, figuras, caixa, painel e derivados | @campbell2016plain [p. 8] |
+| Certeza | Em todo enunciado de efeito e em toda linha da caixa e do painel | @page2021explanation [22] |
+| Rótulos | Cada rótulo reproduzível pela regra versionada a partir da tabela-fonte | @sec-10-painel |
+| Figuras | Estudos por autor e ano, ordem explicada, rótulos conferidos contra o texto | @page2021explanation [13c] |
+| Heterogeneidade | τ², I² e intervalo de predição no texto | @page2021explanation [20b] |
+| Testes combinados | Interpretação coerente com a pergunta que o teste responde | @page2021explanation [20b] |
+| Citações | Toda chamada corresponde a uma referência com o mesmo ano | @costa2021programas [p. 4, 8] |
+| Limitações | Evidência e processo em subseções distintas | @page2021prisma [23b, 23c] |
+| Informações adicionais | Registro, emendas, financiamento, conflitos, dados e código, IA; DOI e links abrem o material indicado | @page2021prisma [24-27] |
+| Checklists e resumo | PRISMA 2020 e extensões com página de cada item; 12 itens do resumo | @page2021prisma |
+| Resumo em linguagem simples | 600 a 750 palavras, todos os desfechos principais, data da busca | @campbell2016plain [p. 5-9] |
+
+## O que as diretrizes exigem {#sec-10-diretrizes}
+
+**PRISMA 2020** [@page2021prisma; @page2021explanation]. A correspondência entre os 27 itens e as seções OQF está na tabela da @sec-10-oqf. No artigo dos celulares, que serve de modelo ao formato, faltam os itens 6 (data da última consulta a cada fonte), 8, 9 e 11 (quantos revisores, independência e ferramentas na seleção, na coleta e no risco de viés), 13d (modelo e estimador da meta-análise), 15 e 22 (método e resultado da avaliação de certeza), 18 e 20a (risco de viés por estudo e por síntese), 23c (limitações do processo) e 24a a 27 (registro, protocolo, emendas, financiamento, conflitos e disponibilidade de dados e código); o 16b aparece só como um exemplo de estudo excluído, em nota [@schaefer2025proibicao, p. 100-110].
+
+**Fluxograma (item 16a).** Elementos essenciais: registros identificados; excluídos antes da triagem (duplicatas, classificadores automáticos); triados; excluídos na triagem; relatos buscados; relatos não recuperáveis; relatos avaliados e excluídos com os principais motivos; estudos e relatos incluídos; quando houver automação, quantos foram excluídos por humanos e quantos por ferramentas [@page2021explanation, item 16a]. O modelo sugere informar, quando possível, o número por base ou registro, e não só o total [@page2021prisma].
+
+**Resumo** [@page2021prisma, tabela 2]: título; objetivos; critérios de elegibilidade; fontes e data da última busca; método de risco de viés; métodos de síntese; número de estudos e participantes; resultados dos desfechos principais com IC e direção; limitações da evidência; interpretação; financiamento; registro.
+
+**Testes combinados (item 20b).** Quando o método não produz estimativa de efeito, como na combinação de valores-p, o relato traz a estatística e uma interpretação coerente com a pergunta que o método responde, do tipo "evidência de benefício em pelo menos um estudo" [@page2021explanation, item 20b]. O tratamento desses testes está na @sec-08a-regras.
+
+**PRISMA-S** [@rethlefsen2021prismas]. Os 16 itens estão na @sec-04-diretrizes. No relatório final pesam mais o item 8 (estratégias copiadas exatamente como executadas), o 13 (data da última busca de cada estratégia), o 15 (total de registros por base e por outra fonte) e o 16 (processo e *software* de deduplicação).
+
+**PRISMA-ScR** [@tricco2018prisma]. Resumo estruturado com métodos de *charting* (item 2); objetivos com população, conceito e contexto (item 4); processo de *charting* (item 10); avaliação crítica só se feita (itens 12 e 16); resumo da evidência ligado às perguntas (item 19); limitações do processo da revisão de escopo (item 20); financiamento das fontes e da revisão (item 22).
+
+**SWiM, ENTREQ, eMERGe, RAMESES e PRIOR.** Os 9 itens do SWiM estão na @sec-08a-diretrizes; para o relato, o item 7 pede os métodos de apresentação e as características usadas para ordenar os estudos, e o item 8 pede cada resultado por comparação e desfecho, com a certeza e em linguagem coerente com a pergunta [@campbell2020synthesis]. ENTREQ tem 21 itens em cinco domínios (introdução; métodos e metodologia; busca e seleção; avaliação; síntese dos achados) [@tong2012enhancing], detalhados na @sec-08b-diretrizes com eMERGe [@france2019improving] e RAMESES [@wong2013rameses]. PRIOR tem 27 itens e 19 subitens para *overviews* [@gates2022reporting].
+
+**PRISMA-trAIce.** O texto do artigo fala em 14 itens, mas a Tabela 1 do próprio artigo e o repositório dos autores listam 17 identificadores, de T1 a D2 (T1, A1, I1, M1 a M10, R1 e R2, D1 e D2), da identificação da ferramenta à interação humano-IA, à avaliação de desempenho e às limitações; os autores apresentam o checklist como proposta inicial a ser levada a consenso [@holst2025prismatraice]. O PRISMA Executive não o endossa como checklist PRISMA e prepara orientação oficial sobre IA [@moher2026prismatraice]. Até essa orientação sair, a regra desta base é relatar IA pelos itens 8, 9 e 11 do PRISMA 2020 e pela declaração da @sec-11-relato, usando o PRISMA-trAIce como lista de conferência, sem declarar conformidade com ele.
+
+**Campbell.** A estrutura de uma revisão Campbell inclui resumo em linguagem simples, "vieses potenciais no processo da revisão" e "diferenças entre protocolo e revisão" [@campbell2021policies, p. 41-43]; o resumo científico tem até 250 palavras e o resumo em linguagem simples até 750 [@campbell2021policies, p. 44-45].
+
+## Exemplo trabalhado {#sec-10-exemplo}
+
+### Celulares: o fluxograma publicado e o reconstruído
+
+A Figura 2 do artigo tem caixas do PRISMA, mas mistura categorias [@schaefer2025proibicao, p. 103]. A tabela compara a figura com o que o artigo e a proposta permitem reconstruir no modelo PRISMA 2020 com outras fontes, usando as categorias da @sec-05-regras (filtros de metadado em "outros motivos", dicionários em "automação"). A análise do funil em si está na @sec-05-exemplo.
+
+| Caixa do PRISMA 2020 | Figura publicada | Reconstrução | Observação |
+|---|---|---|---|
+| Identificados em bases | 1.740, sem número por base | Scholar 400, SciELO 87, Scopus 798, WoS 455 [@schaefer2025proibicao, p. 102] | O número por base está no texto, não no diagrama |
+| Duplicatas removidas | "Registros após remoção de duplicatas (n=223)" | 223 removidas; restam 1.517 | O rótulo diz "após", mas o número é dos removidos |
+| Removidos por outros motivos | Somados numa caixa "excluídos, com razões (n=776)" abaixo de "Registros triados (n=1517)" | Ano: 87; tipo de documento: 48 [@schaefer_oqfunciona, p. 28] | Filtros aplicados antes da triagem ficam antes da caixa de triados |
+| Marcados como inelegíveis por automação | Mesma caixa de 776 | Dicionário de metodologia: 592; dicionário substantivo: 49 [@schaefer_oqfunciona, p. 28-29] | O artigo não descreve os dicionários em 2.2 [@schaefer2025proibicao, p. 102] |
+| Registros triados | 1.517 | 741 | 1.740 − 223 − 135 − 641 = 741 |
+| Excluídos na triagem | Não relatado | NR | Os motivos da figura (COVID-19; outros impactos da tecnologia) são da leitura de resumos [@schaefer_oqfunciona, p. 29] |
+| Relatos buscados e não recuperados | Ausentes | NR | |
+| Relatos avaliados em texto completo | "Artigos em texto completo avaliados (n=741)" | NR | 741 é o número de resumos lidos |
+| Excluídos com motivos | 722 | NR | |
+| Estudos incluídos pelas bases | 19 | 19 | |
+| Outras fontes | "Registros adicionais identificados por buscas para frente e para trás (n=2)" | Duas revisões localizadas por busca manual e usadas para validar a busca [@schaefer_oqfunciona, p. 29] | Revisões são fonte de citações, não estudos incluídos (@sec-05-regras) |
+| Total | 21 | 19 estudos primários, mais os que o ramo de outras fontes trouxer depois de triados | A meta-análise ainda entra entre as oito estimativas [@schaefer2025proibicao, p. 104] |
+
+A figura também lista "área de pesquisa" e "idioma" entre os motivos de exclusão, que não aparecem nas etapas descritas em 2.2, e o texto fala em "bola de neve através de citações" onde a proposta descreve busca manual [@schaefer2025proibicao, p. 102-103; @schaefer_oqfunciona, p. 29]. A janela temporal aparece como 2010 a 2024 na tabela de passos da proposta, 2004 a 2024 no Quadro 1 e "a partir de 2007" no filtro [@schaefer_oqfunciona, p. 11; @schaefer2025proibicao, p. 102]. Um *ledger* com protocolo congelado teria impedido as três versões.
+
+### Celulares: a seção 3.1 e o *forest plot*
+
+O *forest plot* traz a estimativa combinada de 0,22 (IC 95% 0,02 a 0,42), χ² = 29,73 com 7 graus de liberdade, P < 0,001 e I² = 76,5% [@schaefer2025proibicao, p. 105]. Cinco problemas de relato:
+
+1. **Heterogeneidade só no rodapé.** O texto não a menciona; a Tabela 2 classifica o efeito como "fraco, mas consistente" e o resumo fala em efeito consistente entre metodologias e contextos [@schaefer2025proibicao, p. 97, 105], embora a introdução admita "alta variabilidade" [@schaefer2025proibicao, p. 99].
+2. **Estudos sem identificação.** Os rótulos são números (1, 4, 3, 5, 15, 20, 24, 28), sem autor e ano e sem ordem declarada [@schaefer2025proibicao, p. 105]. Só o anexo J da proposta revela que o id 28 é uma meta-análise e que o id 24 veio da conversão de um teste de Mann-Whitney [@schaefer_oqfunciona, p. 105-106].
+3. **Modelo não declarado.** Nem o texto nem a figura dizem se o modelo é de efeitos fixos ou aleatórios, nem o estimador de τ² [@schaefer2025proibicao, p. 104-105].
+4. **Testes combinados interpretados como consistência.** Fisher e Cooper aparecem como reforço de que os estudos "apontam na mesma direção" [@schaefer2025proibicao, p. 104]; pelo item 20b, a combinação de valores-p pede interpretação coerente com a pergunta que o teste responde, como "evidência de efeito em pelo menos um estudo" [@page2021explanation, item 20b], e o teste de sinal fala só da proporção de estudos na direção benéfica (@sec-08a-regras).
+5. **Sem certeza.** Nenhum enunciado de efeito traz certeza (@sec-09-exemplo).
+
+Reestimando com as estimativas e os erros-padrão do anexo J [@schaefer_oqfunciona, p. 106] (REML com Hartung-Knapp; cálculo nosso), o modelo reproduz 0,22 (0,02 a 0,42) e Q = 29,73, com τ² ≈ 0,037 e intervalo de predição de −0,28 a 0,71; sem a meta-análise e sem a conversão de Mann-Whitney, g = 0,24 (IC −0,03 a 0,52; seis estudos) (@sec-08a-exemplo). Uma redação que atende aos itens 13c, 20a, 20b e 22, com a certeza do GRADE ilustrativo da @sec-09-exemplo:
+
+> Oito estimativas de desempenho foram combinadas em modelo de efeitos aleatórios (REML, IC de Hartung-Knapp; Figura [x], estudos ordenados por precisão e identificados por autor e ano): g = 0,22 (IC 95% 0,02 a 0,42; τ² = 0,037; I² = 76,5%; intervalo de predição de −0,28 a 0,71). Uma das estimativas vinha de uma meta-análise; sem ela e sem a conversão aproximada de um teste de Mann-Whitney, g = 0,24 (IC 95% −0,03 a 0,52; seis estudos). A evidência é muito incerta sobre o efeito da proibição no desempenho (certeza muito baixa, rebaixada por risco de viés, inconsistência, indireção e imprecisão; Tabela [y]).
+
+### Celulares: rótulos diferentes para a mesma revisão
+
+O mesmo efeito aparece como "Efeito fraco" na caixa do artigo [@schaefer2025proibicao, p. 108], como "Positivo" e "Positivo e moderado" nos slides [@schaefer2026aula1, p. 37, 46] e como "Positivo moderado", com o texto "positivo e moderado", no painel atual [@mape2026oqf]. Aplicando as regras desta base:
+
+1. **Efeito.** Com a certeza muito baixa do GRADE ilustrativo da @sec-09-exemplo, a ordem de aplicação da @sec-08b-regras leva a Inconclusivo. Se a certeza fosse baixa ou maior, o intervalo de predição que cobre benefício e dano e os moderadores candidatos levariam a Misto, e não a Positivo.
+2. **Magnitude.** O protocolo não declarou faixas; o painel não pode dizer "fraco" nem "moderado".
+3. **Implementação.** Com o que o artigo relata, a pontuação da @sec-08b-exemplo dá 3 ou 4 pontos (Moderada ou Complexa), conforme o protocolo conte estruturas de guarda dos aparelhos como nova infraestrutura; a fronteira mostra por que os pontos e os IDs precisam estar publicados.
+4. **Custo.** O artigo diz que os custos são baixos em termos monetários, sem valor unitário [@schaefer2025proibicao, p. 107]; pela regra, "sem informação" até haver custo por escola ou por aluno.
+
+Linha do painel resultante:
+
+> Proibição de celulares nas escolas | Desempenho acadêmico | **Inconclusivo** · g = 0,22 (IC 95% 0,02 a 0,42; intervalo de predição −0,28 a 0,71) · certeza muito baixa · 8 estimativas | **Moderada ou Complexa** (3 ou 4 de 5 pontos; confiança CERQual pendente) · requer regras claras; o papel dos professores na fiscalização entra como hipótese | **Sem informação** (custo monetário não quantificado) | Ficha: busca em [data]; 21 estudos de 12 países, nenhum do Brasil; regra v[1.0]; links da revisão e do pacote.
+
+### REFIS: fluxograma com contagens digitadas
+
+O script `9 PRISMA.R` escreve os números dentro dos rótulos, em duas versões (DiagrammeR e `metagear`) [@schaefer2026codigos]. A conferência completa das somas está na @sec-05-exemplo; do ponto de vista do relato, os problemas são estes:
+
+| Afirmação no script | Problema de relato |
+|---|---|
+| "Registros identificados nas bases (WoS, Scielo, BDTD, OpenAlex) n = 186" | Sem número por base |
+| "Registros adicionais (IPEA) não incluídos na deduplicação formal n = 4", mas "110 resumos + 1 IPEA" na triagem | Três registros do IPEA sem destino; falta o ramo de outras fontes |
+| "Triagem por IA (3 modelos) Deepeseek: 21 · Claude: 16 · ChatGPT: 0" numa caixa do fluxo | Não diz quantos registros cada ferramenta excluiu nem quantos humanos revisaram |
+| "16 aprovados − 5 excluídos + 9 novos por bola de neve" → corpus de 21 | 16 − 5 + 9 = 20; bola de neve somada sem identificação e triagem próprias |
+| "4 não respondiam + 1 não localizado" como exclusão | Não localizado é relato não recuperado |
+| Versão `metagear`: 120 "triados" e, depois, 64 "excluídos (ano, idioma, tipo/método)" | Filtros aplicados antes da triagem aparecem depois dela; 120 × "110 resumos" na outra versão |
+
+Com o *ledger*, cada caixa é uma consulta às decisões registradas; se uma soma não fecha, o diagrama não é gerado e a inconsistência vira pendência (@sec-10-skill).
+
+### Relato tabular: Bolsa Família e educação
+
+A revisão de Santos e colegas tem pontos fortes de relato: seleção por dois pesquisadores independentes, literatura cinzenta da BDTD e da CAPES, contato com autores [@santos2019bolsafamilia, p. 2234-2235] e um quadro com referência, local e período, unidade de análise, grupo de comparação, variáveis, indicador, medida, valor-p e desfecho de cada estimativa [@santos2019bolsafamilia, p. 2237]. O fluxograma não fecha: as bases somam 2.391 registros, e a caixa lista sem somar 98 da literatura cinzenta e 7 da busca manual; a caixa após duplicatas não tem número; 2.391 − 175 − 1.824 = 392, 392 − 341 = 51 e 51 − 42 = 9, mas a caixa final traz 12 incluídos, e o texto fala em nove artigos e três dissertações; os rótulos "Seleção" e "Identificação" estão trocados [@santos2019bolsafamilia, p. 2235-2236]. No quadro, a coluna "Medida" não informa o estimador, e alguns valores-p aparecem só como limiar (p < 0,05, p < 0,10) [@santos2019bolsafamilia, p. 2237]. A correção é uma linha por efeito com `effect_id`, estimador, IC 95%, direção desejada e risco de viés (@sec-07-regras).
+
+### Síntese CLEAR nº 11: bom molde, com erros de conferência
+
+A síntese acerta na forma: conclusões em destaque, uma figura para comparar programas e implementação descrita em cada caso [@costa2021programas, p. 3-7]. Três erros de conferência servem de alerta. Na Figura 1, duas barras estão rotuladas "China: higienização das mãos" e "China: higienização das mãos + limpeza das latrinas", com efeitos de −0,30% e 0,10%; essas duas variações correspondem ao programa de higienização e limpeza de latrinas do Quênia descrito no texto, sem efeitos significativos [@costa2021programas, p. 4, 7]. A nota da figura define "Não significante" como resultado indistinguível de zero "com um p-valor<0,10", o inverso do pretendido [@costa2021programas, p. 4]. Duas chamadas citam anos diferentes dos da lista de referências (Bowen et al. 2009 e 2007; Freeman et al. 2011 e 2012) [@costa2021programas, p. 4, 6, 8]. A síntese também não diz como as seis avaliações foram buscadas e escolhidas nem avalia risco de viés, e a figura compara variações percentuais de medidas de absenteísmo que a própria nota reconhece serem diferentes [@costa2021programas, p. 4]. Numa síntese derivada de revisão OQF, o bloco "o que foi feito" e a certeza de cada conclusão são obrigatórios.
+
+## Erros comuns e como evitá-los {#sec-10-erros}
+
+| Erro | Exemplo | Como evitar | Referência |
+|---|---|---|---|
+| Contagens digitadas no fluxograma | `9 PRISMA.R` do REFIS [@schaefer2026codigos] | Diagrama gerado do *ledger* com somas conferidas | Item 16a; @sec-05-regras |
+| Filtros automáticos misturados com triagem humana | Figura 2 dos celulares [@schaefer2025proibicao, p. 103] | Caixas "outros motivos" e "automação" antes da triagem, com número por filtro | Item 16a |
+| *Template* sem ramo de outras fontes | Modelo distribuído no material didático aplicado a revisões com bola de neve ou IPEA | Escolher o *template* pelas fontes consultadas | @prisma2020flow |
+| Revisões contadas como estudos | Duas revisões entre os 21 dos celulares [@schaefer_oqfunciona, p. 29] | Revisões vão ao ramo de outras fontes como fonte de citações | @sec-05-regras |
+| Heterogeneidade só na figura | I² = 76,5% no rodapé e "consistente" no resumo [@schaefer2025proibicao, p. 97, 105] | τ², I² e intervalo de predição no texto e no resumo | Item 20b |
+| Estudos sem identificação no gráfico | Rótulos 1, 4, 3... decifráveis só pelo anexo da proposta [@schaefer_oqfunciona, p. 105-106] | Autor e ano; ordem por característica declarada | Item 13c |
+| Rótulo atribuído à mão, com texto divergente | "Efeito fraco" no artigo e "Positivo moderado" no painel [@schaefer2025proibicao, p. 108; @mape2026oqf]; rótulo e texto diferentes em adaptação climática e posse de armas [@mape2026oqf] | Rótulo e texto gerados da mesma linha da tabela-fonte pela regra versionada | @sec-10-painel |
+| Rótulo "Neutro" sem definição | Linhas do painel sem estimativa de efeito [@mape2026oqf] | Nulo só com IC dentro de ±δ e certeza moderada; senão Inconclusivo | @sec-08b-regras |
+| "Recomendações" mais fortes que a certeza | Seção 4 do artigo dos celulares [@schaefer2025proibicao, p. 107-109] | Implicações proporcionais à certeza | @sec-09-regras |
+| Limitações só da evidência | Conclusões dos celulares [@schaefer2025proibicao, p. 109-110] | Subseção de limitações do processo | Item 23c |
+| Falta de registro, financiamento, conflitos e dados | Versão do artigo distribuída no material didático [@schaefer2025proibicao] | Seção de informações adicionais em todo relatório | Itens 24-27 |
+| Link de dados que leva a outro documento | Nota que remete o script ao *preprint* [@schaefer2025proibicao, p. 102], com os materiais no OSF 7qw3j [@schaefer_oqfunciona, p. 5] | Declaração do item 27 com cada material e endereço exato | Item 27 |
+| Compartilhar exportações de bases sem ler a licença | Pacote com a exportação bruta da Scopus ou da WoS (caso hipotético) | IDs e decisões no pacote; resumos só se a licença permitir | @page2021explanation [item 27] |
+| Figura com rótulo trocado, chamada com ano errado, fluxograma que não fecha | Síntese CLEAR nº 11 [@costa2021programas, p. 4, 8]; Santos et al. [@santos2019bolsafamilia, p. 2236] | Auditoria final antes de publicar | @sec-10-passos |
+| Declarar conformidade com checklist sem endosso | PRISMA-trAIce | Itens do PRISMA 2020 e declaração da @sec-11-relato | @moher2026prismatraice |
+| Produto para gestor sem método nem certeza | Síntese CLEAR sem busca, seleção ou risco de viés [@costa2021programas, p. 3-7] | Bloco "o que foi feito", certeza por conclusão, link da revisão | @lavis2009support [p. 4] |
+| Difundir sem disseminar | Publicar no periódico e no site e parar aí | Público, mensagem e mensageiro definidos no protocolo | @andrade2020traducao [p. 4] |
+
+## Na skill `revisao-sistematica` {#sec-10-skill}
+
+O relato é a etapa 11 do fluxo e termina no portão G9. A skill está em construção; o contrato planejado, conferido com a ajuda atual de `rs.py`, é este:
+
+- **Estado primeiro.** `rs.py status` antes de qualquer ação; o relato só começa com síntese, certeza e caixa aprovadas no G8 (no autopiloto, com as pendências registradas). Claude nunca edita `rs_estado.json`, `rs_log.jsonl` ou `decisoes.jsonl` à mão.
+- **Templates e checklists.** `assets/templates/` receberá `relatorio_oqf.qmd`, `manuscrito_prisma.qmd`, `relatorio_escopo.qmd`, `policy_brief.qmd` e `declaracao_uso_ia.md`; `assets/checklists/`, os de PRISMA 2020, PRISMA-ScR, PRISMA-S, PRISMA-trAIce, PRESS e SWiM. A instrução operacional fica em `references/08-relato.md`, destilada deste capítulo.
+- **Fluxograma calculado.** `rs.py prisma [--tipo 2020|scr] [--idioma pt|en]` calcula as contagens a partir das tabelas do projeto (e sai como rascunho, com a lista das buscas, enquanto houver busca de teste truncada ativa) e escreve `prisma_contagens.json`, `prisma.mermaid`, `prisma.svg` e `checklist_prisma.csv` em `07-relatorio/`. As invariantes (triados = excluídos na triagem + buscados; avaliados = buscados − não recuperados; avaliados = excluídos no texto completo + incluídos) encerram com código 2 se não fecham; "não revisado" entra como NA; relatos contam por `id_rs` e estudos por `id_estudo`. Etapas ignoradas em projetos parciais aparecem como "NR"; o pedido "só o PRISMA" usa `--manual contagens.json`.
+- **Caixa e painel.** `rs.py caixa` monta a tabela rastreável a partir do master de extração, do resumo da meta-análise ou do SWiM, de `certeza.csv`, de δ e das faixas do protocolo; toda célula tem fontes e `regra_versao`, e os testes combinados nunca definem rótulo. A tabela traz, para cada família × construto, uma linha de painel (`efeito_painel`) com a regra de combinação aplicada; painel e *policy brief* leem essa linha, e o relatório, as linhas por desenho.
+- **Declaração de IA.** `rs.py declaracao-ia` gera `07-relatorio/declaracao_uso_ia.md` a partir do log (ferramenta, modelo, versão, datas, parâmetros, papel por etapa, prompts com *hash*, validação com IC e limiares), conforme a @sec-11-relato.
+- **Referências.** `rs.py incluidos` escreve `07-relatorio/incluidos.csv`; `rs.py bib` delega o `.bib` à `gerar-bibtex`, com junção por `chave`, ou escreve um `.bib` mínimo com `--sem-irma`.
+- **Estilo.** Passe final com `tirar-cara-de-ia`; `my-voice` só como preferência local, se existir.
+- **Portão G9.** Nos *checkpoints*, `rs.py portao G9 --aprovar --por <papel>` registra a aprovação humana do relatório no template do tipo, do PRISMA do *ledger*, dos checklists, da declaração de IA, do `.bib` e do passe de estilo. No autopiloto, relatório e declaração saem marcados "RASCUNHO NÃO VALIDADO", com a lista de pendências; fechar uma pendência regenera o que depende dela.
+- **Log e testes.** Eventos `prisma_gerado` e `relatorio_gerado`; testes `test_prisma` (invariantes) e `test_caixa` (toda célula com fontes).
+- **Fora da v1.** Mapa de evidências interativo: a skill reconhece o pedido, orienta por este capítulo e declara o limite.
+
+## Como relatar {#sec-10-relato}
+
+O relatório precisa conter, no mínimo, os blocos abaixo. Os exemplos usam a revisão dos celulares; colchetes marcam o que depende do projeto.
+
+**Conformidade com diretrizes (Metodologia).**
+
+> Esta revisão segue o PRISMA 2020, com as extensões PRISMA-S para a busca e SWiM para as sínteses sem meta-análise, e o ENTREQ para a síntese qualitativa. Os checklists preenchidos, com a página de cada item, estão no Apêndice [A].
+
+**Fluxograma (Resultados).**
+
+> A busca em quatro bases, em [data], identificou 1.740 registros (Google Scholar 400, SciELO 87, Scopus 798, Web of Science 455). Antes da triagem, foram removidos 223 duplicados, 135 registros por filtros de metadado [previstos no protocolo] (ano, 87; tipo de documento, 48) e 641 por dicionários aplicados ao resumo (metodologia, 592; tema, 49). [Duas revisoras] triaram 741 títulos e resumos, [de forma independente], e excluíram [n]. Dos [n] relatos buscados, [n] não foram recuperados; dos [n] avaliados em texto completo, [n] foram excluídos (motivos na Figura [x]). [n] estudos vieram das bases e [n] da busca de citações em duas revisões anteriores, que não entram como estudos incluídos.
+
+**Limitações do processo (Conclusões e limitações).**
+
+> A exclusão por dicionários aplicados ao resumo pode ter eliminado estudos relevantes sem termos metodológicos no resumo; não medimos a sensibilidade desses filtros. A busca ficou restrita a português e inglês e a estudos revisados por pares, sem notas técnicas. [A triagem foi feita por uma revisora, com verificação de [n]% dos registros por outra.] [Não contatamos autores para dados faltantes.]
+
+**Da evidência à prática: implicações.**
+
+> Os rótulos da caixa de ferramentas seguem a regra v[1.0] (Apêndice [B]), aplicada à tabela de achados disponível no pacote aberto. Cada linha informa a certeza da evidência, e nenhuma implicação é mais forte do que essa certeza.
+
+**Informações adicionais.**
+
+> *Registro e protocolo.* O protocolo foi registrado no OSF em [data] ([DOI]); as [n] emendas estão no log, com a mudança, o motivo e a etapa em que ocorreram. [Ou: A revisão não foi registrada e não houve protocolo prévio.]
+>
+> *Financiamento.* [Fonte]; o financiador não teve papel no desenho, na análise nem na redação. [Ou: A revisão não recebeu financiamento específico.]
+>
+> *Conflitos de interesse.* [Declaração.]
+>
+> *Disponibilidade de dados, código e materiais.* Estão em [DOI do OSF]: o formulário de extração, os dados extraídos de cada estudo, os dados usados nas análises, o código em R, a tabela de achados com a regra de rótulos e a lista de registros triados com as decisões. Os resumos exportados das bases não foram incluídos por restrição de licença.
+>
+> *Uso de inteligência artificial.* \[Declaração gerada conforme a @sec-11-relato.\]
+
+**Divulgação.**
+
+> Além deste artigo, os achados foram publicados como síntese de evidências, resumo em linguagem simples e linha no painel O Que Funciona ([endereço]), gerados da mesma tabela de achados e da regra de rótulos v[1.0], e apresentados a [públicos] em [datas].
+
+## Leituras {#sec-10-leituras}
+
+**Normas e guias**
+
+- @page2021prisma: checklist de 27 itens, checklist de resumos e fluxograma; ponto de partida de qualquer relatório.
+- @page2021explanation: elementos essenciais de cada item, com exemplos; resolve dúvidas sobre fluxograma, gráficos, heterogeneidade e disponibilidade de dados.
+- @prisma2020flow e @haddaway2022prisma2020: os quatro modelos de fluxograma e a ferramenta que os gera a partir das contagens.
+- @rethlefsen2021prismas: os 16 itens para relatar a busca.
+- @tricco2018prisma: adaptação do PRISMA a revisões de escopo.
+- @campbell2020synthesis: os 9 itens para sínteses sem meta-análise.
+- @tong2012enhancing, @france2019improving, @wong2013rameses e @gates2022reporting: relato de sínteses qualitativas, meta-etnografias, sínteses realistas e *overviews*.
+- @holst2025prismatraice e @moher2026prismatraice: a proposta de checklist para IA e a posição do PRISMA Executive sobre ela.
+- @white2020guidance: como produzir e relatar mapas de evidências e lacunas.
+- @campbell2016plain e @campbell2021policies: resumo em linguagem simples e estrutura de revisões Campbell.
+- @thomson2013effect, @harrison2017albatross e @guetterman2015integrating: gráficos para sínteses sem meta-análise e para integração de métodos mistos.
+- @eef2021toolkit: regras públicas para converter resultados em impacto, solidez e custo.
+
+**Leituras de apoio**
+
+- @schaefer_oqfunciona: a divulgação como sexta dimensão, os fatores de disseminação e a caixa de ferramentas.
+- @schaefer2025proibicao: o modelo de artigo no formato OQF, usado aqui também como caso de erros de relato.
+- @costa2021programas: o molde de síntese de evidências distribuído no material didático.
+- @santos2019bolsafamilia: relato tabular de estimativas numa revisão brasileira de política pública.
+- @lavis2009support: produtos derivados de revisões e como empacotá-los e disseminá-los para decisores.
+- @haddaway2014policy: produtos de uma revisão e papel dos mapas sistemáticos.
+- @chalmers2016increasing e @galea2016public: o arquivo AJPH do material didático; influência de revisões em políticas e apelo a resultados apresentados de forma visual.
+- @xiao2019guidance: o passo de relato numa revisão de literatura sistemática.
+- @andrade2020traducao e @andrade2024sinteses: tradução do conhecimento no Brasil e a experiência do Ministério da Saúde com sínteses sob demanda.
+- @hjort2021research, @toma2024understanding e @mehmood2023training: evidência experimental sobre como decisores respondem à informação de pesquisa.
+- @mape2026oqf e @evaluationtaskforce2024whatworks: o painel OQF e a rede britânica de centros *What Works*.

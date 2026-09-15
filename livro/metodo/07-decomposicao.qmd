@@ -1,0 +1,431 @@
+---
+title: "Decomposição dos estudos (extração de dados)"
+---
+
+Decompor um estudo é transformá-lo em registros estruturados: na base da revisão, as linhas representam os estudos (e/ou os modelos) e as colunas, as variáveis formais, metodológicas e substantivas extraídas de cada um [@schaefer_oqfunciona, p. 20]. Dessa base saem a contagem por direção, a meta-análise, a síntese qualitativa e a caixa de ferramentas, e um erro cometido aqui atravessa a revisão sem ser visto. O Cochrane Handbook lembra que erros de extração raramente são detectados por pareceristas, editores ou leitores; um estudo encontrou erros em 20 de 34 revisões e outro, erros substanciais em pelo menos 7 de 27 revisões que calcularam diferenças padronizadas [@li2024collecting, sec. 5.5.2]. As decisões desta etapa são: a unidade de extração e o modelo que representa cada estudo; o tipo de estudo (a1, a2, b1, b2) e as variáveis de cada bloco; o que extrair para cada dimensão da caixa de ferramentas; como codificar mecanismo, moderador, desenho e estimando; como registrar direção e significância; como converter efeitos para uma métrica comum sem perder sinal nem pressupostos; e como pilotar, verificar e validar a extração quando o dado falta ou não fecha.
+
+## Decisões e regras {#sec-07-regras}
+
+A tabela resume as regras desta base; as marcadas com (E) vêm da especificação metodológica desta base (@sec-especificacao). As subseções detalham cada linha.
+
+| Decisão | Regra |
+|---|---|
+| Unidade | Estudo é a unidade de síntese; relato é a fonte; efeito é cada estimativa (desfecho × comparação × modelo × subgrupo × momento) |
+| Não são estudos primários | Revisões e meta-análises (E); simulações sem estimativa empírica própria |
+| Modelo principal | Declarado pelos autores; na falta, o usado na interpretação; depois, a regra do protocolo; critério sempre registrado |
+| Tipo de estudo | a1, a2, b1 ou b2 pelo objetivo analítico e pela natureza dos dados; uma ficha por desenho |
+| Direção | Sinal da estimativa pontual relativo à `direcao_desejada` declarada por desfecho no protocolo (E; @sec-07-efeitos) |
+| Significância | Variável separada; "nulo" só existe na síntese, com margem fixada a priori (E; @sec-08a-regras) |
+| Estimando | ATE, ATT, ITT, LATE, efeito local na descontinuidade ou associação, com trecho (E; @sec-07-desenhos) |
+| Conversão | `formula_id`, variância e marca de conversão aproximada em toda estimativa convertida (E; @sec-07-efeitos) |
+| Ausência | `999` = aplicável e ausente no texto; `NA_secao` = bloco que não se aplica; "não é possível dizer" sinaliza contato com autores; em colunas numéricas, célula vazia com *status* |
+| Âncora | Toda resposta com trecho literal e página, com a convenção de paginação declarada |
+| Piloto | 2 a 3 estudos por bloco a1, a2, b1 e b2 antes da rodada (E) |
+| Números de efeito | 100% conferidos contra a página ou extraídos em dupla com arbitragem (E) |
+| Categóricas | Segundo codificador cego em ≥ 20% dos estudos (mínimo 10); κ ou PABAK ≥ 0,7 e concordância ≥ 80% por variável (E) |
+
+### Unidade de extração: estudo, relato e efeito
+
+Numa revisão sistemática, a unidade de interesse é o estudo, não o relato: um estudo pode ter vários relatos, e um relato pode descrever mais de um estudo [@li2024collecting, sec. 5.2.1]. Reunir os relatos do mesmo estudo é padrão obrigatório [@li2024collecting, MECIR C42], e a ligação acontece antes da extração (@sec-05-regras).
+
+| Nível | Identificador | O que se extrai | Regra |
+|---|---|---|---|
+| Estudo | `id_estudo` | Contexto, população, intervenção, comparador, desenho, estratégia de identificação, risco de viés | Unidade de síntese; nunca contar duas vezes |
+| Relato | `id_rs`, `chave` | Metadados formais, versão, convenção de paginação | Relatos divergentes: identificar a fonte principal [@li2024collecting, sec. 5.5.4] |
+| Efeito | `id_efeito` | Estimativa bruta, EP ou IC, n, estimando, modelo, subgrupo, momento, `formula_id`, trecho e página | Extrair todas as estimativas elegíveis e marcar a principal |
+
+A definição da linha muda o resultado da síntese e vai no protocolo. Gerring, Knutsen e Berge tratam como uma análise a combinação de estudo, desfecho e indicador, e contam mudanças menores de medida (o log do indicador, a mesma medida de outra base) como variação de especificação, e não como nova análise [@gerring2022democracy, p. 362]. Cancela e Geys chamam de "teste" cada coeficiente reportado para a mesma variável e reconhecem que estudos com muitos modelos pesam mais nas taxas por teste [@cancela2016explaining, p. 265-266]; num slide do material didático sobre análise de dados, 32 estudos sobre voto obrigatório viram 74 modelos [@schaefer2026aula6, p. 39].
+
+**Regra do modelo principal.** A ordem é: (1) o modelo que os autores declaram principal ou de referência; (2) na falta de declaração, a especificação que os autores usam para apresentar e interpretar os achados, registrando que houve julgamento [@gerring2022democracy, p. 362]; (3) persistindo o empate, a regra pré-especificada no protocolo, que pode ser uma hierarquia de medidas preferidas, o efeito mediano ou a média das estimativas elegíveis [@li2024collecting, sec. 5.3.6]. O critério vai para `criterio_modelo_principal`; decisões tomadas depois de ver os dados são mudanças de protocolo [@li2024collecting, sec. 5.3.6]. A regra hierárquica do protocolo está na @sec-03-regras, e as estimativas não principais ficam com `principal = 0` para sensibilidade e dependência (@sec-08a-regras).
+
+**O que não é estudo primário.** Revisões e meta-análises vão para a bola de neve ou para a comparação de resultados e nunca entram no mesmo conjunto de síntese que os estudos primários (E); em revisões rápidas e em *overviews*, podem ser usadas como fonte de evidência no nível de revisão, com controle explícito de sobreposição (CCA) e sem somar seus estudos aos primários [@garritty2021cochrane, R8; @pollock2024overviews, sec. V.4.4, V.4.7]. Simulações sem estimativa com dados observados também ficam de fora da tabela de efeitos; Cintron e colegas excluíram de sua amostra de estudos de políticas sociais um que relatava apenas efeitos simulados [@cintron2022heterogeneous, p. 81]. Documentos normativos pedem outro formulário: um protocolo de evidência textual baseado no JBI extrai tipo de texto, população representada, contexto, posição declarada, conclusões com trechos ilustrativos e notas do revisor, com dois revisores independentes e um terceiro para desacordos [@bia2026health, p. 5].
+
+### As três dimensões e a tipologia a1, a2, b1, b2
+
+O material didático sobre extração de dados organiza a extração em características formais (autoria, país, tipo de trabalho, citações, idioma, palavras-chave, resumo), metodológicas (pergunta, unidade de análise, métodos, hipótese, fonte de dados) e substantivas (resultados) [@schaefer2026aula5, p. 10]. A proposta OQF acrescenta à dimensão metodológica PICOC, estratégia de identificação, amostra e controles, e à substantiva direção, magnitude, mecanismos, moderadores, percepção, implementação e custos [@schaefer_oqfunciona, p. 20-21, 31]. No codebook OQF de exemplo, uma aba comum reúne os traços formais e o problema de pesquisa, e cada tipo de estudo tem um bloco próprio [@schaefer2026codigos, `quadro_decomposicao_estudos EXEMPLO.xlsx`]. A tipologia cruza objetivo (interpretação ou descrição, *a*; teste ou explicação, *b*) e natureza dos dados (qualitativa, *1*; quantitativa, *2*) [@schaefer2026aula5, p. 26].
+
+| Tipo | Definição [@schaefer2026aula5, p. 27-30] | Bloco específico no codebook [@schaefer2026codigos] | Costuma informar [@schaefer2026aula6, p. 51] |
+|---|---|---|---|
+| a1 | Qualitativo interpretativo ou descritivo: sentidos, percepções e dinâmicas da intervenção (etnografia, grupos focais, entrevistas) | Desenho, técnicas de coleta, duração do campo, ator central, categorias emergentes, processo causal, condições de ativação, efeitos não intencionais, percepções, implementação observada, gargalos, custo, citação ilustrativa | Mecanismo, moderador, percepção, implementação |
+| a2 | Quantitativo descritivo: população beneficiária, implementação ou alcance, sem necessariamente estimar efeito causal (surveys, registros, cobertura) | Fonte de dados, amostragem, casos, população-alvo, cobertura, perfis dos beneficiários, oferta, percepção, tendência temporal, custo | Percepção, implementação, custo |
+| b1 | Qualitativo explanatório: padrões causais entre condições e resultados (QCA, *process tracing*, comparação estruturada) | Método comparado, formalização (0 a 2), seleção de casos, desfecho, condições necessárias e suficientes, consistência e cobertura, padrão observado, mecanismo e sua evidência, generalização, custo | Mecanismo, moderador, percepção, implementação, custo |
+| b2 | Quantitativo explanatório: estimação do efeito causal (RCT, regressão descontínua, diferenças em diferenças, seleção em observáveis) | Estratégia, estimador, desfecho e intervenção, média e DP do desfecho, grupos, controles, direção, coeficiente, EP, t, g, mecanismo, moderador, falsificação, percepção, implementação, custo, modelo principal | Efeito, mecanismo, moderador, custo |
+
+Regras de classificação:
+
+1. **Pelo método, não pelo tema.** A classificação usa a estratégia que o estudo de fato emprega, e não o tema nem o rótulo que os autores dão ao desenho; a Cochrane pede descrever desenhos pelas suas características, e não só por rótulos [@cumpston2026reporting, sec. III.3.4.2]. Estudos b2 também informam mecanismos e moderadores, via mediação, efeitos heterogêneos e subgrupos [@schaefer2026aula5, p. 30].
+2. **Uma ficha por desenho.** Estudo que combina explicitamente dois desenhos gera duas fichas, com a dimensão formal replicada e o sufixo do tipo no `ficha_id`; numa revisão conduzida pelo autor desta base entre 2025 e 2026 (a revisão A da @sec-11-licoes), 118 textos geraram 136 fichas.
+3. **A fronteira a1/a2 precisa de critério escrito.** Na validação dessa revisão, os dois codificadores divergiram no desenho em 4 de 26 textos, sempre sobre quantos e quais desenhos havia e envolvendo a fronteira a1/a2; a lição é fixar o critério no protocolo. Um critério operacional: abrir ficha a2 só quando o estudo produz e analisa dados quantitativos próprios como resultado, e não quando cita números como contexto; o critério e exemplos-limite vão no `prompt` da variável classificadora e são testados no piloto.
+4. **O mapa dimensão × tipo orienta, não restringe.** O codebook tem `custo_id` nos quatro blocos e `percepcao_id` e `implementacao_id` também no b2 [@schaefer2026codigos, aba b2_quantitativo]. Extrai-se toda dimensão que o estudo reportar.
+
+### O que extrair para cada dimensão da caixa de ferramentas
+
+| Dimensão | Pergunta [@schaefer_oqfunciona, p. 19-20] | Variáveis mínimas | Evidência |
+|---|---|---|---|
+| Contexto | Onde, quando e para quem? | País, UF ou município, nível de governo, período, população, comparador, componentes | Trecho e página |
+| Efeito | Positivo, misto ou negativo, e com que força? | Construto, `direcao_desejada`, estimativa bruta, EP ou IC, n por grupo, DP e seu tipo, estimador, estratégia, estimando, modelo principal, `formula_id`, significância | Tabela com página; número conferido |
+| Mecanismo | Como X se liga a Y? | `mecanismo_status`, `mecanismo_evidencia`, recurso, raciocínio, contexto (@sec-07-conceitos) | Trecho dos autores |
+| Moderador | Onde, quando e com quem funciona? | Moderador, método, pré-especificação, estimativa e EP por subgrupo | Tabela ou trecho |
+| Implementação | Como se dá nos casos bem-sucedidos? | Componentes, níveis de governo e atores, infraestrutura ou pessoal novos, barreiras de fidelidade ou adesão, tempo até o efeito | Trecho |
+| Percepção | Que sentido os atores atribuem à intervenção? | Ator, percepção, citação ilustrativa | Trecho |
+| Custo | Qual a relação entre custo e benefício? | Custo total e por participante, moeda e ano, custos não monetários, custo-efetividade | Tabela ou trecho |
+
+As variáveis de implementação alimentam a pontuação de complexidade da caixa (@sec-08b-regras). Para custo, importam o retorno por unidade investida e o custo total, inclusive custos não monetários como o tempo dos profissionais [@kraft2020interpreting, versão do autor, p. 17]. Na revisão dos celulares, mecanismos e moderadores apareceram em cinco dos 21 trabalhos (um deles uma revisão) e custos em seis, e os autores notam que os estudos raramente são explícitos, o que exige do codificador conhecimento do campo e de metodologia [@schaefer_oqfunciona, p. 31]. A resposta é uma regra de codificação com trecho literal, e não a inferência do codificador.
+
+### Correções obrigatórias ao codebook de exemplo
+
+| Variável (codebook de exemplo) | Como está | Problema | Versão corrigida |
+|---|---|---|---|
+| `direcao_am` | Dummy 1 = positivo, 0 = negativo, "no sentido normativo" [@schaefer2026codigos, aba b2_quantitativo; @schaefer_oqfunciona, p. 91] | Sem categoria para zero; convenção normativa implícita em cada linha | `direcao_desejada` por construto no protocolo; `sinal_bruto`; `direcao` (benéfica, danosa, zero) pelo estimador pontual |
+| `direcao_re` | 1 se p < 0,05 e positivo; 0 se p ≥ 0,05; −1 se p < 0,05 e negativo [@schaefer2026codigos, aba b2_quantitativo] | Mistura direção e significância; "não significativo" vira "sem relação" | `significancia_05`, `p_valor` e IC em variáveis próprias |
+| `hedges_g` | g = d × J; sem médias, g ≈ t × √(1/n₁ + 1/n₂) [@schaefer2026codigos, aba b2_quantitativo] | O atalho é o d de um teste t sem covariáveis, sem J, variância nem registro da fórmula | `formula_id`, `aproximado`, `vi` (@sec-07-efeitos) |
+| `coeficiente`, `erro_padrao`, `t_valor`, `desvio_y` | "Contínua (ou 999)" [@schaefer2026codigos, aba b2_quantitativo] | 999 pode entrar num cálculo; o DP não diz de que grupo é | Célula vazia com `status`; `dp_y_tipo` (controle, combinado, total, linha de base) |
+| Códigos de ausência | 999 é "sem informação" em `duracao_campo` (com longitudinal = 0) e `cobertura_percentual` (onde 50 também é "parcial"), mas "não aplicável" em `consistencia` e `cobertura` do b1 [@schaefer2026codigos, abas a1, a2, b1] | O mesmo código tem dois sentidos; ausência vira afirmação | `999` só para aplicável e ausente; `NA_secao` para não aplicável; valor e categoria em colunas separadas |
+| `estrategia_identificacao` | Lista com VI e IV_2SLS, PSM e seleção em observáveis, DID e event_study [@schaefer2026codigos, aba b2_quantitativo] | Categorias sobrepostas geram divergência sem erro de leitura | Categorias exclusivas com "outro, especificar"; variante do estimador à parte |
+| Estimando | Não existe | ITT, LATE, efeito local e ATT respondem a perguntas diferentes | `estimando` com trecho (@sec-07-desenhos) |
+| `moderador_id` | "Sim" com interação significativa, subgrupos com teste de diferença ou efeitos reportados separadamente [@schaefer2026codigos, aba b2_quantitativo] | A condição de significância pode apagar interações nulas; não guarda estimativas por subgrupo | `het_metodo`, `het_pre_especificada`, estimativa e EP por subgrupo, qualquer que seja o p |
+| Âncora | Só a1 tem `citacao_ilustrativa` [@schaefer2026codigos]; no Anexo G há pares `_id` + trecho, sem página [@schaefer_oqfunciona, p. 59-100] | Sem página, não há verificação | Trecho literal e página em toda resposta |
+| `hieraquia_evidencias` | 0 a 6, com 5 = RCT e 6 = RS [@schaefer_oqfunciona, p. 89] | Desenho não é risco de viés; revisão não é estudo primário | `desenho` descritivo; risco de viés por domínio (@sec-06-regras) |
+
+A mesma revisão mostra mais duas falhas. A variável de coeficiente estandardizado, que aceitava t, z ou outra estatística, recebeu 999 de um codificador e um d de Cohen de 0,32 do outro para o mesmo texto, com 33,3% de concordância em seis comparações; e a lista de estratégias de identificação incluía revisão sistemática e meta-análise. A correção é separar `estatistica_teste` de `efeito_padronizado_reportado`, cada uma com seu tipo, e retirar revisões da lista.
+
+**Códigos de ausência.** O Handbook recomenda que nenhuma pergunta possa ficar em branco, com opções "não aplicável", "não reportado" e "não é possível dizer", esta última marcando itens que podem motivar contato com os autores [@li2024collecting, sec. 5.4.3]. O codebook de exemplo usa `999` tanto para informação ausente quanto para variável não aplicável [@schaefer2026codigos]. Esta base separa as duas situações: `999` marca variável aplicável mas ausente no texto, e `NA_secao`, variável de bloco que não se aplica ao tipo do estudo. A skill mantém as duas marcas, acrescenta "não é possível dizer" e as converte em célula vazia com *status* antes de qualquer cálculo.
+
+### Qualidade da extração
+
+| Item | Regra | Fonte |
+|---|---|---|
+| Formulário | Título da revisão, extrator e data; perguntas fechadas com "outro, especificar"; nada de resumos em texto não codificado; registrar o trecho que sustenta cada julgamento e onde está | @li2024collecting, sec. 5.4.3 |
+| Formato | Coletar como reportado e transformar depois, por computador, distinguindo dado da fonte e dado calculado | @li2024collecting, sec. 5.4.3, 5.7 |
+| Piloto | Formulário pilotado (obrigatório), com várias pessoas extraindo de alguns artigos e conferência de exatidão; nesta base, 2 a 3 estudos por bloco | @li2024collecting, MECIR C43, sec. 5.4.3; (E) |
+| Treinamento | No início e periodicamente, com algoritmo para itens que aparecem em vários lugares do relato | @li2024collecting, sec. 5.5.3 |
+| Dupla extração | Dados de desfecho por duas pessoas independentes (obrigatório); características do estudo (altamente desejável) | @li2024collecting, MECIR C45, C46 |
+| Números de efeito | 100% conferidos contra a página, ou dupla extração com arbitragem | (E) |
+| Categóricas | Segundo codificador cego em ≥ 20% (mínimo 10); concordância, κ e PABAK por variável; κ nunca sozinho | (E); @byrt1993bias |
+| Deriva | A codificação muda entre pessoas e na mesma pessoa ao longo do tempo; repetir a checagem durante a extração | @belur2021interrater |
+| Desacordos | Discussão, terceiro revisor, contato com autores; o que não se resolve é relatado; guardar a versão "como extraída" | @li2024collecting, sec. 5.5.5 |
+| Dados faltantes | Buscar dados não publicados essenciais (altamente desejável): perguntas abertas para descrições, formulário curto para números, outros autores se o primeiro não responder | @li2024collecting, MECIR C49, sec. 5.2.3 |
+| Erratas e consistência | Examinar retratações e erratas (obrigatório); conferir magnitude e direção contra o estudo (obrigatório); números só em figura, digitalizar com software | @li2024collecting, MECIR C48, C51, sec. 5.5.8 |
+
+A evidência sobre dupla extração não é unânime. O Handbook cita um estudo em que a extração dupla independente teve menos erros que a extração única seguida de verificação [@li2024collecting, sec. 5.5.2]; num ensaio cruzado com 26 pares de extratores, os erros foram 17% na verificação assistida por software, 16% na verificação simples e 15% na extração independente, a mais demorada, e os autores concluem que ela pode ser necessária só para itens complexos [@li2019randomized]. Numa revisão de 25 documentos de orientação, 18 recomendam pilotar o formulário numa amostra de estudos e 17, extração por pelo menos duas pessoas [@buchter2020development]. As diretrizes de meta-análise em economia pedem dois ou mais codificadores com medida de concordância, mas aceitam que um segundo revisor confira aleatoriamente uma proporção substancial da literatura, se o protocolo disser e justificar [@havranek2020reporting, sec. 2.2, 3]. É a lógica da especificação desta base: verificação integral dos números e amostra cega para as categóricas. As fórmulas de κ e PABAK estão na @sec-05-regras; a validação quando um modelo de linguagem extrai, na @sec-11-regras.
+
+::: {.callout-important}
+## Regras invioláveis desta etapa
+
+1. Direção pelo estimador pontual, alinhada à `direcao_desejada` do protocolo; significância sempre em variável separada.
+2. Nenhum número de efeito entra na síntese sem trecho, página e conferência contra a fonte.
+3. Toda conversão registra `formula_id`, variância e se é aproximada.
+4. Revisões e meta-análises nunca entram no mesmo conjunto de síntese que estudos primários (em rápidas e *overviews*, só no nível de revisão, com controle de sobreposição); simulações nunca entram como estudo primário.
+5. Ausência de dado nunca vira zero, "não" ou "sem efeito", nem justifica exclusão silenciosa.
+:::
+
+## Mecanismo e moderador: o que codificar {#sec-07-conceitos}
+
+### Mecanismo
+
+Hedström e Ylikoski resumem o núcleo comum das definições: o mecanismo é identificado pelo efeito que produz, é causal, tem uma estrutura que a explicação torna visível (por isso reduzi-lo a uma variável interveniente perde o essencial) e forma hierarquias [@hedstrom2010causal, p. 50-52]. Um esquema de mecanismo diz como o efeito poderia ser produzido; a evidência sobre entidades, atividades e relações o torna plausível, e essa checagem separa a explicação da mera narrativa [@hedstrom2010causal, p. 52-53]. Mecanismos apoiam a inferência causal e a extrapolação, mas o problema costuma ser discriminar entre mecanismos possíveis [@hedstrom2010causal, p. 54], e a pergunta relevante é que acesso ao processo causal uma evidência oferece, não se o método é quantitativo ou qualitativo [@hedstrom2010causal, p. 58].
+
+Kaidesoja distingue três conceitos de mecanismo com pressupostos incompatíveis e defende mantê-los separados [@kaidesoja2021three, p. 15, 29]:
+
+| Conceito | O que é | Evidência típica | Código na ficha |
+|---|---|---|---|
+| Variável interveniente | Variável entre X e Y, identificada pelo mesmo procedimento de elaboração que detecta confundimento e moderação | Correlações com e sem a variável de teste [@kaidesoja2021three, p. 17] | `mediador estatístico` |
+| Relação contrafactual num modelo estrutural | Seta de um DAG ou equação estrutural, suposta invariante e modular | Modelos de equações estruturais, desenhos que imitam experimentos [@kaidesoja2021three, p. 18-22] | `mediação`, com os pressupostos |
+| Estrutura de interação de um processo social | Atores situados e suas interações produzindo o resultado | Análise narrativa, *process tracing*, simulação baseada em agentes [@kaidesoja2021three, p. 23-24] | `rastreamento de processo`, `relato de atores`, `sequência de eventos`, `comparação entre casos` |
+
+A confiança num mecanismo aumenta quando ele é confirmado por métodos e dados independentes entre si [@kaidesoja2021three, p. 27-28]; por isso a ficha registra o tipo de evidência de cada estudo, e não só a descrição.
+
+Na avaliação realista, mecanismo é a combinação dos recursos oferecidos pelo programa com o raciocínio dos participantes; Dalkin e colegas propõem separá-los em M(recurso) + C → M(raciocínio) = O, o que ajuda a distinguir mecanismo de contexto e evita confundir a estratégia do programa com o mecanismo [@dalkin2015whats, p. 3-4]. No exemplo deles, o registro de cuidados paliativos (recurso), usado com idosos de trajetória de doença imprevisível (contexto), gera ansiedade nos profissionais (raciocínio) e menos registros (resultado) [@dalkin2015whats, p. 5]. Em política pública: câmeras de vigilância não reduzem o crime por si; quando reduzem, é por convencer potenciais infratores de que o risco de detecção aumentou [@dalkin2015whats, p. 1-2]. A proposta OQF traz exemplos brasileiros: mediação mostrando que o efeito das Delegacias da Mulher sobre a legitimidade da polícia passa pela percepção de segurança, testes com subconjuntos de dados sobre o Luz para Todos e entrevistas, observação e triangulação em estudos qualitativos [@schaefer_oqfunciona, p. 23].
+
+Regras de codificação:
+
+1. `mecanismo_status`: não discutido, hipotetizado ou testado; a proposta OQF pede verificar se os estudos mencionam, testam ou identificam mecanismos [@schaefer_oqfunciona, p. 22].
+2. `mecanismo_evidencia`: mediação, teste de canal, rastreamento de processo, relato de atores, sequência de eventos, análise contrafactual, comparação entre casos [@schaefer_oqfunciona, p. 23; @schaefer2026codigos, aba b1_qualitativo_expl].
+3. Recurso, raciocínio e contexto em campos próprios, cada um com trecho [@dalkin2015whats, p. 4].
+4. Padrão comparativo não é mecanismo: "toda vez que X, Y" é diferente de "X ativa Z que produz Y porque..." [@schaefer2026codigos, aba b1_qualitativo_expl].
+5. Registra-se só o mecanismo que o estudo menciona, testa ou identifica [@schaefer_oqfunciona, p. 22], com trecho literal e página; hipóteses da equipe vão para a síntese, rotuladas como tais (@sec-08b-regras).
+
+Campos estruturados importam porque texto livre é onde a concordância cai: na mesma revisão A, a variável aberta de mecanismo teve 16,7% de concordância em 12 comparações, e o bloco a1, 44,4%.
+
+### Moderador e efeitos heterogêneos
+
+Chen distingue o mecanismo mediador, que se interpõe entre componentes do programa, do moderador, em que a relação é condicionada por um terceiro fator [@dalkin2015whats, p. 2]; na proposta OQF, moderadores são fatores de contexto (complexidade da intervenção, características de beneficiários e implementadores, qualidade das entregas) que produzem efeitos heterogêneos [@schaefer_oqfunciona, p. 23]. Cintron e colegas examinaram 54 estudos de 2019 sobre efeitos de políticas sociais na saúde: 24 (44%) relataram efeitos heterogêneos; desses, 15 (63%) declararam a intenção a priori, 17 (71%) usaram só estratificação, 5 (21%) termo de interação, 2 (8%) os dois e nenhum usou algoritmos orientados por dados [@cintron2022heterogeneous, p. 79, 81].
+
+| Método [@cintron2022heterogeneous, p. 80] | O que permite concluir | O que extrair |
+|---|---|---|
+| Estratificação | Descreve o efeito em cada subgrupo; não testa a diferença, mas fornece resultados para testes em revisões futuras | Estimativa, EP e n por subgrupo |
+| Termo de interação | Quantifica a diferença entre subgrupos e seu p | Coeficiente e EP da interação, mais as estimativas por subgrupo |
+| Algoritmo orientado por dados | Heterogeneidade exploratória em subgrupos não pré-especificados, com validação cruzada | Algoritmo, variáveis candidatas, subgrupos encontrados |
+
+O formulário desses autores registra, por estimativa heterogênea, desfecho, avaliação a priori, justificativa teórica, método, subgrupos, estimativas, n, EP, IC, significância, p e medida de efeito [@cintron2022heterogeneous, p. 83]. Eles recomendam relatar resultados nulos de todos os subgrupos pré-especificados, porque estimativas imprecisas publicadas com sua incerteza podem ser combinadas depois, e lembram que a pesquisa qualitativa ajuda a achar fontes de heterogeneidade [@cintron2022heterogeneous, p. 82]. A regra da skill segue isso: subgrupos entram com EP qualquer que seja o p. Quando a heterogeneidade é a própria pergunta, cada subgrupo vira linha: Zidar estima efeitos de cortes de imposto por grupo de renda e conclui que a relação com o emprego vem sobretudo dos cortes para grupos de renda mais baixa [@zidar2017tax, resumo e p. 1-2]. A moderação entre estudos é tema da @sec-08a-regras.
+
+## Desenho de identificação e estimando {#sec-07-desenhos}
+
+Keele apresenta a inferência causal a partir das hipóteses que dão interpretação causal a uma estimativa, as hipóteses de identificação [@keele2015statistics], e o Anexo G da proposta OQF remete a ele para classificar a estratégia [@schaefer_oqfunciona, p. 88]. A ficha registra estratégia declarada, hipóteses, testes apresentados e estimando; julgar se as hipóteses se sustentam é risco de viés (@sec-06-regras).
+
+| Desenho | Hipótese de identificação | Estimando | O que extrair |
+|---|---|---|---|
+| Experimento aleatorizado | Tratamento independente dos resultados potenciais; diferença de médias = ATT = ATE [@castro2024avaliacao, p. 12] | ATE | Unidade de aleatorização, teste de balanceamento [@castro2024avaliacao, p. 15], EP com *clusters* |
+| Cumprimento parcial ou encorajamento | Sorteio como instrumento; monotonicidade | ITT pela forma reduzida; LATE dos *compliers*, por Wald ou MQ2E [@castro2024avaliacao, p. 22-24] | Qual foi estimado; *take-up* diferencial. O ITT, efeito de ofertar a política, interessa em muitos contextos porque o governo só consegue ofertar o programa [@castro2024avaliacao, p. 24] |
+| Regressão descontínua | Continuidade dos resultados potenciais no corte; sem manipulação da variável de corte [@castro2024avaliacao, p. 36] | Efeito local no corte; na versão *fuzzy*, a descontinuidade é instrumento [@castro2024avaliacao, p. 38] | Janela, forma funcional, teste de densidade, continuidade de outras variáveis, cortes placebo [@castro2024avaliacao, p. 35-37] |
+| Diferenças em diferenças | Não observáveis fixos no tempo e tendências paralelas, não testáveis; anos pré-tratamento ajudam a avaliar [@castro2024avaliacao, p. 48] | O declarado pelos autores | Períodos pré, composição dos grupos em cortes transversais [@castro2024avaliacao, p. 52-53], adoção escalonada e estimador [@castro2024avaliacao, p. 53], EP com *cluster* [@castro2024avaliacao, p. 54] |
+| Controle sintético | A unidade sintética reproduz a trajetória pré-tratamento, com muitos períodos [@castro2024avaliacao, p. 57] | Diferença entre tratada e sintética por período [@castro2024avaliacao, p. 56-57] | Pesos, ajuste pré, inferência por permutação |
+| Pareamento | Independência condicional aos observáveis e suporte comum [@castro2024avaliacao, p. 68] | ATT (e ATE sob a hipótese); com *trimming*, efeito só na região de suporte [@castro2024avaliacao, p. 69, 72] | Covariáveis pré-intervenção [@castro2024avaliacao, p. 67], critério de pareamento, placebos [@castro2024avaliacao, p. 71-72] |
+| Painel com efeitos fixos | Não observáveis da unidade constantes no tempo (a H1 do DiD) [@castro2024avaliacao, p. 48] | O declarado pelos autores | Efeitos fixos, tendências, defasagens |
+| Antes e depois; regressão sem estratégia | Nenhuma além de controlar observáveis | Associação | Controles e justificativa |
+
+Na amostra de Cintron e colegas, os desenhos mais comuns foram diferenças em diferenças (12), antes e depois (9), regressão (7) e painel com efeitos fixos (6) [@cintron2022heterogeneous, p. 81]. Em estudos não aleatorizados, estimativas ajustadas costumam ser preferíveis a estatísticas por grupo, e as variáveis de ajuste devem ser registradas [@higgins2024choosing, sec. 6.3]. Estimandos diferentes não são intercambiáveis: a especificação desta base manda analisá-los separadamente ou tratar a diferença como indireção na certeza (@sec-09-regras).
+
+## Tamanhos de efeito: extração, alinhamento e conversão {#sec-07-efeitos}
+
+### Princípios
+
+1. **Dado mais detalhado disponível** (obrigatório): médias, DP e n por grupo ou tabelas 2×2; na falta, estimativas de efeito, IC, estatísticas de teste ou valores-p [@li2024collecting, MECIR C47].
+2. **Como reportado, converter depois**, por computador, com registro do original, do calculado e da conta [@li2024collecting, sec. 5.4.3, 5.7].
+3. **Alinhar a direção antes de padronizar.** Escalas em sentidos opostos exigem multiplicar um conjunto por −1, sem alterar o DP, e relatar a inversão [@higgins2024choosing, sec. 6.5.1.2, MECIR C61]. Na skill, $y^{\text{alinhado}} = s \cdot y$, com $s = +1$ se `direcao_desejada = aumentar` e $s = -1$ se `reduzir`. O t "normativamente ajustado" de Gerring e colegas aplica o princípio, mas os autores marcam cerca de 15% das análises como de classificação discutível e codificam alguns desfechos conforme o contexto (fecundidade alta é problema em países em desenvolvimento; baixa, em desenvolvidos) [@gerring2022democracy, p. 365]. Por isso a direção desejada é declarada por desfecho e contexto no protocolo (@sec-02-regras), e não linha a linha.
+4. **Registrar qual DP padroniza.** A diferença padronizada supõe que diferenças de DP entre estudos refletem escalas; o g de Hedges usa o DP combinado, supondo DP semelhantes nos grupos, e o Δ de Glass, o DP do comparador [@higgins2024choosing, sec. 6.5.1.2]. Efeitos padronizados pela variação de médias de escola ou de ganhos tendem a ser de uma vez e meia a três vezes maiores que os padronizados pelo DP de alunos, e sem linha de base o DP do controle é preferível, porque a intervenção pode alterar a variação do tratado [@kraft2020interpreting, versão do autor, p. 14-15].
+5. **`formula_id`, `aproximado` e variância** em toda estimativa convertida; aproximadas entram em sensibilidade (@sec-08a-regras).
+6. **Valor t não é tamanho de efeito**: mede a estimativa relativa ao EP [@gerring2022democracy, p. 364]. Guarda-se o t para converter, não para comparar.
+7. **Guardar a precisão do original.** Gerring e colegas descartaram da figura t calculados a partir de coeficiente e EP publicados com um único dígito [@gerring2022democracy, p. 365].
+
+### Fórmulas de base
+
+Com o grupo 1 como tratamento [@wilson2023practical, eq. 1.1]:
+
+$$
+s_p = \sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}, \qquad
+d = \frac{\bar{x}_1-\bar{x}_2}{s_p}, \qquad
+V_d = \frac{n_1+n_2}{n_1 n_2} + \frac{d^2}{2(n_1+n_2)}
+$$
+
+$$
+J = 1 - \frac{3}{4(n_1+n_2-2)-1}, \qquad g = J\,d, \qquad V_g = J^2 V_d
+$$
+
+DP e EP a partir do que o estudo informa [@wilson2023practical, eq. 1.2; @higgins2024choosing, sec. 6.3.1, 6.5.2.3]:
+
+$$
+s = EP \cdot \sqrt{n}, \qquad
+EP = \frac{\text{limite superior} - \text{limite inferior}}{3{,}92}, \qquad
+EP_{\text{DM}} = \frac{\lvert \text{DM} \rvert}{t}, \qquad
+s_p = \frac{EP_{\text{DM}}}{\sqrt{1/n_1 + 1/n_2}}
+$$
+
+O divisor 3,92 vale para IC de 95% (3,29 para 90% e 5,15 para 99%); com menos de cerca de 60 participantes por grupo, o IC deveria ter usado a distribuição t [@higgins2024choosing, sec. 6.3.1, 6.5.2.3]. Tomar EP por DP é um erro particularmente enganoso, e a dúvida vai aos autores [@higgins2024choosing, sec. 6.5.2].
+
+### Tabela de conversões
+
+Os `formula_id` são os da tabela de conversões da skill; fora dela, a estimativa é aproximada e testada em sensibilidade (E).
+
+| `formula_id` | Entrada | Conversão para d | Variância | Pressupostos e avisos | Aprox. | Fonte |
+|---|---|---|---|---|---|---|
+| `md_sd` | Médias, DP, n por grupo | Fórmula de base | $V_d$ de base | Conferir se é DP e não EP; com DP da amostra total, remover a variância entre grupos | 0 | @wilson2023practical, eq. 1.1-1.3 |
+| `t_ind` | t de duas médias independentes, $n_1$, $n_2$ | $d = t\sqrt{(n_1+n_2)/(n_1 n_2)}$ | $V_d$ de base | t de coeficiente com covariáveis vai para `beta_sd` ou `parcial_r_d`; sinal = tratamento − controle | 0 | @wilson2023practical, eq. 1.9 |
+| `p_n_t` | p exato, $n_1$, $n_2$, sinal de outra fonte | $t = \lvert t^{-1}_{p/2;\,n_1+n_2-2} \rvert$, depois `t_ind` | $V_d$ de base | p suposto bilateral; "p < 0,05" só com a aproximação conservadora p = 0,05; "NS" não converte | 1 | @wilson2023practical, eq. 1.11; @higgins2024choosing, sec. 6.5.2.3 |
+| `f1_ind` | F com 1 gl no numerador, $n_1$, $n_2$ | $d = \pm\sqrt{F(n_1+n_2)/(n_1 n_2)}$ | $V_d$ de base | F não tem sinal: vem das médias, com trecho | 0 | @wilson2023practical, eq. 1.12 |
+| `beta_sd` | Coeficiente B de indicador binário de tratamento, EP de B, DP do desfecho e seu tipo | $d = B/s$ (variantes abaixo) | $(d \cdot EP_B/B)^2 = (EP_B/s)^2$ | B é diferença ajustada; declarar o tipo de $s$; sinalizar ITT, LATE ou efeito local; não serve para X contínuo | 0 | @wilson2023practical, eq. 1.31 |
+| `or_logit` | OR e IC, ou ln(OR) e EP | $d = \ln(OR)\cdot\sqrt{3}/\pi$ | $V_{\ln OR}\cdot 3/\pi^2$ | Variável latente logística com mesma variabilidade nos grupos | 0 | @deeks2024analysing, sec. 10.6; @wilson2023practical, eq. 1.33 |
+| `dif_prop_contagens` | Proporções do desfecho binário no tratamento ($p_1$) e no controle ($p_0$), $n_1$, $n_2$ | $\ln OR = \text{logit}(p_1) - \text{logit}(p_0)$; $d = \ln(OR)\cdot\sqrt{3}/\pi$ | $V_{\ln OR} = \frac{1}{n_1 p_1} + \frac{1}{n_1(1-p_1)} + \frac{1}{n_2 p_0} + \frac{1}{n_2(1-p_0)}$, vezes $3/\pi^2$ | Tabela 2×2 de proporções brutas (desenho que não é de regressão); variável latente logística; proporções entre 0 e 1, nunca em percentual | 0 | @chinn2000simple; @deeks2024analysing, sec. 10.6; @viechtbauer2026metafor |
+| `dif_prop_lpm` | Efeito em pontos percentuais (modelo de probabilidade linear, DiD ou RDD sobre desfecho binário), EP do efeito em pp ($EP_{pp}$) ou seu IC, e $p_0$ do controle | $p_1 = p_0 + \text{efeito}_{pp}/100$; depois como `dif_prop_contagens` | $V_{\ln OR} = (EP_{pp}/100)^2/[p_1(1-p_1)]^2$ (método delta com $p_0$ fixo, cálculo nosso); sem $EP_{pp}$, pelas contagens | Trata o log OR de um efeito ajustado como o de uma tabela 2×2; $p_0$ do controle no mesmo período; RDD e LATE são efeitos locais e vão para análise separada ou sensibilidade | 1 | @chinn2000simple; @deeks2024analysing, sec. 10.6 |
+| `rr_logit` | Razão de riscos (RR) com IC ou EP de ln RR, e $p_0$ do controle | $OR = RR(1-p_0)/(1 - RR\,p_0)$; depois $d = \ln(OR)\cdot\sqrt{3}/\pi$ | $EP_{\ln OR} = EP_{\ln RR}/(1 - RR\,p_0)$ (método delta com $p_0$ fixo, cálculo nosso); $V_d = EP_{\ln OR}^2 \cdot 3/\pi^2$ | $RR\,p_0 < 1$; RR ajustado por covariáveis com $p_0$ bruto é aproximação | 1 | @zhang1998whats; @chinn2000simple |
+| `r_d` | r ponto-bisserial, $n_1$, $n_2$ | $d = r/\sqrt{(1-r^2)\,p_1(1-p_1)}$, $p_1 = n_1/N$ | $V_d$ de base | X dicotômico; r entre contínuas é sintetizado em z de Fisher, $V_z = 1/(n-3)$ | 0 | @wilson2023practical, eq. 1.26, 3.1 |
+| `r_d_n_total` | r ponto-bisserial e só N, sem $n_1$ e $n_2$ | `r_d` com $p_1 = 0{,}5$: $d = 2r/\sqrt{1-r^2}$ | $V_d$ de base com $n_1 = n_2 = N/2$ | Supõe grupos de mesmo tamanho; com grupos desbalanceados, subestima o d que `r_d` daria, porque $p_1(1-p_1)$ é máximo em 0,5; vai para a sensibilidade | 1 | @wilson2023practical, eq. 1.26 (com $p_1 = 0{,}5$, cálculo nosso) |
+| `parcial_r_d` | t do coeficiente focal (ou $r_p$), n, m preditores (com o focal, sem intercepto) | $r_p = t/\sqrt{t^2 + n - m - 1}$; d via `r_d` só como aproximação | $(1-r_p^2)^2/(n-m)$; em z, $1/(n-m-2)$ | Depende das covariáveis de cada modelo; sinal vem do t; síntese possível em $r_p$, em análise própria | 1 | @aloe2012effect; @viechtbauer2026metafor |
+| `parcial_r_d_gl` | t e gl residual, sem o número de preditores | $r_p = t/\sqrt{t^2 + gl}$, com o gl residual no lugar de $n - m - 1$; d via `r_d` | $(1-r_p^2)^2/gl$; sem gl, $(1-r_p^2)^2/(n-1)$, que é o caso $m = 1$ | Mesmos pressupostos de `parcial_r_d`; o denominador da variância fica uma unidade abaixo de $n - m$, então a variância sai um pouco maior; extrair m sempre que o modelo for descrito | 1 | @aloe2012effect; @viechtbauer2026metafor |
+| `mann_whitney_z` | z do teste de postos, $n_1$, $n_2$, sentido da diferença | $r = z/\sqrt{N}$, depois `r_d` | $V_d$ de base | Nunca tratar o p como de teste t; conferir lateralidade do p e sentido do z | 1 | @fielperes2026effect, eq. 2 |
+| `mediana_iqr_wan` | Mediana $m$, quartis $q_1$ e $q_3$ e n de cada grupo | $\bar{x} \approx (q_1+m+q_3)/3$; $s \approx (q_3-q_1)/\eta(n)$; depois `md_sd` | Como `md_sd` | Só quando há os dois quartis de cada grupo; distribuição aproximadamente normal; com assimetria, não estimar DP pelo IQR | 1 | @wan2014estimating, p. 6; @higgins2024choosing, sec. 6.5.2.5 |
+| `mediana_iqr_aprox` | Mediana e amplitude interquartil, sem os quartis | $\bar{x} \approx m$; $s \approx \text{IQR}/1{,}35$; depois `md_sd` | Como `md_sd` | Só com n grande e distribuição próxima da normal; a média não é corrigida pela assimetria | 1 | @higgins2024choosing, sec. 6.5.2.5 |
+| `g_informado`, `d_informado` | g ou d reportado, com EP ou n | Nenhuma (J se for d) | $EP^2$ ou $V_d$ de base | Conferir se é g, d combinado ou Δ de Glass; os termos são usados de forma intercambiável | 0 | @higgins2024choosing, sec. 6.5.1.2; @harrer2021doing, sec. 3.4.1 |
+
+Detalhes das linhas mais usadas em avaliação de políticas:
+
+- **`beta_sd` com DP da amostra total.** Remove-se a variância associada ao efeito para obter o DP dentro dos grupos [@wilson2023practical, eq. 1.31]:
+  $$
+  s_p = \sqrt{\frac{s_y^2\,(N-1) - B^2\, n_1 n_2 / N}{N-2}}, \qquad d = \frac{B}{s_p}
+  $$
+  É a conversão que `esc_B` aplica no pacote `esc`, que implementa a calculadora de Wilson em R [@ludecke2019esc]. Com DP do controle, $d = B/s_c$ e `dp_y_tipo = controle`. A variância pelo EP de B mantém a estatística do coeficiente e é preferível porque incorpora as covariáveis [@wilson2023practical, eq. 1.31]; na página consultada ela aparece impressa como $(d \cdot B/EP_B)^2$, que só reproduz o t do coeficiente na forma $(d \cdot EP_B/B)^2$.
+- **`mediana_iqr_wan` e `mediana_iqr_aprox`.** Para n grande, $\eta(n) \approx 2\,\Phi^{-1}\!\left((0{,}75n-0{,}125)/(n+0{,}25)\right)$, que converge para cerca de 1,35, o divisor da Cochrane; com n pequeno, o de Wan e colegas é mais preciso [@wan2014estimating, p. 6]. Quando o estudo informa só a amplitude interquartil, sem os quartis, não há como aplicar a fórmula da média de Wan e colegas: a conversão usa o divisor 1,35, que só vale com n grande e distribuição próxima da normal [@higgins2024choosing, sec. 6.5.2.5], e recebe outro `formula_id` para não parecer a de Wan. A mediana só substitui a média com distribuição simétrica, e medianas costumam ser reportadas justamente por assimetria [@higgins2024choosing, sec. 6.5.2.9].
+- **`r_d_n_total` e `parcial_r_d_gl`.** São as duas saídas para quando falta um insumo da linha principal. Sem $n_1$ e $n_2$, a proporção do grupo tratado é desconhecida e a fórmula de @wilson2023practical [eq. 1.26] é aplicada com $p_1 = 0{,}5$. Sem o número de preditores, o gl residual do modelo faz o papel de $n - m - 1$; a variância de grande amostra de Aloe e Becker, implementada no `metafor`, usa $n - m$ no denominador [@aloe2012effect; @viechtbauer2026metafor], e por isso a rota pelo gl dá uma variância um pouco maior. As duas saem com `aproximado = 1`.
+- **Desfechos binários de avaliação de política** (`dif_prop_contagens`, `dif_prop_lpm`, `rr_logit`). Matrícula, frequência, evasão e emprego formal costumam aparecer como efeito em pontos percentuais de um modelo de probabilidade linear, de diferença em diferenças ou de regressão descontínua, sem o DP do desfecho que `beta_sd` exige. Deixar essas estimativas fora da síntese enviesaria a amostra para os estudos que publicam DP. A saída é passar pelo log da razão de chances: com a proporção do controle $p_0$ e o efeito em pontos percentuais, reconstrói-se $p_1$, calcula-se $\ln OR$ e converte-se para d pela aproximação logística, que supõe uma variável latente com distribuição logística [@chinn2000simple; @deeks2024analysing, sec. 10.6]. A variância da tabela 2×2 é a que o `metafor` usa para o log OR [@viechtbauer2026metafor]; quando o estudo dá o erro-padrão do efeito em pontos percentuais, a variância do log OR sai pelo método delta com $p_0$ tratado como fixo (cálculo nosso), o que ignora a incerteza de $p_0$ e por isso a linha é aproximada. Razão de riscos vai a razão de chances pela fórmula de Zhang e Yu, que depende do risco no controle [@zhang1998whats]. Em todos os casos a proporção vai entre 0 e 1, o efeito em pontos percentuais, e sem $p_0$ no texto a linha fica sem cálculo, com pergunta aos autores. Um exemplo de conferência: com $RR = 1{,}25$ e $p_0 = 0{,}40$, $OR = 1{,}25 \times 0{,}60/(1 - 0{,}50) = 1{,}5$, e a fórmula de Zhang e Yu devolve $RR = 1{,}5/(0{,}60 + 0{,}40 \times 1{,}5) = 1{,}25$.
+- **Imputar DP** de outros estudos é aceitável para uma pequena proporção, com sensibilidade; com a maioria sem DP, não se imputa, e em diferenças padronizadas um DP maior puxa o resultado para a ausência de efeito [@higgins2024choosing, sec. 6.5.2.7].
+- **Coeficientes de modelos diferentes** só são comparáveis se o modelo for o mesmo; controles diferentes tornam os b não diretamente comparáveis [@harrer2021doing, sec. 17.2]. A ficha guarda controles e estimador, e as diretrizes de meta-análise em economia pedem codificar também tipo de modelo, variáveis relevantes omitidas, tipo de dado e a forma original do efeito antes da conversão [@havranek2020reporting, sec. 2.2].
+
+```r
+# Ilustrativo: coeficiente de tratamento (formula_id = beta_sd), DP do controle
+d   <- B / s                        # B, ep_B, s, n1, n2 com página registrada
+v_d <- (ep_B / s)^2
+J   <- 1 - 3 / (4 * (n1 + n2 - 2) - 1)
+g   <- J * d; v_g <- J^2 * v_d
+g_alinhado <- ifelse(direcao_desejada == "reduzir", -g, g)
+```
+
+### Conferências de plausibilidade
+
+A especificação desta base transforma estas conferências em asserções automáticas antes da síntese.
+
+| Conferência | Alerta | Ação |
+|---|---|---|
+| Valores possíveis | DP ≤ 0, n ≤ 0, $n_1 + n_2 > N$, p fora de [0, 1], OR ≤ 0, $\lvert r \rvert > 1$; proporção fora de (0, 1) ou escrita em percentual, $p_0 + \text{efeito}_{pp}/100$ fora de (0, 1), $RR\,p_0 \geq 1$ | Voltar à página; corrigir ou marcar como não utilizável |
+| Coerência interna | p incompatível com t e gl; IC que não contém a estimativa; médias e DP que implicam t muito diferente do teste relatado | Registrar a inconsistência; contatar autores; sensibilidade com as alternativas |
+| DP ou EP | Número após ± ou entre parênteses sem rótulo; DP implausível para a escala | Conferir no texto e perguntar aos autores [@higgins2024choosing, sec. 6.5.2] |
+| Magnitude | $\lvert g \rvert > 2$ | Conferir EP no lugar de DP, DP de agregados, unidade da escala |
+| Sinal | Sinal diferente do descrito no texto; F ou p sem fonte de sinal | Registrar a fonte do sinal com trecho |
+| Unidade de análise | Observações muito acima das unidades aleatorizadas, sem ajuste para *clusters* | Registrar o nível de aleatorização; ajustar ou sinalizar [@higgins2024choosing, sec. 6.2.1, MECIR C70] |
+| Grupos múltiplos | O mesmo controle em duas comparações da mesma síntese | Combinar grupos ou separar comparações [@higgins2024choosing, sec. 6.2.9, MECIR C66] |
+
+### O que extrair para interpretar a magnitude
+
+Os rótulos de magnitude dependem do campo e são fixados no protocolo (@sec-03-regras); o uso está na @sec-08a-regras. Cohen propôs d = 0,20, 0,50 e 0,80 (e r = 0,10, 0,30 e 0,50), mas recomendava essas convenções só quando não houvesse estimativas da área [@brydges2019effect, p. 1-2; @kraft2020interpreting, versão do autor, p. 3]. Distribuições empíricas como a de Brydges usam valores absolutos [@brydges2019effect, p. 3] e se aplicam a $\lvert g \rvert$ depois do alinhamento. Na extração, registram-se as características que mudam a magnitude esperada:
+
+| Variável | Por que extrair |
+|---|---|
+| `natureza_estimativa` (causal ou correlacional) | Relações correlacionais tendem a ser maiores que efeitos causais [@kraft2020interpreting, versão do autor, p. 9-10] |
+| `tipo_instrumento` | Testes do pesquisador alinhados à intervenção dão efeitos de duas a quatro vezes maiores que testes padronizados amplos [@kraft2020interpreting, versão do autor, p. 10] |
+| `proximidade_desfecho`, `tempo_desde_intervencao` | Desfechos próximos e medidos logo depois tendem a ter efeitos maiores [@kraft2020interpreting, versão do autor, p. 10-11] |
+| `dp_y_tipo` e homogeneidade da amostra | DP de agregados, ganhos ou amostras homogêneas inflam o efeito padronizado [@kraft2020interpreting, versão do autor, p. 14-15] |
+| `custo_por_participante`, escala | Efeitos iguais têm relevância diferente conforme custo e possibilidade de expansão [@kraft2020interpreting, versão do autor, p. 17-18] |
+
+## Passo a passo {#sec-07-passos}
+
+1. **Confira o protocolo congelado** (@sec-03-regras): codebook v0, `direcao_desejada` por construto e contexto, regra do modelo principal, DP preferido, conversões permitidas, *benchmarks* e plano de validação.
+2. **Ligue relatos a estudos e confirme que cada PDF é o texto certo** (@sec-05-regras); na revisão A da @sec-11-licoes, 3 PDFs baixados não correspondiam ao artigo incluído.
+3. **Monte o formulário** a partir das tabelas que a revisão vai apresentar, com perguntas fechadas, opções de ausência e instruções ao lado de cada item [@li2024collecting, sec. 5.4.3]; declare a convenção de paginação e o *offset* de teses e capítulos.
+4. **Pilote e treine (portão G6).** Dois extratores aplicam o formulário a 2 ou 3 estudos de cada bloco, comparam, conferem contra a fonte e revisam as instruções; mudança grande pede novo teste e pode obrigar a revisitar os já extraídos [@li2024collecting, sec. 5.4.3, 5.5.3].
+5. **Classifique o tipo de estudo** e abra uma ficha por desenho.
+6. **Extraia as dimensões formal e metodológica**, com estratégia, hipóteses de identificação, testes e estimando.
+7. **Extraia os efeitos:** todas as estimativas elegíveis, como reportadas, com modelo, subgrupo, momento, n, DP e seu tipo, controles, trecho e página; marque o modelo principal e o critério.
+8. **Extraia mecanismo, moderador, percepção, implementação e custo**, com trecho (@sec-07-conceitos).
+9. **Converta e alinhe** pela tabela de conversões, com `formula_id`, `aproximado`, variância e avisos.
+10. **Verifique 100% dos números** contra a página e rode as conferências de plausibilidade; número que não passa volta ao extrator ou vira pergunta aos autores.
+11. **Valide as categóricas:** segundo codificador cego em pelo menos 20% dos estudos (mínimo 10), estratificados por tipo; concordância, κ e PABAK por variável; variável abaixo de 0,7 ou de 80% é redefinida e recodificada em todos. Repita uma checagem menor no meio da extração, porque a codificação deriva [@belur2021interrater].
+12. **Resolva divergências** por discussão, terceiro revisor e contato com autores, guardando a versão "como extraída" [@li2024collecting, sec. 5.5.5].
+13. **Trate o dado que falta ou não fecha:** contate os autores, registre tentativa e resposta e nunca exclua em silêncio; exclusão por ausência de resultado utilizável só se prevista no protocolo, com motivo.
+14. **Consolide e congele (portão G7):** base mestre com uma linha por ficha, tabela de efeitos com uma linha por estimativa, versão e *hash*, desvios do protocolo registrados.
+
+## O que as diretrizes exigem {#sec-07-diretrizes}
+
+| Diretriz | Item | Exigência | Como atender |
+|---|---|---|---|
+| PRISMA 2020 | 9 | Quantos revisores coletaram dados de cada relato, se independentes, como dados foram obtidos ou confirmados com investigadores, ferramentas de automação [@page2021prisma] | Piloto, dupla extração ou verificação, contato com autores, uso de IA (@sec-11-regras) |
+| PRISMA 2020 | 10a, 10b | Definir desfechos e dizer se todos os resultados compatíveis foram buscados e, se não, como se escolheu; definir as demais variáveis e os pressupostos sobre informação faltante [@page2021prisma] | Construtos, regra do modelo principal, codebook, convenção de ausência |
+| PRISMA 2020 | 12, 13b | Medida de efeito por desfecho; preparação dos dados, com estatísticas faltantes e conversões [@page2021prisma] | g alinhado; tabela de conversões com `formula_id` |
+| PRISMA 2020 | 17, 19, 27 | Características de cada estudo; estatísticas por grupo e estimativa com precisão; formulários, dados e código disponíveis [@page2021prisma] | Tabelas geradas da base; codebook, base, tabela de efeitos e scripts públicos |
+| PRISMA-ScR | 10, 11, 15, 17 | *Charting* com formulários calibrados ou testados, independente ou em dupla; variáveis, pressupostos e simplificações; características e dados de cada fonte [@tricco2018prisma] | Idem, em revisões de escopo |
+| Cochrane (MECIR) | C42-C51 | Relatos por estudo; formulário pilotado; características suficientes; dupla extração de desfechos; dados mais detalhados; erratas; dados não publicados; braços elegíveis; conferência de magnitude e direção [@li2024collecting] | "Qualidade da extração" e princípios da @sec-07-efeitos |
+| Cochrane (MECIR) | C61, C66, C70 | Escalas no mesmo sentido; grupos múltiplos sem dupla contagem; *clusters* e pareamento considerados [@higgins2024choosing] | `direcao_desejada`; conferências de plausibilidade |
+| MAER-Net | 2.1, 2.2 | Definição do tamanho de efeito com fórmulas de transformação; dois ou mais codificadores com medida de concordância; lista do que foi codificado [@havranek2020reporting] | Tabela de conversões; relatório de concordância; codebook |
+
+Protocolo e revisão devem dizer quais categorias de dados foram extraídas, como os dados de cada relato foram verificados, se os extratores são especialistas no tema, em método ou em ambos, como foram piloto, treinamento e instruções, como se lidou com múltiplos relatos e como se resolveram desacordos [@li2024collecting, sec. 5.5.11].
+
+## Exemplo trabalhado {#sec-07-exemplo}
+
+### Celulares nas escolas: o que a ficha de efeitos deveria registrar
+
+O g de cada estudo foi calculado do coeficiente do modelo principal, dos tamanhos dos grupos e do DP da variável dependente [@schaefer_oqfunciona, p. 32], com código e dados no Anexo J [@schaefer_oqfunciona, p. 103-106]. A tabela refaz as conversões com `esc` e com as fórmulas da @sec-07-efeitos (cálculo nosso); a reanálise da meta-análise está na @sec-08a-exemplo.
+
+| id | Dado no Anexo J | Função | g no Anexo J | Recalculado | O que faltou na ficha |
+|---|---|---|---|---|---|
+| 1 | B = 0,06; DP = 1,013; n = 66.266 e 64.216 | `esc_B` | 0,059 | 0,059 | `dp_y_tipo`; nível de alocação; EP com *clusters* |
+| 3 | B = −0,02; DP = 2,27; n = 4.686 e 4.685 | `esc_B` | −0,008 | −0,009 | `direcao = danosa` (pequena); significância à parte |
+| 4 | B = 6,37; DP = 9,70; n = 16 e 16 | `esc_B` | 0,668 | 0,668 com DP total; 0,640 com B/DP | Tipo do DP; n conflitante com o total de 192 da tabela final |
+| 5 | B = 0,12; DP = 0,31; n = 52 e 425 | `esc_B` | 0,389 | 0,389 | `dp_y_tipo`, estimando |
+| 15 | F = 5,77; n = 25 e 38 | `esc_f` | 0,610 | 0,611 | Fonte do sinal |
+| 20 | F = 3,14; n = 40 e 40 | `esc_f` | 0,392 | 0,392 | Fonte do sinal; n conflitante com o total de 160 |
+| 24 | Médias 9,83 ± 3,25 e 7,11 ± 2,96; U = 1859,5; Z = −2,151; P = ,015; n = 63 e 61 | `esc_t(p = 0.015)` | 0,440 | 0,39 pelo z; 0,87 pelas médias | Inconsistência entre teste e médias; `formula_id`; `aproximado = 1` |
+| 28 | TE = 0,05; seTE = 0,05; "n" = 9 | Nenhuma | 0,05 | Não se aplica | É meta-análise: sai da base |
+
+**O DP precisa de rótulo.** O Anexo J chama o dado de "desvio padrão da variável dependente" [@schaefer_oqfunciona, p. 103], mas `esc_B` o trata como DP da amostra total; só assim o id 4 dá 0,668. Em estudos grandes a diferença some; em pequenos, não. **O sinal precisa de fonte.** `esc_f` e `esc_t` com p devolvem sempre valores positivos, porque usam a raiz de F e o quantil do p bilateral [@ludecke2019esc]; os ids 15 e 20 podem estar certos, mas a ficha precisa do trecho que mostra o tratamento com média maior. No id 24 o Z é negativo, embora o grupo experimental tenha média maior, e por isso o sinal do z, sozinho, não informa o sentido da diferença. **Números que não fecham são dado a registrar, não a escolher.** No trecho do id 24 [@schaefer_oqfunciona, p. 105], as médias e DP implicam t ≈ 4,9, enquanto o teste de postos dá Z = −2,151; P = ,015 está próximo do p unilateral desse z (0,016), e o bilateral seria 0,031 (cálculo nosso). As rotas dão g de 0,39 a 0,87, e ler ± como EP daria DP de cerca de 26 para médias perto de 10, o que também precisa ser conferido contra a escala da prova. A ficha registra as leituras e a pergunta aos autores e, sem resposta, usa `mann_whitney_z` com `aproximado = 1`, testando as demais em sensibilidade [@li2024collecting, sec. 5.2.3; @fielperes2026effect].
+
+A classificação dos desenhos também precisava de regra. A proposta conta os oito estudos causais como três experimentais, quatro de seleção em observáveis, identificados entre parênteses como diferenças em diferenças, e uma meta-análise [@schaefer_oqfunciona, p. 32]; mas diferenças em diferenças se apoia em tendências paralelas, e não em independência condicional aos observáveis [@castro2024avaliacao, p. 48, 68]. E as duas revisões sistemáticas achadas por busca manual entraram na base de 21 trabalhos [@schaefer_oqfunciona, p. 29-31].
+
+A linha do id 24 na tabela de efeitos (colchetes dependem do estudo original, fora do material de exemplo):
+
+| Campo | Valor |
+|---|---|
+| `construto_outcome` / `direcao_desejada` | Desempenho acadêmico / aumentar |
+| `tipo_estatistica` | `mann_whitney` (médias e DP também reportados) |
+| `m1`, `sd1`, `n1` / `m2`, `sd2`, `n2` | 9,83; 3,25 [DP ou EP, com trecho]; 63 / 7,11; 2,96; 61 |
+| `z` / `p` como impresso | −2,151 / ,015 [lateralidade a confirmar] |
+| `formula_id` / `aproximado` | `mann_whitney_z` / 1 |
+| `inconsistencia` | Médias e DP implicam t ≈ 4,9; contato com autores em [data] |
+| `evidencia` / `pagina` | Trecho literal dos resultados / [página] |
+
+### REFIS: da base de decomposição à ficha
+
+A pergunta do REFIS tem quatro desfechos: arrecadação, falência de empresas, empregos e *compliance* tributário [@schaefer2026aula5, p. 6]. Na base de decomposição do REFIS, 20 trabalhos chegaram à planilha final e 15 foram marcados para decomposição; 9 vieram do catálogo de teses e dissertações, 4 da bola de neve, 2 da Web of Science, 2 do OpenAlex, 2 da SciELO e 1 do IPEA [@schaefer2026codigos, `base_decomposição.xlsx`, aba Final]. A tabela usa os resumos registrados na base (mesma fonte) para mostrar decisões que a ficha exige; a classificação é provisória e só se confirma no texto completo.
+
+| id | Trabalho, segundo o resumo | Tipo provisório | Decisão de extração |
+|---|---|---|---|
+| 1 | Percepção da efetividade do REFIS por auditores fiscais e advogados, por questionários com perguntas abertas | a1 | Ator = implementadores e especialistas; percepção com citações; não gera linha na tabela de efeitos |
+| 4 | Transparência das leis do Refis de 2014 e 2017 e impacto sobre emprego por diferenças em diferenças com pareamento; significância "apenas para pequenas empresas" | b2 (a análise da transparência das leis entra como contexto de desenho) | `direcao_desejada = aumentar`; moderador = porte, com estimativa e EP de todos os portes; sinal do texto completo; custo não reportado, com o motivo dado pelos autores |
+| 45 | Refis estadual do Ceará de 2009 por diferenças em diferenças: sem impacto significativo no geral; aumento da inadimplência em setores, como R$ 26.324,88 por contribuinte na fabricação de produtos alimentícios | b2 | Construto *compliance*, `direcao_desejada = reduzir`; efeito geral com estimativa e EP, nunca "sem efeito"; linhas por setor; efeito em reais exige DP para padronizar |
+| 77 | Janela de eventos, quebras estruturais e probit dinâmico com efeitos heterogêneos para os Refis do Ceará de 2013, 2014, 2015 e 2017 | b2 | Regra do modelo principal entre três modelos; persistência maior entre inscritos em dívida ativa como moderador |
+| 193 | Z-scores de insolvência de 140 companhias que aderiram ao PERT, comparadas com empresas similares; testes de médias inconclusivos e melhora na regressão quantílica "dependendo do setor"; contribuição fala em "falta de efetividade" | b2 | Direção desejada conforme a construção do indicador; estimativa e interpretação dos autores em campos separados; moderador = setor |
+| 106 | Modelo com simulações do *tax gap* com e sem parcelamentos | A confirmar: simulação ou estimativa empírica | Efeito só simulado não entra na tabela de efeitos; o raciocínio sobre expectativa de novos parcelamentos pode informar mecanismo hipotetizado |
+
+Três lições. A mesma política tem desfechos com direções desejadas opostas (emprego aumenta, inadimplência diminui), e a declaração vai no protocolo. Resultado significativo só num subgrupo pede a tabela completa de subgrupos, não a frase do resumo [@cintron2022heterogeneous, p. 82]. E a conclusão verbal dos autores pode divergir das estimativas (id 193), por isso as duas vão em campos distintos.
+
+As cinco recusas da base pertencem a outras etapas: três trabalhos que "não testa[m] diretamente o parcelamento", um sobre parcelamento espontâneo com a nota "não é possível extrair os resultados" e um "Não encontrado" [@schaefer2026codigos, `base_decomposição.xlsx`, aba Final]. Os quatro são exclusões por intervenção, com motivo no fluxograma; impossibilidade de extrair não é motivo de exclusão por si só [@li2024collecting, MECIR C49]; e "não encontrado" é relato não recuperado (@sec-05-regras). O fluxograma do caso informa 16 aprovados, 5 excluídos após leitura completa (4 que "não respondiam" e 1 "não localizado") e 9 incorporados por bola de neve, com corpus final de 21 [@schaefer2026aula5, p. 8]: a conta dá 20, e a base tem 4 trabalhos de bola de neve. Contagens digitadas em cada artefato não se reconciliam. O predomínio de dissertações também afeta a extração: a paginação impressa difere da do PDF, e o *offset* precisa estar na ficha para a verificação dos trechos funcionar.
+
+### Quadros de extração: o que os exemplos ensinam
+
+| Exemplo | Unidade da linha | O que ensina | Limitação |
+|---|---|---|---|
+| WhatsApp e eleições [@schaefer2019whatsapp; @schaefer2026aula5, p. 11] | Trabalho | Três dimensões e mensuração de cada variável, adaptadas de Sampaio e Figueiredo Filho | Uma única variável substantiva ("Resultados", nominal); o recorte temporal como "Ano das eleições analisadas" foi herdado no Anexo G dos celulares [@schaefer_oqfunciona, p. 90] |
+| Cardoso a Lula, revisão de escopo [@juliano2023mudanca; @schaefer2026aula5, p. 14] | Trabalho | Respostas fechadas (continuidade ou mudança, intensidade) com campo para argumentos | Mistura extração com um campo de decisão final (manter ou excluir), que é elegibilidade |
+| *Does Democracy Matter?* [@gerring2022democracy; @schaefer2026aula5, p. 15-16] | Estudo × desfecho × indicador, com modelo de referência | Regra de modelo; t com sinal normativo; 210 observações recodificadas por um segundo autor, com 82% de concordância [@gerring2022democracy, p. 362-363] | 60 análises descartadas por trazerem só coeficientes e estrelas [@gerring2022democracy, p. 367]; extrair o EP evita a perda |
+| Comparecimento eleitoral [@cancela2016explaining], mais a tabela de outra meta-análise sobre comparecimento ("What Affects Voter Turnout?") mostrada no slide [@schaefer2026aula6, p. 38-39] | Coeficiente ou modelo | Direção esperada a priori; operacionalizações tratadas como equivalentes antes de agregar [@cancela2016explaining, p. 265-266] | Sucesso e fracasso por significância, sem magnitude; rótulos variam entre meta-análises ("anomaly", "no link") e precisam de definição registrada (@sec-08a-regras) |
+| Revisão A do autor desta base, 2025-2026 (@sec-11-licoes) | Ficha (texto × desenho) | 70 variáveis com resposta, trecho e página; conferência automática de 2.683 trechos; recodificação cega de 26 textos | Validação entre dois agentes de IA; 80,6% de concordância de valores escondia 44,4% no bloco a1 e 16,7% em mecanismo |
+
+## Erros comuns e como evitá-los {#sec-07-erros}
+
+| Erro | Exemplo | Como evitar |
+|---|---|---|
+| "Sem efeito" quando p ≥ 0,05 | `direcao_re = 0` para não significativos [@schaefer2026codigos, aba b2_quantitativo]; categoria "Nulo" definida pela falta de significância na revisão A (@sec-11-licoes) | Direção pelo estimador pontual; significância à parte |
+| Perder o sinal | F convertido sem sinal (ids 15 e 20); no script de simulação de exemplo, `esc_mean_sd` com grupo 1 = 50 e grupo 2 = 60 devolve −1, como explica Harrer [@harrer2021doing, sec. 3.3.1], mas o gráfico se chama "d = 1" [@schaefer2026codigos, `1 Simulação tamanho do efeito.R`] | Grupo 1 = tratamento; `direcao_desejada`; trecho da fonte do sinal |
+| DP combinado com DP muito diferentes | No mesmo script, DP de 30 e 50 dão DP combinado de 44,4 e d = 0,18; com o DP do controle, d = 0,16 (cálculo nosso) | `dp_y_tipo`; DP do controle quando a intervenção pode mudar a variação [@kraft2020interpreting, versão do autor, p. 15] |
+| p de teste de postos como p bilateral de t | Id 24 do Anexo J [@schaefer_oqfunciona, p. 105] | `mann_whitney_z`; conferir lateralidade; `aproximado = 1` |
+| t como magnitude | "Quanto maior o valor de T, maior a diferença" [@schaefer_oqfunciona, p. 22] | t só para converter [@gerring2022democracy, p. 364] |
+| Revisão ou meta-análise como estudo | Id 28; duas RS na base dos celulares [@schaefer_oqfunciona, p. 29, 105]; RS no topo da hierarquia de evidências [@schaefer_oqfunciona, p. 89] | Recusa automática na preparação dos efeitos |
+| Desenho mal classificado | Diferenças em diferenças contadas como seleção em observáveis [@schaefer_oqfunciona, p. 32] | Categorias definidas pela hipótese de identificação (@sec-07-desenhos) |
+| Especificações do mesmo estudo como evidência independente | Taxas por teste [@cancela2016explaining, p. 266] | Regra do modelo principal; dependência na síntese |
+| Código de ausência que vira número ou afirmação | 999 em colunas contínuas; cobertura 50 como "parcial"; duração ausente como "não longitudinal" [@schaefer2026codigos] | Célula vazia com *status*; mesma convenção nos blocos |
+| Estatística de teste e tamanho de efeito na mesma variável | 999 e d = 0,32 para o mesmo texto, na revisão A | Variáveis e tipos separados |
+| Moderador só quando significativo | Regra de `moderador_id` | Todos os subgrupos com EP e método [@cintron2022heterogeneous, p. 82] |
+| Mecanismo inventado ou confundido com padrão | Codificação sem regra [@schaefer_oqfunciona, p. 31] | Status, tipo de evidência e trecho; padrão ≠ mecanismo |
+| Excluir na decomposição por falta de dado | "Não é possível extrair os resultados" no REFIS [@schaefer2026codigos, `base_decomposição.xlsx`] | Contato com autores; exclusão só na elegibilidade, com motivo |
+| Validar só pela média | 80,6% global com 16,7% em mecanismo, na mesma revisão | Limiar por variável; redefinir e recodificar a que falha |
+| Codebook herdado sem adaptação | Recorte temporal como "Ano das eleições analisadas" numa revisão sobre escolas [@schaefer_oqfunciona, p. 90] | Revisar o codebook contra a pergunta no piloto (G6) |
+
+## Na skill `revisao-sistematica` {#sec-07-skill}
+
+Contrato planejado (a skill está em construção):
+
+- **Etapas e portões.** A etapa 8, piloto com 2 ou 3 estudos por bloco, fecha no **G6** (codebook aprovado); a etapa 9, extração e risco de viés em paralelo, fecha no **G7** (arbitragem concluída e efeitos aptos). Em *checkpoints*, os dois param para decisão humana; no autopiloto, viram pendências e os produtos saem como rascunho não validado.
+- **Codebook.** `assets/codebooks/oqf_decomposicao.csv` traz o codebook a1/a2/b1/b2 corrigido, nas colunas `dimensao, variavel, descricao, prompt, tipo, aplicavel_se`, com a classificadora `tipo_estudo`; é copiado para `05-decomposicao/` e ajustado no protocolo.
+- **Fichas.** A extração das três dimensões vai para a skill `fichamento-sistematico`, sempre por `chave`: um PDF por subagente, até três em paralelo; trecho literal e página em cada resposta; gate que exige 100% dos trechos localizados; `fichamentos_master.csv`; recodificação cega de amostra; relatório que sinaliza variável com concordância abaixo de 80% ou, se categórica, com κ e PABAK abaixo de 0,7. A arbitragem é humana.
+- **Efeitos.** O subagente `extrator-efeitos` lê o PDF inteiro e devolve um CSV com todas as estimativas elegíveis, com trecho e página, sem converter nem interpretar significância. `rs.py analise preparar-efeitos` junta os CSVs, liga `id_estudo` e recusa revisões e meta-análises; `rs.py analise verificar-efeitos` confere trechos e plausibilidade (inclusive $\lvert g \rvert > 2$) e exige verificação humana de cada efeito para liberar o G7; `rs.py analise efeitos` calcula g, variância e sinal alinhado conforme `assets/mapas/conversoes_efeito.csv`. Os quartis de medianas (`q1_1`, `q3_1`, `q1_2`, `q3_2`), o número de preditores de uma correlação parcial (`m_preditores`) e os insumos dos desfechos binários (`p0`, `p1`, `efeito_pp`, `se_pp`) vão em colunas extras ao fim do CSV de efeitos; sem os quartis e sem `m_preditores`, a skill usa `mediana_iqr_aprox` e `parcial_r_d_gl` e avisa na verificação. Desfechos binários entram com `tipo_estatistica` `dif_prop` (proporções ou efeito em pontos percentuais) ou `rr` (razão de riscos), e a verificação recusa proporção em percentual e combinações impossíveis.
+- **Paginação.** As fichas citam a numeração impressa com *offset*; o CSV de efeitos, o índice da página no PDF. O projeto declara as duas convenções.
+- **Caixa de ferramentas.** `assets/mapas/caixa_ferramentas_mapa.csv` liga as variáveis da base às dimensões da caixa (@sec-08b-regras).
+- **Salvaguardas.** PDF lido em faixas de até 20 páginas, cobrindo o documento inteiro; resumo de subagente nunca é prova; estado e log só pelos scripts; sem a skill irmã, protocolo mínimo de extração com aviso.
+
+## Como relatar {#sec-07-relato}
+
+A seção de métodos diz: dimensões e codebook (com link para a versão publicada); unidade de extração e regra do modelo principal; quem extraiu, se de forma independente, piloto e treinamento; como os números foram verificados; validação das categóricas, com amostra e resultado por variável; resolução de desacordos; contato com autores (quantos contatados, quantos responderam); conversões, com fórmulas, pressupostos e quais são aproximadas; direção desejada por desfecho; convenção de ausência; e uso de IA (@sec-11-regras). Nos resultados, tabela de características (item 17) e tabela de efeitos com estatísticas por grupo e estimativa com precisão (item 19) [@page2021prisma]; codebook, base, tabela de efeitos e código ficam públicos (item 27).
+
+> Os estudos foram decompostos em três dimensões (formal, metodológica e substantiva) com um codebook de bloco comum e blocos para estudos qualitativos descritivos (a1), quantitativos descritivos (a2), qualitativos explicativos (b1) e quantitativos explicativos (b2), disponível em [repositório]. Dois revisores pilotaram o formulário em três estudos de cada bloco, o que gerou [n] alterações (versão 1.1). Cada resposta foi registrada com trecho literal e página, verificados automaticamente. [n] relatos foram ligados a [n] estudos. Para cada desfecho, extraímos todas as estimativas elegíveis e marcamos como principal a especificação declarada pelos autores ou, na falta dela, a usada na interpretação. Um segundo revisor conferiu todos os números de efeito contra a fonte. Um segundo codificador cego recodificou uma amostra aleatória de [n] estudos ([x]%), estratificada por tipo; todas as variáveis categóricas atingiram κ ou PABAK de pelo menos 0,70 e concordância de pelo menos 80%, exceto [variável], redefinida e recodificada em todos os estudos. Contatamos os autores de [n] estudos; [n] responderam. Os efeitos foram expressos como g de Hedges, com sinal positivo indicando benefício na direção declarada no protocolo (redução, no caso de [desfecho]); [n] estimativas dependeram de conversões aproximadas (tabela S[n]) e foram excluídas em análise de sensibilidade.
+
+## Leituras {#sec-07-leituras}
+
+- @li2024collecting: capítulo 5 do Cochrane Handbook; estudo e relato, formulário, piloto, dupla extração, contato com autores, padrões MECIR.
+- @higgins2024choosing e @deeks2024analysing: capítulos 6 e 10 do Handbook; medidas de efeito, DP a partir de EP, IC, t e p, medianas, unidade de análise, conversão de OR.
+- @page2021prisma e @tricco2018prisma: itens de relato da extração.
+- @havranek2020reporting: diretrizes da MAER-Net; o que codificar em estudos econométricos e o compromisso sobre o segundo codificador.
+- @wilson2023practical, @ludecke2019esc, @wan2014estimating e @viechtbauer2026metafor: fórmulas de conversão, sua implementação em R, medianas e correlações parciais.
+- @li2019randomized, @buchter2020development e @belur2021interrater: evidência sobre formas de extração e deriva dos codificadores.
+- @schaefer_oqfunciona, @schaefer2026aula5, @schaefer2026aula6 e @schaefer2026codigos: dimensões, tipologia a1/a2/b1/b2, Anexos G e J, codebook de exemplo e base do REFIS.
+- @hedstrom2010causal, @kaidesoja2021three e @dalkin2015whats: o que conta como mecanismo e que evidência o sustenta.
+- @cintron2022heterogeneous e @zidar2017tax: efeitos heterogêneos e como extraí-los.
+- @castro2024avaliacao e @keele2015statistics: desenhos de avaliação de impacto, hipóteses de identificação e estimandos.
+- @gerring2022democracy, @cancela2016explaining, @juliano2023mudanca, @schaefer2019whatsapp e @bia2026health: quadros de extração por modelo, por trabalho e para evidência textual.
+- @brydges2019effect e @kraft2020interpreting: *benchmarks* de magnitude do campo e características que alteram o efeito esperado.

@@ -1,0 +1,416 @@
+---
+title: "Fundamentos e família de revisões"
+---
+
+Antes de escrever uma string de busca, a equipe precisa responder a três perguntas que definem todo o resto: uma revisão sistemática (RS) é a ferramenta certa para a decisão em jogo? Já existe uma revisão recente que responde à mesma pergunta? E, se a resposta for fazer uma revisão nova, de que tipo? A escolha do tipo não é rótulo de capa. Ela determina o formato da pergunta, a amplitude da busca, a necessidade (ou não) de avaliar risco de viés, a família de codebook, a técnica de síntese, o modo de graduar a certeza e a diretriz de relato. Este capítulo reúne as definições que separam RS de outras revisões, as tipologias usadas no material didático e nas normas, uma árvore de decisão para escolher o tipo e a matriz de tipos que a skill `revisao-sistematica` usa no portão G1. A formulação detalhada da pergunta e da teoria do programa está na @sec-02-regras; o protocolo, na @sec-03-regras.
+
+## Decisões e regras {#sec-01-regras}
+
+### O que é uma revisão sistemática
+
+O Cochrane Handbook define a RS como a tentativa de reunir toda a evidência empírica que atende a critérios de elegibilidade pré-especificados para responder a uma pergunta específica, com métodos explícitos e sistemáticos escolhidos para minimizar vieses [@lasserson2024starting, sec. 1.1]. Petticrew e Roberts dão a mesma definição para as ciências sociais e acrescentam que a RS fixa seus métodos antes e em detalhe, como qualquer pesquisa social; por isso a comparam a um *survey* cuja unidade são estudos, e não pessoas [@petticrew2006systematic, p. 9-10]. Dacombe faz a mesma observação para a ciência política: a diferença entre uma pesquisa convencional e uma RS está na unidade de análise, que na RS são estudos existentes [@dacombe2018systematic, p. 149].
+
+A proposta OQF resume a ideia numa frase operacional: "o 'sistemático' na RS provém da adoção de um protocolo ex ante para cada uma dessas etapas" (localizar, selecionar, sintetizar e analisar), de modo que o processo seja reproduzível [@schaefer_oqfunciona, p. 7; @schaefer2026aula1, slide 15]. É uma boa regra de bolso, desde que se entenda "protocolo" no sentido forte: pergunta, critérios de elegibilidade, fontes, estratégia de busca, triagem, avaliação dos estudos, extração e plano de síntese definidos antes de ver os resultados (@sec-03-regras).
+
+Duas distinções evitam confusões frequentes.
+
+1. **Ser sistemático não é o mesmo que ser uma revisão sistemática.** Sutton et al. defendem que todo tipo de revisão deve seguir algum sistema de investigação, o que é diferente de dizer que toda revisão deve ser uma RS; revisões interpretativas podem assumir um ponto de vista, desde que expliquem como as decisões foram tomadas [@sutton2019meeting, p. 203].
+2. **Meta-análise não é sinônimo de RS.** A meta-análise é a combinação estatística de resultados; ela é uma atividade distinta e não implica uma RS completa [@dacombe2018systematic, p. 155]. Uma RS pode ou não ter meta-análise [@dacombe2018systematic, p. 149; @grizenti2024revisao, p. 8, 10], e uma meta-análise feita sobre estudos escolhidos sem método fica exposta aos mesmos problemas de uma revisão tradicional [@haddaway2014policy, p. 180].
+
+A @tbl-01-rs-traços resume a comparação entre revisões tradicionais, de escopo e sistemáticas feita por Munn et al. e reproduzida no manual do JBI [@munn2018systematic; @aromataris2024jbi, sec. 10.1.2].
+
+| Traço | Revisão tradicional (narrativa) | Revisão de escopo | Revisão sistemática |
+|---|---|---|---|
+| Protocolo *a priori* | Não | Sim (em parte dos casos) | Sim |
+| Registro do protocolo | Não | Não no PROSPERO; registro no OSF ou Figshare recomendado | Sim |
+| Estratégia de busca explícita, transparente e revisada por pares | Não | Sim | Sim |
+| Formulário padronizado de extração | Não | Sim | Sim |
+| Avaliação crítica (risco de viés) obrigatória | Não | Não (opcional, conforme o objetivo) | Sim |
+| Síntese dos achados dos estudos e geração de achados-resumo | Não | Não | Sim |
+
+: Traços que distinguem revisões tradicionais, de escopo e sistemáticas. Adaptado de Munn et al. (2018, tabela 1) e JBI (2024, sec. 10.1.2). {#tbl-01-rs-traços}
+
+::: {.callout-important}
+## Regra
+Um trabalho só é chamado de "revisão sistemática" na skill se tiver, no mínimo: objetivos e pergunta claros; critérios de elegibilidade definidos em protocolo antes da busca; busca abrangente e documentada, em pelo menos duas bases; processo de triagem e seleção; avaliação dos estudos incluídos; análise e síntese dos dados extraídos; e relato transparente dos métodos [@munn2018what; @garritty2021cochrane, nota da tabela 1]. Faltando um desses itens, o produto recebe outro nome (ver @tbl-01-nao-rs).
+:::
+
+### O que não é revisão sistemática
+
+| Produto | Por que não é RS | O que fazer |
+|---|---|---|
+| Revisão narrativa ou de especialista | Critérios de inclusão implícitos; pode servir a um argumento. Útil para ideias e contexto, mas não substitui um resumo científico da evidência [@petticrew2006systematic, p. 6, 10; @grizenti2024revisao, p. 3] | Chamá-la pelo nome. Se a pergunta for "o que a evidência diz", fazer RS |
+| "Revisão sistematizada" | Incorpora parte do processo de RS sem completá-lo; típica de trabalhos de pós-graduação sem os recursos de uma RS completa [@sutton2019meeting, p. 210] | Declarar a limitação no título e nos métodos, ou completar as etapas faltantes |
+| Meta-análise sem RS | Combina estudos sem busca e seleção sistemáticas [@dacombe2018systematic, p. 155; @haddaway2014policy, p. 180] | Embutir a meta-análise numa RS (@sec-08a-regras) |
+| Só bibliometria | Descreve publicações, autores e citações, mas não avalia os estudos nem sintetiza achados, que são traços definidores de RS [@munn2018what] | Usar como exploração da busca (@sec-04-regras) ou como parte de uma revisão de escopo |
+| "Resumo de literatura" feito por IA | Sem protocolo, sem busca reproduzível e sem registro das decisões de seleção, não cumpre os traços definidores [@munn2018what; @lasserson2024starting, sec. 1.1] | Usar IA apenas dentro de etapas validadas (@sec-11-regras) |
+
+: Produtos que não devem ser rotulados como revisão sistemática. {#tbl-01-nao-rs}
+
+A crítica de Petticrew e Roberts ainda vale como teste: uma RS não é uma "revisão dos estudos que consegui achar", nem "dos autores que admiro", nem "a que sustenta a política que pretendo implantar" (tradução livre) [@petticrew2006systematic, p. 15]. Nem toda revisão precisa ser sistemática [@petticrew2006systematic, p. 6; @dacombe2018systematic, p. 156]; mas uma revisão que se apresenta como resumo autorizado da evidência precisa mostrar seus métodos.
+
+### Para que serve uma RS na avaliação de políticas públicas
+
+O material didático sobre tipos de revisão organiza os usos em dois momentos do ciclo de políticas [@schaefer2026aula1, slides 6 e 35]:
+
+- **Ex post**, como método para avaliar impacto (efetividade), resultados (eficácia) ou adequação (eficiência) de intervenções existentes;
+- **Ex ante**, como instrumento de uso de evidências na formulação, que o slide chama de "instrumento de convencimento".
+
+As três dimensões de avaliação mudam o tipo de evidência que a revisão precisa reunir. A @tbl-01-usos cruza as definições do material didático com os tipos de pergunta de Petticrew e Roberts e a tipologia de Munn et al.
+
+| Dimensão avaliada (material didático) | Pergunta típica | Desenhos que respondem | Tipo de revisão indicado |
+|---|---|---|---|
+| Efetividade: efeitos sobre o público-alvo, também chamada medida de impacto [@schaefer2026aula1, slide 7] | "O programa causou as mudanças observadas?" Exige grupo de comparação [@schaefer2026aula1, slide 9] | Experimentos e quase-experimentos [@petticrew2006systematic, p. 46] | RS de efetividade (com ou sem meta-análise) ou OQF mista e sequencial |
+| Eficácia: grau de alcance de metas e objetivos [@schaefer2026aula1, slide 7] | "O programa alcançou as metas previstas?" [@schaefer2026aula1, slide 9] | Antes e depois, comparação com metas, estudos de caso [@schaefer2026aula1, slide 9] | RS ou revisão de escopo de avaliações de resultado, sinalizando que o desenho sem grupo de comparação não permite atribuir causalidade (@sec-06-regras) |
+| Eficiência: objetivos ao menor custo [@schaefer2026aula1, slide 7] | "Qual a relação entre custo e benefício?" | Avaliações econômicas; potencialmente qualquer desenho com dados de custo [@petticrew2006systematic, p. 47] | RS de avaliações econômicas [@munn2018what; @aromataris2024jbi, cap. 6] |
+| Implementação, significados, percepções | "Como a política foi implementada e vivida?" | Estudos qualitativos e *surveys* sobre percepções [@petticrew2006systematic, p. 47] | Síntese de evidências qualitativas; componente qualitativo da OQF |
+
+: Dimensões de avaliação e tipo de revisão correspondente. {#tbl-01-usos}
+
+Petticrew e Roberts listam cinco situações em que uma RS é especialmente útil: incerteza sobre a efetividade de uma política já estudada; estágios iniciais de formulação, quando se precisa de evidência sobre efeitos prováveis; campo com muita pesquisa e perguntas-chave sem resposta; necessidade de um panorama para orientar pesquisa futura; e necessidade de mapear métodos para desenvolver novos [@petticrew2006systematic, p. 21]. Haddaway e Pullin acrescentam que RS atraem quem encomenda avaliações quando a evidência é conflitante ou o tema é controverso [@haddaway2014policy, p. 181].
+
+::: {.callout-warning}
+## Uso ex ante sem viés de confirmação
+Usar a RS para "convencer" é legítimo quando o protocolo é fixado antes da busca e a conclusão sai da síntese. Se a pergunta, as bases ou os critérios forem ajustados para sustentar uma política já escolhida, o produto vira exatamente o que Petticrew e Roberts excluem da definição de RS [@petticrew2006systematic, p. 15]. Na skill, a pergunta e o tipo são congelados no G1 e o protocolo no G2; mudanças posteriores viram emendas registradas (@sec-03-regras).
+:::
+
+::: {.callout-note}
+## Caixa: breve histórico da síntese de pesquisa
+- **Antecedentes estatísticos.** Karl Pearson parece ter sido o primeiro a combinar observações de diferentes estudos clínicos, ao analisar em 1904 dados de inoculação contra febre tifoide de soldados do Império Britânico; Fisher, nas décadas de 1920 e 1930, e depois Cochran trataram da combinação de resultados de múltiplos experimentos agrícolas [@orourke2007historical]. Uma revisão de 1891 de Herbert Nichols já reunia 22 estudos experimentais para testar a lei de Weber [@petticrew2006systematic, p. 16].
+- **Glass e o nome "meta-análise" (1976).** No discurso presidencial à AERA, Glass definiu meta-análise como "a análise das análises", isto é, a análise estatística de uma grande coleção de resultados de estudos individuais [@glass1976primary, p. 3]. Criticou o "método de votação" (contar estudos significativos e não significativos), por favorecer estudos com amostras grandes e não dizer o tamanho do efeito [@glass1976primary, p. 6]. Com Mary Lee Smith, reuniu 375 estudos controlados de psicoterapia e mais de 800 medidas de tamanho de efeito; o efeito médio foi de cerca de 0,68 desvio-padrão, o que moveria o paciente típico do percentil 50 para o 75 da distribuição dos não tratados [@glass1976primary, p. 6-7]. A crítica ao voto por significância volta na @sec-08a-regras.
+- **Por que revisões tradicionais falham.** Ann Oakley e colegas compararam seis revisões sobre prevenção de acidentes em idosos: juntas, incluíam 137 estudos, mas só 33 apareciam em pelo menos duas revisões e apenas um era tratado da mesma forma em todas [@petticrew2006systematic, p. 5]. Knipschild refez a revisão de Linus Pauling sobre vitamina C e resfriado: achou 61 ensaios, 15 metodologicamente sólidos, e mostrou que Pauling omitira 5 desses 15 [@petticrew2006systematic, p. 6].
+- **Institucionalização.** A Cochrane Collaboration foi criada em 1993 para revisões de intervenções em saúde [@haddaway2014policy, p. 180]. A Campbell Collaboration, voltada a intervenções sociais (educação, crime e justiça, bem-estar social, desenvolvimento), aparece como fundada em 1999 em Haddaway e Pullin [-@haddaway2014policy, p. 180] e em 2000 em Dacombe [-@dacombe2018systematic, p. 151]. Somam-se a 3ie, em desenvolvimento internacional, e a Collaboration for Environmental Evidence [@haddaway2014policy, p. 180].
+- **Brasil.** Kopittke e Ramos apresentam sua revisão sobre homicídios como a primeira RS feita no país sobre a efetividade de programas de segurança pública [@kopittke2021funciona, p. 414]. Na ciência política brasileira, Grizenti cita RS sobre dinheiro e eleições municipais, mídia e resultados eleitorais e WhatsApp em eleições [@grizenti2024revisao, p. 6-7; @schaefer2019whatsapp].
+:::
+
+### Tipologias de revisões
+
+Não há uma lista única e consensual de tipos. Sutton et al. mostram que rótulos só são úteis quando apoiados por consenso ou orientação oficial, e que vários pares continuam sendo usados como sinônimos sem diferença de método: *review of reviews* e *umbrella review*, síntese narrativa e revisão narrativa, escopo e mapeamento [@sutton2019meeting, p. 214]. O material didático trabalha com três tipologias, e o grupo metodológico do JBI acrescenta uma quarta. Elas não competem: cada uma classifica por um critério diferente (@tbl-01-tipologias).
+
+| Tipologia | Critério de classificação | Conteúdo | Uso prático |
+|---|---|---|---|
+| Grant e Booth (2009) | Como cada tipo executa *Search, AppraisaL, Synthesis and Analysis* (SALSA) | 14 tipos: revisão crítica, revisão de literatura, revisão de mapeamento/mapa sistemático, meta-análise, revisão de métodos mistos, *overview*, revisão sistemática qualitativa/síntese de evidências qualitativas, revisão rápida, revisão de escopo, *state-of-the-art*, revisão sistemática, *systematic search and review*, revisão sistematizada e revisão guarda-chuva [@grant2009typology; @price2022syntheses, p. 132-133] | Checar se o que se promete na busca, na avaliação e na síntese corresponde ao nome da revisão |
+| Sutton et al. (2019) | Famílias por propósito comum e requisitos de busca | 48 tipos em 7 famílias: tradicionais, sistemáticas, revisões de revisões, rápidas, qualitativas, de métodos mistos e de propósito específico [@sutton2019meeting, p. 204] | Definir o que é busca "esperada" e "discricionária" para cada tipo [@sutton2019meeting, p. 204] |
+| Xiao e Watson (2019) | Propósito da revisão | 4 propósitos (descrever, testar, estender, criticar) cruzados com o tipo de literatura (quantitativa, qualitativa, mista); a tabela 1 do artigo lista 16 tipos e funciona como árvore de decisão [@xiao2019guidance, p. 95-97] | Escolher o tipo a partir do objetivo, antes de qualquer trabalho [@xiao2019guidance, p. 94-95] |
+| Munn et al. (2018) | Tipo de pergunta | 10 focos de RS com formato de pergunta: efetividade (PICO), experiencial/qualitativa (PICo), custos/avaliação econômica, prevalência/incidência, acurácia diagnóstica, etiologia/risco, opinião de especialistas/política, psicométrica, prognóstica e metodológica [@munn2018what] | Ligar o tipo ao framework da pergunta (@sec-02-regras) |
+
+: Quatro tipologias e o que cada uma classifica. {#tbl-01-tipologias}
+
+Dois detalhes das tipologias têm consequência operacional.
+
+**Os propósitos de Xiao e Watson definem a lógica de amostragem da busca.** Revisões descritivas como a de escopo pedem busca exaustiva, incluindo literatura cinzenta; revisões de teste, como meta-análises e revisões realistas, pedem busca abrangente e mais seletividade quanto à qualidade; revisões de extensão (construção de teoria) podem usar amostragem seletiva e representativa; revisões críticas são flexíveis [@xiao2019guidance, p. 104-105]. A avaliação de qualidade também muda: é pouco relevante para escopo e revisões críticas e importante para revisões que buscam generalização [@xiao2019guidance, p. 106]. Os autores registram ainda que tipos podem ser combinados (revisões híbridas) e que o revisor não deve ficar preso a um único método de síntese quando outro elemento responde melhor à pergunta [@xiao2019guidance, p. 102].
+
+**Sutton et al. definem cada família pelo que a diferencia.** Na família sistemática, a busca abrangente em mais de uma base é o traço definidor [@sutton2019meeting, p. 210]. Na família de revisões de revisões, a unidade é a revisão, e não o estudo primário [@sutton2019meeting, p. 211]. Na família rápida, o traço definidor é a negociação entre equipe e demandante sobre escopo e métodos, e as modificações e limitações precisam ser declaradas, se possível com mais detalhe que numa RS convencional [@sutton2019meeting, p. 211-212]. Na família qualitativa, a primeira decisão é se a revisão será agregativa (busca parecida com a quantitativa) ou interpretativa (amostragem teórica pode ser adequada) [@sutton2019meeting, p. 212].
+
+::: {.callout-note}
+## Material didático e fontes: quantos tipos há em Xiao e Watson?
+O slide sobre tipos de revisão diz que Xiao e Watson incluem 17 tipos [@schaefer2026aula1, slide 24]; o texto da proposta OQF fala em 16 [@schaefer_oqfunciona, p. 12]. A contagem da tabela 1 do artigo dá 16: cinco descritivos, quatro de teste, seis de extensão e um crítico [@xiao2019guidance, p. 96-97]. A diferença não muda nenhuma decisão, mas convém citar 16.
+:::
+
+### Escada de abstração: tipo de revisão não é técnica de síntese
+
+O slide 28 do material sobre tipos de revisão organiza as categorias em três níveis de abstração [@schaefer2026aula1, slide 28]:
+
+| Nível | O que varia | Exemplos |
+|---|---|---|
+| Alto | Existência de método | Revisão sistemática (protocolo explícito e reproduzível) versus revisão narrativa/tradicional (sem protocolo explícito) |
+| Médio | Tipo de método | Meta-análise, revisão de escopo, revisão realista, revisão meta-narrativa, revisão integrativa; diferenciam-se pelo propósito e pelo desenho |
+| Baixo | Técnica de operação | Meta-análise, meta-análise bayesiana, síntese temática, meta-etnografia |
+
+: Escada de abstração das revisões, conforme o material didático. {#tbl-01-escada}
+
+A frase-chave do slide para o nível baixo é: "aqui varia como os dados são combinados, não o tipo de revisão" [@schaefer2026aula1, slide 28]. Sutton et al. descrevem o mesmo problema nas revisões qualitativas, cujos rótulos às vezes nomeiam o processo genérico (síntese de evidências qualitativas), às vezes a técnica (síntese temática) e às vezes atribuem a técnica ao produto inteiro (uma "meta-etnografia") [@sutton2019meeting, p. 212].
+
+Note que "meta-análise" aparece em dois níveis na tabela do slide. Para evitar ambiguidade, a skill adota a seguinte convenção:
+
+1. **O tipo de revisão** (nível médio) vai no título e define busca, avaliação e relato: "revisão sistemática de efetividade", "revisão de escopo", "revisão realista", "revisão guarda-chuva".
+2. **A técnica de síntese** (nível baixo) é declarada nos métodos e pode haver mais de uma: meta-análise, SWiM, síntese temática, meta-etnografia, QCA.
+3. "Meta-análise" é sempre tratada como técnica. Uma "RS de efetividade com meta-análise" é o tipo; a meta-análise é a técnica usada dentro dele.
+4. A OQF é um tipo (RS mista e sequencial) que combina técnicas quantitativas e qualitativas em sequência; a caixa de ferramentas é o produto, não a técnica.
+
+### Árvore de decisão para escolher o tipo
+
+A árvore abaixo resume as regras desta seção. Ela parte da decisão a informar, verifica revisões existentes, separa estudos primários de revisões e ramifica pelo objetivo principal. A comparabilidade quantitativa é uma expectativa no G1: o protocolo precisa prever as duas rotas (com e sem meta-análise), e a decisão final sai do checklist de comparabilidade na @sec-08a-regras.
+
+```{mermaid}
+flowchart TD
+  A["Qual decisão a revisão vai informar? Quem vai usar?"] --> B{"Existe RS recente, de qualidade adequada, sobre a mesma pergunta?"}
+  B -- "sim" --> B1["Atualizar, fazer overview ou justificar RS nova (regras R2 e R3)"]
+  B -- "não, ou desatualizada" --> C{"A unidade de análise serão revisões?"}
+  C -- "sim" --> UMB["Revisão guarda-chuva / overview"]
+  C -- "não: estudos primários" --> D{"Objetivo principal"}
+  D -- "mapear o que existe e as lacunas" --> E{"Produto é matriz intervenção x resultado para priorizar pesquisa?"}
+  E -- "sim" --> EGM["Mapa de evidências e lacunas"]
+  E -- "não" --> ESC["Revisão de escopo"]
+  D -- "efeito: se e quanto funciona" --> F{"Também como, para quem, onde, implementação e custo?"}
+  F -- "sim" --> OQF["OQF mista e sequencial"]
+  F -- "não" --> G{"Estudos provavelmente comparáveis para agregar?"}
+  G -- "sim" --> MA["Efetividade com meta-análise"]
+  G -- "não ou incerto" --> SW["Efetividade sem meta-análise (SWiM)"]
+  D -- "significados, experiências, percepções" --> Q["Síntese de evidências qualitativas"]
+  D -- "mecanismos e contextos" --> H{"Teoria de programa a refinar ou configurações de condições?"}
+  H -- "teoria (CMO)" --> REAL["Revisão realista"]
+  H -- "configurações" --> QCA["Métodos mistos com QCA"]
+  D -- "avaliar a literatura contra critérios" --> CRIT["Revisão crítica ou metodológica"]
+  MA & SW & OQF & ESC & EGM & Q & REAL & QCA & UMB --> T{"Decisão precisa sair em semanas ou poucos meses?"}
+  T -- "sim" --> RR["Variante rápida, com atalhos declarados"]
+  T -- "não" --> FULL["Versão completa"]
+```
+
+As regras que alimentam a árvore estão na @tbl-01-regras-decisao.
+
+| Nº | Condição | Decisão | Fonte |
+|---|---|---|---|
+| R1 | Não há pergunta clara | Não iniciar a RS; refinar a pergunta, se preciso com revisão de escopo ou narrativa exploratória | "Nunca comece uma revisão sistemática até que uma pergunta clara possa ser formulada" (tradução livre) [@petticrew2006systematic, p. 35]; temas amplos demais pedem escopo ou narrativa antes [@petticrew2006systematic, p. 31-32] |
+| R2 | Existem uma ou mais RS boas e atuais sobre a pergunta, ou uma em andamento | Não duplicar: resumir, atualizar ou fazer overview | @petticrew2006systematic [p. 29, 36]; @aromataris2024jbi [sec. 9.1.1] |
+| R3 | RS existente desatualizada ou com viés relevante (perdeu parte da literatura, não avaliou os estudos) | Atualizar ou fazer RS nova, justificando e, por boa prática, contatando os autores anteriores | @petticrew2006systematic [p. 38] |
+| R4 | A pergunta é mais ampla que as RS existentes e os dados necessários estão nelas | Overview de revisões | @pollock2024overviews [sec. V.3.2] |
+| R5 | Muitos estudos primários relevantes não estão em RS, ou a análise exige dados que as RS não trazem | RS de estudos primários, não overview | @pollock2024overviews [sec. V.3.2] |
+| R6 | Pergunta sobre efetividade, viabilidade, adequação ou significado de uma prática, com objetivo de informar decisão | RS (não escopo) | @munn2018systematic |
+| R7 | Objetivo é identificar tipos de evidência, clarificar conceitos, examinar como a pesquisa é feita, identificar características ou lacunas, ou preparar uma RS | Revisão de escopo | @munn2018systematic |
+| R8 | Objetivo é mostrar que evidência existe (e não o que ela diz), em matriz de categorias, para orientar quem encomenda pesquisa | Mapa de evidências e lacunas | @white2020guidance |
+| R9 | Pergunta de efeito com estudos semelhantes o bastante para agregar | Planejar meta-análise; se não, síntese narrativa estruturada | @garritty2021cochrane [R21]; @sec-08a-regras |
+| R10 | Pergunta de efeito somada a como, para quem, onde, implementação e custo | OQF mista e sequencial | @schaefer_oqfunciona [p. 19, 24-25] |
+| R11 | Pergunta sobre "o que funciona para quem, em que circunstâncias e como", com mecanismos pouco claros | Revisão realista | @xiao2019guidance [p. 100]; @sutton2019meeting [p. 209] |
+| R12 | Decisão precisa de evidência em prazo curto e há demandante definido | Revisão rápida, com atalhos negociados e declarados | @garritty2021cochrane; @sutton2019meeting [p. 211-212] |
+| R13 | Recursos insuficientes para uma RS confiável | Não fazer RS completa; reduzir escopo, fazer variante rápida declarada ou mudar de produto | @petticrew2006systematic [p. 29]; @xiao2019guidance [p. 103] |
+
+: Regras de decisão para o portão G1. {#tbl-01-regras-decisao}
+
+Para a regra R13, dois parâmetros ajudam a estimar recursos. Allen e Olkin, citados por Petticrew e Roberts, estimaram em 37 meta-análises uma média de 1.139 horas de trabalho (mediana de 1.110), com amplitude de 216 a 2.518 horas; a mediana equivale a cerca de sete meses em tempo integral, e revisões de política social tendem a demorar mais porque dependem de literatura fora de periódicos e de resumos pouco informativos [@petticrew2006systematic, p. 49-50]. Haddaway e Pullin estimam que uma RS típica leva de 9 a 12 meses com um pesquisador em tempo integral, variando com a amplitude do tema [@haddaway2014policy, p. 181].
+
+### Matriz de tipos
+
+A matriz abaixo é a especificação vinculante desta base (@sec-especificacao-tipos) com as fontes que sustentam cada célula. Ela foi dividida em duas tabelas para caber na página. Os detalhes de cada coluna estão nos capítulos indicados; aqui importa a coerência entre as colunas de uma mesma linha. A coluna "Portões" é uma proposta deste capítulo a partir do contrato da skill (@sec-especificacao-contrato): G1 pergunta e tipo; G2 protocolo; G3 busca; G4 triagem de títulos e resumos; G5 textos completos e elegibilidade; G6 piloto de extração; G7 extração e risco de viés; G8 síntese e certeza; G9 relato.
+
+| Tipo | Framework da pergunta | Busca | Triagem | Qualidade / risco de viés | Família de codebook |
+|---|---|---|---|---|---|
+| Efetividade com meta-análise | PICO ou PICOC [@higgins2022mecir, C2; @petticrew2006systematic, p. 44] (@sec-02-regras) | Abrangente, várias bases e literatura cinzenta [@lasserson2024starting, sec. 1.1; @sutton2019meeting, p. 210] | Dupla e independente [@lasserson2024starting, sec. 1.3] | Risco de viés por domínio, com ferramenta por desenho (@sec-06-regras) | Efeitos (bloco b2 do codebook OQF) com dados numéricos verificados (@sec-07-regras) |
+| Efetividade sem meta-análise | Idem | Idem | Idem | Idem | Idem, com direção do efeito pelo estimador (@sec-07-regras) |
+| OQF mista e sequencial | PICOC, com X, Y, mecanismos (M) e moderadores (Z) [@schaefer2026aula1, slide 10] e teoria do programa (@sec-02-regras) | Abrangente, blocos de termos de X e Y, bases internacionais e brasileiras [@schaefer_oqfunciona, p. 26-28] | Ao menos duas pesquisadoras e desempate por terceira [@schaefer_oqfunciona, p. 29] | Ferramenta conforme o bloco a1, a2, b1, b2 (@sec-06-regras) | Decomposição formal, metodológica e substantiva [@schaefer_oqfunciona, p. 20, 30-31] |
+| Escopo | PCC: população, conceito, contexto [@aromataris2024jbi, sec. 10.2.2] | Exaustiva, com literatura cinzenta [@xiao2019guidance, p. 104-105] | Piloto recomendado; o modelo sugerido usa amostra aleatória de 25 títulos/resumos e só começa a triagem com concordância de 75% ou mais [@aromataris2024jbi, sec. 10.2.6] | Não obrigatória; opcional conforme o objetivo [@aromataris2024jbi, sec. 10.1.2; @munn2018systematic] | *Charting* padronizado e pilotado [@aromataris2024jbi, sec. 10.2.7] |
+| Mapa de evidências e lacunas | PICOS; linhas e colunas do mapa são, em geral, intervenções e resultados [@white2020guidance] | Sistemática; inclui "abrir" as RS incluídas para achar seus estudos [@white2020guidance] | Critérios explícitos, como numa RS [@white2020guidance] | Recomendada, não obrigatória; pode ser feita só para RS [@white2020guidance] | Codificação do *framework* do mapa, pilotada com 20 a 30 estudos; não codificar direção nem tamanho de efeito [@white2020guidance] |
+| Síntese de evidências qualitativas | PICo: população, fenômeno de interesse, contexto [@munn2018what] | Agregativa: abrangente; interpretativa: amostragem teórica pode bastar [@sutton2019meeting, p. 212] | Dupla (@sec-05-regras) | Avaliação crítica de estudos qualitativos (@sec-06-regras) | Achados e trechos, codebook qualitativo (@sec-08b-regras) |
+| Realista | "O que funciona, para quem, em que circunstâncias e como" [@xiao2019guidance, p. 100] | Intencional; na variante rápida realista, teorias iniciais são testadas por buscas dirigidas até a saturação [@sutton2019meeting, p. 212]; pode incluir material que não é estudo [@sutton2019meeting, p. 213-214] | Pela relevância para a teoria (@sec-08b-regras) | Relevância e rigor para a teoria (@sec-08b-regras) | Configurações contexto-mecanismo-resultado (@sec-08b-regras) |
+| Métodos mistos, incluindo QCA | Pergunta geral com subperguntas quantitativas e qualitativas [@aromataris2024jbi, sec. 8.2] | Abrangente para os dois tipos de estudo; atenção a artigos "irmãos" do mesmo estudo [@sutton2019meeting, p. 213] | Dupla (@sec-05-regras) | Por desenho de cada estudo incluído (@sec-06-regras) | Blocos quantitativo e qualitativo; condições calibradas para QCA (@sec-08b-regras) |
+| Rápida | Pergunta e PICOS definidos com os usuários, limitando intervenções, comparadores e resultados [@garritty2021cochrane, R1-R4] | Bases principais e 1 a 2 especializadas; revisão por pares de ao menos uma estratégia [@garritty2021cochrane, R10-R12]; a orientação Cochrane admite RS como desenho elegível [@garritty2021cochrane, R8]; nesta base, a RS entra como fonte de evidência no nível de revisão, com controle explícito de sobreposição (CCA), nunca no mesmo conjunto de síntese que os estudos primários nem somando seus estudos aos primários [@pollock2024overviews, sec. V.4.4, V.4.7] | Piloto com 30 a 50 resumos; dupla em ao menos 20% e revisão por segundo avaliador de todos os excluídos [@garritty2021cochrane, R14] | Um avaliador com verificação integral por outro [@garritty2021cochrane, R19] | Conjunto mínimo de itens [@garritty2021cochrane, R17] |
+| Guarda-chuva / overview | Pergunta mais ampla que a das RS existentes [@pollock2024overviews, sec. V.3.2] | Revisões como unidade; definir o que conta como RS [@gates2022reporting, item 5b] | Dupla; gerir sobreposição de RS na seleção [@gates2022reporting, item 8b] | AMSTAR 2 ou ROBIS para as RS [@pollock2024overviews, sec. V.4.9]; AMSTAR 2 tem 16 itens [@shea2017amstar] | Dados das RS; matriz de citação dos estudos primários [@pollock2024overviews, sec. V.4.7] |
+
+: Matriz de tipos, parte A: pergunta, busca, triagem, qualidade e codebook. {#tbl-01-matriz-a}
+
+| Tipo | Síntese | Certeza | Diretriz de relato | Portões mínimos | Na skill (v1) |
+|---|---|---|---|---|---|
+| Efetividade com meta-análise | Meta-análise com checagem prévia de comparabilidade (@sec-08a-regras) | GRADE por resultado, em quatro níveis: alta, moderada, baixa, muito baixa [@schunemann2024completing, sec. 14.2] | PRISMA 2020, 27 itens [@page2021prisma] | G1 a G9 | Suportado |
+| Efetividade sem meta-análise | Síntese estruturada sem meta-análise (@sec-08a-regras) | GRADE (@sec-09-regras) | PRISMA 2020 e SWiM, 9 itens [@campbell2020synthesis] | G1 a G9 | Suportado |
+| OQF mista e sequencial | Quantitativa (se e quanto), depois mecanismos e moderadores, depois implementação, percepção e custo [@schaefer_oqfunciona, p. 24-25]; integração e caixa de ferramentas (@sec-08b-regras) | GRADE por célula de efeito e GRADE-CERQual por achado qualitativo, com quatro componentes: limitações metodológicas, coerência, adequação dos dados, relevância [@lewin2018applying] | PRISMA 2020, SWiM e ENTREQ (21 itens) [@tong2012enhancing], no formato de artigo OQF (@sec-10-regras) | G1 a G9 | Suportado |
+| Escopo | Mapeamento descritivo em tabelas e gráficos; meta-análise é improvável [@aromataris2024jbi, sec. 10.2.8] | Não se aplica: não produz achado-resumo [@munn2018systematic] | PRISMA-ScR, 20 itens essenciais e 2 opcionais [@tricco2018prisma] | G1 a G7 (G7 sem risco de viés), G9 | Suportado |
+| Mapa de evidências e lacunas | Distribuição de estudos pelas células do mapa; não resume o que a evidência diz [@white2020guidance] | Não se aplica | Orientação Campbell para EGM [@white2020guidance] | G1 a G7, G9 | Reconhecido; EGM interativo fica para a v2 |
+| Síntese de evidências qualitativas | Meta-agregação, síntese temática ou meta-etnografia [@aromataris2024jbi, cap. 3; @xiao2019guidance, p. 100-101] | GRADE-CERQual [@lewin2018applying] | ENTREQ [@tong2012enhancing]; eMERGe para meta-etnografia, 19 critérios [@france2019improving] | G1 a G9 (temas e juízos CERQual humanos) | Suportado |
+| Realista | Teoria de programa refinada em configurações CMO (@sec-08b-regras) | Enunciado narrativo, sem pseudo-GRADE (@sec-09-regras) | RAMESES, 19 itens [@wong2013rameses] | G1, G2, G8 e G9 obrigatórios; G3 a G7 adaptados ao processo iterativo | Reconhecido; revisão realista iterativa completa fica para a v2 |
+| Métodos mistos, incluindo QCA | Convergente integrada ou segregada (foco do JBI) ou sequencial [@aromataris2024jbi, sec. 8.2-8.3]; QCA com calibração (@sec-08b-regras) | GRADE e GRADE-CERQual por componente; QCA com enunciado narrativo (@sec-09-regras) | PRISMA 2020 e ENTREQ | G1 a G9, mais calibração da QCA como decisão humana | Métodos mistos suportados; QCA computacional fica para a v2 |
+| Rápida | Narrativa; meta-análise só se os estudos forem semelhantes [@garritty2021cochrane, R21] | GRADE por um avaliador com verificação [@garritty2021cochrane, R22] | Relato do tipo de origem, com atalhos e mudanças declarados [@garritty2021cochrane, R25; @sutton2019meeting, p. 211-212] | Os mesmos do tipo de origem, com atalhos registrados como desvios; no **G4**, se o atalho de triagem foi aprovado no **G1**, vale a dupla em ao menos 20% com κ calculado e segunda leitura de todos os excluídos, no lugar do *recall* da IA [@garritty2021cochrane, R14] | Suportado como variante |
+| Guarda-chuva / overview | Resumo dos resultados das RS, evitando contar duas vezes o mesmo estudo [@pollock2024overviews, sec. V.4.4] | GRADE por resultado (@sec-09-regras) | PRIOR, 27 itens e 19 subitens [@gates2022reporting] | G1 a G9 (G7 inclui qualidade das RS e sobreposição) | Reconhecido; guarda-chuva com CCA fica para a v2 |
+
+: Matriz de tipos, parte B: síntese, certeza, relato e portões. {#tbl-01-matriz-b}
+
+Três observações sobre a matriz.
+
+**Sobreposição em overviews.** A sobreposição de estudos primários entre RS pode ser medida pela área coberta corrigida (*corrected covered area*, CCA), $\text{CCA} = \frac{N - r}{rc - r}$, em que $N$ é o número total de ocorrências de estudos primários nas RS, $r$ o número de estudos primários distintos e $c$ o número de RS; expressa em porcentagem, valores de 0 a 5 indicam sobreposição leve, de 6 a 10 moderada, de 11 a 15 alta e acima de 15 muito alta [@pieper2014systematic, p. 370-371]. O Handbook recomenda ao menos uma matriz de citação e sugere a CCA como medida numérica [@pollock2024overviews, sec. V.4.7].
+
+**Métodos mistos sequenciais.** O JBI distingue desenhos convergentes (sínteses simultâneas) e sequenciais (uma síntese informa a outra) e registra, a partir de Hong et al. (2017), que 95% das revisões de métodos mistos usam o desenho convergente e 5% o sequencial; por isso seu guia trata apenas das abordagens convergentes [@aromataris2024jbi, sec. 8.2]. A OQF é sequencial, portanto não pode se apoiar no guia do JBI para a etapa de integração: as regras precisam estar escritas no protocolo (@sec-08b-regras).
+
+**Escopo e mapa não graduam certeza.** Como não geram achados-resumo nem implicações diretas para a prática, não devem terminar com recomendações de política no formato de uma RS [@munn2018systematic]. O mapa mostra que evidência existe; a revisão de revisões resume o que ela diz [@white2020guidance].
+
+### Modelos de título por tipo
+
+O título comunica o tipo e, com ele, o que o leitor pode esperar. O PRISMA 2020 exige que o relato se identifique como revisão sistemática (item 1) [@page2021prisma]; o PRIOR exige o mesmo para overviews (item 1) [@gates2022reporting]; o JBI recomenda o PCC para construir o título de revisões de escopo [@aromataris2024jbi, sec. 10.2.2]; e a Campbell pede que o título do mapa deixe claro o tipo de evidência incluída [@white2020guidance]. O material didático traz os formatos da Campbell com exemplos de políticas [@schaefer2026aula1, slide 27]:
+
+| Tipo | Formato do título | Exemplo de política pública |
+|---|---|---|
+| Mapa de evidências e lacunas | [Intervenção] para [população/problema] ou [local/situação] ou [resultado(s)]: um mapa de evidências e lacunas | Programas de transferência de renda condicionada para redução da pobreza em países de baixa renda: um mapa de evidências e lacunas |
+| RS de intervenções | [Intervenção(ões)] para [melhorar/reduzir/aumentar] [resultado(s)] em [problema/população] em [local/situação]: uma revisão sistemática | Programas de habitação social para reduzir o déficit habitacional em famílias de baixa renda em áreas urbanas: uma revisão sistemática |
+| RS de fatores de risco, proteção, predição ou prognóstico | [Tipo de fator] associado(s) a [resultado(s)] em [problema/população] em [local ou situação]: uma revisão sistemática | Fatores de risco socioeconômicos associados ao abandono escolar em adolescentes em situação de vulnerabilidade no Brasil: uma revisão sistemática |
+| RS qualitativa | [Experiências/significados/adequação] de [fenômeno de interesse] em síntese de evidências qualitativas | Experiências de beneficiários do Bolsa Família sobre acesso a serviços de saúde em síntese de evidências qualitativas |
+| Revisão de escopo | [Conceito] em [população(ões)] em [contexto]: uma revisão de escopo | Políticas de segurança alimentar e nutricional em populações indígenas em contextos de vulnerabilidade: uma revisão de escopo |
+
+: Modelos de título por tipo de revisão (formatos da Campbell reproduzidos no material didático). {#tbl-01-titulos}
+
+Para os tipos que o slide não cobre, este capítulo sugere formatos coerentes com as diretrizes citadas acima: "[Intervenção] para [resultado] em [população/contexto]: revisão sistemática mista e sequencial" (OQF); "[Tema]: revisão rápida" (variante rápida); "[Intervenção] para [resultado]: revisão realista" (realista); e "[Tema]: overview de revisões sistemáticas" (guarda-chuva). A OQF também usa títulos em forma de pergunta X→Y, como "A proibição do uso de celulares melhora o desempenho acadêmico dos estudantes?" [@schaefer2025proibicao]; nesse caso, o tipo deve aparecer no subtítulo.
+
+### A proposta OQF: RS mista e sequencial
+
+A proposta OQF parte de uma constatação sobre o movimento de políticas baseadas em evidências: ele é inclinado à inferência causal e à pesquisa quantitativa, e deixa sem resposta perguntas como por que a política funciona, em que contextos o impacto é maior e como beneficiários e implementadores a percebem [@schaefer_oqfunciona, p. 17-18]. A resposta é uma RS mista (quantitativa e qualitativa) e sequencial, construída a partir de Stern et al. (2020) e da literatura de métodos mistos [@schaefer_oqfunciona, p. 19].
+
+A análise segue uma sequência de perguntas [@schaefer_oqfunciona, p. 24-25]:
+
+1. **Se** a política funciona (os estudos não indicam direção nula);
+2. **Quanto** funciona (tamanho do efeito: *d*, *g*, *t* ou outra métrica);
+3. **Como** ou **por que** funciona (mecanismos);
+4. **Onde e para quem** funciona melhor (moderadores);
+5. Qual a **percepção** dos *stakeholders* (beneficiários, gestores, implementadores);
+6. Como se dá a **implementação**;
+7. **A que custo** (financeiro, material, recursos humanos).
+
+O produto é a caixa de ferramentas, com escala e força do efeito (quantitativas), mecanismo, moderador e implementação (quantitativa e/ou qualitativa), percepção (qualitativa) e custo [@schaefer_oqfunciona, p. 19-20]. Na tipologia de Xiao e Watson, a OQF é uma revisão de **teste** que usa literatura mista; os autores afirmam que as RS de avaliação de políticas servem sobretudo ao teste [@schaefer_oqfunciona, p. 13, 17].
+
+A proposta também define a **escala da pergunta**: de uma pergunta ampla, centrada no problema ("o que funciona para melhorar o desempenho dos estudantes?"), a uma restrita, centrada na intervenção ("o incremento salarial por meta melhora o desempenho?"), passando pela intermediária, uma intervenção sobre vários resultados ("quais os impactos do incremento salarial?"). A OQF é indicada para as duas últimas [@schaefer_oqfunciona, p. 19]. Para a primeira, a árvore aponta um mapa de evidências, uma revisão de escopo ou uma sequência de RS por família de intervenção.
+
+::: {.callout-note}
+## Proposta e normas: o que a OQF precisa acrescentar
+A OQF é coerente com as normas no essencial (protocolo *ex ante*, PICOC, dupla avaliação, relato PRISMA). Três pontos pedem aprimoramento, detalhados nos capítulos seguintes:
+
+1. **Revisões não entram como estudos primários.** No exemplo dos celulares, duas RS foram incluídas entre os 21 trabalhos e uma meta-análise entre os oito estudos causais [@schaefer_oqfunciona, p. 29, 31-32]. A regra desta base é que revisões e meta-análises nunca entram no mesmo conjunto de síntese que estudos primários. Numa RS de estudos primários, elas vão para a checagem de revisões existentes, para a bola de neve e para a validação da busca; em revisões rápidas e em *overviews*, podem ser usadas como fonte de evidência no nível de revisão, com controle explícito de sobreposição (CCA) e sem somar seus estudos aos primários [@garritty2021cochrane, R8; @pollock2024overviews, sec. V.4.7]. O Handbook trata o uso de RS para localizar estudos primários como parte de uma RS de primários, e não de um overview [@pollock2024overviews, sec. V.3.1], e alerta que misturar revisões sobrepostas conta os mesmos estudos mais de uma vez [@pollock2024overviews, sec. V.4.4]; se a pergunta exigir sintetizar revisões, o tipo passa a ser overview. Ver @sec-05-regras.
+2. **A sequência precisa de regras de integração escritas.** O guia de métodos mistos do JBI cobre só desenhos convergentes [@aromataris2024jbi, sec. 8.2]; a regra de passagem entre etapas e os rótulos da caixa de ferramentas são definidos na @sec-08b-regras.
+3. **"Funciona?" não se decide por contagem de estudos significativos.** A crítica ao voto por significância é antiga [@glass1976primary, p. 6]; a direção e a força seguem as regras da @sec-08a-regras e a certeza, a @sec-09-regras.
+:::
+
+## Passo a passo {#sec-01-passos}
+
+O passo a passo abaixo cobre a etapa 1 do fluxo da skill (pergunta e tipo) até a aprovação do portão G1. A formulação fina da pergunta (PICOC, CMMO, DAG) é feita em paralelo com a @sec-02-passos.
+
+1. **Escreva a necessidade de decisão.** Registre quem vai usar a revisão, que decisão ela informa e se o uso é *ex ante* (formulação) ou *ex post* (avaliação). As perguntas devem tratar de temas importantes para os usuários [@higgins2022mecir, C1]; Petticrew e Roberts recomendam defini-las com os potenciais usuários e testá-las com três perguntas: sei algo sobre o tema? quem vai usar e como? como sei que alguém quer essa resposta? [@petticrew2006systematic, p. 29-32].
+2. **Classifique a pergunta.** Diga se ela é de efeito, de significado ou experiência, de mecanismo, de mapeamento, de custo, de fator de risco ou de método (@tbl-01-tipologias). Use a tabela de tipos de pergunta e desenhos de Petticrew e Roberts [-@petticrew2006systematic, p. 46-47] e a tipologia de Munn et al. [-@munn2018what].
+3. **Teste a amplitude.** Se o tema couber numa frase do tipo "uma revisão sobre estresse no trabalho", ele está amplo demais [@petticrew2006systematic, p. 31]. Escolher uma pergunta ampla demais é erro comum de iniciantes e torna a revisão ingerenciável [@xiao2019guidance, p. 103]. Decida conscientemente entre agrupar e separar intervenções, resultados e populações (*lumping* e *splitting*), com base na teoria da intervenção [@petticrew2006systematic, p. 48].
+4. **Procure revisões existentes e registradas.** Busque RS publicadas e em andamento antes de qualquer outra coisa [@petticrew2006systematic, p. 36]. No mínimo: bibliotecas Cochrane e Campbell, registros de protocolos (PROSPERO e OSF, recomendados também para rápidas [@garritty2021cochrane, R23-R24]) e bases gerais com filtros para revisões sistemáticas, como se faz em revisões de revisões [@sutton2019meeting, p. 211]. Para temas brasileiros, inclua Periódicos CAPES, SciELO, Catálogo de Teses e Dissertações da CAPES, BDTD e o repositório do IPEA, fontes usadas em RS e revisões de escopo nacionais [@kopittke2021funciona, p. 420; @juliano2023mudanca, p. 5]. A estratégia de busca completa fica para a @sec-04-regras.
+5. **Aplique as regras R2 a R5.** Para cada revisão encontrada, registre pergunta, data da última busca, número de estudos, se avaliou risco de viés e se há sobreposição com a sua pergunta. Decida entre: não fazer (a pergunta já está respondida), atualizar, fazer overview ou fazer RS nova com justificativa.
+6. **Faça um mapeamento preliminar.** Uma busca rápida em poucas bases estima volume e tipos de estudo, ajuda a refinar a pergunta e a orçar a revisão; é boa prática refinar a pergunta à luz desse levantamento [@petticrew2006systematic, p. 48; @xiao2019guidance, p. 103]. Anote quantos estudos parecem causais, qualitativos e mistos.
+7. **Antecipe a comparabilidade.** Se a pergunta é de efeito, registre no G1 se há expectativa de agregar estudos e preveja no protocolo as duas rotas (meta-análise e síntese sem meta-análise); a meta-análise só se justifica se os estudos forem semelhantes o bastante [@garritty2021cochrane, R21]. O checklist está na @sec-08a-regras.
+8. **Estime recursos e prazo.** Compare as horas disponíveis com as referências da seção de regras [@petticrew2006systematic, p. 49-50; @haddaway2014policy, p. 181]. Se a decisão precisa sair em semanas ou poucos meses, escolha a variante rápida e liste os atalhos já no G1 [@garritty2021cochrane].
+9. **Escolha o tipo na árvore e confira a linha da matriz.** Verifique se as colunas da linha escolhida (@tbl-01-matriz-a e @tbl-01-matriz-b) são viáveis para a equipe: número de revisores, acesso a bases, domínio da técnica de síntese.
+10. **Monte a equipe mínima.** A Cochrane não publica revisões propostas por uma única pessoa, e a equipe deve reunir conhecimento do tema e do método, incluindo estatística [@lasserson2024starting, sec. 1.3]. Para a triagem e a extração em dupla, planeje ao menos duas pessoas desde o G1.
+11. **Redija o título provisório e a justificativa do tipo.** Use a @tbl-01-titulos e escreva um parágrafo explicando por que o tipo escolhido responde melhor à pergunta que as alternativas mais próximas (por exemplo, RS e não escopo; RS de primários e não overview).
+12. **Submeta ao G1.** O registro do G1 contém: pergunta, tipo, variante (completa ou rápida), revisões existentes e decisão sobre elas, expectativa de comparabilidade, equipe e prazo. Depois do G1, o tipo só muda por emenda ao protocolo (@sec-03-regras).
+
+## O que as diretrizes exigem {#sec-01-diretrizes}
+
+| Diretriz | Item | Exigência pertinente a esta etapa |
+|---|---|---|
+| PRISMA 2020 | 1 | Identificar o relato como revisão sistemática no título [@page2021prisma] |
+| PRISMA 2020 | 3 | Descrever a justificativa da revisão no contexto do conhecimento existente [@page2021prisma] |
+| PRISMA 2020 | 4 | Declarar explicitamente os objetivos ou perguntas [@page2021prisma] |
+| PRISMA 2020 | 5 | Especificar critérios de inclusão e exclusão e como os estudos foram agrupados para as sínteses [@page2021prisma] |
+| PRISMA 2020 | 24a-24c | Informar registro, acesso ao protocolo e emendas [@page2021prisma] |
+| PRISMA 2020 | Escopo | Feito para RS de efeitos de intervenções em saúde, mas aplicável a intervenções sociais e educacionais e, em muitos itens, a outros objetivos [@page2021prisma] |
+| PRISMA-ScR | Todos | 20 itens essenciais e 2 opcionais para revisões de escopo [@tricco2018prisma] |
+| PRIOR | 1, 3, 4 | Identificar o relato como overview, justificar no contexto do conhecimento existente e declarar objetivos [@gates2022reporting] |
+| PRIOR | 5a, 5b | Critérios de inclusão (e justificativa para estudos primários suplementares) e definição de "revisão sistemática" usada [@gates2022reporting] |
+| PRIOR | 8b, 17 | Gerir e relatar a sobreposição entre RS [@gates2022reporting] |
+| MECIR | C1 | Pergunta e resultados importantes para os usuários (obrigatório) [@higgins2022mecir] |
+| MECIR | C2 | Objetivos definidos antecipadamente, com participantes, intervenções, comparadores e resultados (obrigatório) [@higgins2022mecir] |
+| MECIR | C3 | Considerar efeitos adversos importantes (obrigatório) [@higgins2022mecir] |
+| MECIR | C4 | Considerar antecipadamente equidade e relevância para populações específicas (altamente desejável) [@higgins2022mecir] |
+| JBI, revisão de escopo | 10.2.2 e 10.2.6 | Título e pergunta com PCC; piloto de seleção recomendado (modelo sugerido: 25 títulos/resumos e concordância mínima de 75%) [@aromataris2024jbi] |
+| JBI, métodos mistos | 8.2 | Declarar a sequência da síntese (convergente ou sequencial), a transformação dos dados e a forma de integração [@aromataris2024jbi] |
+| Cochrane Rapid Reviews | R1, R23-R25 | Envolver usuários na pergunta; protocolo publicado; mudanças *post hoc* permitidas e documentadas [@garritty2021cochrane]. A orientação foi atualizada em 2024 [@garritty2024updated] |
+| Campbell EGM | Título e *framework* | Título que deixe claro o tipo de evidência; *framework* definido com *stakeholders* e pilotado [@white2020guidance] |
+| SWiM, ENTREQ, eMERGe, RAMESES | Todos | 9, 21, 19 e 19 itens, respectivamente, conforme o tipo [@campbell2020synthesis; @tong2012enhancing; @france2019improving; @wong2013rameses] |
+
+: Itens das diretrizes ligados à escolha do tipo e à pergunta. {#tbl-01-diretrizes}
+
+A escolha da diretriz de relato é consequência direta do tipo: o PRISMA 2020 recomenda usar as extensões (escopo, entre outras) junto com o próprio PRISMA quando o tipo tiver extensão específica [@page2021prisma]. O detalhamento de cada checklist está na @sec-10-regras.
+
+## Exemplo trabalhado {#sec-01-exemplo}
+
+### Celulares nas escolas: o que foi feito
+
+A pergunta do caso dos celulares é se a restrição ou proibição de celulares nas escolas (X) melhora o desempenho acadêmico de alunos e alunas (Y), num contexto em que redes municipais adotaram a medida desde 2023 e a Lei 15.100/2025 foi aprovada [@schaefer_oqfunciona, p. 25]. Os autores enquadram a revisão como teste do impacto de X sobre Y com estudos quantitativos e qualitativos, em desenho misto e sequencial [@schaefer_oqfunciona, p. 17, 19].
+
+O percurso relatado foi: 1.740 documentos recuperados (400 do Google Scholar via Publish or Perish, 87 da SciELO, 798 da Scopus e 455 da Web of Science); filtros de duplicatas, ano (após 2007) e tipo de publicação, com 1.517, 1.430 e 1.382 registros restantes; dicionários de metodologia e de termos substantivos, com 790 e 741 registros; leitura de resumos, com 19 trabalhos; e mais dois trabalhos por busca manual, que eram duas RS sobre o tema [@schaefer_oqfunciona, p. 28-29]. Os 21 trabalhos incluíram 11 quantitativos, 6 qualitativos, 2 mistos e 2 revisões; dos 8 estudos causais, 3 eram experimentais, 4 usavam diferenças em diferenças e 1 era meta-análise [@schaefer_oqfunciona, p. 31-32]. As duas RS também serviram para validar a busca, e a revisão incluiu estudos sobre ensino superior [@schaefer_oqfunciona, p. 29]. O efeito combinado foi *g* = 0,22, diferente de uma meta-análise anterior sobre a mesma pergunta, provavelmente pela inclusão do ensino superior [@schaefer_oqfunciona, p. 33].
+
+### O que deveria ser feito no G1
+
+| Decisão do G1 | O que o caso mostra | O que a skill exige |
+|---|---|---|
+| Revisões existentes (R2, R3) | Duas RS sobre a mesma pergunta foram encontradas por busca manual, depois da triagem [@schaefer_oqfunciona, p. 29] | Buscar RS existentes antes da busca principal (passo 4), ler as duas revisões e registrar a decisão: atualizar, fazer overview ou fazer RS nova com justificativa explícita (por exemplo, perguntas que elas não cobrem, busca desatualizada ou ausência de bases brasileiras), com a comparação com as RS anteriores prevista para a discussão |
+| Unidade de análise (R4, R5) | RS e meta-análise contadas como estudos [@schaefer_oqfunciona, p. 31-32] | Estudos primários como unidade; RS e meta-análises usadas para bola de neve e validação da busca, nunca no mesmo conjunto de síntese que os estudos primários, evitando contar os mesmos estudos duas vezes [@pollock2024overviews, sec. V.4.4] |
+| População e contexto | O PICOC do texto fala em alunos em idade escolar e escolas de ensino fundamental e médio [@schaefer_oqfunciona, p. 11]; o slide inclui universidades no contexto [@schaefer2026aula1, slide 19]; a revisão final incluiu ensino superior [@schaefer_oqfunciona, p. 29] | Fixar no G1 se ensino superior entra; se entrar, prever análise separada por nível, porque a própria revisão atribui a diferença de resultado a essa inclusão |
+| Recorte temporal | A tabela do protocolo diz 2010 a 2024 [@schaefer_oqfunciona, p. 11-12]; o slide diz 2007 a 2024 [@schaefer2026aula1, slide 20]; o filtro aplicado usou "após 2007" [@schaefer_oqfunciona, p. 28] | Uma única regra, justificada por marco (o lançamento do iPhone em 2007, usado pelos autores), registrada antes da busca (@sec-03-regras) |
+| Comparabilidade | Oito estudos causais com três estratégias de identificação e dois níveis de ensino [@schaefer_oqfunciona, p. 32-33] | Registrar a expectativa "comparabilidade incerta" e prever as duas rotas (com e sem meta-análise), com o checklist da @sec-08a-regras |
+| Tipo e título | O artigo publicado usa título-pergunta e declara o tipo no subtítulo ("revisão sistemática mista e sequencial") [@schaefer2025proibicao] | Manter esse formato e declarar nos métodos a técnica usada em cada etapa (meta-análise ou SWiM; síntese qualitativa), conforme a escada de abstração |
+
+: Decisões do G1 aplicadas ao caso dos celulares. {#tbl-01-exemplo-celulares}
+
+Com essas decisões, a linha da matriz é "OQF mista e sequencial", variante completa, com portões G1 a G9 e relato PRISMA 2020, SWiM (se não houver meta-análise) e ENTREQ para o componente qualitativo.
+
+### Outros exemplos, por tipo
+
+| Exemplo | Tipo declarado | O que ilustra bem | O que ajustar |
+|---|---|---|---|
+| @kopittke2021funciona | RS de efetividade sem meta-análise, com a Escala Maryland | Busca ampla em bases nacionais e internacionais, sites de institutos (IPEA, Fórum Brasileiro de Segurança Pública) e contato com mais de 400 especialistas [@kopittke2021funciona, p. 420]; critério de desenho explícito (nível 3 ou mais) [@kopittke2021funciona, p. 419] | Classifica módulos como positivos quando *p* < 0,1 e interpreta isso como 90% de probabilidade de os resultados se repetirem [@kopittke2021funciona, p. 421], leitura incorreta do valor-p; e trata "sem impacto" como ausência de significância. Ver @sec-08a-regras. O texto e o fluxograma divergem no total rastreado (13.353 e 13.352) [@kopittke2021funciona, p. 422-423] |
+| @juliano2023mudanca | Revisão de escopo | Pergunta ampla sobre continuidade ou mudança na política de combate à pobreza de Cardoso a Lula; 809 registros, 629 após duplicatas, 42 incluídos; leitura-teste de 10% dos registros para consolidar critérios [@juliano2023mudanca, p. 1, 5-6]; declara que não avalia qualidade por ser escopo [@juliano2023mudanca, p. 6] | Usa "confiabilidade" como critério auxiliar de seleção [@juliano2023mudanca, p. 6], o que precisa estar no protocolo; usa o fluxograma do PRISMA 2009 [@juliano2023mudanca, p. 7] em vez do PRISMA-ScR [@tricco2018prisma] |
+| @dakerwhite2015blame | Meta-síntese por meta-etnografia | 48 estudos em 5 subconjuntos; protocolo prévio; sete etapas de Noblit e Hare [@dakerwhite2015blame, p. 1, 3-4] | Os autores notam que o fluxograma PRISMA supõe um processo inteiramente *a priori* e representa mal a inclusão iterativa da meta-etnografia [@dakerwhite2015blame, p. 5]: relatar a iteração explicitamente (eMERGe) |
+| @fisher2023school | RS Campbell de efetividade com meta-análise | Protocolo registrado e seção própria de diferenças entre protocolo e revisão [@fisher2023school, p. 5, 22]; previsão de atualização a cada três anos [@fisher2023school, p. 22] | Não usa ferramentas padrão de risco de viés por trabalhar no nível do tamanho de efeito [@fisher2023school, p. 9]; ver @sec-06-regras |
+
+: Outros exemplos por tipo de revisão. {#tbl-01-exemplos-curso}
+
+## Erros comuns e como evitá-los {#sec-01-erros}
+
+| Erro | Por que é um problema | Como evitar |
+|---|---|---|
+| Chamar de RS uma revisão com busca numa só base e sem avaliação dos estudos | Não cumpre os traços definidores [@munn2018what]; na tipologia de Grant e Booth, seria no máximo uma revisão sistematizada [@sutton2019meeting, p. 210] | Checar a @tbl-01-rs-traços antes de nomear; se faltar etapa, mudar o rótulo |
+| Tratar "meta-análise" e "RS" como sinônimos | A meta-análise é técnica e não garante busca nem seleção sistemáticas [@dacombe2018systematic, p. 155; @grizenti2024revisao, p. 13] | Seguir a convenção da escada de abstração: tipo no título, técnica nos métodos |
+| Nomear a revisão pela técnica ("uma análise temática da literatura") | O leitor não sabe que busca, avaliação e relato esperar [@sutton2019meeting, p. 212; @schaefer2026aula1, slide 28] | Declarar o tipo (por exemplo, "síntese de evidências qualitativas") e a técnica separadamente |
+| Usar revisão de escopo para responder "a política funciona?" | Escopo não avalia risco de viés nem produz achado-resumo; perguntas de efetividade pedem RS [@munn2018systematic] | Aplicar R6 e R7; se o objetivo for mapear primeiro, deixar a RS como segunda fase |
+| Começar RS nova sem procurar RS existentes | Duplica esforço e pode chegar a conclusão já disponível [@petticrew2006systematic, p. 36; @lasserson2024starting, sec. 1.1] | Passo 4 obrigatório no G1, com decisão registrada |
+| Incluir RS ou meta-análises como estudos | Conta os mesmos estudos primários mais de uma vez e mistura unidades [@pollock2024overviews, sec. V.4.4]; aconteceu no caso dos celulares [@schaefer_oqfunciona, p. 31-32] | Numa RS de primários, revisões vão para bola de neve e validação; se forem a unidade, o tipo é overview. A orientação Cochrane para revisões rápidas admite RS como desenho elegível [@garritty2021cochrane, R8]; nesta base, isso só é aceito se previsto no protocolo, com as RS usadas como fonte de evidência no nível de revisão e controle explícito de sobreposição (CCA), nunca no mesmo conjunto de síntese que os primários nem somando seus estudos aos primários [@pollock2024overviews, sec. V.4.4, V.4.7] (@sec-05-regras) |
+| Rotular como "rápida" sem declarar atalhos | O traço da família rápida é a negociação e a declaração explícita das modificações [@sutton2019meeting, p. 211-212] | Listar atalhos no G1 e documentar mudanças *post hoc* [@garritty2021cochrane, R25] |
+| Pergunta ampla demais | Revisão ingerenciável e pouco sistemática [@petticrew2006systematic, p. 31; @xiao2019guidance, p. 103] | Passo 3; considerar escopo ou mapa antes |
+| Usar a RS *ex ante* para confirmar uma política já escolhida | Contraria a definição de RS [@petticrew2006systematic, p. 15] | Congelar pergunta e tipo no G1 e protocolo no G2 |
+| Supor que a OQF segue um guia padronizado de métodos mistos | O guia do JBI cobre só desenhos convergentes [@aromataris2024jbi, sec. 8.2] | Escrever as regras de sequência e integração no protocolo (@sec-08b-regras) |
+| Avaliar qualidade para excluir estudos numa revisão de escopo sem prever isso | Em escopo a avaliação é opcional e depende do objetivo [@aromataris2024jbi, sec. 10.1.2] | Se for usada, declarar no protocolo com critério e finalidade, como fizeram Juliano et al. [-@juliano2023mudanca, p. 6] |
+| Decidir "com meta-análise" antes de conhecer os estudos, sem rota alternativa | A meta-análise só se justifica com estudos semelhantes [@garritty2021cochrane, R21] | Registrar a expectativa no G1 e as duas rotas no protocolo |
+
+: Erros comuns na escolha do tipo de revisão. {#tbl-01-erros}
+
+## Na skill `revisao-sistematica` {#sec-01-skill}
+
+A skill está em construção; esta seção descreve o contrato previsto (@sec-especificacao-contrato), sem detalhes além dele.
+
+- **Etapa e portão.** A escolha do tipo é a etapa 1 do fluxo ("pergunta e tipo", com checagem de RS existentes e registradas) e fecha no portão **G1**. G1 e G2 são os únicos portões em que a skill para mesmo no modo autopiloto; nos demais portões, esse modo registra pendências.
+- **Estado.** `rs.py init` cria o projeto e o arquivo `rs_estado.json`, cujo bloco `projeto` guarda `titulo`, `pergunta`, `tipo_revisao` e `idioma_produtos`. O Claude nunca edita o estado à mão; só `rs.py` escreve nele. Toda sessão começa por `rs.py status`, que devolve etapa atual, pendências, inconsistências e próxima ação.
+- **Referência operacional.** A matriz deste capítulo vira `references/tipos-de-revisao.md`, com as mesmas colunas: framework, busca, triagem, qualidade/RoB, família de codebook, síntese, certeza, diretriz de relato e portões mínimos.
+- **Tipos suportados.** A v1 cobre efetividade com e sem meta-análise, OQF mista e sequencial, escopo, síntese qualitativa e rápida (como variantes da matriz). Revisão realista iterativa completa, QCA computacional, EGM interativo, guarda-chuva com CCA e bibliometria ficam para a v2: a skill reconhece esses tipos, orienta pelo capítulo e declara o limite. Revisão narrativa, bibliometria isolada e "resumo de literatura por IA" não são aceitos como RS.
+- **Produtos por tipo.** Templates `assets/templates/relatorio_oqf.qmd`, `manuscrito_prisma.qmd`, `relatorio_escopo.qmd` e `policy_brief.qmd`; codebooks `oqf_decomposicao.csv`, `escopo_pcc.csv` e `qualitativa.csv`; checklists `prisma2020`, `prisma_scr` e `swim`. O tipo registrado no G1 determina quais desses artefatos o projeto usa.
+- **Pedidos ambíguos e parciais.** Um pedido de "revisão narrativa" deve levar a skill a perguntar o que o usuário quer, e não a iniciar uma RS. Pedidos parciais ("só a triagem", "só a meta-análise") são roteados sem passar pela escolha do tipo, e o projeto marca as etapas ignoradas.
+- **Revisor metodológico.** O subagente `revisor-metodologico` atua nos portões G2 e G8; no G1, a checagem é da pessoa responsável, com apoio da @tbl-01-regras-decisao.
+
+## Como relatar {#sec-01-relato}
+
+O relatório ou artigo deve conter, sobre esta etapa:
+
+1. o tipo de revisão no título ou subtítulo (PRISMA 2020, item 1; PRISMA-ScR; PRIOR, item 1);
+2. a justificativa, situando a revisão em relação às RS existentes e explicando por que se optou por fazer uma nova, atualizar ou fazer overview (PRISMA 2020, item 3);
+3. a pergunta e os objetivos, com os elementos do framework (item 4);
+4. a razão da escolha do tipo frente às alternativas mais próximas e a técnica ou técnicas de síntese previstas;
+5. a variante (completa ou rápida) e, se rápida, os atalhos adotados;
+6. o registro do protocolo e as mudanças de tipo ou escopo posteriores (itens 24a a 24c).
+
+Exemplo de redação para o caso dos celulares, na versão corrigida:
+
+> Esta é uma revisão sistemática mista e sequencial de estudos primários sobre os efeitos da restrição ou proibição do uso de celulares nas escolas de educação básica sobre o desempenho acadêmico, seus mecanismos, moderadores, implementação e custos. Antes da busca principal, identificamos duas revisões sobre a mesma pergunta, uma delas com meta-análise. Optamos por uma revisão nova porque [justificativa específica, escrita depois de ler as duas revisões: por exemplo, dimensões da pergunta que elas não cobrem, data da última busca ou ausência de bases brasileiras]. As revisões anteriores foram usadas para busca de referências e validação da estratégia de busca, e não foram incluídas como estudos. O efeito foi sintetizado por meta-análise quando os estudos atenderam aos critérios de comparabilidade previstos no protocolo e, nos demais casos, sem meta-análise, segundo o SWiM; os achados qualitativos foram sintetizados por síntese temática e avaliados com GRADE-CERQual. O protocolo foi registrado no OSF antes da busca [registro]; as mudanças em relação a ele estão descritas na seção "Diferenças entre protocolo e revisão".
+
+## Leituras {#sec-01-leituras}
+
+**Normas e orientações**
+
+- @lasserson2024starting: definição de RS e composição da equipe (Handbook, cap. 1).
+- @higgins2022mecir: padrões C1 a C4 sobre pergunta e escopo.
+- @page2021prisma, @tricco2018prisma e @gates2022reporting: relato de RS, revisões de escopo e overviews.
+- @pollock2024overviews: quando fazer overview, sobreposição e CCA (Handbook, cap. V).
+- @schunemann2024completing: níveis de certeza GRADE (Handbook, cap. 14).
+- @aromataris2024jbi: metodologias JBI, sobretudo escopo, métodos mistos e guarda-chuva.
+- @munn2018what e @munn2018systematic: tipologia por pergunta e escolha entre RS e escopo.
+- @garritty2021cochrane e @garritty2024updated: revisões rápidas.
+- @white2020guidance: mapas de evidências e lacunas.
+- @campbell2020synthesis, @tong2012enhancing, @france2019improving, @wong2013rameses e @lewin2018applying: relato e certeza por tipo.
+- @shea2017amstar e @pieper2014systematic: qualidade de RS e sobreposição em overviews.
+
+**Leituras de apoio**
+
+- @xiao2019guidance e @dacombe2018systematic: tipologia por propósito e RS na ciência política.
+- @sutton2019meeting, @grant2009typology e @price2022syntheses: famílias de revisões, 14 tipos e SALSA (Grant e Booth lidos via Price).
+- @petticrew2006systematic, caps. 1 e 2: por que e quando fazer RS nas ciências sociais, tipos de pergunta e custos.
+- @haddaway2014policy e @grizenti2024revisao: papel das RS em políticas e na ciência política brasileira.
+- @glass1976primary e @orourke2007historical: origem da meta-análise.
+- @schaefer_oqfunciona e @schaefer2026aula1: proposta OQF, tipos de revisão no material didático, escada de abstração e títulos.
+- @kopittke2021funciona, @juliano2023mudanca, @dakerwhite2015blame e @fisher2023school: exemplos de efetividade sem meta-análise, escopo, meta-etnografia e revisão Campbell.

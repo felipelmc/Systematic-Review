@@ -1,0 +1,523 @@
+---
+title: "Inteligência artificial na revisão sistemática: usos, riscos e validação"
+---
+
+Modelos de linguagem de grande porte (*large language models*, LLMs) e classificadores de aprendizado de máquina já sugerem termos de busca, ordenam e classificam títulos e resumos, extraem dados de textos completos e rascunham avaliações de risco de viés. A pergunta metodológica deixou de ser "a IA consegue?" e passou a ser "em que etapa, com que papel e com que prova de que ela não perdeu estudos nem inventou dados?". As normas internacionais convergem numa resposta: quem assina a revisão responde por ela, a IA só entra onde a equipe consegue demonstrar que o rigor foi preservado, o uso tem supervisão humana e todo uso que faz ou sugere julgamentos é declarado [@flemyng2025position; @thomas2026raise1, pp. 13-14]. Este capítulo transforma essa resposta em decisões operacionais: o papel da IA em cada etapa, o que as revisões recentes dizem sobre desempenho, como validar triagem e extração dentro da própria revisão (limiares, tamanhos de amostra, o que fazer quando falha), como escrever prompts auditáveis, que riscos pedem defesas programáticas e como relatar. As etapas em si estão nos capítulos próprios; aqui se trata só da camada de IA sobre elas.
+
+## Decisões e regras {#sec-11-regras}
+
+A primeira decisão é o **papel** da IA em cada etapa. O RAISE 3 classifica cada combinação de tarefa e classe de tecnologia em cinco categorias: aceitável para uso; exige verificação humana (a pessoa lê e, se preciso, corrige toda a saída); exige validação dentro da revisão; só uso exploratório ou suplementar; não aceitável [@thomas2026raise3, pp. 9-10]. A tabela cruza a classificação vigente em fevereiro de 2026 com a regra adotada na especificação metodológica da skill `revisao-sistematica` (@sec-especificacao), que é a camada vinculante desta parte do livro.
+
+| Etapa e uso | Classificação RAISE 3 | Regra nesta base | Quem decide |
+|---|---|---|---|
+| LLM rascunha pergunta ou estrutura do protocolo | Verificação humana [@thomas2026raise3, p. 11] | Rascunho permitido; pergunta e protocolo aprovados por humanos (@sec-03-regras) | Humano |
+| Agentes de busca (Undermind, Elicit, Asta) | Aceitáveis para conhecer a literatura, fora da recuperação formal; na recuperação de citações, só suplementares [@thomas2026raise3, pp. 11-12] | Só para achar revisões prévias e candidatos a estudo-âncora; o que entrar vai ao ramo "outros métodos" do PRISMA | Humano |
+| LLM gera estratégia de busca ou traduz sintaxe | Estratégia: exploratório ou suplementar; tradução: verificação humana [@thomas2026raise3, pp. 12-13] | Sinônimos em PT, EN e ES; string final com revisão por pares e teste de recall (@sec-04-regras) | Humano |
+| Deduplicação por regras | Aceitável; ferramentas deveriam exportar os pares [@thomas2026raise3, p. 13] | Regras auditáveis com pares exportados (@sec-05-regras) | Script com auditoria |
+| Triagem priorizada por aprendizado ativo | Validar dentro da revisão; economia pequena quando se exige sensibilidade máxima [@thomas2026raise3, p. 13] | Parada só por critério estatístico ou regra composta pré-registrada | Humano |
+| Triagem de títulos e resumos por LLM | Validar dentro da revisão [@thomas2026raise3, p. 14] | Protocolo A a H deste capítulo; sem aprovação, o LLM não exclui nada | LLM só depois de validado; incluídos, incertos e conflitos vão ao humano |
+| Risco de viés por LLM | Validar dentro da revisão; risco de alucinação com relato incompleto [@thomas2026raise3, p. 14] | LLM rascunha respostas às perguntas sinalizadoras com trecho; juízo humano (@sec-06-regras) | Humano |
+| Extração de dados qualitativos e numéricos por LLM | Validar dentro da revisão, com atenção a valores alucinados, errados ou faltantes [@thomas2026raise3, p. 15] | Números 100% conferidos na página; categóricas com segundo codificador | Humano confere |
+| LLM sintetiza resultados entre estudos | Não aceitável [@thomas2026raise3, pp. 15-16] | Proibido em qualquer produto formal | Nenhum uso |
+| LLM escreve código de análise | Verificação humana por quem conhece a linguagem [@thomas2026raise3, pp. 15-16] | Código revisado e testado (@sec-08a-regras) | Humano |
+| LLM sugere códigos e temas qualitativos | Validar dentro da revisão [@thomas2026raise3, p. 16] | Temas analíticos, configurações contexto-mecanismo-resultado e juízos CERQual são humanos (@sec-08b-regras) | Humano |
+| Certeza da evidência | Modelos de formulário por regras são aceitáveis, com juízo humano; pipelines automáticos só exploratórios [@thomas2026raise3, p. 16] | GRADE e CERQual sempre humanos (@sec-09-regras) | Humano |
+| LLM rascunha texto | Exploratório; não resumir nem interpretar resultados entre estudos [@thomas2026raise3, p. 16] | Só estrutura e rascunho de seções descritivas | Humano |
+| LLM revisa linguagem, gera resumo em linguagem simples de texto humano ou traduz estudos | Verificação humana [@thomas2026raise3, pp. 16-17] | Conferir contra o original, sobretudo números e sentido | Humano |
+| Agentes que executam a revisão de ponta a ponta | Não aceitável [@thomas2026raise3, p. 17] | Nenhum produto desse tipo conta como revisão sistemática | Nenhum uso |
+
+A segunda decisão são os **limiares** que a IA precisa cumprir antes de ganhar autonomia. A especificação metodológica da skill fixa o protocolo abaixo, detalhado na @sec-11-validacao e @sec-11-extracao.
+
+| Passo | O que se faz | Limiar ou regra | Se falhar |
+|---|---|---|---|
+| A. Calibração humana | Dois humanos triam, de forma independente, ≥ 100 registros ou ≥ 10 incluídos | κ ≥ 0,6 e concordância ≥ 75% | Critérios vN+1 e nova calibração em registros novos |
+| B. Desenvolvimento do prompt | Ajuste só no conjunto de desenvolvimento; depois congelamento | `prompts/vN.md` + modelo + parâmetros + hash | Mudança depois do congelamento gera vN+1 e nova validação |
+| C. Validação | Amostra nova, dupla codificação humana cega à IA, enriquecida para ≥ 60 incluídos humanos | Sensibilidade, especificidade, precisão, κ, PABAK e WSS com IC de Clopper-Pearson | Revisão pequena: todos os incluídos disponíveis e o IC que resultar |
+| D. Aceitação | Comparar o recall com o limiar | Recall ≥ 0,95 **e** limite inferior do IC 95% ≥ 0,90 | Seguir a sequência E |
+| E. Remédios | Falsos negativos → vN+1 em amostra nova → regra liberal → LLM só prioriza com critério de parada → dupla humana | Cada remédio volta a C e D | Dupla humana completa |
+| F. Elusão | Humano lê amostra aleatória dos excluídos pelo LLM após a rodada completa | n ≥ 300 ou todos; estimar incluídos perdidos com IC | Incluído encontrado leva a análise da causa e, conforme a estimativa, a E |
+| G. Estabilidade | Reexecutar 5% a 10% dos registros | Relatar proporção e direção das mudanças | Decisões oscilantes viram "incerto" |
+| H. Texto completo | LLM propõe elegibilidade | Trecho literal e página obrigatórios | Humano decide sempre |
+| Extração numérica | Dados de efeito | 100% conferidos com âncora de página, ou dupla extração com arbitragem | Corrigir e registrar |
+| Extração categórica | Segundo codificador cego em ≥ 20% dos estudos (mínimo 10) | κ ou PABAK ≥ 0,7 e concordância ≥ 80% por variável | Redefinir a variável e recodificar todos os estudos |
+| Piloto de extração | 2 a 3 estudos por bloco a1, a2, b1, b2 | Codebook estável antes da rodada | Nova versão do codebook |
+
+::: {.callout-important}
+## Regras invioláveis
+
+1. **Responsabilidade humana.** A equipe responde pelo conteúdo, pelos métodos e pelos achados, incluindo a decisão de usar IA, o modo de uso e o impacto dela na síntese [@thomas2026raise1, p. 13, rec. 1.1]. Usar uma ferramenta não transfere a responsabilidade ao fornecedor [@thomas2026raise3, p. 29].
+2. **Nenhuma exclusão por LLM sem validação aprovada.** Antes do passo D, todo "excluir" do LLM é sugestão. Registro sem resumo, resposta fora do formato ou erro de API viram "incerto", nunca exclusão.
+3. **Quem ajusta o prompt não mede desempenho com os mesmos registros.** Dados usados no desenvolvimento do prompt não podem avaliar o desempenho [@thomas2026raise2, p. 11]. Num levantamento de 229 estudos, o congelamento do conjunto de teste antes da otimização do prompt não foi relatado em 99,8% das 440 tarefas [@lai2026large].
+4. **Triagem em janela de chat não é método.** Sem prompt arquivado, versão do modelo, identificador por registro e saída estruturada, não há como registrar texto do prompt e versão do modelo como RAISE 3 pede [@thomas2026raise3, p. 19].
+5. **LLM não sintetiza resultados entre estudos.** Resumir texto não é síntese [@thomas2026raise3, p. 7], e esse uso é classificado como não aceitável [@thomas2026raise3, pp. 15-16].
+6. **Toda afirmação extraída tem âncora.** Cada valor extraído vem com trecho literal e página, conferidos por programa antes de entrar na base.
+7. **Todo uso que faz ou sugere julgamento é declarado**, com ferramenta, versão, datas, finalidade, validação e limitações [@thomas2026raise1, p. 14, rec. 1.8-1.9].
+:::
+
+## Normas e princípios: RAISE e a declaração conjunta de 2025 {#sec-11-normas}
+
+**RAISE** (*Responsible use of AI in evidence SynthEsis*) é uma iniciativa liderada por pessoas da ICASR, da Cochrane e da Campbell. Seus três documentos são: RAISE 1, com recomendações para oito papéis do ecossistema de síntese (quem faz revisões, metodologistas, desenvolvedores de ferramentas, organizações produtoras, editoras, financiadores, usuários e formadores); RAISE 2, sobre construir e avaliar ferramentas; e RAISE 3, sobre escolher e usar ferramentas numa revisão concreta [@thomas2026raise1, pp. 9-10]. A versão lida aqui é o rascunho 3 (RAISE 3 na versão 3.1), de 13 de março de 2026, aberto a consulta e com a meta declarada de virar diretriz de consenso [@thomas2026raise1, pp. 1, 9]. Os autores reconhecem dois limites: o recrutamento pelas redes dos organizadores traz risco de viés de autosseleção, e as recomendações pressupõem infraestrutura, assinaturas comerciais e capacidade de governança que não estão garantidas em países de renda baixa e média, onde a síntese muitas vezes depende de equipes pequenas [@thomas2026raise1, pp. 8-9]. A ressalva vale para boa parte das equipes brasileiras.
+
+A **declaração conjunta de 2025** da Cochrane, da Campbell Collaboration, da JBI e da Collaboration for Environmental Evidence apoia RAISE e resume a posição das quatro organizações em quatro princípios [@flemyng2025position]. A tabela mostra o que cada um exige.
+
+| Princípio | O que a norma diz | Como se cumpre nesta base |
+|---|---|---|
+| Responsabilidade humana | O autor responde pelo conteúdo, métodos e achados, inclusive pela decisão de usar IA e por aderir a padrões legais e éticos [@flemyng2025position; @thomas2026raise1, p. 13] | Portões humanos na skill; declaração de responsabilidade no relato |
+| Integridade metodológica demonstrável | IA e automação podem ser usadas desde que a equipe demonstre que não comprometem o rigor nem a integridade da síntese [@flemyng2025position]; o uso deve ser justificado com evidência de solidez metodológica e adequação ao contexto [@thomas2026raise1, p. 13, rec. 1.3] | Protocolo A a H com limiares fixados antes de ver os dados |
+| Supervisão humana | Uso de IA com supervisão humana [@flemyng2025position] | Incluídos, conflitos, incertos e amostra de elusão sempre lidos por humanos |
+| Transparência | Declarar todo uso que faz ou sugere julgamentos; disponibilizar prompts, saídas, dados e código quando possível [@flemyng2025position; @thomas2026raise1, p. 14] | Prompts versionados com hash, log de decisões, declaração de IA gerada do log |
+
+Cinco pontos das normas moldam este capítulo. Primeiro, o limiar é fixado por quem vai usar a ferramenta, antes do uso: no classificador de ensaios randomizados da Cochrane, especialistas em informação exigiram 99% de recall e aceitaram precisão de 8%, porque perder estudos era inaceitável [@thomas2026raise2, pp. 9-10]. Segundo, RAISE pede que metodologistas fixem referências empíricas mínimas, como limiares de recall para triagem e mínimos de confiabilidade para extração [@thomas2026raise1, p. 11]; é o papel da tabela de limiares acima. Terceiro, a declaração conjunta trata o uso de IA como decisão de protocolo que pesa o contexto, a tolerância a erros e as mitigações; conforme a incerteza sobre a ferramenta, a equipe pode precisar pilotá-la ou calibrá-la dentro da revisão, o que custa tempo e habilidade [@flemyng2025position]. Quarto, RAISE 3 propõe decidir, depois de avaliar a ferramenta, entre prosseguir, prosseguir com mitigações e monitoramento, ou não prosseguir, com sinais de parada como: nenhuma validação publicada em contexto relevante; desempenho sustentado só pela validação do desenvolvedor; termos que permitem treinar o modelo com o conteúdo enviado sem opção de recusa; impossibilidade de monitorar ou auditar as saídas [@thomas2026raise3, pp. 22-23]. Quinto, escrever prompts para uma tarefa equivale a construir manualmente um modelo, e as exigências de construção e validação valem também para o desenho de prompts [@thomas2026raise2, p. 8].
+
+O limiar de recall ≥ 0,95 tem uma referência humana. Num ensaio randomizado com 280 participantes e 24.942 decisões, a triagem por um único revisor perdeu 13% dos estudos relevantes (sensibilidade de 86,6%; IC 95% de 80,6% a 91,2%), enquanto a dupla perdeu 3% (97,5%; IC 95% de 95,1% a 98,8%) [@gartlehner2020single]. A declaração conjunta usa essa estimativa de 13% para sugerir a IA como segundo revisor em revisões rápidas [@flemyng2025position]. Exigir recall de pelo menos 0,95 aproxima o LLM da dupla humana, e não do revisor único.
+
+::: {.callout-note}
+## PRISMA-trAIce não é extensão oficial do PRISMA
+
+O PRISMA-trAIce foi publicado em dezembro de 2025 como proposta de extensão do PRISMA 2020 para relatar o uso de IA como ferramenta metodológica, construída por síntese e adaptação de diretrizes existentes (CONSORT-AI, TRIPOD-AI e outras), sem Delphi nem reunião de consenso e sem estudo formal com usuários [@holst2025prismatraice]. Em 2026, membros do Executivo do PRISMA publicaram carta dizendo que não o endossam como checklist PRISMA, porque o desenvolvimento não seguiu os processos da iniciativa, e que coordenam uma orientação de consenso sobre IA a ser hospedada no site do PRISMA [@moher2026prismatraice]. Nesta base, o PRISMA-trAIce serve como **lista de conferência** do relato (é o instrumento mais detalhado disponível), sempre junto dos itens 8, 9 e 11 do PRISMA 2020 e de RAISE, com a ressalva explícita de que não é diretriz endossada. Quando a orientação oficial sair, ela prevalece.
+:::
+
+## Evidências de desempenho por tarefa {#sec-11-evidencias}
+
+A literatura sobre LLMs em revisões cresce rápido e vem quase toda da área da saúde. A tabela resume os achados mais recentes por tarefa.
+
+| Tarefa | O que as avaliações recentes mostram | Leitura prática |
+|---|---|---|
+| Termos e strings | Estratégias geradas por LLM ainda não são adequadas sem especialista; uso exploratório [@thomas2026raise3, pp. 4, 12] | Útil para listar sinônimos; a string final passa por teste de recall (@sec-04-regras) |
+| Busca por plataformas de IA | Busca pelo Elicit recuperou menos de 40% dos artigos relevantes, contra sensibilidade de 94,5% das buscas de revisões tradicionais [@thomas2026raise3, p. 4] | Só para achar revisões prévias e âncoras |
+| Referências geradas por chatbot | Em 11 revisões e 471 referências, taxas de alucinação de 39,6% (GPT-3.5), 28,6% (GPT-4) e 91,4% (Bard); recall de 11,9% e 13,7% para os modelos GPT [@chelli2024hallucination] | Nenhuma referência nasce de LLM |
+| Triagem de títulos e resumos | Revisão com 148 avaliações: mediana de concordância positiva (análoga à sensibilidade) de 0,92 (IQR 0,69 a 0,98) e negativa de 0,89 (IQR 0,72 a 0,95), em 78 avaliações [@laignelot2026large]; meta-análise de 18 estudos: sensibilidade agrupada de 0,92 (IC 95% 0,81 a 0,96) e especificidade de 0,94 (0,90 a 0,97) [@xie2026performance] | Sensibilidade alta na média, com uma cauda de avaliações muito piores; valida-se dentro de cada revisão |
+| Correção pelo acaso | Com GPT-4, a acurácia parecia equivalente à humana em algumas tarefas, mas caiu em todas as etapas depois de ajustada para concordância ao acaso e desbalanceamento dos dados [@khraisha2024can] | Relatar κ e PABAK junto da concordância bruta |
+| Prompt | Prompts com exemplos ou raciocínio passo a passo associados a sensibilidade maior (0,95 contra 0,86; p < 0,01) [@xie2026performance] | Incluir exemplos válidos e inválidos |
+| Modelo e tamanho de lote | Com lotes de 1 a 790 referências e 10 repetições, a sensibilidade do GPT-5 mini caiu de 0,88 (lote de 200) para 0,48 (lote de 400); o GPT-5 falhou em lotes ≥ 400; o Gemini 2.5 Flash teve sensibilidade baixa com lote de 1; com lote de 100, Gemini 2.5 Pro chegou a sensibilidade 1,00 e GPT-5 a especificidade 0,98 [@fagerberg2026batch] | Lote e modelo são parâmetros congelados e validados juntos; nesta base, lotes de 20 a 30 |
+| Elegibilidade em texto completo | Mediana de concordância positiva de 0,93 (IQR 0,87 a 1,00) e negativa de 0,92 (0,78 a 0,97), em só 20 avaliações [@laignelot2026large]; sensibilidade e especificidade agrupadas de 0,99 em poucos estudos [@xie2026performance]; com prompts de alta confiabilidade, GPT-4 chegou a nível semelhante ao humano [@khraisha2024can] | Base pequena e médica; falhas silenciosas com textos longos (@sec-11-riscos); LLM só propõe |
+| Extração de dados | Acurácia de 0,36 a 1,00, mediana 0,95 (IQR 0,91 a 0,97; n = 11) [@laignelot2026large]; em 24 variáveis (9 explícitas e 15 categóricas derivadas) de 112 estudos, 71,17% (Gemini 1.5 Flash), 72,14% (Gemini 1.5 Pro) e 62,43% (Mistral Large 2) de concordância com a codificação humana [@schroeder2025large] | Variáveis explícitas saem melhor que as derivadas; conferência humana obrigatória |
+| Risco de viés | Acurácia de 0,44 a 0,90, mediana 0,62 (IQR 0,53 a 0,76; n = 6) [@laignelot2026large] | Pior tarefa medida; LLM só rascunha |
+| Síntese e escrita | Ao "resumir" resultados, o LLM não avalia se os estudos podem ser combinados, não padroniza efeitos, não pondera pelo tamanho dos estudos nem examina heterogeneidade [@thomas2026raise3, p. 7] | Não usar para síntese; revisão de linguagem com conferência |
+
+Quatro cautelas acompanham esses números. A primeira é a **heterogeneidade**: um IQR de 0,69 a 0,98 significa que um quarto das avaliações de triagem teve concordância positiva abaixo de 0,69 [@laignelot2026large], e métricas médias fortes (98% de recall, por exemplo) podem esconder desempenho muito pior em conjuntos de dados individuais [@thomas2026raise2, p. 38]. A segunda é a **qualidade dos estudos de avaliação**: em 229 estudos e 440 tarefas, a transparência média de relato foi 0,52 numa escala de 0 a 1, com 0,12 nas informações de protocolo e 0,30 nos detalhes do modelo [@lai2026large]. A terceira é o **domínio**: as revisões citadas tratam de literatura médica e não trazem estimativas para ciência política, avaliação de políticas ou registros em português. A quarta é a **maturidade**: uma revisão de escopo encontrou 37 artigos sobre LLMs em revisões (57% estudos de validação) e concluiu que aplicações plenamente estabelecidas ou validadas ainda faltam [@lieberum2025large].
+
+::: {.callout-warning}
+## "Pior em texto completo" não é o que as revisões agregadas mostram
+
+É comum ouvir que LLMs vão bem em títulos e resumos e mal em texto completo. As avaliações recentes não sustentam isso na média: as concordâncias em texto completo foram iguais ou maiores que as de títulos e resumos [@laignelot2026large; @xie2026performance], e o GPT-4 foi mais estável no texto completo quando os prompts eram confiáveis [@khraisha2024can]. O motivo para manter o humano como decisor no texto completo é outro: a base de evidência é pequena e médica, a classificação do RAISE 3 exige validação dentro da revisão para seleção por LLM [@thomas2026raise3, p. 14], e os modos de falha com documentos longos são silenciosos (instrução perdida, truncamento, resposta cortada), como mostram os casos na @sec-11-licoes.
+:::
+
+Resultados de sistemas de ponta a ponta pedem leitura cuidadosa. O fluxo otto-SR relatou, em 32.357 citações de 5 revisões, sensibilidade de 96,7% e especificidade de 97,9% na triagem, contra 81,7% e 98,1% de pesquisadores de pós-graduação, e acurácia de 93,1% na extração, contra 79,7% [@cao2025automation]. Os números vêm de um preprint avaliado pelos autores do sistema, e as discrepâncias passaram por dupla revisão humana [@cao2025automation], que é a supervisão exigida aqui. O meta-pipe descreve um pipeline com Claude, Python, R e Quarto com cinco pontos obrigatórios de decisão humana e declara não relatar dados de validação [@lin2026metapipe]. RAISE 3 explica por que a cautela é maior nesses sistemas: erros de cada subtarefa se acumulam e a arquitetura de caixa-preta não oferece informação suficiente para reproduzir a síntese [@thomas2026raise3, p. 9]; RAISE 2 acrescenta que relatórios gerados por plataformas agênticas não devem ser tratados como síntese rigorosa nem embasar decisões de política [@thomas2026raise2, p. 8].
+
+## Ferramentas: aprendizado ativo, plataformas e LLMs {#sec-11-ferramentas}
+
+| Classe | Exemplos | Para que serve | Condição de uso nesta base |
+|---|---|---|---|
+| Aprendizado ativo | ASReview [@vandeschoot2021open] | Ordenar a fila para que os relevantes apareçam cedo | Critério de parada estatístico ou regra composta declarada no protocolo |
+| Plataformas de busca com IA | Elicit, Consensus, Undermind | Explorar a literatura e achar revisões prévias | Só exploratório; resultados fora da busca formal [@thomas2026raise3, pp. 11-12] |
+| Extração assistida com interface | AIDE [@schroeder2025large; @schaefer2026aula5, p. 33] | Extrair variáveis com humano validando cada campo | Conferência campo a campo e amostra com segundo codificador |
+| LLM via API em script próprio | OpenAI, Anthropic, Google, DeepSeek | Triagem e extração em volume, com controle de modelo, parâmetros e log | Protocolo A a H; prompts versionados; log retomável; aviso de envio de dados a terceiros |
+| Agentes e subagentes | Subagentes do Claude Code; otto-SR; meta-pipe | Paralelizar leituras | Mesma validação da API; saída verificada por script, nunca pelo resumo do agente |
+| Janela de chat | ChatGPT, Claude, DeepSeek no navegador | Tirar dúvidas, testar ideias | Fora de triagem, extração e síntese formais; chatbot não é base de conhecimento [@thomas2026raise1, p. 14, rec. 1.7] |
+
+**Aprendizado ativo e critério de parada.** No ASReview, o revisor rotula registros, o modelo reordena os restantes e os relevantes tendem a aparecer cedo; simulações indicam ganho de eficiência sobre a leitura manual [@vandeschoot2021open]. O ganho só se realiza se a equipe parar antes do fim, e é aí que mora o risco. O PRISMA 2020 descreve a triagem priorizada com eliminação automática dos menos relevantes como uma escolha com risco de excluir estudos por incerteza sobre quando parar [@page2021explanation, item 8, Box 3], e RAISE 3 registra que os critérios de parada avaliados em vários conjuntos de dados são, em geral, confiantes demais [@thomas2026raise3, p. 5]. A heurística de parar depois de 50 irrelevantes seguidos poupou em média 41% do trabalho, mas errou a meta de 95% de recall em 39% dos casos testados por Callaghan e Müller-Hansen, que propuseram sortear registros entre os não lidos e testar, com a distribuição hipergeométrica, a hipótese nula de recall abaixo da meta; o critério atingiu a meta com redução média de trabalho de 17% [@callaghan2020statistical]. O procedimento SAFE tem quatro fases (amostra aleatória de treino, aprendizado ativo, segundo modelo, checagem de qualidade) e, na fase de aprendizado ativo, só para quando quatro condições valem ao mesmo tempo: todos os artigos-chave marcados como relevantes; triados pelo menos o dobro do número estimado de relevantes; triados no mínimo 10% do conjunto; nenhum relevante nos últimos registros (por exemplo, 50) [@boetje2024safe].
+
+**Plataformas de busca e leitura.** Sampaio e colegas apontam Elicit e Consensus como as ferramentas acadêmicas mais avançadas em 2023 e notam que o Consensus mostra um "estado de consenso" quando a pergunta admite sim ou não [@sampaio2024chatgpt, seção II.1]. A proposta OQF sugere o Consensus para encontrar revisões de políticas parecidas [@schaefer_oqfunciona, p. 27], e o material didático sobre filtragem o usa em busca exploratória [@schaefer2026aula4, p. 33]. São usos corretos desde que a lista devolvida não se confunda com busca sistemática: essas plataformas pré-filtram resultados, nem sempre dizem de onde vieram os registros e recuperam uma fração dos relevantes [@thomas2026raise3, p. 4]. Num levantamento de 282 ferramentas de IA para revisões e meta-análises, só 7 atenderam aos critérios de qualidade dos autores, como transparência e acessibilidade [@futterer2026ai].
+
+**LLM via API ou agentes.** O modo API dá controle sobre modelo, parâmetros, lotes, repetições e logs, e custa por chamada; LLMs são caros de operar e as melhores funções tendem a ficar restritas a quem paga [@thomas2026raise3, p. 19]. Subagentes de um ambiente como o Claude Code dispensam chaves de API e paralelizam a leitura, mas o relato que o agente devolve não prova que a tarefa foi feita. Nos dois modos, a saída só vale depois de verificada por script (formato, identificadores, categorias permitidas, trecho literal presente no texto de origem), e o desempenho só vale depois do protocolo de validação.
+
+## Protocolo de validação da triagem {#sec-11-validacao}
+
+RAISE 2 recomenda validar a ferramenta dentro da revisão quando não há evidência generalizável para o contexto, de preferência como estudo dentro da revisão (*Study Within A Review*, SWAR) com protocolo registrado, e avisa que talvez não seja possível colher toda a eficiência de uma ferramenta enquanto ela está sendo avaliada [@thomas2026raise2, p. 14]. O protocolo abaixo operacionaliza essa recomendação para títulos e resumos e é declarado no protocolo da revisão antes de qualquer dado ser visto (@sec-03-regras).
+
+```{mermaid}
+flowchart TD
+  A["A. Calibração humana dupla<br/>κ ≥ 0,6 e ≥ 75%"] -->|falhou| A2["Critérios vN+1"] --> A
+  A -->|passou| B["B. Prompt no conjunto de desenvolvimento<br/>congelar vN + modelo + parâmetros + hash"]
+  B --> C["C. Validação em amostra nova<br/>≥ 60 incluídos humanos, dupla cega"]
+  C --> D{"D. Recall ≥ 0,95<br/>e LI ≥ 0,90?"}
+  D -->|não| E["E. Remédios em sequência"]
+  E --> C
+  D -->|sim| R["Rodada completa<br/>incluídos, incertos e conflitos → humano"]
+  R --> F["F. Elusão: humano lê ≥ 300 excluídos"]
+  R --> G["G. Reexecução de 5% a 10%"]
+  F --> P["Relato com métricas e IC"]
+  G --> P
+```
+
+### A. Calibração humana dos critérios
+
+Antes de qualquer prompt, dois humanos aplicam os critérios, de forma independente, a uma amostra aleatória de pelo menos 100 registros ou até reunir 10 incluídos. Na leitura operacional desta base, a amostra de 100 é ampliada até aparecerem 10 incluídos quando a prevalência for baixa, porque um κ calculado com dois ou três positivos é instável. Os critérios passam com κ ≥ 0,6 e concordância bruta ≥ 75%. Em prevalência baixa a concordância bruta passa quase sempre (com 5% de relevantes, quem exclui tudo concorda 95% com quem acerta tudo, e o κ entre os dois é zero), então o limiar que decide é o κ. Se falhar, a equipe discute cada divergência, reescreve os critérios como versão nova (`criterios_ta_v2.md`) e calibra de novo em registros **novos**. Se nem humanos concordam, o LLM não tem alvo definido. Como o comportamento de codificação muda entre pessoas e na mesma pessoa ao longo do tempo, testes de concordância se repetem durante a triagem [@belur2021interrater].
+
+O κ de Cohen corrige a concordância observada pela esperada ao acaso [@cohen1960coefficient]:
+
+$$
+\kappa = \frac{p_o - p_e}{1 - p_e}, \qquad p_e = p_{1}^{\text{inc}}\,p_{2}^{\text{inc}} + p_{1}^{\text{exc}}\,p_{2}^{\text{exc}}
+$$
+
+em que $p_o$ é a proporção de concordância e $p_{j}^{\text{inc}}$ a proporção de inclusões do revisor $j$. As faixas de Landis e Koch (0,41 a 0,60 moderada; 0,61 a 0,80 substancial) são convenções, não prova de adequação [@landis1977measurement]. O cálculo de κ, PABAK e das regras de desempate na triagem humana está na @sec-05-regras; aqui interessa o uso dessas medidas como portão para a IA.
+
+### B. Desenvolvimento e congelamento do prompt
+
+O prompt é escrito e ajustado apenas com registros do **conjunto de desenvolvimento** (a amostra de calibração e, se preciso, mais registros sorteados para esse fim). RAISE 2 é explícito: o desenvolvimento iterativo deve ocorrer num conjunto de treino e nenhum dado desse conjunto pode medir desempenho; o erro comum é iterar o prompt dentro da revisão e relatar métricas com os mesmos registros [@thomas2026raise2, p. 11]. Como o desenvolvimento de prompts usa poucos dados, a proporção habitual entre treino e validação pode se inverter, com mais registros guardados para validar [@thomas2026raise2, p. 9]. Ao final, a versão é congelada:
+
+1. arquivo `prompts/vN.md` com cabeçalho de metadados (data, motivação, mudanças em relação à versão anterior) e texto integral;
+2. identificador exato do modelo (com data de versão, quando o provedor a fornece), parâmetros efetivamente enviados e tamanho de lote;
+3. hash SHA-256 do texto do prompt, gravado no estado do projeto e em cada decisão.
+
+RAISE 3 pede registrar texto do prompt e versão do modelo com detalhe suficiente para monitoramento e reprodutibilidade, usar controle de versão e manter registro de mudanças, porque modelos comerciais mudam de forma imprevisível e um prompt pode funcionar de outro jeito em outro modelo ou em nova versão do mesmo [@thomas2026raise3, p. 19]. Qualquer alteração depois do congelamento, mesmo de uma palavra, gera `v(N+1)` e nova validação.
+
+### C. Validação em amostra nova
+
+A validação usa registros que nunca passaram pelo desenvolvimento. Dois humanos codificam cada registro de forma independente, sem ver a decisão da IA, e um terceiro arbitra as divergências; o resultado arbitrado é o padrão de referência, e erros nele distorcem todas as métricas [@thomas2026raise2, p. 12]. O "incerto" do LLM conta como positivo (o registro segue para leitura humana), o que protege o recall e custa carga de trabalho.
+
+**Métricas.** Com VP, FP, VN e FN definidos contra o padrão humano:
+
+| Métrica | Fórmula | Pergunta que responde |
+|---|---|---|
+| Sensibilidade (recall) | $\text{VP}/(\text{VP}+\text{FN})$ | Que fração dos incluídos o LLM manteve? |
+| Especificidade | $\text{VN}/(\text{VN}+\text{FP})$ | Que fração dos irrelevantes ele descartou? |
+| Precisão (valor preditivo positivo) | $\text{VP}/(\text{VP}+\text{FP})$ | Quanto do que ele manda ao humano é relevante? |
+| κ de Cohen | ver passo A [@cohen1960coefficient] | Concordância além do acaso |
+| PABAK | $2p_o - 1$ [@byrt1993bias] | Concordância ajustada para prevalência e viés |
+| WSS | $(\text{VN}+\text{FN})/N - (1 - R)$ [@cohen2006reducing] | Trabalho poupado além do que uma amostragem aleatória pouparia com o mesmo recall $R$ |
+
+Relate κ e PABAK juntos: em prevalência baixa, κ pode ser baixo com concordância alta enquanto PABAK sobe, e as duas medidas não dizem a mesma coisa [@chen2009measuring]. O F1 não serve como métrica principal porque não usa os verdadeiros negativos e trata precisão e sensibilidade como igualmente importantes, quando a síntese costuma priorizar a sensibilidade; por isso o F-beta, que permite dar mais peso à sensibilidade, é com frequência preferido [@thomas2026raise2, pp. 34-35]. A WSS foi definida por Cohen e colegas como o trabalho poupado acima do que uma amostra aleatória pouparia; com recall fixado em 0,95, $\text{WSS@95\%} = (\text{VN}+\text{FN})/N - 0{,}05$, e os autores trataram 10% de WSS@95% como economia relevante [@cohen2006reducing]. Para um classificador binário, que não escolhe seu ponto de recall, relate a WSS no recall observado (fórmula geral) e reserve WSS@95% para ferramentas de ranqueamento.
+
+**Intervalos de Clopper-Pearson.** Toda proporção vem com IC exato binomial [@clopper1934use]. Com $x$ acertos em $n$, o IC de 95% é
+
+$$
+\text{LI} = B\!\left(0{,}025;\; x,\; n-x+1\right), \qquad \text{LS} = B\!\left(0{,}975;\; x+1,\; n-x\right),
+$$
+
+em que $B(q; a, b)$ é o quantil $q$ da distribuição Beta. Sem falso negativo ($x = n$), o limite inferior se reduz a $\text{LI} = 0{,}025^{1/n}$. No R, `binom.test(x, n)$conf.int` devolve esse intervalo.
+
+```r
+# Ilustrativo: 59 dos 60 incluídos humanos mantidos pelo LLM
+binom.test(59, 60)$conf.int   # 0,911 a 1,000
+```
+
+**Enriquecimento da amostra.** O recall é uma proporção sobre os incluídos humanos, então a precisão do IC depende do número de incluídos, e não do número de registros. Com 3% de prevalência, chegar a 60 incluídos por sorteio simples exigiria codificar cerca de 2.000 registros. Por isso a amostra é **estratificada pela decisão do LLM congelado** num lote novo: todos (ou uma fração conhecida) dos registros que o LLM marcou como incluir ou incerto, mais uma amostra aleatória dos que ele excluiu, todos codificados às cegas. Como as frações amostradas são conhecidas, as contagens são reponderadas pelo inverso da fração de amostragem de cada estrato ($w_h = N_h/n_h$):
+
+$$
+\widehat{\text{VP}} = w_{\text{I}}\cdot vp_{\text{I}}, \qquad \widehat{\text{FN}} = w_{\text{E}}\cdot fn_{\text{E}}, \qquad \widehat{R} = \frac{\widehat{\text{VP}}}{\widehat{\text{VP}} + \widehat{\text{FN}}}
+$$
+
+em que I é o estrato "incluir ou incerto" e E o estrato "excluir". Um limite inferior conservador para o recall se obtém trocando $fn_{\text{E}}/n_{\text{E}}$ pelo limite superior de Clopper-Pearson dessa proporção. Relate contagens brutas por estrato, frações amostradas e estimativas reponderadas. Em revisões pequenas, com menos de 60 incluídos humanos disponíveis, usam-se todos e relata-se o IC que resultar, mesmo que ele impeça a aprovação (@sec-11-exemplo).
+
+### D. Limiar de aceitação e tamanho amostral
+
+O LLM só ganha autonomia para excluir se **recall ≥ 0,95 e o limite inferior do IC 95% for ≥ 0,90**. As duas condições são necessárias: a primeira sozinha aprovaria 19 de 20 (recall 0,95) com limite inferior de 0,751; a segunda sozinha aprovaria, com amostras muito grandes, recall de 0,93. A tabela mostra, para cada número de incluídos humanos na validação, quantos falsos negativos ainda permitem aprovar (limites calculados com a fórmula acima).
+
+| Incluídos humanos na validação ($n$) | LI com 0 FN | Máximo de FN que ainda aprova | Recall e LI nesse máximo |
+|---|---|---|---|
+| 15 | 0,782 | Nenhum (limiar inalcançável) | Não se aplica |
+| 20 | 0,832 | Nenhum (limiar inalcançável) | Não se aplica |
+| 30 | 0,884 | Nenhum (limiar inalcançável) | Não se aplica |
+| 36 | 0,903 | 0 | 1,000; 0,903 |
+| 50 | 0,929 | 0 | 1,000; 0,929 |
+| 54 | 0,934 | 1 | 0,981; 0,901 |
+| 60 | 0,940 | 1 | 0,983; 0,911 |
+| 70 | 0,949 | 2 | 0,971; 0,901 |
+| 85 | 0,958 | 3 | 0,965; 0,900 |
+| 100 | 0,964 | 4 | 0,960; 0,901 |
+| 150 | 0,976 | 7 | 0,953; 0,906 |
+| 200 | 0,982 | 10 | 0,950; 0,910 |
+
+Três leituras orientam o planejamento. Com menos de 36 incluídos o limiar é matematicamente inalcançável, porque nem desempenho perfeito produz limite inferior de 0,90: o mínimo sai de $n \geq \ln(0{,}025)/\ln(0{,}90) \approx 35{,}01$. Com os 60 incluídos da especificação, o LLM pode errar no máximo um; com 50, nenhum. A partir de cerca de 150 incluídos, a condição que limita passa a ser o recall pontual de 0,95. O planejamento começa, portanto, pela pergunta "quantos incluídos humanos consigo reunir na validação?", e não por "quantos registros consigo codificar?".
+
+### E. O que fazer se falhar
+
+Os remédios seguem ordem fixa, e cada um volta aos passos C e D com amostra nova:
+
+1. **Análise dos falsos negativos.** Ler cada incluído que o LLM excluiu e classificar a causa: critério ambíguo, resumo sem a informação, confusão entre mencionar e estudar, idioma, erro de formato.
+2. **Nova versão do prompt (vN+1)** que corrija as causas, testada em registros não usados no diagnóstico (os falsos negativos analisados passam a ser dados de desenvolvimento).
+3. **Regra liberal**: com dois modelos, basta que um marque incluir ou incerto para o registro seguir ao humano. Sobe o recall, cai a economia.
+4. **LLM só prioriza**: a saída ordena a fila humana, e a parada segue critério estatístico [@callaghan2020statistical].
+5. **Dupla humana completa**, com o LLM no máximo como terceiro leitor.
+
+Baixar o limiar depois de ver os resultados é proibido. Mudança de limiar é emenda de protocolo, com justificativa e data anterior à nova validação.
+
+### F. Amostra de elusão depois da rodada completa
+
+Aprovado o LLM, a rodada completa segue três regras: todo registro marcado incluir ou incerto vai para leitura humana; todo conflito entre modelos vai ao árbitro e, se ele também ficar incerto, ao humano; e, ao final, um humano lê uma **amostra aleatória dos excluídos pelo LLM**, com n ≥ 300 ou todos, se forem menos. A proporção de incluídos nessa amostra (a taxa de elusão) estima quantos se perderam:
+
+$$
+\widehat{\text{perdidos}} = \frac{k}{n}\cdot N_{\text{excluídos}}, \qquad \text{LS}_{\text{perdidos}} = \text{LS}_{\text{CP}}(k, n)\cdot N_{\text{excluídos}}
+$$
+
+A elusão detecta falhas grosseiras, mas não prova recall alto. Com nenhum incluído em 300 lidos, o limite superior de Clopper-Pearson da taxa é 1,22%. Com 1.800 excluídos e 100 incluídos, isso admite até 22 perdidos e recall tão baixo quanto $100/122 \approx 0{,}82$; num corpus como o da revisão B (2.127 excluídos por consenso e 52 incluídos, @sec-11-licoes), admite 26 perdidos e recall de $52/78 \approx 0{,}67$. Por isso a elusão complementa o passo C sem substituí-lo, e o relato traz o limite superior de perdidos, não só a estimativa pontual. Se a amostra revelar algum incluído, o registro entra, a causa é analisada e a equipe decide, pela estimativa de perdidos, entre ampliar a leitura dos excluídos e voltar a E. É a lógica dos critérios estatísticos de parada: amostrar o que sobrou e testar a hipótese de recall insuficiente [@callaghan2020statistical].
+
+### G. Estabilidade
+
+LLMs generativos não garantem o mesmo resultado para a mesma entrada, e são desenhados para não garantir [@thomas2026raise2, p. 10]. A validação deve rodar as mesmas entradas várias vezes em condições idênticas e registrar com que frequência a categoria muda, com cuidado para não medir respostas devolvidas de cache em vez de regeneradas [@thomas2026raise2, pp. 11, 19-20]. Nesta base, 5% a 10% dos registros são reexecutados com a versão congelada, com a ordem dos registros no lote embaralhada. Relate a proporção de decisões que mudaram e a direção da mudança. Registro que oscila entre incluir e excluir vira "incerto" e vai ao humano; oscilação alta sinaliza critério ambíguo ou prompt frágil e justifica voltar a E.
+
+### H. Texto completo
+
+Na elegibilidade em texto completo, o LLM **propõe** decisão, critério que falhou, trecho literal e página; um humano lê o trecho (e o texto, quando necessário) e decide. O trecho é conferido por programa contra o texto do PDF antes de chegar ao humano, e o motivo de exclusão registrado é o do humano (@sec-05-regras). Documentos longos são lidos em faixas de páginas com registro das páginas cobertas, nunca truncados em silêncio (@sec-11-riscos).
+
+## Validação na extração e no risco de viés {#sec-11-extracao}
+
+A extração tem modos de erro próprios: o LLM pode inventar um número, trocar tratamento e controle, pegar o coeficiente do modelo errado ou preencher uma variável interpretativa com paráfrase plausível. A alucinação pode ocorrer mesmo quando a informação está presente no texto [@thomas2026raise2, p. 11]; quando ela falta, o modelo pode fabricar o dado, e por isso convém garantir que a informação está no documento antes de pedir a extração [@thomas2026raise2, p. 17]. Mesmo a dupla extração humana erra [@thomas2026raise2, p. 17]. As regras desta base (o codebook está na @sec-07-regras):
+
+| Tipo de dado | Regra | Limiar |
+|---|---|---|
+| Números de efeito (coeficiente, erro-padrão, t, médias, desvios, n) | 100% conferidos contra a página citada, ou dupla extração independente com arbitragem | Nenhum número sem âncora verificada |
+| Categóricas (desenho, direção, tipo de coleta) | Segundo codificador cego em ≥ 20% dos estudos (mínimo 10) | κ ou PABAK ≥ 0,7 e concordância ≥ 80% por variável; abaixo disso, redefinir e recodificar todos |
+| Textuais abertas (mecanismo, contexto, implementação) | Trecho literal obrigatório; divergências lidas por humano | Caso a caso, não resumidas num número |
+| Piloto | 2 a 3 estudos por bloco (a1, a2, b1, b2) antes da rodada | Codebook sem mudança após o piloto |
+| Risco de viés | LLM rascunha respostas às perguntas sinalizadoras com trecho e página | Juízo por domínio e global sempre humano (@sec-06-regras) |
+| Síntese qualitativa, configurações contexto-mecanismo-resultado, calibração QCA, CERQual | Humanos | Sem delegação |
+
+Três cuidados completam as regras. **Concordância entre dois agentes de IA mede consistência, não acurácia.** No fichamento da revisão A (@sec-11-licoes), um segundo agente cego refichou 26 textos, com concordância de valores de 80,6% no geral, κ de 0,828 em `tipo_trabalho`, concordância de desenho em 22 de 26 textos, 44,4% no bloco a1, 16,7% em `mecanismo_processo` e 66,7% em `coeficiente` (N = 6). O último número basta para justificar a conferência de 100% dos valores numéricos, e nenhum deles diz se os dois agentes acertaram, porque podem concordar no mesmo erro. **A automação pode tornar o humano menos cuidadoso**, risco que RAISE 2 sugere examinar com estudos de não inferioridade [@thomas2026raise2, p. 17]; quem confere lê o trecho antes de ver a resposta da IA, e a amostra do segundo codificador é cega. **Revisões abertas usadas como padrão-ouro podem ter entrado no treino do modelo**, o que infla o desempenho [@thomas2026raise2, p. 17]; a validação usa decisões humanas feitas na própria revisão.
+
+## Desenho de prompts {#sec-11-prompts}
+
+Um prompt de triagem ou extração é um instrumento de medição: versionado, testado, congelado e publicado. As regras vêm das normas e dos erros documentados nas revisões da @sec-11-licoes.
+
+| Regra | Como aplicar | Por quê |
+|---|---|---|
+| Critérios em sequência, com campo próprio para o que falhou | "Aplique C1, C2 e C3 nesta ordem; ao primeiro que falhar, pare e informe qual" | Permite analisar falsos negativos por critério; nos prompts das revisões A e B o critério falho ficava só dentro da justificativa em texto livre |
+| Distinguir estudar de mencionar | A intervenção precisa ser objeto de análise empírica, não contexto nem recomendação | Na revisão A, o limiar "mencionar" do prompt v1 deixou passar um estudo que só citava a intervenção na conclusão |
+| Exemplos válidos e inválidos | Um ou dois pares curtos por critério ambíguo, tirados do conjunto de desenvolvimento | Prompts com exemplos ou raciocínio associados a sensibilidade maior [@xie2026performance]; poucos exemplos ajudam a triagem [@thomas2026raise3, p. 5] |
+| Categoria "incerto" | "Na dúvida ou sem resumo, responda incerto" | Os prompts das revisões A e B só admitiam incluir ou excluir; o da revisão B ainda mandava excluir quando um critério falhasse claramente |
+| Instrução depois do texto longo | Em texto completo, documento primeiro, instrução e formato depois | Com a instrução antes de um documento de cerca de 108 mil tokens, o modelo continuou o documento (revisão C) |
+| Saída estruturada | JSON com `id_rs`, `decisao`, `criterio_falhou`, `justificativa`, `trecho` | Validação por esquema; PRISMA-trAIce pede formato de saída e pós-processamento descritos [@holst2025prismatraice] |
+| Trecho literal | Cópia exata de até 25 palavras do título ou resumo (ou da página do PDF) | Conferência programática de que a justificativa se apoia no texto |
+| Idioma | Registros podem estar em PT, EN ou ES; o critério é o mesmo | Reduz exclusão por idioma; ainda assim, validar por idioma (@sec-11-riscos) |
+| Versionamento | `prompts/vN.md` com metadados gerados pelo script, texto integral e hash; saídas nunca sobrescritas | Registro pedido por RAISE 3 [@thomas2026raise3, p. 19]; na revisão A, o cabeçalho escrito à mão ficou desatualizado |
+| Dois modelos e árbitro cego | Modelos de provedores diferentes; conflitos a árbitro de terceiro provedor que vê "Revisor A" e "Revisor B", sem nome de modelo | Árbitro do mesmo provedor pode revalidar a própria justificativa; o nome do modelo convida a decidir pela reputação (revisão C) |
+
+O ensemble de dois modelos com árbitro é escolha de desenho desta base, derivada da prática, e não recomendação empírica das normas. Ele reduz a dependência de um modelo, mas não dispensa validação: a regra final do ensemble (consenso, regra liberal ou árbitro) é o que se valida no passo C. O árbitro recebe título, resumo e as duas respostas anônimas; sua decisão de excluir só vale depois de validada como as demais, e conflito em que ele fica incerto vai ao humano.
+
+Um modelo de prompt de triagem, ilustrativo:
+
+```text
+[Arquivo prompts/v3.md | modelo: <id-exato> | lote: 25 | sha256: <hash>]
+
+Você vai triar títulos e resumos para uma revisão sistemática.
+Pergunta: <pergunta PICOC da revisão>.
+Os registros podem estar em português, inglês ou espanhol; aplique os mesmos critérios.
+
+Critérios, aplicados NESTA ORDEM (pare no primeiro que falhar):
+C1 População/contexto: <definição>.
+C2 Intervenção ESTUDADA empiricamente: a intervenção é tratamento, exposição
+   ou objeto central da análise.
+   VÁLIDO: <exemplo curto do conjunto de desenvolvimento>.
+   INVÁLIDO: a intervenção aparece só como contexto, recomendação ou citação.
+C3 Desfecho avaliado: <lista>.
+
+Se o resumo faltar ou não permitir decidir, responda "incerto".
+
+<registros>
+{"id_rs": "RS0001", "titulo": "...", "resumo": "..."}
+...
+</registros>
+
+Responda SOMENTE com um JSON por registro, na mesma ordem:
+{"id_rs": "...", "decisao": "incluir|excluir|incerto",
+ "criterio_falhou": "C1|C2|C3|nenhum",
+ "justificativa": "até 2 frases",
+ "trecho": "cópia literal de até 25 palavras do título ou resumo"}
+```
+
+## Riscos específicos e defesas {#sec-11-riscos}
+
+| Risco | Como aparece | Defesa operacional |
+|---|---|---|
+| Referências inventadas | Chatbot lista artigos inexistentes ou com autor e ano trocados; taxas de 28,6% a 91,4% num teste com 11 revisões [@chelli2024hallucination] | Nenhuma referência vem de LLM; toda referência nasce de exportação de base ou DOI verificado; quando a ferramenta cita fontes, conferir que existem e contêm o que se afirma [@thomas2026raise2, p. 20] |
+| Alucinação na extração | Valor plausível que não está no texto, inclusive quando a informação existe [@thomas2026raise2, p. 11] | Âncora literal com página e verificação programática antes de aceitar a ficha |
+| Não determinismo | A mesma entrada gera decisões diferentes [@thomas2026raise2, p. 10] | Passo G; decisões oscilantes viram incerto |
+| Mudança de modelo ou parâmetros | Provedor atualiza o modelo e o prompt passa a se comportar de outro jeito [@thomas2026raise3, p. 19]; a família Claude 5 devolve erro HTTP 400 se `temperature` for enviado (revisão C) | Identificador de versão e parâmetros enviados no log; monitorar e revalidar a cada troca de versão [@thomas2026raise3, p. 20] |
+| Falhas silenciosas de execução | Resposta cortada pelo limite de tokens aceita como completa; teto de caracteres que descarta o fim de teses; instrução perdida antes de documento longo; erro de API pulado na retomada; resposta fora do formato lida por palavra-chave (revisões B e C) | Sucesso só com esquema completo e parada normal; leitura em faixas com cobertura registrada; instrução depois do documento; nova passada sobre erros até zerar; formato inválido vira incerto |
+| PDF sem camada de texto ou arquivo errado | Extração vazia; PDF válido de outro artigo (revisões A e C) | Entrada nativa de PDF ou conferência visual; verificar título e autores antes de fichar |
+| Envio de dados a terceiros e direitos autorais | Títulos, resumos e PDFs vão ao provedor; termos podem permitir treino; carregar texto protegido pode constituir reprodução [@thomas2026raise3, p. 29] | Conferir acordos de processamento, confidencialidade e termos antes de usar serviços em nuvem [@thomas2026raise3, p. 29]; preferir versões com garantia de não uso para treino, avaliando cada versão [@thomas2026raise3, p. 31]; observar a LGPD quando houver dados pessoais [@brasil2018lgpd]; relatar a governança dos dados [@holst2025prismatraice] |
+| Contaminação da validação | Revisões abertas usadas como padrão-ouro podem estar no treino [@thomas2026raise2, p. 17] | Validar com decisões humanas da própria revisão |
+| Custo | Rodadas completas, repetições e árbitro multiplicam chamadas pagas [@thomas2026raise3, p. 19] | Estimar antes; rodar primeiro em amostra; log retomável para não pagar duas vezes |
+| Viés de idioma | 89,7% dos dados de treino do Llama 2 em inglês [@thomas2026raise2, p. 11]; desempenho superior em inglês [@sampaio2024chatgpt, seção II.5]; tradução automática acerta desenho e erra mais em desfechos e estatísticas [@thomas2026raise3, p. 8] | Estratificar a validação por idioma quando houver PT e ES em volume; relatar recall por idioma |
+| Efeito de lote | Sensibilidade cai com lotes grandes em alguns modelos [@fagerberg2026batch] | Lotes de 20 a 30; tamanho congelado com o prompt |
+| Viés de automação | A automação pode tornar o trabalho humano menos cuidadoso [@thomas2026raise2, p. 17] | Conferência cega em amostras; trecho lido antes da decisão sugerida |
+
+## Lições de projetos reais {#sec-11-licoes}
+
+Três revisões conduzidas pelo autor desta base entre 2025 e 2026, identificadas aqui só como A, B e C, e o pipeline de exemplo do REFIS usaram LLMs na triagem ou na extração. São instrutivas porque tiveram cuidado em muitos pontos e, ainda assim, deixaram lacunas que só um protocolo explícito fecha.
+
+| Revisão | O que foi feito | O que faltou | Regra derivada |
+|---|---|---|---|
+| **Revisão A** (triagem de títulos e resumos; 357 registros) | Cinco LLMs de provedores diferentes; prompt versionado de v1 para v2 depois de falso positivo detectado; 120 divergentes lidos por três humanos (60, 30 e 30); 63 unânimes incluídos e 68 incluídos na leitura manual, total de 131 | Nenhuma métrica contra humanos; unânimes nunca amostrados; modelos com erro ignorados no cálculo da concordância, de modo que um registro com menos respostas válidas ainda conta como unânime; cabeçalho do v2 lista três modelos e a documentação da revisão, cinco | Unanimidade não é validação; metadados gravados pelo script |
+| **Revisão A**, fichamento | Gate literal: 2.683 citações conferidas com zero problemas e 37 itens em PDFs sem texto extraível marcados para conferência visual; 3 PDFs errados detectados; refichamento cego de 25% (26 textos) por segundo agente | Validação IA contra IA; concordância baixa em variáveis abertas e em coeficientes; fronteira a1/a2 sem regra | Gate literal funciona; concordância entre agentes dirige a revisão humana, não a substitui |
+| **Revisão B** (revisão de escopo; 2.199 registros) | gpt-4o-mini e claude-haiku-4-5 independentes; divergência de 2,0% (43 registros) resolvida por gpt-4o; log JSONL retomável; relatório com limitações conhecidas | Nenhuma revisão humana; árbitro do mesmo provedor do "Revisor A" e vendo decisões e justificativas; título e resumo ausentes convertidos em exclusão; leitura por palavra-chave quando o JSON falha | Baixa divergência entre modelos não informa recall; árbitro cego de terceiro provedor; sem dados vira incerto |
+| **Revisão C** (triagem temática e extração por API, em vários eixos) | No eixo 1, humano revisou linha a linha o que a IA não excluiu; no filtro temático, árbitro de terceira casa e cego; segunda opinião orientada a recall sobre os cortados; resposta fora do formato vira "dúvida"; logs retomáveis | Nos eixos 3 e 4, 83 casos em dúvida decididos por um só modelo, com exclusão se ele não decidisse, num arquivo rotulado como validação manual sem que ela tivesse ocorrido; no módulo genérico, registro sem resumo recebe exclusão e o árbitro vê os nomes dos modelos; teto de 250 mil caracteres atingiu 33 de 128 artigos, cinco com menos de 50% lido; 20 de 45 fichas com resposta truncada aceitas | Nome de arquivo não é método; dúvida nunca vira exclusão; cobertura de leitura registrada |
+| **Exemplo REFIS** | Strings refinadas com Claude e DeepSeek; triagem de 120 resumos em janelas de chat; interseção incluída automaticamente; κ calculado contra o revisor humano [@schaefer2026aula4, pp. 33, 44-48; @schaefer2026codigos] | Prompt agregado sem `id_rs`; saídas heterogêneas; κ tratando não confirmados como excluídos; contagens que não fecham | Ver @sec-11-exemplo |
+
+A revisão B mostra por que concordância entre modelos engana. As contagens registradas permitem reconstruir a tabela 2×2 entre os modelos-base: 29 incluídos por ambos, 6 só pelo gpt-4o-mini, 37 só pelo claude-haiku e 2.127 excluídos por ambos. A concordância bruta é 98,0% e o PABAK 0,961, mas o κ é 0,565 e a concordância positiva (acordo entre os registros que algum modelo incluiu) é 0,574; um modelo incluiu quase o dobro do outro (66 contra 35). Nenhum desses números diz quantos dos 2.127 excluídos por consenso eram relevantes. O protocolo pediria validar a regra final (consenso mais árbitro) com dupla humana nos 72 registros que algum modelo incluiu e numa amostra dos excluídos por consenso. Com 52 incluídos no fim da revisão, a validação dificilmente chegaria a 60 incluídos humanos; com 50, o LLM só seria aprovado sem nenhum falso negativo (LI de 0,929), porque um único erro leva o limite a 0,894.
+
+A revisão C mostra o valor de sinais de alerta simples: quando um filtro temático cortou 140 trabalhos para 9 (94%), o árbitro desempatou para "sim" em 6 de 6 casos e uma amostra de 12 excluídos continha ao menos um falso negativo provável, a equipe releu os cortados com um prompt orientado a recall e deixou a decisão para humanos. É uma elusão informal; o protocolo deste capítulo a torna obrigatória e com tamanho definido.
+
+## Passo a passo {#sec-11-passos}
+
+1. **Declarar o plano de IA no protocolo** (@sec-03-regras): etapas com IA, papel (propor, priorizar, decidir), ferramentas e modelos candidatos, limiares A a H, tamanho da amostra de validação, regra do ensemble, dados enviados a terceiros e plano de relato.
+2. **Avaliar as ferramentas** com as cinco perguntas de RAISE 3 (finalidade; origem dos dados de treino, teste e validação; desempenho validado; usabilidade; transparência, licenças e documentação), com critérios de decisão fixados antes, e decidir entre prosseguir, prosseguir com mitigações ou não prosseguir [@thomas2026raise3, pp. 21-22].
+3. **Usar IA na busca só como apoio** (sinônimos, tradução de sintaxe conferida, busca exploratória de revisões prévias), com revisão por pares e teste de recall da string final (@sec-04-regras).
+4. **Calibrar os critérios com dois humanos** (passo A). Se κ < 0,6, reescrever e repetir com registros novos.
+5. **Estimar o número de incluídos humanos alcançável na validação** (tabela do passo D). Com menos de 36, planejar o LLM como terceiro leitor ou priorizador.
+6. **Desenvolver o prompt** no conjunto de desenvolvimento, com exemplos válidos e inválidos, "incerto" e saída JSON com trecho. Testar parâmetros aceitos pelo modelo e tamanho de lote.
+7. **Congelar** `prompts/vN.md`, modelo, parâmetros, lote e hash (passo B).
+8. **Sortear e codificar a amostra de validação** às cegas, estratificada pela decisão do LLM, até ≥ 60 incluídos humanos ou todos os disponíveis (passo C).
+9. **Calcular as métricas** com IC de Clopper-Pearson e aplicar o limiar (passo D). Se falhar, seguir os remédios (passo E), cada um com amostra nova.
+10. **Rodar a triagem completa** com log retomável; verificar cada lote por script (esquema, IDs, categorias, trecho literal); lote inválido é refeito, nunca corrigido à mão.
+11. **Encaminhar a humanos** incluídos, incertos e conflitos; registrar overrides com motivo.
+12. **Ler a amostra de elusão** (passo F) e **reexecutar 5% a 10%** (passo G).
+13. **Texto completo**: LLM propõe com trecho e página; humano decide e registra o motivo (passo H).
+14. **Extração e risco de viés**: piloto por bloco, gate literal, 100% dos números conferidos, segundo codificador cego em ≥ 20% das categóricas, juízo de risco de viés humano (@sec-11-extracao).
+15. **Documentar lições aprendidas** (desempenho contra o esperado, erros e comportamentos inesperados, tempo poupado, recomendações) no registro da revisão [@thomas2026raise3, p. 20].
+16. **Gerar a declaração de uso de IA a partir do log** e preencher a lista de conferência (@sec-11-relato). No autopiloto, marcar relatório e declaração como "RASCUNHO NÃO VALIDADO" enquanto houver pendências de validação humana.
+
+## O que as diretrizes exigem {#sec-11-diretrizes}
+
+**PRISMA 2020.** Não há itens específicos sobre LLMs, mas os itens 8 (seleção), 9 (coleta de dados) e 11 (risco de viés) pedem, "se aplicável", detalhes das ferramentas de automação usadas [@page2021prisma]. A explicação e elaboração detalha o que dizer [@page2021explanation]: no item 8, como a automação se integrou à seleção (por exemplo, se registros foram excluídos só por avaliação de máquina ou se a máquina conferiu decisões humanas), a versão do classificador e, se ele foi construído internamente, como foi treinado e que validação foi feita para entender o risco de estudos perdidos; no item 9, como a ferramenta de extração foi usada, treinada e validada quanto ao risco de extrações incorretas; no item 11, como a ferramenta de risco de viés foi usada e treinada, com dados de desempenho e validação interna. O fluxograma tem a caixa "registros marcados como inelegíveis por ferramentas de automação" antes da triagem e pede, na nota dos registros excluídos, quantos foram excluídos por humano e quantos por ferramenta [@page2021prisma]. O relato do fluxo está na @sec-10-relato.
+
+**RAISE 1 e declaração conjunta.** Declarar o uso de IA sempre que ela fizer ou sugerir julgamentos sobre elegibilidade, avaliação crítica (inclusive risco de viés), extração de dados bibliográficos, numéricos ou qualitativos, síntese de dois ou mais estudos, certeza da evidência, textos que resumem a força da evidência e suas implicações, ou resumos em linguagem simples [@thomas2026raise1, p. 14, rec. 1.8]. Relatar: nome, versão e datas de uso; finalidade e partes da revisão afetadas; justificativa com evidência de solidez metodológica e de validação no contexto, disponibilizando prompts, saídas, dados e código quando possível, e os passos de verificação do conteúdo gerado; interesses financeiros e não financeiros e o financiamento da ferramenta; limitações e vieses, com seu impacto [@thomas2026raise1, p. 14, rec. 1.9; @flemyng2025position]. Respeitar normas éticas, legais e regulatórias, incluindo plágio, proveniência, direitos autorais, confidencialidade e proteção de dados [@thomas2026raise1, pp. 14-15, rec. 1.10]. A declaração conjunta acrescenta que a decisão de usar IA deve ser considerada e relatada já no protocolo, e que o uso apenas para ortografia, gramática ou estrutura do manuscrito em geral não precisa ser listado, ressalvada a política de cada periódico [@flemyng2025position].
+
+**PRISMA-trAIce (lista de conferência, sem endosso PRISMA).** O texto do artigo fala em 14 itens, mas a Tabela 1 do próprio artigo e o repositório dos autores listam 17 identificadores, de T1 a D2 (T1, A1, I1, M1 a M10, R1 e R2, D1 e D2) [@holst2025prismatraice]. Os níveis (obrigatório, altamente recomendado, recomendado, opcional) aparecem só no repositório mantido pelos autores como diretriz viva (github.com/cqh4046/PRISMA-trAIce), não no artigo: 10 itens obrigatórios, 1 altamente recomendado, 3 recomendados e 3 opcionais.
+
+| Item | Seção | Nível (repositório) | Conteúdo resumido |
+|---|---|---|---|
+| T1 | Título | Opcional | Indicar uso de IA se teve papel substancial |
+| A1 | Resumo | Opcional | Ferramentas, etapas e papel principal |
+| I1 | Introdução | Recomendado | Por que usar IA em cada tarefa |
+| M1 | Protocolo | Obrigatório | Uso de IA pré-especificado e desvios |
+| M2 | Identificação | Obrigatório | Nome, versão, desenvolvedor, acesso ou código |
+| M3 | Finalidade e etapa | Obrigatório | Etapa da revisão e tarefa exata |
+| M4 | Dados de entrada | Obrigatório | Dados de treino ou ajuste e dados processados |
+| M5 | Dados de saída | Obrigatório | Formato da saída e pós-processamento automático |
+| M6 | Prompts | Obrigatório | Prompts completos, parâmetros (temperatura, máximo de tokens) e refinamento |
+| M7 | Configurações (não LLM) | Altamente recomendado | Algoritmos, limiares, parâmetros de aprendizado ativo |
+| M8 | Interação humano-IA | Obrigatório | Número de revisores, verificação, resolução de discrepâncias, treinamento |
+| M9 | Avaliação de desempenho | Obrigatório | Padrão de referência, métricas, análise de erros, piloto |
+| M10 | Governança de dados | Recomendado | Armazenamento, privacidade, direitos autorais, termos de uso |
+| R1 | Seleção | Obrigatório | Fluxograma e texto distinguindo decisões de IA e de humanos |
+| R2 | Métricas | Obrigatório | Resultados da avaliação e concordância IA-humano |
+| D1 | Limitações | Recomendado | Problemas técnicos, vieses, alucinações e impacto |
+| D2 | Implicações | Opcional | Experiência, ganhos e desafios |
+
+**Correspondência com o protocolo desta base.** M1 corresponde ao plano de IA no protocolo; M2, M4, M5 e M6 ao congelamento do passo B; M8 às regras de encaminhamento humano e aos passos F e H; M9 e R2 aos passos C, D, F e G; R1 às contagens do fluxograma calculadas do log de decisões; M10 à estratégia de dados.
+
+## Exemplo trabalhado {#sec-11-exemplo}
+
+### O que foi feito no REFIS
+
+No pipeline de exemplo sobre programas de refinanciamento tributário (REFIS), a string com mecanismos foi construída com auxílio do Claude Sonnet, o DeepSeek V3 serviu de validação cruzada, o Consensus foi usado em busca exploratória e as versões testadas foram registradas [@schaefer2026aula4, pp. 32-33]. Depois de deduplicação e filtros de ano, idioma, tipo e método, 120 registros foram triados por IA [@schaefer2026aula4, p. 48]. O prompt definia o papel ("pesquisador experiente em revisões sistemáticas"), a pergunta com quatro desfechos (arrecadação, falência, emprego, conformidade tributária), o que se queria e o que não se queria, com espaços para exemplos, e pedia ao final quantos trabalhos permaneciam e quais eram [@schaefer2026aula4, p. 45]. O Claude incluiu 16 de 120 (13,3%), o DeepSeek V3 incluiu 21 (17,5%) e o ChatGPT não identificou os resumos no arquivo; os 10 trabalhos da interseção foram incluídos automaticamente e os demais passaram por triagem manual [@schaefer2026aula4, pp. 44, 46]. O fluxograma registra 110 resumos lidos por humanos (os 120 menos os 10 da interseção) mais 1 do IPEA [@schaefer2026aula4, p. 48]. Nesse desenho, a IA não excluiu nada sozinha: seu único efeito decisório foi dispensar a leitura humana de 10 resumos. A validação calculou κ de Cohen entre o revisor humano, como âncora, e cada IA, e κ de Fleiss entre os três [@schaefer2026codigos].
+
+### Onde o procedimento falha
+
+| Problema | Evidência no material | Consequência |
+|---|---|---|
+| Triagem no chat, com pergunta agregada ("quantos permanecem e quais") | Prompt dos slides [@schaefer2026aula4, p. 45] | Sem decisão por registro, identificador estável, versão de modelo ou data; impossível reproduzir |
+| Saídas heterogêneas | A do Claude é uma planilha de 120 linhas com ID local, título, decisão e justificativa; a do DeepSeek é uma tabela em texto com 21 linhas numeradas de 1 a 21, seis marcadas como "excluído" e três como "marginal" dentro da própria lista [@schaefer2026codigos] | Os "21 incluídos" misturam incluídos e excluídos; sem `id_rs`, a junção com a base depende do título |
+| Interseção incluída automaticamente | "10 trabalhos, incluídos automaticamente" [@schaefer2026aula4, p. 46] | Nenhum humano leu esses resumos, e o fluxograma não mostra onde eles entram: a caixa seguinte soma 15 + 14 + 1 = 30 textos completos [@schaefer2026aula4, p. 48] |
+| Não confirmados tratados como excluídos | No script, a âncora humana é `id_rs %in% ids_confirmados`: todo registro sem confirmação manual vale 0 [@schaefer2026codigos] | Padrão de referência contaminado; "não revisado" deveria ser NA e ficar fora do cálculo; o material também não indica se a âncora foi construída às cegas em relação às IAs |
+| Modelo parcial no κ | O DeepSeek só cobriu um subconjunto, e o κ de Fleiss usa só as linhas em que os três responderam [@schaefer2026codigos] | κ calculados em amostras diferentes e não comparáveis |
+| Prompt, modelo e data não arquivados | O material traz as saídas, mas nenhum arquivo de prompt, identificador de versão ou data por decisão; o prompt só aparece no slide | Descumpre o registro de prompt e versão [@thomas2026raise3, p. 19] |
+| Contagens que não fecham | 14 incluídos e 14 em revisão num slide; 15 incluídos, 14 em dúvida e 81 excluídos de 111 lidos no fluxograma (111 − 15 − 14 = 82); a caixa final não reproduz 21 (16 − 5 + 9 = 20) [@schaefer2026aula4, pp. 46, 48] | Fluxograma PRISMA não reproduzível (@sec-05-regras) |
+| Dicionário antes da IA | 61 registros excluídos por "tipo e método" antes da triagem [@schaefer2026aula4, p. 48] | A validação da IA não enxerga o que o dicionário já perdeu |
+
+### O que deveria ser feito
+
+Aplicado ao REFIS, o protocolo leva a uma conclusão que surpreende quem espera economia: **numa revisão desse tamanho, o LLM não pode ganhar autonomia para excluir**. A triagem de resumos gerou 15 incluídos e 14 em dúvida, e o corpus final teve 21 estudos, 9 deles vindos da bola de neve [@schaefer2026aula4, p. 48]. Mesmo que os cerca de 30 candidatos fossem todos incluídos humanos e o LLM acertasse todos, o limite inferior do IC 95% seria $0{,}025^{1/30} = 0{,}884$, abaixo de 0,90. O desenho correto:
+
+1. Rodar a triagem sobre os 181 registros que passaram pelos filtros de ano e idioma, e não sobre os 120 que sobraram do dicionário de método, porque o dicionário exclui sem medir recall (@sec-05-regras).
+2. Calibrar critérios com dois humanos em 100 registros (passo A), reescrevendo "o que você não quer" como critérios sequenciais com exemplos reais.
+3. Rodar dois modelos via API ou subagentes, com prompt congelado, lote de 25 e saída JSON com `id_rs` e trecho.
+4. Como o limiar é inalcançável, usar o LLM como **terceiro leitor**: dupla humana lê os 181 resumos, e todo registro que algum modelo marcar como incluir ou incerto e que os dois humanos tiverem excluído volta para discussão. O custo é baixo e o ganho é pegar exclusões humanas equivocadas; nada é incluído automaticamente.
+5. Calcular sensibilidade, especificidade, κ e PABAK do LLM contra o consenso humano, com IC e com "não revisado" como NA, e relatar como estudo dentro da revisão, sem usá-los para justificar exclusões.
+6. Declarar tudo na seção de métodos e na declaração de IA.
+
+O caso dos celulares nas escolas chega à mesma conclusão. A leitura de resumos partiu de 741 registros e chegou a 19 trabalhos que respondiam à pergunta, e a busca foi validada contra duas revisões sistemáticas encontradas por busca manual [@schaefer_oqfunciona, p. 29]. Se um LLM tivesse mantido os 19, o limite inferior do recall seria $0{,}025^{1/19} = 0{,}824$. A proposta OQF recomenda ao menos duas pesquisadoras e uma terceira para discordâncias [@schaefer_oqfunciona, p. 29]; com 741 resumos essa dupla é viável, e a IA cabe como terceira leitura. A economia real de um LLM validado aparece em corpora de milhares de registros com dezenas de incluídos, como os 2.199 da revisão B (@sec-11-licoes), e é justamente aí que validação e elusão ficam indispensáveis.
+
+## Erros comuns e como evitá-los {#sec-11-erros}
+
+| Erro | Por que é erro | Como evitar |
+|---|---|---|
+| Triar colando resumos numa janela de chat | Sem prompt arquivado, versão e decisão por `id_rs` | Script via API ou subagentes com saída JSON validada |
+| Incluir automaticamente a interseção de dois LLMs e não medir nada | Consenso entre modelos não mede acurácia | Validação humana antes; amostra de elusão depois |
+| Relatar concordância bruta alta como prova de qualidade | Em prevalência baixa, 98% de concordância convive com κ de 0,57 | Relatar κ, PABAK, concordância positiva e, sobretudo, recall contra humanos |
+| Ajustar o prompt e medir desempenho nos mesmos registros | Superestima o desempenho [@thomas2026raise2, p. 11; @lai2026large] | Conjuntos de desenvolvimento e validação separados; congelar antes |
+| Tratar "não revisado" como "excluído" no κ | Contamina o padrão de referência | Não revisado = NA, fora do cálculo |
+| Calcular κ com modelo que classificou só parte da amostra | Amostras diferentes, estatísticas incomparáveis | Mesmo conjunto de registros para todos os avaliadores |
+| Transformar ausência de resumo, erro de API, formato inválido ou dúvida em exclusão | Perde estudos em silêncio | Incerto → humano; contagem de erros precisa zerar |
+| Planejar validação sem contar incluídos | Com menos de 36 incluídos humanos, o limiar é inalcançável | Estimar incluídos antes; se forem poucos, LLM como terceiro leitor |
+| Parar o aprendizado ativo depois de N irrelevantes seguidos | A heurística errou a meta de 95% em 39% dos casos [@callaghan2020statistical] | Critério estatístico ou SAFE completo, declarado no protocolo |
+| Pedir ao LLM que "sintetize a literatura" | Uso não aceitável [@thomas2026raise3, pp. 15-16] | Síntese pelos métodos da @sec-08a-regras e @sec-08b-regras |
+| Mudar o limiar depois de ver o resultado | Viés do pesquisador | Limiar no protocolo; mudança só por emenda datada |
+| Validar só em inglês numa revisão trilíngue | Viés de idioma não detectado | Estratificar a validação por idioma |
+| Nomear arquivo como "validação manual" sem validação | Relato enganoso | Nomes descrevem o que foi feito; o log registra o ator de cada decisão |
+| Omitir a declaração de IA ou reduzi-la a uma frase | Descumpre RAISE 1.8-1.9 e os itens 8, 9 e 11 do PRISMA 2020 | Declaração gerada do log, com métricas e IC |
+
+## Na skill `revisao-sistematica` {#sec-11-skill}
+
+A skill está em construção; esta seção descreve o contrato planejado (@sec-especificacao-contrato), com os nomes de comandos já presentes no `rs.py --help` da versão em desenvolvimento.
+
+**Estado e registro.** Claude nunca edita à mão `rs_estado.json`, `rs_log.jsonl` ou `dados/decisoes.jsonl`; só o `rs.py` escreve neles. O estado guarda as versões ativas de critérios, prompt de triagem e codebook, cada artefato congelado com caminho, SHA-256 e data. Cada decisão registra `id_rs`, etapa, rodada, revisor, tipo de ator (`humano`, `ia_coordenador`, `ia_subagente`, `ia_api`, `script`), modelo, `prompt_sha`, decisão (`incluir`, `excluir`, `incerto`), critério que falhou, justificativa, trecho, lote, horário e eventual override com motivo. Na consolidação, a precedência é override humano, depois árbitro, depois consenso; o restante vai à fila humana.
+
+**Triagem.** O modo padrão usa subagentes: `rs.py triagem preparar` monta lotes de 20 a 30 registros por `id_rs` (ordem embaralhada distinta por revisor), até 4 subagentes em paralelo escrevem a resposta JSON e devolvem uma linha, e `rs.py triagem mesclar` valida esquema, conjunto de IDs, categorias, critério existente e presença do trecho no título ou resumo; lote inválido é descartado e refeito por subagente novo. `rs.py triagem consolidar` aplica a precedência e monta a fila humana, e `rs.py triagem override` registra decisões humanas. O modo API (`rs.py triagem api`) é recomendado acima de cerca de 1.500 registros: dois modelos e árbitro de terceiro provedor com revisores anônimos, log retomável, erros re-tentados, `--estimar` para custo e nenhum envio de `temperature` para a família Claude 5. Registro sem resumo recebe incerto. Os agentes da etapa são `triador-ta` e `arbitro-cego`. O resumo devolvido por um subagente nunca é prova; só a mescla e o gate confirmam.
+
+**Validação.** `rs.py validar amostrar` gera a planilha cega estratificada (sem colunas de IA), com enriquecimento de incluídos; `rs.py validar calcular` calcula κ de Cohen e de Fleiss, PABAK, sensibilidade, especificidade e valores preditivos com IC de Clopper-Pearson reponderados e WSS, trata "não revisado" como NA e compara com os limiares deste capítulo; `rs.py validar elusao` sorteia a amostra dos excluídos; `rs.py validar estabilidade` reexecuta 5% a 10%. O resultado alimenta o **portão G4**. A elegibilidade em texto completo fecha no **G5** (LLM propõe, humano decide), o piloto de extração no **G6** e a extração com risco de viés no **G7**, com `extrator-efeitos` e `avaliador-rob` rascunhando e o gate literal conferindo. PDFs são lidos em faixas de até 20 páginas, com páginas lidas registradas e cobertura exigida; no modo API, a instrução vem depois do texto longo.
+
+**Relato.** `rs.py declaracao-ia` gera `07-relatorio/declaracao_uso_ia.md` a partir do log (ferramentas, modelos, versões, datas, parâmetros, papel por etapa, prompts com hash, validação com IC e limiares, elusão, custo, responsabilidade humana) usando o template `declaracao_uso_ia.md`, e o checklist `prisma_traice` é preenchido junto dos checklists PRISMA no **G9**. As regras deste capítulo vão para `references/ia-validacao.md` e `references/armadilhas.md`. O README do repositório avisa que o modo API envia títulos e resumos a terceiros.
+
+**Autopiloto.** No autopiloto, a skill para só em G1 (pergunta e tipo) e G2 (protocolo congelado). As validações humanas dos demais portões viram pendências registradas (`rs.py pendencia`, com tipo, etapa, número de registros e arquivo), e relatório e declaração de IA saem com a marca **RASCUNHO NÃO VALIDADO**, listando o que falta. Fechar uma pendência regenera os produtos que dependem dela. Nenhum produto do autopiloto pode ser apresentado como revisão sistemática concluída.
+
+**Testes previstos.** Mescla com IDs faltando ou duplicados e trecho inventado; API com provedor falso, queda e retomada, sem `temperature` no Claude 5 e resposta cortada tratada como falha; κ igual ao do scikit-learn e NA fora do cálculo.
+
+## Como relatar {#sec-11-relato}
+
+O relato mínimo tem quatro partes: o plano de IA no protocolo, um parágrafo de métodos por etapa com IA, os resultados da validação e a declaração de uso de IA. Os textos abaixo são modelos, com valores ilustrativos entre colchetes; os itens PRISMA 2020 e PRISMA-trAIce aparecem entre parênteses para conferência, e o fluxograma segue a @sec-10-relato.
+
+**No protocolo**, adaptando o modelo genérico da declaração conjunta [@flemyng2025position]:
+
+> Usaremos [ferramenta ou modelo, versão, data], desenvolvido por [organização], para [finalidade] na etapa de [etapa]. A ferramenta será usada [conforme o guia do usuário, com referência, ou com as seguintes configurações, prompts e parâmetros]. O uso se justifica porque [evidência de solidez metodológica e plano de validação dentro da revisão: amostra, métricas, limiar de recall ≥ 0,95 com limite inferior ≥ 0,90, remédios em caso de falha]. As limitações conhecidas incluem [vieses, idioma, envio de dados a terceiros]. A descrição detalhada, com parâmetros e procedimentos de validação, está em [material suplementar].
+
+**Nos métodos e resultados**, para uma revisão que aprovou o LLM na triagem:
+
+> **Seleção dos estudos (PRISMA 2020, item 8; PRISMA-trAIce M1 a M6, M8, M9, R1 e R2).** Conforme o protocolo registrado [OSF, DOI], títulos e resumos foram triados por dois modelos de linguagem ([modelo A, versão, provedor]; [modelo B, versão, provedor]) com o prompt v[3] (SHA-256 [hash], no material suplementar), em lotes de [25] registros, com saída estruturada contendo decisão, critério não atendido, justificativa e trecho literal do resumo. Registros marcados como incluir ou incerto por qualquer modelo e os conflitos foram lidos por duas revisoras independentes; divergências foram resolvidas por uma terceira. Antes do uso, os critérios foram calibrados por duas revisoras em [120] registros (κ = [0,71]; concordância de [93%]) e o prompt foi desenvolvido em [150] registros não usados na validação. A validação usou [640] registros novos, codificados às cegas por duas revisoras, com [62] incluídos humanos. A regra de decisão teve sensibilidade de [0,984] (IC 95% de Clopper-Pearson [0,913 a 1,000]), especificidade de [0,860] ([0,829 a 0,887]), precisão de [0,430] ([0,347 a 0,515]), κ = [0,54] e PABAK = [0,74], acima do limiar pré-especificado (sensibilidade ≥ 0,95 com limite inferior ≥ 0,90). Após a rodada completa, uma revisora leu [300] dos [3.412] registros excluídos pelos modelos e encontrou [0] incluídos (taxa de elusão de 0%; limite superior de 1,22%; até [42] estudos potencialmente perdidos). A reexecução de [8%] dos registros alterou [1,9%] das decisões, todas convertidas em leitura humana. O fluxograma distingue exclusões por modelo e por humanos.
+
+**Na declaração de uso de IA:**
+
+> **Declaração de uso de inteligência artificial.** Usamos [modelo A, versão] e [modelo B, versão], acessados por API entre [datas], para triagem de títulos e resumos, e [modelo C, versão] para propor elegibilidade em texto completo e rascunhar a extração de dados, sempre com trecho literal e página verificados por programa e conferidos por pessoas. Os modelos não foram usados para buscar referências, avaliar risco de viés, sintetizar resultados, avaliar a certeza da evidência ou redigir conclusões. [Descrever uso em revisão de linguagem, se houver.] Justificativa, protocolo de validação, prompts com hash, saídas brutas, código e métricas com intervalos de confiança estão em [repositório]. Títulos, resumos e PDFs em acesso aberto foram enviados aos provedores [nomes] sob termos que [permitem ou não] o uso para treino; nenhum dado pessoal foi processado. Os autores não têm interesse financeiro nas ferramentas. Limitações: a validação usou literatura predominantemente em [idiomas]; o desempenho em [português] foi estimado com [n] incluídos; modelos comerciais podem mudar sem aviso. Todas as decisões finais de inclusão, os juízos de risco de viés e a síntese foram feitos por pessoas, que assumem integral responsabilidade pelo conteúdo desta revisão.
+
+Quando a validação não aprovar o LLM (como no REFIS), o parágrafo diz isso com os números: "o limiar pré-especificado era inalcançável com [21] incluídos (limite inferior máximo possível de [0,839]); os modelos foram usados apenas como terceira leitura, e toda exclusão foi decidida por duas revisoras". Relato honesto de não aprovação é resultado metodológico. Em produtos do autopiloto, a primeira linha da declaração é "RASCUNHO NÃO VALIDADO", seguida da lista de pendências.
+
+## Leituras {#sec-11-leituras}
+
+**Normas e orientações**
+
+- @flemyng2025position: declaração conjunta de Cochrane, Campbell, JBI e CEE; responsabilidade, supervisão, rigor demonstrável, o que declarar e modelo de texto para o protocolo.
+- @thomas2026raise1: recomendações RAISE por papel; as recomendações 1.1 a 1.10 são o núcleo para quem conduz revisões.
+- @thomas2026raise2: construção e validação de ferramentas, separação entre desenvolvimento e teste, estabilidade, alucinação e taxonomia de métricas.
+- @thomas2026raise3: estado das ferramentas por tarefa (Tabelas 1 e 2), decisão de adoção com sinais de parada e ética; a referência mais prática do capítulo.
+- @page2021prisma e @page2021explanation: itens 8, 9 e 11, com os elementos a relatar quando há automação, e fluxograma com exclusões por ferramenta.
+- @holst2025prismatraice e @moher2026prismatraice: o checklist mais detalhado de relato de IA e a carta que o situa como proposta não endossada.
+
+**Evidência sobre desempenho**
+
+- @laignelot2026large e @xie2026performance: desempenho por tarefa e acurácia agrupada na triagem.
+- @khraisha2024can: por que corrigir pelo acaso muda a leitura do desempenho, com literatura cinzenta e vários idiomas.
+- @lai2026large: por que desconfiar de números sem conjunto de teste congelado.
+- @fagerberg2026batch: lote e modelo como parâmetros de desempenho.
+- @lieberum2025large: maturidade das aplicações.
+- @gartlehner2020single: referência humana (revisor único contra dupla).
+- @chelli2024hallucination: alucinação de referências.
+- @cao2025automation e @lin2026metapipe: sistemas ponta a ponta com e sem validação.
+
+**Ferramentas e estatística**
+
+- @vandeschoot2021open, @boetje2024safe e @callaghan2020statistical: aprendizado ativo e critérios de parada.
+- @cohen2006reducing, @clopper1934use, @cohen1960coefficient, @byrt1993bias, @chen2009measuring e @landis1977measurement: WSS, intervalos exatos, κ e PABAK.
+- @schroeder2025large: extração com humano no circuito (AIDE).
+
+**Leituras de apoio**
+
+- @schaefer2026aula4, pp. 30-48: IA para strings e triagem no caso REFIS; base do exemplo trabalhado.
+- @schaefer2026aula5, pp. 32-34: formulário de decomposição, AIDE e confiabilidade entre codificadores.
+- @schaefer2026codigos: script de validação da filtragem por IA e saídas das triagens do REFIS.
+- @belur2021interrater: variação das decisões de codificação ao longo do tempo, indicada no material didático sobre extração de dados.
+- @sampaio2024chatgpt: panorama crítico, em português, das IAs na pesquisa em ciências sociais, com recomendações de registro; citado na proposta OQF.
+- @futterer2026ai: guia de ferramentas de IA para revisões e meta-análises, indicado no programa de leituras [@schaefer2026ementa, p. 13].
+- @schaefer_oqfunciona, pp. 27-29: Consensus para achar revisões prévias e dupla leitura com terceira pesquisadora.

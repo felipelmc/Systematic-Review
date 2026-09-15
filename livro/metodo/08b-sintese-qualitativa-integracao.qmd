@@ -1,0 +1,444 @@
+---
+title: "Síntese qualitativa, realista, QCA e integração mista sequencial"
+---
+
+Esta etapa usa o que foi extraído na decomposição (@sec-07-regras) para responder ao que a meta-análise não responde: como a política funciona, para quem, em que contexto, como implementá-la, como os atores a interpretam e quanto custa. Na proposta OQF a análise é mista e sequencial: síntese quantitativa, depois síntese qualitativa dos elementos textuais e, por fim, integração das duas na caixa de ferramentas [@schaefer_oqfunciona, p. 24]. As decisões são quatro: qual método qualitativo usar para cada pergunta; como escrever mecanismos e moderadores para que possam ser confrontados com os efeitos; quando uma hipótese pode ser testada (subgrupo, meta-regressão, QCA) e quando fica registrada como hipótese; e que regras transformam a evidência nos rótulos da caixa. A síntese de efeitos está na @sec-08a-regras e a certeza (GRADE e CERQual), na @sec-09-regras.
+
+## Decisões e regras {#sec-08b-regras}
+
+### Qual método para qual pergunta
+
+A escolha do método depende da pergunta e do tipo de material disponível, e não do gosto da equipe. A primeira decisão é o propósito. Sínteses agregativas resumem dados sob conceitos que se supõem seguros e bem definidos; sínteses interpretativas desenvolvem conceitos e teoria e evitam fixá-los cedo [@dixonwoods2006systematic, p. 36]. A diferença é de ênfase, mas muda a amostragem: para agregar, a exaustividade importa; para interpretar, a amostragem teórica é defensável, com o risco de perder achados, porque artigos, ao contrário de pessoas, são publicados justamente por dizerem algo novo [@dixonwoods2006systematic, p. 37]. Revisões mistas raramente justificam o desenho: numa análise de 459 revisões, só 24% explicavam por que combinar evidências e só 39% descreviam a síntese com referências metodológicas [@hong2017convergent]. A tabela abaixo é o ponto de partida para o protocolo (@sec-03-regras).
+
+| Pergunta ou situação | Método indicado | Produto | Não use quando | Diretriz de relato |
+|---|---|---|---|---|
+| Barreiras, facilitadores e visões de beneficiários ou implementadores sobre uma pergunta de política definida | Síntese temática [@thomas2008methods, p. 1, 9] | Temas descritivos, temas analíticos e implicações para a intervenção | O objetivo é gerar teoria nova a partir de uma literatura interpretativa ampla | ENTREQ |
+| Já existe teoria do programa, DAG ou modelo conceitual e o prazo é curto | *Best-fit framework synthesis* [@carroll2013best] | Modelo conceitual revisado | Não há quadro prévio plausível | ENTREQ |
+| Explorar uma literatura interpretativa para produzir novos conceitos | Meta-etnografia [@france2019improving; @dakerwhite2015blame, p. 3] | Interpretações de terceira ordem e linha de argumento | Integrar estudos quali e quanti ao mesmo tempo, ou equipe sem experiência qualitativa [@schaefer2026aula6, p. 27] | eMERGe |
+| Contar a presença de categorias definidas a priori em muitos documentos | Análise de conteúdo dedutiva [@sampaio2024manual, p. 262] | Frequências com exemplos | A frequência é lida como importância [@sampaio2024manual, p. 258] | Livro de códigos e confiabilidade |
+| Meta-análise inviável e necessidade de organizar direção e tamanho dos efeitos e explicar diferenças | Síntese narrativa com os quatro elementos de Popay [@popay2006guidance, p. 11] | Teoria de mudança, síntese preliminar, relações, avaliação de robustez | "Narrativa" vira sinônimo de resumir estudo por estudo [@hong2017convergent] | PRISMA 2020 e SWiM (@sec-08a-regras) |
+| Intervenção complexa, cuja eficácia depende de contexto e raciocínio dos atores | Síntese realista [@pawson2005realist, p. S1:21-22] | Configurações contexto-mecanismo-desfecho (CMOC) e teoria refinada | O interesse é o efeito médio de intervenção simples [@wong2013rameses] | RAMESES |
+| Heterogeneidade de efeito entre intervenções complexas com variação no desfecho | QCA como síntese [@kahwati2016using, p. 3, 11; @thomas2014using] | Combinações suficientes (e, raramente, necessárias) de condições | Menos de 10 estudos com mais de 2-3 condições, ou desfecho sem variação [@kahwati2016using, p. 11] | Padrões de Wagemann e Schneider (@sec-08b-diretrizes) |
+| Efeito e experiência como dimensões distintas do mesmo fenômeno | Revisão mista convergente segregada [@stern2020methodological] | "Análise configurada" que organiza as duas evidências | A mesma pergunta é respondível pelos dois tipos de estudo | JBI |
+| Uma pergunta que estudos quali e quanti respondem igualmente | Revisão mista convergente integrada, com qualitização [@stern2020methodological] | Categorias que misturam dados quali e quanti qualitizados | As evidências tratam de aspectos diferentes | JBI |
+| Avaliação de política no formato OQF: efeito primeiro, explicação depois | Integração sequencial-explicativa [@schaefer_oqfunciona, p. 19, 24; @hong2017convergent] | Caixa de ferramentas com rótulos rastreáveis | Não houver síntese de efeito que gere enigmas a explicar | PRISMA 2020, SWiM, ENTREQ (@sec-10-relato) |
+
+### O quadro do material didático
+
+O material didático sobre análise de dados apresenta uma tradução da tabela de @snilstveit2012narrative com pontos fortes e fracos de seis abordagens [@schaefer2026aula6, p. 25-27]. Resumida:
+
+| Abordagem | Ponto forte (segundo o quadro) | Ponto fraco (segundo o quadro) |
+|---|---|---|
+| Análise de conteúdo | Transparente, replicável, com software de apoio | Reducionista; ausência de relato pode ser lida como ausência de evidência |
+| Resumos temáticos | Descrição detalhada, acomoda variações de contexto e achados "superficiais" | Pode degenerar em contagem de votos |
+| *Framework synthesis* | Quadro transparente e aberto a formuladores e usuários; mais rápida; viável para revisores iniciantes | Teoria tentativa imposta cedo pode omitir temas dos dados |
+| Síntese temática | Organiza a literatura em temas; admite dados quali e quanti | Diversidade de variantes gera incerteza sobre como foi feita |
+| Síntese realista | Informa como, por que e onde a intervenção funciona | Exige muitos recursos; dúvidas sobre incluir desenhos fracos; orientação metodológica escassa |
+| Meta-etnografia | Vai mais longe na produção de teoria | Não usada para quali e quanti ao mesmo tempo; exige experiência; problemas de transparência e de avaliação de qualidade |
+
+::: {.callout-note}
+O quadro ajuda a escolher, mas não diz como executar. Os pontos fracos listados são o que as normas atuais tentam controlar: ENTREQ e eMERGe exigem descrever codificação e derivação de temas [@tong2012enhancing; @france2019improving], RAMESES exige explicitar como cada inferência sobre contexto, mecanismo e desfecho foi construída [@wong2013rameses], e CERQual avalia a confiança em cada achado [@lewin2018applying].
+:::
+
+### Regras invioláveis
+
+::: {.callout-important}
+1. **Rastreabilidade.** Todo enunciado (tema analítico, CMOC, configuração de QCA, rótulo da caixa) aponta para os estudos (`id_rs`) e os trechos que o sustentam. A síntese temática vale justamente por preservar a ligação explícita entre conclusões e texto dos estudos primários [@thomas2008methods, p. 1]; RAMESES pede que se mostre como cada inferência foi obtida [@wong2013rameses]. Sem suporte rastreável, o enunciado não entra.
+2. **Revisões não são estudos de suporte.** Revisões sistemáticas e meta-análises servem para bola de neve e comparação, nunca como "estudo" que sustenta mecanismo, moderador ou efeito (@sec-07-regras).
+3. **Juízo humano.** Temas analíticos, CMOCs, calibração de QCA e juízos CERQual são decisões humanas. O estágio analítico depende do juízo e da interpretação dos revisores [@thomas2008methods, p. 7]; o manual da Enap considera que a análise textual automatizada não substitui a análise qualitativa humana e trata os LLMs como complemento da análise de conteúdo [@sampaio2024manual, p. 275]. A validação do uso de IA está na @sec-11-regras.
+4. **Não significância não é ausência de efeito.** Contagem de resultados significativos e não significativos exige cautela [@popay2006guidance, p. 18]; o rótulo "Nulo" tem regra própria (@sec-08b-caixa).
+5. **Testes combinados não rotulam.** Fisher, Stouffer e Cooper podem aparecer como análise secundária, mas nunca definem rótulo (@sec-08a-regras).
+6. **Regra fixada antes.** As regras de rótulo, a faixa de equivalência (δ), as faixas de magnitude e os moderadores candidatos entram no protocolo com número de versão (@sec-03-regras).
+:::
+
+### Limiares e boas práticas para QCA
+
+| Item | Regra | Fonte |
+|---|---|---|
+| Número de casos | N intermediário, cerca de 10 a 50 casos (o manual da Enap fala em 5 a 50) | @kahwati2016using [p. 3]; @sampaio2024manual [p. 424] |
+| Número de condições | Moderado; com menos de 10 estudos, no máximo 2 ou 3 condições | @wagemann2007standards [p. 22]; @kahwati2016using [p. 11] |
+| Variação do desfecho | Indispensável; sem estudos com e sem o desfecho, a QCA pouco acrescenta | @kahwati2016using [p. 11]; @thomas2014using |
+| Calibração | Âncoras externas e justificadas (pertença plena, ponto de indiferença, não pertença); nada de mediana ou normalização automática | @sampaio2024manual [p. 426-427]; @wagemann2007standards [p. 22] |
+| Calibração do desfecho numa RS | Pela magnitude do efeito (ex.: faixas do log do OR), e não pela significância | @thomas2014using; regra da base de direção pelo estimador (@sec-07-regras) |
+| Necessidade | Analisar antes da suficiência; consistência acima de 0,90 com cobertura alta; desconfiar de condição quase constante (necessidade trivial) | @greckhamer2018studying; @wagemann2007standards [p. 24]; @kahwati2016using [p. 9] |
+| Suficiência | Consistência bruta das linhas ≥ 0,80 como referência; 0,75 como piso; justificar a escolha | @greckhamer2018studying; @thomas2014using; @sampaio2024manual [p. 431]; @wagemann2007standards [p. 29] |
+| PRI | Alto e próximo da consistência bruta; linhas com PRI abaixo de 0,5 indicam inconsistência séria | @greckhamer2018studying |
+| Cobertura | Sem ponto de corte; concentrar a interpretação em termos com cobertura acima de 0,5 | @sampaio2024manual [p. 432] |
+| Contradições | Resolver antes da minimização (acrescentar ou trocar condições, recodificar, reconceituar o desfecho) | @wagemann2007standards [p. 23]; @thomas2014using |
+| Soluções | Relatar a solução sem suposições simplificadoras (conservadora) e a parcimoniosa; se usar a intermediária, listar as suposições | @wagemann2007standards [p. 24-25]; @kahwati2016using [p. 8] |
+| Presença e ausência | Analisar o desfecho e sua negação separadamente | @wagemann2007standards [p. 26]; @greckhamer2018studying; @kahwati2016using [p. 9] |
+| Robustez | Variar âncoras, limiares de consistência e de frequência; relatar faixas de sensibilidade e o núcleo que resiste | @oana2021robustness; @greckhamer2018studying |
+
+## Métodos de síntese qualitativa {#sec-08b-metodos}
+
+### Síntese temática
+
+A síntese temática tem três estágios: codificação livre, linha a linha, dos achados dos estudos; organização dos códigos em temas descritivos; e geração de temas analíticos, que vão além do conteúdo dos estudos primários [@thomas2008methods, p. 1]. No exemplo original, com oito estudos qualitativos, três revisores codificaram cada linha independentemente, toda frase recebeu ao menos um código, surgiram 36 códigos iniciais, 12 temas descritivos e, depois, 6 temas analíticos associados a 10 recomendações para intervenções [@thomas2008methods, p. 5-7]. O uso que interessa à avaliação de políticas está no começo do artigo: a síntese temática gerou hipóteses que foram testadas contra os resultados dos ensaios e que, segundo os autores, não teriam surgido sem ela [@thomas2008methods, p. 2].
+
+Três decisões operacionais valem para qualquer revisão. "Achado" é todo o texto sob resultados ou achados, inserido verbatim no software [@thomas2008methods, p. 4], o que corresponde ao trecho com página que a extração já exige (@sec-07-regras). As perguntas da revisão ficam de lado na fase descritiva, para não impor um quadro a priori nem produzir síntese vazia, e voltam no estágio analítico, em ciclos individuais e em grupo, até que os temas expliquem todos os temas descritivos [@thomas2008methods, p. 4, 7]. Resumos estruturados preservam o contexto, e a análise de sensibilidade mostrou que os estudos de pior qualidade contribuíram pouco [@thomas2008methods, p. 8].
+
+O relatório completo dessa revisão mostra a parte que interessa à integração OQF: as implicações derivadas das visões das crianças foram confrontadas numa matriz com as intervenções avaliadas e, onde havia correspondências suficientes, os efeitos foram combinados e comparados à meta-análise geral, com categorias fixadas antes da parte estatística [@thomas2003children, p. 25]. Os autores registram que isso estava previsto e não era "dragagem" de dados [@thomas2003children, p. 93], e que esse agrupamento foi mais informativo que o feito por variáveis escolhidas a priori [@thomas2003children, p. 113].
+
+### Best-fit framework synthesis
+
+A *best-fit framework synthesis* começa com um quadro de temas a priori, codifica contra ele os achados dos estudos incluídos e usa análise temática secundária só para o que o quadro não acomoda [@carroll2013best]. A busca tem duas vertentes paralelas, uma para modelos e teorias (estratégia BeHEMoTh) e outra para os estudos primários; no exemplo dos autores, cinco artigos com modelos viraram um quadro de conceitos definidos para codificação consistente, 15 estudos foram codificados e seis temas novos surgiram fora do quadro [@carroll2013best]. A síntese é testada de três formas: comparação com os modelos de partida (o que faltou e o que foi acrescentado), busca de dissonância e casos negativos, e análise de sensibilidade pela qualidade do relato (excluir os 3 estudos mal relatados não mudaria os temas) [@carroll2013best].
+
+Para uma revisão OQF, este é o método qualitativo mais natural. O quadro a priori já existe: a teoria do programa e o DAG construídos na @sec-02-regras, com nós de mecanismo, moderador e incentivos perversos, mais as dimensões da caixa (mecanismo, moderador, implementação, percepção, custo) definidas na proposta [@schaefer_oqfunciona, p. 19-20]. O limite do método também é claro: só serve quando há quadro prévio plausível [@carroll2013best].
+
+### Meta-etnografia
+
+A meta-etnografia de Noblit e Hare tem sete fases: escolher o tema, selecionar estudos, ler os estudos, determinar como se relacionam, traduzi-los uns nos outros, sintetizar as traduções e expressar a síntese [@dakerwhite2015blame, p. 3]. As normas eMERGe organizam 19 critérios de relato pelas sete fases, com detalhe nas fases 3 a 6, e observam que o ENTREQ genérico não cobre essas fases analíticas [@france2019improving]. A tradução pode ser recíproca (conceitos equivalentes entre estudos), refutacional (achados que se contradizem) e culminar numa linha de argumento que integra os conceitos numa interpretação nova [@tong2012enhancing; @schaefer2026aula6, p. 27]. O produto almejado são interpretações de terceira ordem: os participantes interpretam a experiência (primeira ordem), os autores interpretam os participantes (segunda ordem) e a revisão interpreta os autores [@schaefer_oqfunciona, p. 16].
+
+A revisão de @dakerwhite2015blame sobre segurança do paciente na atenção primária é o exemplo de referência para meta-etnografia. Os autores incluíram 48 estudos, divididos em 5 subconjuntos temáticos [@dakerwhite2015blame, p. 1, 6], usaram o artigo mais antigo de cada subconjunto como índice para a tradução [@dakerwhite2015blame, p. 3-4], extraíram verbatim, com página, as interpretações dos autores e não as falas dos participantes, e reorganizaram cada tabela de conceitos três ou mais vezes até que os estudos "falassem entre si" [@dakerwhite2015blame, p. 7]. O resultado é instrutivo pelo que não aconteceu: o desenvolvimento conceitual foi limitado, e a principal contribuição veio dos grupos de achados refutacionais [@dakerwhite2015blame, p. 3, 34]. Os autores também registram que o fluxograma PRISMA, exigido pela revista, pouco servia a um processo em que a pergunta e os critérios mudam com a tradução [@dakerwhite2015blame, p. 35].
+
+Dixon-Woods e colegas apontam falta de orientação sobre amostragem e avaliação e pouca praticidade da tradução recíproca, e lembram que sínteses interpretativas feitas por pessoas diferentes não chegam necessariamente às mesmas conclusões [@dixonwoods2006systematic, p. 38]. Para uma pergunta de política específica, os temas analíticos da síntese temática costumam ser mais adequados que a terceira ordem [@thomas2008methods, p. 9].
+
+### Análise de conteúdo e síntese narrativa
+
+A análise de conteúdo é uma técnica baseada em procedimentos sistemáticos, validados intersubjetivamente e públicos, para produzir inferências válidas sobre conteúdos verbais, visuais ou escritos [@sampaio2024manual, p. 258]. Ela funciona melhor de forma dedutiva, com livro de códigos; para indução, a análise temática é o caminho [@sampaio2024manual, p. 262]. Parâmetros operacionais do manual da Enap:
+
+| Elemento | Regra | Fonte |
+|---|---|---|
+| Etapas | Onze, em três fases: conceituação, desenho (inclui pré-teste e teste de confiabilidade) e análise | @sampaio2024manual [p. 264-265] |
+| Livro de códigos | Categorias e códigos, descrição breve, definição completa, quando aplicar, quando não aplicar, exemplos | @sampaio2024manual [p. 266] |
+| Categorias | Mutuamente exclusivas, exaustivas e homogêneas | @sampaio2024manual [p. 268] |
+| Confiabilidade | Alfa de Krippendorff acima de 0,667 em todas as categorias | @sampaio2024manual [p. 272] |
+| Um só codificador | Teste de estabilidade com 2 a 3 semanas de intervalo e índice acima de 0,9 | @sampaio2024manual [p. 272-273] |
+| Congelamento | Livro de códigos não muda depois do início da codificação final | @sampaio2024manual [p. 273] |
+
+Na RS, a análise de conteúdo serve para descrever, não para explicar: tema frequente não é necessariamente tema importante [@sampaio2024manual, p. 258]. A revisão integrativa de @fonseca2023agenda sobre burocracia de nível de rua na pandemia ilustra o uso dedutivo: os textos foram lidos à luz de três categorias analíticas definidas a priori (espaço discricionário, estratégias de enfrentamento e exercício de papéis) [@fonseca2023agenda, p. 3], e nove artigos foram analisados de um total de 86 resultados que somavam as nove combinações de descritores, com muitas duplicatas [@fonseca2023agenda, p. 5]. Faltam o livro de códigos, a dupla codificação e o teste de confiabilidade que tornariam a classificação reprodutível.
+
+A síntese narrativa, no sentido de @popay2006guidance, não é "resumir estudos". Ela tem quatro elementos, percorridos de forma iterativa: teoria de como a intervenção funciona, por que e para quem; síntese preliminar; exploração de relações dentro dos estudos e entre eles; e avaliação da robustez do produto [@popay2006guidance, p. 11]. As ferramentas vão da tabulação e da contagem descritiva de votos a subgrupos, mapas conceituais e tradução recíproca e refutacional [@popay2006guidance, p. 17, 19]; tabelas e gráficos não são síntese por si [@popay2006guidance, p. 16], e subgrupos previstos na teoria do programa são mais plausíveis que achados pós hoc [@popay2006guidance, p. 14-15]. A revisão sobre o Bolsa Família de @santos2019bolsafamilia é um exemplo brasileiro de síntese tabular, com resultados agrupados em três conjuntos de indicadores educacionais [@santos2019bolsafamilia, p. 2236].
+
+### Síntese realista
+
+A revisão realista parte de uma causalidade generativa: para inferir que um programa produz um desfecho (O), é preciso entender o mecanismo (M) que liga os eventos e o contexto (C) em que a relação ocorre; a pergunta passa a ser o que funciona, para quem e em que circunstâncias [@pawson2005realist, p. S1:21-22]. O processo tem cinco passos: esclarecer o escopo e articular as teorias; buscar evidências; avaliar e extrair; sintetizar; disseminar e avaliar [@pawson2005realist, p. S1:24]. As diferenças operacionais em relação a uma RS de efetividade são grandes:
+
+| Etapa | Na revisão realista | Fonte |
+|---|---|---|
+| Teoria inicial | Mapa das teorias do programa, incluindo teorias rivais sobre como ele pode falhar (resistência às medidas, enquadramento da mídia, manipulação de indicadores) | @pawson2005realist [p. S1:26-27] |
+| Busca | Quatro componentes (exploratória, focalização nas teorias, busca empírica para testá-las, busca final), com amostragem intencional; numa revisão realista, 52% dos estudos vieram de bola de neve e 35% de bases | @pawson2005realist [p. S1:28-29] |
+| Avaliação | Relevância (o trecho testa a teoria?) e rigor (a inferência se sustenta?), julgados por trecho de dado; o valor do estudo se estabelece na síntese | @pawson2005realist [p. S1:30]; @wong2013rameses |
+| Extração | Anotação e formulários sob medida, com trilha do uso e do não uso de cada fonte | @pawson2005realist [p. S1:30-31] |
+| Síntese | Refinar a teoria; unidade de análise é a teoria, não o estudo; evidência contraditória é usada para entender a influência do contexto | @pawson2005realist [p. S1:24, S1:31] |
+| Recomendações | Contextuais, no formato "em circunstâncias como A, tente B" | @pawson2005realist [p. S1:24] |
+
+Uma CMOC bem escrita separa o que é contexto, o que é mecanismo e o que é desfecho; o mecanismo envolve a interação entre recursos oferecidos pelo programa e o raciocínio humano, e explicações formuladas como relações lineares entre variáveis não são realistas [@wong2013rameses]. A fórmula de @dalkin2015whats deixa isso operacional: M(recursos) + C → M(raciocínio) = O [@dalkin2015whats, p. 4]. A CMOC nasce por retrodução, que é a identificação de forças causais ocultas por trás dos padrões observados, combinando indução, dedução e intuição informada [@ramesesii2017retroduction, p. 1-2].
+
+Numa revisão OQF, a teoria inicial não precisa ser inventada: o DAG da @sec-02-regras, com mecanismos e incentivos perversos por elo, é a primeira versão do mapa de teorias, e os incentivos perversos correspondem às teorias rivais de Pawson. A lógica realista entra na caixa pela forma de escrever mecanismos e moderadores (como CMOCs com estudos de suporte), mesmo quando a revisão não é uma síntese realista completa.
+
+::: {.callout-warning}
+**Tensão com o protocolo.** Pawson e colegas desaconselham protocolos pré-publicados com pergunta e propósito fixados [@pawson2005realist, p. S1:25]. RAMESES resolve a tensão pelo relato: mudanças em relação ao planejado são descritas e justificadas (item 5) e a busca iterativa é documentada (item 8) [@wong2013rameses]. Na prática, registra-se o protocolo com a parte iterativa prevista e cada ciclo de teoria vira emenda datada (@sec-03-regras).
+:::
+
+### QCA como síntese
+
+A QCA trata cada estudo como um caso, representado como uma configuração de condições, e busca combinações necessárias ou suficientes para o desfecho; os resultados são expressos em álgebra booleana e não oferecem estimativas de precisão nem testes de hipótese [@kahwati2016using, p. 3]. As premissas são equifinalidade, causação conjuntural e assimetria [@sampaio2024manual, p. 421]. No material didático sobre análise de dados, estudos que usam QCA aparecem como tipo b1 (qualitativo explanatório) [@schaefer2026aula6, p. 48]; aqui o assunto é outro: usar a QCA como método de síntese sobre os estudos incluídos.
+
+Os seis estágios de @thomas2014using são: construir a tabela de dados (linhas = estudos, colunas = condições e desfecho), construir a tabela verdade, resolver contradições, minimizar, examinar os remanescentes lógicos e interpretar. O fluxo de @kahwati2016using [p. 4] acrescenta, antes, a formulação de uma pergunta configuracional e a especificação dos conjuntos.
+
+Duas aplicações mostram as escolhas que importam:
+
+- **Kahwati et al.** (60 estudos de adesão a medicamentos) reduziram 12 técnicas de mudança de comportamento para 9 e ainda ficaram abaixo da razão condições/casos recomendada [@kahwati2016using, p. 5-6]. Calibraram o desfecho como "melhora" quando ao menos uma medida foi estatisticamente significativa, precisaram voltar às publicações originais de quase todos os estudos porque a extração não bastava para calibrar [@kahwati2016using, p. 5] e chegaram a 7 e 4 configurações suficientes, com cobertura da solução de 76% e 56% [@kahwati2016using, p. 8-9].
+- **Thomas et al.** (12 estudos de aleitamento, quase todos efetivos) usaram como desfecho o conjunto das intervenções "altamente efetivas", calibrado pelo log do OR: acima de 0,7, pertença plena; de 0,4 a 0,7, mais dentro; de 0 a 0,4, mais fora; zero ou menos, fora. Como as condições de partida não discriminavam, voltaram aos estudos e chegaram a "alta intensidade ou alta qualidade" (cobertura 0,714; consistência 0,833), advertindo que esse diálogo pós hoc está mais aberto a viés que categorias fixadas a priori [@thomas2014using].
+
+A lição combinada: calibrar o desfecho pela magnitude, e não pela significância; manter poucas condições; fixar antes da extração uma rubrica de calibração com registro da justificativa de cada atribuição, como numa avaliação de risco de viés, deixando espaço registrado para revisão [@kahwati2016using, p. 10-11]. Há também precedente do uso que o OQF precisa: segundo @kahwati2016using [p. 11], Candy e colegas aplicaram QCA a uma revisão Cochrane concluída para confrontar os componentes que pacientes consideravam importantes com os componentes presentes nas intervenções efetivas. Para revisões mistas, @elsherif2024using oferecem um guia passo a passo, voltado a iniciantes, de QCA como método de integração de evidência qualitativa e quantitativa, com recomendações de relato. No Brasil, @sampaio2024manual [p. 438] relatam a aplicação de QCA por Pires e Gomide a oito planos, programas ou projetos governamentais brasileiros desenvolvidos entre 2003 e 2013. A QCA computacional fica fora da versão 1 da skill; a versão 1 reconhece o caso, orienta pelo capítulo e declara o limite.
+
+## Métodos mistos e integração sequencial {#sec-08b-integracao}
+
+### Desenhos
+
+@small2011conduct separa estudos que misturam coleta de dados de estudos que misturam análise [@small2011conduct, p. 59-60] e motivações de confirmação e de complementaridade [@small2011conduct, p. 63-65]; como tipos de dados diferentes produzem conhecimentos diferentes, a "confirmação" pode ser só a revelação de dois aspectos do fenômeno [@small2011conduct, p. 66]. Desenhos sequenciais permitem entender os mecanismos de associações recém-descobertas, e os melhores são iterativos: no exemplo de Pearce, casos anômalos da análise estatística orientaram entrevistas, que levaram a nova especificação dos modelos [@small2011conduct, p. 67-68]. Quantificar texto qualitativo, por outro lado, tem grande potencial de aplicação errada [@small2011conduct, p. 76].
+
+Esses conceitos vêm da pesquisa primária. Para revisões, @hong2017convergent classificaram 459 revisões mistas em desenhos convergentes (baseados em dados, em resultados ou em resultados paralelos) e sequenciais; os sequenciais eram menos de 5%, nenhum foi classificado como sequencial explicativo, e os autores indicam o desenho sequencial quando a evidência qualitativa serve para interpretar ou explicar achados quantitativos. O JBI trabalha só com desenhos convergentes, justamente pelo pouco uso do sequencial: o integrado transforma dados, preferindo qualitizar resultados quantitativos, quando a mesma pergunta é respondível pelos dois tipos de estudo; o segregado faz sínteses separadas e depois as organiza numa linha de argumento, quando efeito e experiência são dimensões diferentes do fenômeno [@stern2020methodological]. As cinco perguntas-guia do desenho segregado servem diretamente à integração OQF: os achados das duas sínteses se apoiam ou se contradizem? A evidência qualitativa explica por que a intervenção funciona ou não? Ela ajuda a explicar diferenças de direção e tamanho do efeito entre estudos? Que aspectos da evidência quantitativa não foram explorados nos estudos qualitativos? Que aspectos da evidência qualitativa não foram testados nos quantitativos? [@stern2020methodological]. Numa checagem de 17 revisões que diziam seguir o JBI, 8 não seguiam; as falhas mais comuns foram escolher a abordagem errada para a pergunta, excluir estudos mistos primários, não descrever a transformação de dados e não misturar de fato os componentes [@lizarondo2022five].
+
+O desenho OQF é sequencial-explicativo e dá precedência à evidência quantitativa [@schaefer_oqfunciona, p. 19]. @dixonwoods2006systematic [p. 32] chamam atenção para o risco desse arranjo: tratar a pesquisa qualitativa como coadjuvante subordinada, em vez de reconhecer que ela contribui de forma independente. A integração corrigida abaixo reduz esse risco ao usar a síntese qualitativa como fonte de hipóteses e de enunciados próprios (percepção, implementação), e não só como ilustração do efeito.
+
+### Integração sequencial-explicativa corrigida
+
+1. **A síntese quantitativa define as células e os enigmas.** Cada célula é uma família de intervenção cruzada com um construto de desfecho. A síntese de efeito (@sec-08a-regras) entrega estimativa, IC, heterogeneidade e intervalo de predição; heterogeneidade alta, estudos discrepantes e direções opostas viram a lista de enigmas a explicar, como fez Pearce com os casos anômalos [@small2011conduct, p. 67-68].
+2. **A síntese qualitativa gera hipóteses e enunciados.** A *best-fit framework synthesis* com o quadro do DAG organiza mecanismos, moderadores, barreiras de implementação, percepções e custos; os temas analíticos e as CMOCs viram hipóteses explicativas para os enigmas e enunciados próprios da caixa. Para que achados de estudos quantitativos, qualitativos e mistos possam ser comparados, cada um é reescrito como enunciado portátil ancorado em amostra, fonte de informação, tempo, ponto de comparação, magnitude e significância, e na forma como o estudo definiu o fenômeno [@sandelowski2013text].
+3. **Testar quando o número de estudos permite.** Uma hipótese vira análise de subgrupo, meta-regressão ou QCA só se houver estudos suficientes nos limiares da @sec-08a-regras e da tabela de QCA acima; a codificação da variável moderadora é definida a partir da síntese qualitativa antes de olhar o efeito por subgrupo, como na matriz de @thomas2003children [p. 25].
+4. **Sem estudos suficientes, a hipótese fica registrada como hipótese**, com o grau de confiança CERQual do achado que a originou (@sec-09-regras) e a indicação da lacuna de pesquisa.
+5. **O joint display fecha a integração** e registra, para cada hipótese, a evidência qualitativa, o teste quantitativo possível, o resultado e a consequência para o rótulo.
+
+### Joint display
+
+Em pesquisa mista, um *joint display* integra os dados trazendo-os juntos por meio visual, para produzir inferências que nenhum dos resultados separados daria; o ajuste (*fit*) entre achados pode ser de confirmação, expansão ou discordância [@fetters2013achieving]. A matriz de @thomas2003children [p. 25, 91], com implicações das visões das crianças numa coluna e intervenções avaliadas em outra, é um antecedente em revisão. O modelo mínimo para a skill:
+
+| Enigma ou hipótese (origem) | Evidência qualitativa (estudos; confiança CERQual) | Evidência quantitativa (estudos; k por nível) | Teste feito ou motivo de não testar | Ajuste | Consequência para a caixa |
+|---|---|---|---|---|---|
+| Uma linha por hipótese, com `id_rs` | Enunciado e IDs | Estimativas por subgrupo, se houver | Subgrupo, meta-regressão, QCA ou "k insuficiente" | Confirmação, expansão ou discordância | Rótulo afetado e texto de ressalva |
+
+## Caixa de ferramentas: regras de rótulo {#sec-08b-caixa}
+
+A proposta OQF define a caixa com linhas para tipo de intervenção, escala e força do efeito, mecanismo, moderador, implementação, percepção e custo, mais uma coluna de tipo de evidência, mas não define regras para preenchê-la: a escala é "positivo, misto ou negativo" e a força é estabelecida "a partir da evidência disponível" [@schaefer_oqfunciona, p. 19-20]. No material didático sobre tipos de revisão, a escala vira "positivo, nulo, negativo" e a força vira "tamanho do coeficiente, significância" [@schaefer2026aula1, p. 25, 40]. A especificação desta base (@sec-especificacao-caixa) substitui essas definições abertas por regras explícitas, inspiradas em dois modelos: o EMMIE, que pede a revisões de prevenção ao crime evidência sobre efeito, mecanismo, moderador, implementação e custo econômico, separando o que a evidência diz da qualidade dessa evidência [@johnson2015emmie, p. 463], e o Teaching and Learning Toolkit, que resume cada abordagem por impacto médio, força da evidência e custo [@eef2021toolkit, p. 4].
+
+::: {.callout-note}
+**Proposta OQF e base.** As regras abaixo são a especificação metodológica desta base (a camada que corrige a proposta OQF) e valem até que o protocolo da revisão as substitua por versão própria. Os pontos de corte que não vêm de norma externa (por exemplo, ≥ 5 estudos e ≥ 70% na regra sem meta-análise, a pontuação de implementação e as definições operacionais de cada critério propostas neste capítulo) são convenções da base: devem ser declarados no protocolo, com `regra_versao`, e podem ser alterados por emenda justificada.
+:::
+
+### A célula e seus campos
+
+A unidade da caixa é a célula: família de intervenção × construto de desfecho. Como randomizados e não randomizados nunca são agregados juntos (@sec-08a-regras), cada célula tem um corpo de evidência por classe de desenho, cada um com seu rótulo e sua certeza, e uma linha de painel que os resume (abaixo). Cada célula guarda a versão da regra aplicada, os estudos (`id_rs`) e estimativas usados, a certeza e a assinatura de quem aprovou. Construtos diferentes (desempenho em teste padronizado e percepção de desempenho, por exemplo) ou populações que o protocolo separa (educação básica e ensino superior) são células diferentes.
+
+### Efeito
+
+| Rótulo | Regra com meta-análise | Regra sem meta-análise |
+|---|---|---|
+| **Positivo** | Meta-análise com k ≥ 3, estimativa na direção benéfica, IC que exclui zero e certeza GRADE ao menos baixa | Teste de sinal com p < 0,05, pelo menos 5 estudos, pelo menos 70% na direção benéfica, e não só estudos de risco de viés alto |
+| **Negativo** | Idem, na direção danosa; inclui efeitos perversos previstos no DAG | Idem, na direção danosa |
+| **Nulo** | IC inteiro dentro de ±δ, com δ (menor efeito de interesse) fixado a priori, e certeza ao menos moderada | Não se aplica sem estimativa com IC |
+| **Misto ou depende do contexto** | Intervalo de predição cobre benefício e dano relevantes (além de ±δ) e um moderador pré-especificado ou um achado qualitativo explica a variação. Na versão `caixa-3`: k ≥ 5, porque τ² e intervalo de predição só se interpretam a partir daí (@sec-08a-regras); δ fixado *a priori*, porque "relevante" pressupõe δ; e o achado explicativo com enunciado e confiança própria ao menos baixa (CERQual, ou ICEMAN para moderador testado; @sec-09-regras) | Não definido na especificação; proposta deste capítulo: direções opostas entre estudos que não sejam só de risco alto, com a mesma exigência de explicação |
+| **Inconclusivo** | Todos os demais casos | Todos os demais casos |
+
+Direção pelo estimador pontual e significância separada estão na @sec-07-regras; o mínimo de três estudos para agregar, o teste de sinal, o intervalo de predição e δ, na @sec-08a-regras; GRADE, na @sec-09-regras. As quatro categorias de certeza do GRADE (alta, moderada, baixa, muito baixa) se aplicam ao corpo de evidência, não a estudos isolados [@balshem2011grade].
+
+::: {.callout-warning}
+**Ordem de aplicação.** A especificação não fixa precedência entre "Misto" e "Positivo"/"Negativo" quando as duas condições valem ao mesmo tempo. Esta base adota a seguinte ordem, que o protocolo declara e que a skill aplica na versão de regra `caixa-3`: (1) célula sem juízo de certeza GRADE fica "Pendente", porque certeza não se inventa; (2) certeza muito baixa leva a "Inconclusivo", porque nenhum rótulo, nem mesmo "Misto", pode ser mais forte que a certeza; (3) se o intervalo de predição cobre benefício e dano relevantes e a célula alega uma explicação, "Misto" quando os três requisitos valem (k ≥ 5, δ declarado e achado explicativo com confiança ao menos baixa) e "Inconclusivo" quando falta algum, com a lista do que falta, porque uma heterogeneidade alegada e não sustentada impede ler a média como efeito típico; (4) "Positivo" ou "Negativo"; (5) "Nulo"; (6) "Inconclusivo" nos demais casos. Sem explicação alegada, a célula segue direto do passo 2 para o 4. A versão anterior, `caixa-2`, aceitava "Misto" com k = 3 ou 4 e sem δ; projetos que a declararam no protocolo precisam de emenda para trocar de versão. Avaliar "Misto" antes da certeza, por entender que heterogeneidade explicada descreve melhor o efeito num contexto concreto, é uma alternativa defensável, mas é outra versão da regra, a declarar no protocolo como desvio. A decisão final é humana e fica registrada no portão G8.
+:::
+
+### Linha de painel: um rótulo por família × construto
+
+Painel e *policy brief* mostram uma linha por família × construto (@sec-10-painel), mas a caixa tem um corpo por classe de desenho, e os corpos podem discordar: ensaios randomizados "Positivo" com certeza moderada e não randomizados "Inconclusivo" com certeza baixa, por exemplo. A especificação define a célula como família × construto e não diz como chegar a uma linha única; esta base fixa a regra abaixo, que a skill aplica na versão `caixa-3` e que o protocolo declara como convenção:
+
+| Situação dos corpos de evidência | Rótulo do painel |
+|---|---|
+| Algum corpo ainda pendente | Pendente |
+| Um só corpo | O rótulo dele |
+| Corpos com o mesmo rótulo | Esse rótulo, com a maior certeza |
+| Rótulos diferentes | O rótulo do corpo de maior certeza, com o outro anotado na justificativa e na ficha |
+| Rótulos diferentes com a mesma certeza | Inconclusivo, por heterogeneidade entre desenhos |
+
+A regra segue a lógica do GRADE de que a conclusão acompanha a evidência de maior certeza, avaliada por corpo e não por estudo [@balshem2011grade]; quando nenhum corpo prevalece, a divergência entre desenhos é ela mesma um achado, e o painel não escolhe um lado. Os corpos por desenho continuam no relatório, e a linha de painel nunca substitui a leitura deles.
+
+### Escala e força
+
+| Linha | Regra | Observação |
+|---|---|---|
+| Escala | Faixas de magnitude do campo, declaradas no protocolo | Faixas genéricas enganam: g = 0,22 é "pequeno" por convenções gerais, mas cai na faixa de 0,19 a 0,26, equivalente a 3 meses de progresso e descrita como impacto moderado na tabela do Toolkit para desempenho escolar [@eef2021toolkit, p. 6] |
+| Força | Mapeada do GRADE da célula: alta = forte; moderada = moderada; baixa = fraca; muito baixa = insuficiente | A força descreve a confiança na estimativa, não o tamanho do efeito [@balshem2011grade] |
+
+### Implementação
+
+Cada critério presente vale 1 ponto; a soma dá o rótulo, acompanhado da confiança CERQual e de uma justificativa com os `id_rs` que sustentam cada ponto.
+
+| Critério (1 ponto cada) | Evidência exigida e regra operacional |
+|---|---|
+| Mais de 2 componentes | Componentes descritos nas intervenções avaliadas pelos estudos; recomendações dos autores da revisão não contam |
+| Mais de um nível de governo ou múltiplos atores | Desenho da política e relatos de implementação |
+| Nova infraestrutura ou pessoal | Aquisição, construção ou contratação exigida pela política e relatada nos estudos; recursos que as unidades já têm não contam, na mesma lógica com que o Toolkit exclui do custo o que as escolas já possuem [@eef2021toolkit, p. 9] |
+| Barreiras de fidelidade ou adoção em pelo menos 2 estudos | Achados qualitativos ou de processo em estudos primários distintos; revisões não contam |
+| Longo tempo até o efeito | Estudos com seguimento; "não reportado" vale 0 e é declarado |
+| **Rótulo** | **0 a 1 pontos: Simples; 2 a 3: Moderada; 4 ou mais: Complexa** |
+
+### Mecanismo, moderador, percepção e custo
+
+Estas linhas não recebem rótulo categórico. Recebem enunciados de achado, cada um com os estudos de suporte e a confiança CERQual, que avalia limitações metodológicas, coerência, adequação dos dados e relevância, e se expressa como alta, moderada, baixa ou muito baixa [@lewin2018applying].
+
+| Linha | Forma do enunciado | Regra adicional |
+|---|---|---|
+| Mecanismo | CMOC: em contexto C, o recurso oferecido pela política ativa o raciocínio M, que produz O | Separar explicitamente C, M e O [@wong2013rameses]; enunciado sem estudo primário de suporte não entra |
+| Moderador | "O efeito é maior/menor quando…", com a variável moderadora definida | Se vier de relatos, CERQual; se não testado, marcar "hipótese". Se testado por subgrupo ou meta-regressão na própria síntese, cada nível vira linha de efeito com GRADE (@sec-09-regras); esta é uma leitura da especificação, que prevê CERQual para moderadores sem distinguir o caso testado |
+| Percepção | Um enunciado por ator (beneficiários, implementadores, gestores, famílias) | A proposta OQF trata percepção como dimensão qualitativa [@schaefer_oqfunciona, p. 23] |
+| Custo | Custo unitário ou custo-efetividade, com ano e moeda | Sem quantificação, escrever "custo monetário não reportado" e registrar custos não monetários como enunciado com CERQual |
+
+CERQual tem pouca experiência acumulada em sínteses mistas, em produtos interpretativos (como modelos lógicos) e fora da saúde [@lewin2018applying], e o JBI não recomenda GRADE nem ConQual para o produto integrado de uma revisão mista [@stern2020methodological]. Por isso a base aplica GRADE às células de efeito e CERQual aos achados qualitativos antes da integração, e expressa a certeza de CMOCs e de soluções de QCA em texto, sem pseudo-GRADE.
+
+### Relação com EMMIE e Toolkit
+
+| Linha da caixa (base) | EMMIE | Teaching and Learning Toolkit |
+|---|---|---|
+| Efeito e escala | Direção, tamanho e efeitos não intencionais, com a confiança na estimativa [@johnson2015emmie, p. 463] | Impacto em meses de progresso, convertido de faixas de tamanho de efeito [@eef2021toolkit, p. 6] |
+| Força | Escala de qualidade 0-4 pelo número de elementos de validade atendidos pela revisão [@johnson2015emmie, p. 465] | Até cinco cadeados conforme o número de estudos (o nível máximo exige 70 ou mais), com perda por poucos estudos recentes, muitos não randomizados, condições distantes da prática escolar, avaliações não independentes e variação não explicada; com menos de 10 estudos, zero cadeado e impacto não comunicado [@eef2021toolkit, p. 7-8] |
+| Mecanismo, moderador, implementação | Escalas 0-4 próprias (ex.: mecanismo vai de "caixa-preta" a teste e refinamento de teoria) [@johnson2015emmie, p. 465] | Sem linhas próprias; a variação por idade ou disciplina aparece no texto de cada abordagem [@eef2021toolkit, p. 5] |
+| Custo | Escala 0-4, de nenhuma menção a custos marginais ou de oportunidade por quem os suporta [@johnson2015emmie, p. 466] | Cinco faixas por turma de 25 alunos ou por aluno, contando só recursos novos [@eef2021toolkit, p. 9] |
+| Percepção | Sem dimensão própria | Sem linha própria |
+
+As escalas 0-4 do EMMIE avaliam quão bem a revisão tratou cada dimensão, e não o que a evidência diz [@johnson2015emmie, p. 463, 465]; por isso a caixa traz, em cada linha, enunciado e certeza. A força vem do GRADE, e não da contagem de estudos do Toolkit, porque o GRADE julga o corpo de evidência da célula por domínios [@balshem2011grade]. Do Toolkit ficam duas ideias: não comunicar magnitude com poucos estudos e perder confiança com variação não explicada. A tabela de meses é específica de desempenho escolar e só vale como faixa de escala se o protocolo justificar a transposição.
+
+### Quem decide o quê
+
+| Tarefa | O que LLM ou subagente pode fazer | O que é decisão humana |
+|---|---|---|
+| Codificação linha a linha | Propor códigos livres com trecho verbatim e página | Auditar amostra, fundir códigos, fixar temas descritivos |
+| Temas analíticos | Listar candidatos a partir dos temas descritivos | Formular, revisar em ciclos e aprovar [@thomas2008methods, p. 7] |
+| CMOCs | Extrair trechos candidatos a contexto, mecanismo e desfecho | Retrodução, formulação e refinamento da CMOC [@ramesesii2017retroduction, p. 1-2] |
+| Calibração de QCA | Levantar distribuições e âncoras candidatas | Fixar âncoras e rubrica, registrar justificativas [@kahwati2016using, p. 10] |
+| CERQual | Organizar a evidência por componente | Julgar cada componente e a confiança final |
+| Rótulos da caixa | Aplicar a regra versionada e montar a tabela rastreável | Revisar exceções e assinar o portão G8 |
+
+## Passo a passo {#sec-08b-passos}
+
+1. **No protocolo** (@sec-03-regras): declarar o desenho (sequencial-explicativo), o método qualitativo por pergunta (tabela da @sec-08b-regras), as células, as faixas de escala do campo, δ, as regras de rótulo com versão e ordem de aplicação, os moderadores candidatos derivados do DAG e o plano de CERQual e GRADE.
+2. **Preparar o quadro a priori**: converter o DAG e as dimensões da caixa em conceitos definidos, com definição e regra de aplicação, como Carroll et al. fizeram com os modelos de partida [@carroll2013best]. Se houver análise de conteúdo, montar o livro de códigos com os seis componentes [@sampaio2024manual, p. 266].
+3. **Separar suporte primário de revisões**: marcar RS e meta-análises como fontes de bola de neve, fora das células.
+4. **Síntese de efeito por célula** (@sec-08a-regras) e lista de enigmas: heterogeneidade, intervalo de predição largo, estudos discrepantes, direções opostas.
+5. **Codificar os achados qualitativos** contra o quadro: códigos livres para o que não couber; dupla codificação de amostra, com concordância conforme a @sec-07-regras; enunciados portáteis com amostra, fonte, tempo, comparação e magnitude [@sandelowski2013text].
+6. **Construir temas descritivos e, por decisão humana, temas analíticos e CMOCs**; procurar casos negativos e achados refutacionais, que podem render mais que a terceira ordem [@dakerwhite2015blame, p. 34; @carroll2013best].
+7. **Testar a síntese qualitativa**: comparar com o quadro de partida, verificar dissonâncias e fazer análise de sensibilidade por qualidade [@carroll2013best; @thomas2008methods, p. 8].
+8. **Avaliar confiança** de cada achado com CERQual e certeza de cada célula com GRADE (@sec-09-regras).
+9. **Testar hipóteses quando possível**: subgrupo ou meta-regressão nos limiares da @sec-08a-regras; QCA quando houver casos e variação suficientes, com calibração do desfecho por magnitude e análise de robustez [@thomas2014using; @oana2021robustness]. Caso contrário, registrar como hipótese.
+10. **Montar o joint display**, classificar o ajuste (confirmação, expansão, discordância) e responder às cinco perguntas-guia [@fetters2013achieving; @stern2020methodological].
+11. **Aplicar as regras da caixa**, gerar a tabela com `id_rs`, estimativas, certeza e versão da regra, e submeter ao portão G8.
+12. **Levar à prática e relatar**: da evidência à prática com transferibilidade ao Brasil na @sec-09-regras; texto e checklists na @sec-10-relato.
+
+## O que as diretrizes exigem {#sec-08b-diretrizes}
+
+| Diretriz | Itens pertinentes | O que exige nesta etapa |
+|---|---|---|
+| PRISMA 2020 | 13a-13f; 20a-20d | Critérios para montar cada síntese, preparação dos dados, tabulação, método de síntese com justificativa, exploração de heterogeneidade e sensibilidade; resultados de cada síntese e das investigações de heterogeneidade [@page2021prisma] |
+| ENTREQ | 21 itens em cinco domínios; em especial 2, 3 e 14-21 | Metodologia e justificativa; busca planejada ou iterativa; o que foi extraído; software, quem e como codificou; comparação entre estudos; temas indutivos ou dedutivos; citações identificadas como falas de participantes ou interpretações de autores; produto além do resumo [@tong2012enhancing] |
+| eMERGe | 19 critérios pelas sete fases | Justificar a meta-etnografia; descrever leitura e extração, como os estudos foram relacionados, como foram feitas as traduções recíproca e refutacional, como se chegou aos conceitos sintetizados e a reflexividade [@france2019improving] |
+| RAMESES (sínteses realistas) | 19 itens; em especial 5, 7-11 e 14 | Mudanças no processo; escopo exploratório; busca iterativa; relevância e rigor; extração; análise com C, M e O explicitados; achados focados em construção e teste de teoria [@wong2013rameses] |
+| JBI (revisões mistas) | Guia metodológico, sem padrão de relato consolidado | Justificar o desenho, escolher integrado ou segregado conforme a pergunta, incluir estudos mistos primários, mostrar dados originais e transformados, responder às perguntas-guia [@stern2020methodological; @lizarondo2022five] |
+| GRADE-CERQual | Quatro componentes e tabela de achados | Confiança por achado, com justificativa [@lewin2018applying] |
+| Padrões de QCA | Critérios m, n, o, q, r, s, t, u, y | Condições moderadas, calibração explícita, contradições resolvidas, necessidade separada, soluções com e sem suposições, remanescentes transparentes, tratamento transparente de linhas inconsistentes, desfecho e negação analisados em separado, consistência e cobertura interpretadas [@wagemann2007standards, p. 22-29]; robustez relatada [@greckhamer2018studying] |
+
+## Exemplo trabalhado {#sec-08b-exemplo}
+
+### O que foi feito
+
+A revisão sobre proibição de celulares incluiu 21 trabalhos, 8 com desenho quantitativo e inferência causal e 13 qualitativos ou quantitativos descritivos, com análise mista e sequencial [@schaefer2025proibicao, p. 99]. Sobre os estudos qualitativos, o artigo diz apenas que foram identificadas variáveis ligadas a mecanismos, contextos de implementação e percepções, sem nomear método de síntese [@schaefer2025proibicao, p. 104]. A síntese de efeito combinou os 8 estudos (3 experimentais, 4 de diferenças em diferenças e 1 meta-análise) e chegou a g = 0,22, apoiada nos testes de Fisher e de Cooper [@schaefer2025proibicao, p. 104]; o gráfico de floresta traz o IC de 0,02 a 0,42, χ²₇ = 29,73 e I² = 76,5% [@schaefer2025proibicao, p. 105]. A caixa final registrou [@schaefer2025proibicao, p. 108]:
+
+| Linha | Caixa publicada |
+|---|---|
+| Escala do efeito | Efeito positivo |
+| Força do efeito | Efeito fraco |
+| Mecanismo | Redução da distração e criação de ambiente com maior socialização |
+| Moderador | Mais efetiva para estudantes e escolas em maior vulnerabilidade socioeconômica |
+| Implementação | Proibição durante as aulas e celular retirado na entrada da escola |
+| Percepção | Professores mais favoráveis; alunos resistem a proibições totais |
+| Custo | Custo baixo |
+
+A proposta metodológica reconhece a dificuldade: mecanismos e moderadores só puderam ser identificados em cinco trabalhos (três quantitativos, um misto e uma revisão) [@schaefer_oqfunciona, p. 31]. A mesma caixa aparece sem a linha de percepção na proposta e nos slides [@schaefer_oqfunciona, p. 37; @schaefer2026aula6, p. 44], o que mostra por que cada versão da caixa precisa de número e data.
+
+### Reconstrução com as regras
+
+**Células.** O artigo combinou educação básica e ensino superior [@schaefer2025proibicao, p. 105] e lista entre as limitações variação no tipo de banimento, no público, no foco e no tipo de avaliação [@schaefer2025proibicao, p. 109]. Pela regra da célula, os dois níveis de ensino são células separadas, e a meta-análise incluída como estudo sai do cálculo (@sec-07-regras). Para mostrar a lógica, uso abaixo o conjunto publicado.
+
+**Efeito.** O IC exclui zero, o que satisfaz a primeira condição de "Positivo". Mas I² = 76,5% [@schaefer2025proibicao, p. 105], e o intervalo de predição recalculado na @sec-08a-exemplo vai de −0,28 a 0,71. Com um δ ilustrativo de 0,10, o intervalo cobre benefício e dano relevantes, e há moderador e achados qualitativos candidatos a explicar a variação. Aplicando a ordem recomendada: se o GRADE da célula ficar em "muito baixa", o rótulo é **Inconclusivo**; se ficar em "baixa" ou acima, o rótulo é **Misto ou depende do contexto**, e não "Positivo". A avaliação da @sec-09-exemplo chega a certeza muito baixa, o que leva a "Inconclusivo". Em nenhum dos cenários os testes de Fisher e Cooper entram na decisão. O Toolkit chegaria a conclusão parecida por outro caminho: com oito estudos, abaixo de dez, não haveria cadeado nem comunicação de meses de progresso [@eef2021toolkit, p. 7].
+
+**Escala e força.** O g de 0,22 foi lido como "fraco" [@schaefer2025proibicao, p. 104-105] e colocado na linha de força. Pela base, magnitude vai para a escala, com a faixa do campo fixada no protocolo (na tabela do Toolkit, 0,19 a 0,26 equivale a 3 meses de progresso, impacto moderado [@eef2021toolkit, p. 6]), e a força vem do GRADE. Inconsistência e indireção (mistura de níveis de ensino e de medidas) são motivos visíveis de rebaixamento [@balshem2011grade]; a avaliação completa fica para a @sec-09-exemplo.
+
+**Mecanismo.** O enunciado publicado cita quatro fontes para a redução da distração [@schaefer2025proibicao, p. 105-106]. Duas são revisões (Böttger e Zierer, 2024; Campbell et al., 2024) e saem do suporte; "Amin et al., 2022" não consta das referências. Sobra um estudo primário (Porter et al., 2016), com grupos focais, survey e entrevistas sobre celulares e educação na África Subsaariana [@schaefer2025proibicao, p. 98-99, 112], cuja relevância para salas de aula brasileiras precisa ser julgada no CERQual. Reescrito como CMOC: *em salas em que o aparelho está disponível e os alunos têm menor autocontrole (C), a retirada do aparelho (recurso) reduz a tentação de interrupção e sustenta a atenção (raciocínio), elevando o desempenho (O)*; a explicação por autocontrole aparece associada a Beland e Murphy [@schaefer2025proibicao, p. 106]. Com um único estudo primário de suporte, a adequação dos dados preocupa e a confiança CERQual tende a baixa ou muito baixa (juízo humano). A parte "maior socialização" não tem estudo de suporte nos resultados.
+
+**Moderador.** A afirmação de que os efeitos são mais fortes para alunos vulneráveis e de baixo desempenho vem de três estudos quantitativos [@schaefer2025proibicao, p. 106], mas não houve análise de subgrupo na síntese. Pela regra, o enunciado entra como **hipótese**, com os estudos listados, e segue para o joint display.
+
+**Implementação.** A pontuação, com a evidência do artigo:
+
+| Critério | Ponto | Evidência |
+|---|---|---|
+| Mais de 2 componentes | 0 até codificar | Exceções, critérios de punição e confisco aparecem como recomendação dos autores ("é necessário") e não como descrição das intervenções avaliadas [@schaefer2025proibicao, p. 107]; é preciso codificar os estudos |
+| Múltiplos níveis ou atores | 1 | Lei federal, decreto e redes; direção, coordenação, professores, pais e alunos [@schaefer2025proibicao, p. 108-109] |
+| Nova infraestrutura ou pessoal | 1 | Aquisição de estruturas para guarda dos celulares, citada como principal custo [@schaefer2025proibicao, p. 107] |
+| Barreiras de fidelidade em pelo menos 2 estudos | 1 | Docentes flexibilizam a regra (Grigic Magnusson et al., 2023); falta de clareza gera aplicação desigual e resistência (Gao et al.) [@schaefer2025proibicao, p. 107]. Smale et al. (2021), também citado, é revisão pela classificação do próprio artigo [@schaefer2025proibicao, p. 99] e não conta |
+| Longo tempo até o efeito | 0 | Não reportado |
+| **Total** | **3, ou 4 se os componentes forem confirmados** | **Moderada** (3) ou **Complexa** (4) |
+
+O enunciado publicado ("celular retirado na entrada da escola") não tem estudo de suporte na seção de resultados, e o texto cita "Gao et al., 2014", enquanto a referência listada é de 2017 [@schaefer2025proibicao, p. 107, 111]. O primeiro caso falha na regra de rastreabilidade; o segundo exige conferir a referência antes de contar o estudo.
+
+**Percepção.** Um enunciado por ator: professores (Grigic Magnusson et al., 2023; Campbell et al., 2024 sai por ser revisão), alunos (Gath et al., 2024) e pais. A frase sobre pais não cita estudo [@schaefer2025proibicao, p. 106-107] e não entra.
+
+**Custo.** "Custo baixo" não traz quantificação. Pela regra: "custo monetário por aluno não reportado"; custos não monetários, como tensões entre alunos, professores e gestão (Wikström et al., 2024) [@schaefer2025proibicao, p. 107], viram enunciado com CERQual.
+
+### Integração: o joint display dos celulares
+
+| Hipótese (origem) | Evidência qualitativa | Evidência quantitativa | Teste | Ajuste | Consequência |
+|---|---|---|---|---|---|
+| H1: vulnerabilidade e baixo desempenho prévio aumentam o efeito (heterogeneidade relatada em três estudos) | Explicação por autocontrole [@schaefer2025proibicao, p. 106] | Efeitos por subgrupo dentro dos estudos, ainda não extraídos | Extrair efeitos por subgrupo; estimativa por nível com k ≥ 3; teste de diferença só com k ≥ 4 por nível e cerca de 10 estudos por característica; abaixo disso, estimativas lado a lado sem teste (@sec-08a-regras) | A determinar | Se confirmada, sustenta "Misto" e o moderador sai de "hipótese" |
+| H2: fiscalização delegada ao professor reduz o efeito | Um estudo qualitativo longitudinal (Grigic Magnusson et al., 2023) [@schaefer2025proibicao, p. 98, 106] | Nenhum estudo quantitativo codificou quem fiscaliza | Não testável com 8 estudos; registrar lacuna | Expansão, sem contraparte quantitativa | Ponto de barreira na implementação e recomendação condicional; o artigo conclui que fiscalização só pelo professor tende a fracassar [@schaefer2025proibicao, p. 109], mais do que a evidência sustenta |
+| H3: nível de ensino e escopo da proibição (sala ou escola) explicam a heterogeneidade | Limitações listadas pelos autores [@schaefer2025proibicao, p. 109] | Nível de ensino identificável por estudo; o artigo atribui a diferença para outra meta-análise à inclusão do ensino superior [@schaefer2025proibicao, p. 105] | Separar células; teste de diferença básico × superior só com k ≥ 4 por nível e cerca de 10 estudos por característica (@sec-08a-regras) | Não se aplica: hipótese de origem quantitativa | Células separadas |
+
+QCA não é recomendável aqui: são menos de 10 estudos, o que limitaria a análise a 2 ou 3 condições [@kahwati2016using, p. 11], e 7 dos 8 estudos têm a mesma direção [@schaefer2025proibicao, p. 104]. Se a revisão crescer, a saída de @thomas2014using serve de modelo: desfecho "altamente efetiva" calibrado pela magnitude do g, com H1 e H2 como condições.
+
+### Caixa reconstruída
+
+| Linha | Enunciado ou rótulo | Regra | Certeza | Estado |
+|---|---|---|---|---|
+| Efeito | Inconclusivo com a certeza muito baixa da @sec-09-exemplo; Misto ou depende do contexto se a certeza chegar a baixa | Efeito, ordem recomendada | GRADE por célula, com assinatura humana | Pendência no G8 |
+| Escala | Faixa do campo fixada no protocolo (g = 0,22) | Escala | Não se aplica | Pendência de protocolo |
+| Força | Insuficiente, se confirmada a certeza muito baixa | Força | GRADE por célula | Pendência no G8 |
+| Mecanismo | CMOC de redução de distração, com Porter et al. (2016) | Enunciado com suporte primário | CERQual baixa ou muito baixa (juízo humano) | Revisar |
+| Moderador | Hipótese H1, com três estudos | Moderador não testado | Não aplicável até teste | Hipótese |
+| Implementação | Moderada (3 pontos) ou Complexa (4) | Pontuação | CERQual pendente | Codificar componentes nos estudos |
+| Percepção | Professores; alunos; pais sem suporte | Um enunciado por ator | CERQual pendente | Revisar |
+| Custo | Custo monetário não reportado; custos não monetários com Wikström et al. (2024) | Custo | CERQual pendente | Revisar |
+
+A reconstrução não diz que a política não funciona. Diz que a evidência publicada sustenta uma caixa mais cautelosa e mais informativa: o efeito médio não pode ser afirmado com confiança, há sinais de variação com contexto e implementação, e as hipóteses para essa variação estão escritas de forma testável. A transferência para a Lei nº 15.100/2025 e o Decreto nº 12.385/2025, que deixa a implementação às redes [@schaefer2025proibicao, p. 108-109], está na @sec-09-exemplo.
+
+## Erros comuns e como evitá-los {#sec-08b-erros}
+
+| Erro | Exemplo | Como evitar |
+|---|---|---|
+| Chamar de síntese qualitativa um conjunto de frequências, nuvens de palavras e bigramas | No pipeline REFIS, os blocos qualitativos são resumidos por tabelas de frequência, nuvens de palavras e redes de coocorrência [@schaefer2026analise] | Representação visual não é síntese [@popay2006guidance, p. 16]. Frequências supõem a mesma variável em cada relato, e redes feitas de texto supõem que se saiba o que é um nó; sem regra de codificação que outro codificador reproduza, os achados podem não ter sentido [@small2011conduct, p. 76]. Usar síntese temática ou *best-fit* e deixar a mineração de texto como apoio exploratório |
+| Não nomear nem descrever o método de síntese qualitativa | "foram identificados uma série de variáveis" [@schaefer2025proibicao, p. 104] | Declarar método, codificação e derivação de temas (ENTREQ 2, 17-19) [@tong2012enhancing] |
+| Confundir força do efeito com tamanho ou significância | Força do efeito como "tamanho do coeficiente, significância" [@schaefer2026aula1, p. 25, 40]; força registrada como "Efeito fraco" [@schaefer2025proibicao, p. 108] | Magnitude na escala; força pelo GRADE (@sec-08b-caixa) |
+| Concluir "sem efeito" a partir de não significância | "não tem repercussão na proficiência" [@santos2019bolsafamilia, p. 2233] | "Nulo" só com IC dentro de ±δ e certeza moderada; senão "Inconclusivo" |
+| Usar revisões como suporte de mecanismo, implementação ou efeito | Duas revisões entre as quatro fontes do mecanismo; revisão citada como fonte de barreira de implementação; meta-análise como estudo [@schaefer2025proibicao, p. 99, 104-107] | Revisões só para bola de neve e comparação |
+| Enunciado sem estudo rastreável | "Amin et al., 2022" sem referência; enunciado de implementação sem suporte [@schaefer2025proibicao, p. 106, 108] | Toda célula aponta para `id_rs` e trecho; teste automático de célula sem fonte |
+| Transformar um único relato qualitativo em recomendação firme | Modelos com fiscalização pelo professor "tendem a fracassar" [@schaefer2025proibicao, p. 109], com um único estudo citado para essa relação nos resultados [@schaefer2025proibicao, p. 106] | Enunciado com CERQual e marcação de hipótese; recomendação não mais forte que a certeza |
+| Codificação dedutiva sem livro de códigos nem confiabilidade | Três categorias a priori sem descrição de codificação [@fonseca2023agenda, p. 3] | Livro de códigos com seis componentes e alfa de Krippendorff acima de 0,667 [@sampaio2024manual, p. 266, 272] |
+| Calibrar o desfecho da QCA por significância | "Melhora" = ao menos uma medida significativa [@kahwati2016using, p. 5] | Calibrar por magnitude [@thomas2014using] |
+| Muitas condições para poucos casos | 9 condições em 60 estudos, abaixo da razão recomendada [@kahwati2016using, p. 5-6] | Com menos de 10 estudos, no máximo 2 ou 3 condições; condições compostas guiadas por teoria [@kahwati2016using, p. 11; @thomas2014using] |
+| Declarar revisão mista sem integrar | 8 de 17 revisões não seguiam a metodologia declarada [@lizarondo2022five] | Joint display e cinco perguntas-guia [@stern2020methodological] |
+| Tratar a síntese qualitativa como ilustração do efeito | Modelo de coadjuvante subordinado [@dixonwoods2006systematic, p. 32] | Percepção e implementação com enunciados próprios; hipóteses qualitativas que podem mudar o rótulo |
+| Deixar o LLM produzir temas analíticos ou CMOCs finais | Delegação sem auditoria | Tabela "quem decide o quê"; validação na @sec-11-regras |
+
+## Na skill `revisao-sistematica` {#sec-08b-skill}
+
+Contrato planejado (@sec-especificacao-contrato), sem detalhes além dele:
+
+- **Momento do fluxo.** A etapa 10 reúne síntese (comparabilidade, meta-análise ou SWiM, qualitativa, integração), certeza e caixa de ferramentas e termina no portão duro G8: no modo checkpoints a skill para; no autopiloto, G8 vira pendência e o relatório sai marcado "RASCUNHO NÃO VALIDADO". Produtos em `06-analise/`; referência operacional em `references/07b-sintese-qualitativa-integracao.md`.
+- **Agentes.** `sintetizador-quali` trabalha por tema, com as colunas do master de extração como entrada; `revisor-metodologico` revisa em G2 e G8. Resumo de subagente nunca é prova: só o que passa pela mescla e pelas checagens conta, e as junções são sempre por `id_rs`.
+- **Codebooks e mapas.** `assets/codebooks/qualitativa.csv` para a extração qualitativa; `assets/mapas/caixa_ferramentas_mapa.csv` liga variáveis a linhas da caixa. A extração com trecho verbatim e página é delegada a `fichamento-sistematico`, cujo gate de citação verifica os trechos.
+- **Script.** `rs.py caixa` só monta a tabela rastreável a partir das regras versionadas; cada célula guarda `regra_versao`, estudos, estimativas, certeza e assinatura, e os testes combinados nunca definem rótulo. O teste `test_caixa` exige que toda célula tenha fontes. Como GRADE e CERQual são juízos humanos, célula sem esse juízo não recebe rótulo definitivo: fica "Pendente" e vira pendência de G8. A ordem de precedência dos rótulos (a do quadro "Ordem de aplicação", versão `caixa-3`), a regra da linha de painel e as definições operacionais dos critérios de implementação entram no protocolo com a versão da regra. O juízo de confiança do achado que explica a heterogeneidade vai em `certeza.csv`, numa linha de moderador ou mecanismo marcada como explicativa; sem ela, a célula com intervalo de predição largo e explicação alegada sai "Inconclusivo". O G8 exige o arquivo de certeza com uma linha para cada célula de efeito e, em revisão OQF, a própria caixa.
+- **Juízo humano.** Temas analíticos, CMOCs, calibração de QCA e juízos CERQual são humanos; a skill registra quem aprovou.
+- **Fora da versão 1.** Síntese realista iterativa completa e QCA computacional: a skill reconhece o tipo, orienta por este capítulo e declara o limite.
+- **Relatório.** O template `relatorio_oqf.qmd` recebe a caixa e o joint display (@sec-10-relato).
+
+## Como relatar {#sec-08b-relato}
+
+O relatório precisa conter, no mínimo: (1) o desenho misto e a justificativa; (2) o método de síntese qualitativa com referência, o quadro a priori e como os temas foram derivados; (3) quem codificou e a concordância; (4) como hipóteses qualitativas foram testadas ou por que não puderam ser; (5) o joint display; (6) as regras de rótulo, com versão, e a caixa com estudos e certeza por linha; (7) CERQual por achado e GRADE por célula; (8) desvios do protocolo. Exemplo de redação para a seção de métodos:
+
+> A síntese seguiu desenho misto sequencial-explicativo [@hong2017convergent]. A heterogeneidade e os estudos discrepantes identificados na síntese quantitativa por célula (intervenção × construto de desfecho) orientaram a síntese qualitativa. Os achados de estudos qualitativos, mistos e quantitativos descritivos foram extraídos verbatim, com página, e codificados contra um quadro a priori derivado da teoria do programa (*best-fit framework synthesis*) [@carroll2013best]; o que não coube no quadro recebeu codificação livre. Um segundo revisor codificou às cegas 20% dos estudos (no mínimo 10), com concordância por variável calculada e comparada aos limiares do protocolo; divergências foram resolvidas por consenso. Temas analíticos e configurações contexto-mecanismo-desfecho foram formulados pela equipe e avaliados com GRADE-CERQual [@lewin2018applying]. Hipóteses explicativas foram testadas por análise de subgrupo quando havia pelo menos quatro estudos por nível; as demais foram registradas como hipóteses. A integração foi feita em joint display [@fetters2013achieving]. Os rótulos da caixa de ferramentas seguiram as regras da versão 1.0 do protocolo, inclusive a ordem de precedência entre rótulos e as definições operacionais dos critérios de implementação.
+
+E, nos resultados, uma frase por linha da caixa com rótulo, estudos e certeza, por exemplo: "O efeito sobre desempenho em testes padronizados na educação básica foi classificado como *depende do contexto* (g = …; IC 95% …; intervalo de predição …; certeza baixa), com a variação associada, como hipótese, ao desempenho prévio dos alunos (três estudos; não testada por falta de estudos por subgrupo)."
+
+## Leituras {#sec-08b-leituras}
+
+**Normas e guias**
+
+- @page2021prisma: itens 13 e 20 do PRISMA 2020.
+- @tong2012enhancing: ENTREQ, relato de sínteses qualitativas.
+- @france2019improving: eMERGe, relato de meta-etnografias.
+- @wong2013rameses: RAMESES, relato de sínteses realistas.
+- @stern2020methodological: revisões mistas no JBI.
+- @lewin2018applying: GRADE-CERQual.
+- @balshem2011grade: categorias de certeza do GRADE.
+- @wagemann2007standards: padrões de boa prática em QCA.
+- @greckhamer2018studying: limiares de consistência, PRI e robustez em QCA.
+- @oana2021robustness: protocolo de robustez para QCA aplicada.
+
+**Leituras de apoio**
+
+- @thomas2008methods: passo a passo da síntese temática.
+- @thomas2003children: matriz que integra visões e ensaios, antecedente do joint display em revisão.
+- @dixonwoods2006systematic: limites e tensões de incorporar pesquisa qualitativa em RS.
+- @pawson2005realist: lógica e passos da revisão realista.
+- @dakerwhite2015blame: meta-etnografia aplicada, com o valor dos achados refutacionais.
+- @kahwati2016using: QCA dentro de uma RS e seus problemas de calibração.
+- @small2011conduct: desenhos mistos, sequenciais e concorrentes, e seus riscos.
+- @sampaio2024manual: análise de conteúdo e QCA em português.
+- @schaefer_oqfunciona e @schaefer2025proibicao: a caixa de ferramentas e sua aplicação aos celulares.
+- @santos2019bolsafamilia e @fonseca2023agenda: sínteses brasileiras tabular e integrativa, úteis como contraste.
+- @schaefer2026aula6: quadro de métodos de síntese qualitativa do material didático.
+
+**Complementares**
+
+- @carroll2013best: *best-fit framework synthesis*, o método mais próximo do quadro OQF.
+- @popay2006guidance: os quatro elementos da síntese narrativa.
+- @thomas2014using e @elsherif2024using: QCA como síntese.
+- @hong2017convergent, @lizarondo2022five e @fetters2013achieving: desenhos mistos, falhas frequentes e joint display.
+- @sandelowski2013text, @dalkin2015whats e @ramesesii2017retroduction: enunciados portáteis, mecanismo e retrodução.
+- @johnson2015emmie e @eef2021toolkit: modelos de caixa de evidência com regras públicas.

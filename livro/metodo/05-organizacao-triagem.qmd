@@ -1,0 +1,377 @@
+---
+title: "Organização dos registros, deduplicação e triagem"
+---
+
+Esta etapa começa quando as exportações das bases chegam e termina com uma lista de estudos incluídos, cada um ligado aos seus relatos, e com a contagem de tudo o que ficou pelo caminho. No meio há quatro decisões: como representar cada registro sem perder a origem; quando dois registros são o mesmo relato e quando dois relatos são o mesmo estudo; o que um filtro automático pode fazer sem olhar humano; e quem decide a elegibilidade, com que critérios e com que controle de erro. A proposta OQF e os scripts de exemplo do REFIS resolvem essas questões com um *pipeline* em R que empilha as bases, remove duplicatas, aplica filtros de ano, idioma, tipo e dicionários de método e tema, faz a triagem com LLMs e confere a concordância por kappa [@schaefer_oqfunciona, pp. 28-29; @schaefer2026aula4, pp. 39-48; @schaefer2026codigos]. O capítulo mantém esse desenho e o ajusta às normas: a unidade da revisão é o estudo, não o registro [@lefebvre2025searching, sec. 4.6.1]; as decisões sobre todos os registros ficam documentadas [@lefebvre2025searching, MECIR C41]; e o relato diz quantos revisores avaliaram cada registro e cada relato, se trabalharam de forma independente e que automação foi usada [@page2021prisma, item 8]. A busca que alimenta esta etapa está na @sec-04-regras; a validação da triagem por IA, na @sec-11-regras.
+
+## Decisões e regras {#sec-05-regras}
+
+### Unidades: registro, relato, estudo e efeito
+
+O PRISMA 2020 distingue registro (título e/ou resumo de um relato indexado numa base), relato (qualquer documento com informação sobre um estudo, inclusive preprint, dissertação e relatório governamental) e estudo (a investigação, que pode ter vários relatos) [@page2021prisma, Box 1]. Um relato também pode descrever mais de um estudo, e nunca se deve presumir um relato por estudo [@li2024collecting, sec. 5.2.1]. A skill materializa essa hierarquia em identificadores separados (@sec-especificacao-regras, item 3, e @sec-especificacao-contrato).
+
+| Unidade | O que é | Identificador | Nasce em | Regra operacional |
+|---|---|---|---|---|
+| Registro | Linha de uma exportação | `id_registro` = `<busca_id>-<linha>` | Importação | Nunca é apagado; a deduplicação só o associa a um relato |
+| Relato | Documento: artigo, preprint, tese, resumo de congresso, relatório | `id_rs` (RS0001…, só cresce) | Deduplicação | Objeto da triagem de títulos e resumos (T/A) e da leitura em texto completo (TC) |
+| Estudo | Investigação com população, intervenção e desfechos definidos | `id_estudo` | Ligação de relatos, depois do TC | Listas de incluídos e excluídos são por estudo [@lefebvre2025searching, MECIR C41] |
+| Efeito | Uma estimativa de um desfecho num estudo | `effect_id` | Extração | Ver @sec-07-regras |
+
+::: {.callout-important}
+## Relatos múltiplos não são estudos múltiplos
+A expectativa MECIR C42 é obrigatória: "It is wrong to consider multiple reports of the same study as if they are multiple studies" [@lefebvre2025searching, sec. 4.6.2]. Relatos secundários não são descartados, porque podem ter desfechos e detalhes de desenho; a equipe escolhe e justifica o relato primário. Revisões sistemáticas e meta-análises não entram como estudo primário: alimentam a bola de neve e a validação da busca (@sec-especificacao-regras, item 3; @sec-01-regras).
+:::
+
+### Deduplicação
+
+Duplicata, no PRISMA, é outro registro do mesmo relato; relatos apenas parecidos, como o mesmo resumo enviado a dois congressos, são únicos [@page2021prisma, Box 1]. A skill separa três operações: fundir registros do mesmo relato; ligar versões preprint e publicada como relatos do mesmo estudo, já na deduplicação; e ligar os demais relatos do mesmo estudo (tese e artigo, artigos com desfechos diferentes), estes só depois do texto completo. A comparação acontece dentro de blocos: mesmo DOI, mesmo identificador da fonte, mesmos quatro primeiros caracteres do título normalizado ou mesmo sobrenome do primeiro autor, com diferença de ano de até 1 (contrato da skill, @sec-especificacao-contrato).
+
+| Regra | Condição | Ação | Observação |
+|---|---|---|---|
+| R1 | DOI normalizado idêntico | Funde automaticamente | DOIs são equivalentes ignorando a caixa só nas letras latinas básicas A–Z; letras acentuadas não se equiparam [@doi2025handbook, sec. 4.3.4] |
+| R2 | Mesmo identificador da fonte (UT da WoS, EID da Scopus, `W…` do OpenAlex) | Funde automaticamente | Pega duplicatas dentro da mesma base |
+| Versão | Um lado é preprint ou *working paper* (tipo de registro preprint ou `posted-content`; prefixo de servidor de preprint só como indício), título parecido, anos compatíveis | Nunca funde. Com similaridade ≥ 95, mesmo sobrenome e anos presentes, liga os dois relatos no mesmo estudo (`ligado`); senão, candidato a ligação para decisão humana | Cada relato mantém seu `id_rs` e segue para a triagem; os dois recebem o mesmo `id_estudo`. A ligação automática nunca junta dois relatos publicados no mesmo estudo |
+| R3 | Título normalizado idêntico, ano com diferença ≤ 1, sobrenome igual ou ausente | Funde automaticamente | O registro da versão eletrônica pode ter data anterior à da impressa [@lefebvre2025searching, sec. 4.4.5] |
+| R4 | Similaridade de título ≥ 95 (0–100), sobrenome igual, sem DOIs conflitantes | Funde e marca para auditoria | Par gravado em `dedup_pares.csv` |
+| R5 | Similaridade entre 85 e 95, ou ≥ 95 com DOI diferente, sobrenome diferente ou ano ausente | Candidato para decisão humana | Nunca mesclar candidatos em lote |
+| Bloqueio | Tese ou dissertação × artigo; títulos que diferem só em numeral ou em "Part I/II" | Nunca funde | Tese e artigo do mesmo autor se ligam por `id_estudo` no TC |
+
+Normalizar título é passar para minúsculas, tirar acentos e pontuação e colapsar espaços; normalizar DOI é tirar `https://doi.org/` e `doi:`, espaços e pontuação final e comparar sem caixa só em A–Z. No REFIS, o mesmo artigo veio da WoS como `10.21680/2176-9036.2025v17n2ID40757`, com título em caixa alta e autor "BONETTI BB", e do OpenAlex com `id40757`, título em caixa normal e autor "Brigitti Brunocilla Bonetti" [@schaefer2026codigos]: a regra de sobrenome precisa lidar com "sobrenome e iniciais" e "nome em ordem direta".
+
+Prefixo de DOI não identifica preprint. O prefixo 10.1101 do Cold Spring Harbor Laboratory contém artigos da *Genome Research*; o 10.1590 da SciELO serve tanto aos periódicos quanto ao SciELO Preprints. O preprint "Indisciplina e repetência escolar: os meandros de uma relação" (10.1590/scielopreprints.5840, 2023) aponta, pela relação `is-preprint-of`, para o artigo publicado na *Educação e Pesquisa* em 2026 (10.1590/s1678-4634202652289357por), mas o registro do artigo não traz a relação inversa (consulta à API da Crossref em 15/09/2026). Os DOIs diferem, o título é idêntico e os anos distam três: com janela de 1 ano, nenhuma regra compara o par. Daí três regras: conferir o tipo do registro e a relação nos dois sentidos, alargar a janela de ano quando um lado é preprint e nunca classificar por prefixo sozinho. Pelo glossário do PRISMA, preprint e artigo são relatos distintos do mesmo estudo [@page2021prisma, Box 1], e relatos secundários não se descartam porque podem trazer desfechos e detalhes que o principal não traz [@lefebvre2025searching, sec. 4.6.2 e MECIR C42]. Por isso a convenção desta base não funde as versões: liga-as como relatos do mesmo estudo desde a deduplicação (@sec-especificacao-regras, item 3). O custo é triar duas vezes um conteúdo parecido; o ganho é não perder, antes de qualquer leitura, a versão com outra amostra ou outras estimativas, e contar o estudo uma vez só, pelo `id_estudo`. Quem ligou (a regra automática ou um revisor) fica registrado no par, e uma ligação errada se desfaz rejeitando o par.
+
+A evidência sobre ferramentas justifica a desconfiança nos padrões de fábrica. Num conjunto de 3.130 referências com 1.238 duplicatas identificadas à mão, a sensibilidade (duplicatas encontradas) foi de 0,52 no Zotero, 0,57 no EndNote X9, 0,84 no Mendeley, 0,90 no Covidence, 0,93 no Ovid e 0,96 no Rayyan; a especificidade (referências únicas preservadas) foi de 0,89 no EndNote, 0,97 no Rayyan e 1,00 no Ovid e no Covidence [@mckeown2021considerations, tabela 3]. O falso positivo é o erro grave, porque apaga um relato antes de qualquer leitura: dos 208 falsos positivos do EndNote, 85 eram pesquisa primária, assim como 16 dos 52 do Rayyan, e os autores desaconselham a mesclagem em lote [@mckeown2021considerations]. Algoritmos com normalização e regras explícitas chegam perto do teto: o Deduklick teve *recall* médio de 99,51% e precisão de 100%, contra 88,65% e 99,95% da deduplicação manual com EndNote em oito conjuntos, num estudo conduzido pelos desenvolvedores [@borissov2022reducing]. A lição é ter regras exatas automáticas, regras aproximadas auditáveis e nenhuma fusão sem trilha.
+
+### Funil formal: etiquetar, não excluir
+
+A proposta OQF aplica filtros em cascata que excluem registros: duplicatas, ano, idioma, tipo de documento, dicionário de metodologia e dicionário substantivo [@schaefer_oqfunciona, pp. 28-29; @schaefer2026codigos]. As normas limitam o que filtros podem fazer. Restrição de data só se justifica quando espelha um critério de elegibilidade, por exemplo quando a intervenção só existia depois de certa data; restrição de formato em geral não se usa, porque cartas e comentários trazem informação e até alertas de retratação [@lefebvre2025searching, sec. 4.4.5 e MECIR C35]. Relatos em idiomas que a equipe não consegue ler vão para "aguardando classificação", não para excluídos [@lefebvre2025searching, sec. 4.4.5]. O EPPI-Centre não usou filtros metodológicos de desenho porque "these reduce the sensitivity of searches" [@thomas2003children, p. 19]. Nas ciências sociais o problema cresce: resumos estruturados e palavras-chave são menos comuns e a informação metodológica é relatada com menos clareza [@petticrew2006systematic, pp. 83-84].
+
+A regra desta base é que filtros formais etiquetam e ordenam; excluir exige previsão no protocolo congelado e validação (@sec-especificacao-regras, item 1).
+
+| Filtro | Modo padrão | Pode excluir quando | Armadilha conhecida |
+|---|---|---|---|
+| Ano | Etiqueta `fora_janela` | O protocolo fixa a janela com justificativa substantiva e o campo existe | Marco legal com ano errado; ano ausente tratado como fora |
+| Idioma | Código ISO 639-1 ao lado do valor original | O protocolo restringe idioma e o idioma foi conferido no título ou resumo | Metadado errado; idioma não lido vai para "aguardando classificação" |
+| Tipo de documento | `tipo_publicacao` normalizado, preservando o original | Só tipos sem conteúdo de estudo (índice, errata sem dados), com previsão no protocolo | Excluir "report", nota técnica ou tese elimina literatura cinzenta, que o PRISMA conta como relato [@page2021prisma, Box 1] |
+| Dicionário de método ou tema | Etiqueta e pontua (`n_termos_metodo`, `n_termos_tema`) para ordenar a fila | Protocolo prevê, termos com fronteira de palavra e amostra de elusão dos excluídos sem elegíveis | Substring, homógrafos, siglas em texto todo em maiúsculas |
+| Campo ausente | `sem_dado`; o registro segue | Nunca | Resumo vazio vira "sem menção" |
+| Sem resumo | Etiqueta `sem_resumo` | Nunca por filtro textual | Vai à T/A como `incerto` |
+
+::: {.callout-warning}
+## Fronteira de palavra, homógrafos e caixa alta
+O script de exemplo do REFIS monta uma alternância de termos e procura por substring no texto em minúsculas e sem pontuação [@schaefer2026codigos]. Na base REFIS, o termo "sem" (sigla de *structural equation modeling*) casou com 46 dos 181 registros: em 19 como a preposição e em 27 só dentro de palavras como "sempre" e "desempenho"; 17 registros passaram no filtro só por causa dele. "ols" casou com "bolsa", "tools", "controls" e "desembolsado"; "causa" casou com "causados" e com "causa jurídica"; "cause", com "because" (reprodução própria em R com os dados de exemplo do REFIS; @sec-05-exemplo). Fronteira de palavra resolve a substring, mas não o homógrafo, e sigla com caixa preservada não resolve texto todo em maiúsculas: 99 dos 181 resumos, quase todos de teses da BDTD, estão inteiramente em caixa alta, e os 11 registros com "SEM" em maiúsculas estão entre eles. A correção tem quatro partes: `(?<!\w)termo(?!\w)`, truncamento explícito com `*`, sigla comparada com caixa e ignorada em texto todo em maiúsculas, e teste do dicionário contra falsos acertos conhecidos antes de rodar.
+:::
+
+```python
+import re
+
+SIGLAS = {"SEM", "OLS", "RCT", "RDD", "QCA", "2SLS"}   # só valem com caixa preservada
+
+def padrao(termo):
+    corpo = re.escape(termo).replace(r"\*", r"\w*")    # * = truncamento explícito
+    return rf"(?<!\w){corpo}(?!\w)"
+
+def todo_maiusculo(texto):
+    # upper() não altera "º" e "ª"; exigir isupper() em cada letra falharia em "Nº"
+    return any(c.isalpha() for c in texto) and texto == texto.upper()
+
+def casa(texto, termo):
+    if not texto:                           # campo ausente: sem_dado, não decide
+        return None
+    if termo in SIGLAS:
+        if todo_maiusculo(texto):           # "SEM" num resumo em caixa alta é a preposição
+            return None
+        return re.search(padrao(termo), texto) is not None
+    return re.search(padrao(termo), texto, re.IGNORECASE) is not None
+
+def doi_normalizado(doi):
+    if not doi:
+        return None
+    d = re.sub(r"^(https?://(dx\.)?doi\.org/|doi:\s*)", "", doi.strip(), flags=re.I)
+    d = d.rstrip(".;, ")
+    return "".join(c.lower() if c.isascii() else c for c in d)   # caixa irrelevante só em A–Z
+```
+
+### Triagem de títulos e resumos
+
+Um critério não atendido basta para excluir, e a Cochrane recomenda avaliar os critérios em ordem de importância, usando o primeiro "não" como motivo principal [@lefebvre2025searching, sec. 4.6.4]. Na T/A a equipe deve ser generosa: "authors should generally be over-inclusive at this stage" [@lefebvre2025searching, sec. 4.6.3].
+
+| Situação no título ou resumo | Decisão | Encaminhamento |
+|---|---|---|
+| Um critério falha com clareza | `excluir`, com `criterio_falhou` e trecho literal que embasa | Contagem em "registros excluídos" |
+| Todos os critérios atendidos ou plausíveis | `incluir` | Busca do texto completo |
+| Informação insuficiente (sem resumo, desenho ou contexto ambíguo) | `incerto` | Busca do texto completo; nunca exclusão |
+| A intervenção só é mencionada (contexto, recomendação final, referência) | `excluir` pelo critério substantivo | @sec-05-criterios |
+| É revisão sistemática ou meta-análise | `excluir` como estudo primário, com etiqueta `rs_para_bola_de_neve` | Referências vão para a bola de neve (@sec-04-regras); nunca entra no mesmo conjunto de síntese que os estudos primários. Em revisão rápida ou *overview*, se o protocolo previr, fica como fonte no nível de revisão, com controle explícito de sobreposição (CCA) e sem somar seus estudos aos primários [@garritty2021cochrane, R8; @pollock2024overviews, sec. V.4.4, V.4.7] |
+| Revisores discordam | Discussão; persistindo, terceiro revisor | Faltando informação, `incerto` na T/A; no TC, "aguardando avaliação" [@lefebvre2025searching, sec. 4.6.4] |
+
+| Regime | Quando usar | O que se sabe | Como relatar |
+|---|---|---|---|
+| Dupla independente em T/A e TC | Padrão de revisão sistemática | Triagem única perdeu 13% dos estudos relevantes (sensibilidade 86,6%; IC 95% 80,6–91,2) e dupla perdeu 3% (97,5%; IC 95% 95,1–98,8), com especificidades de 79,2% e 68,7% [@gartlehner2020single] | Revisores por registro e por relato, independência, resolução de conflitos [@page2021prisma, item 8] |
+| Única em T/A com segundo revisor numa amostra ou em todos os excluídos; dupla no TC | Recursos limitados, busca muito inespecífica | A Cochrane aceita T/A por uma pessoa, mas exige duas pessoas independentes no TC [@lefebvre2025searching, MECIR C39]; amostra de talvez 10% conferida por um segundo revisor [@petticrew2006systematic, p. 120]; o PRISMA descreve checagem de amostra ou de todos os excluídos [@page2021explanation, item 8, Box 3] | Tamanho e sorteio da amostra; concordância; limitação declarada |
+| Única em T/A e TC | Só revisão rápida declarada como tal | Não atende ao padrão esperado de revisão sistemática [@gartlehner2020single] | Como limitação principal |
+| IA como triador ou segundo revisor | Corpora grandes, com protocolo de validação | Automação pode reduzir a triagem manual em pelo menos 30% e talvez mais de 90%, com perda de até 5% de sensibilidade; a eliminação automática por aprendizado ativo não era recomendada pela Cochrane no texto de meados de 2023 [@lefebvre2025searching, sec. 4.6.6.2] | @sec-11-relato |
+
+Os limiares desta base vêm da especificação metodológica (@sec-especificacao-ia); os scripts de exemplo do REFIS calculam κ, mas não fixam limiar [@schaefer2026codigos].
+
+| Ponto de controle | Métrica | Limiar | Se falhar |
+|---|---|---|---|
+| Piloto de calibração humana da T/A (≥ 100 registros ou ≥ 10 incluídos) | κ de Cohen e concordância percentual, com PABAK ao lado | κ ≥ 0,6 **e** concordância ≥ 75% | Critérios versão N+1 e nova calibração em registros novos |
+| Deduplicação aproximada | Pares R4 e R5 em `dedup_pares.csv` | 100% dos R5 decididos por humano | Sem decisão, o par fica separado |
+| Exclusão por dicionário prevista no protocolo | Amostra de elusão dos excluídos lida por humanos | A especificação não fixa limiar próprio; esta base usa o desenho da elusão da IA (n ≥ 300 ou todos; @sec-11-regras) | Elegível na amostra: o dicionário volta ao modo etiqueta |
+| Triagem por IA | Recall contra dupla humana, com IC | Recall ≥ 0,95 e limite inferior ≥ 0,90 | Protocolo de falha da @sec-11-regras |
+| Texto completo | Dupla independente | 100% dos relatos | Sem exceção [@lefebvre2025searching, MECIR C39] |
+
+### Elegibilidade em texto completo: motivos padronizados
+
+No TC vale a mesma regra do primeiro "não", agora com a ordem dos critérios fixada no protocolo [@lefebvre2025searching, sec. 4.6.4], e os motivos principais entram no fluxograma [@page2021explanation, item 16a]. Três situações parecem exclusão e não são: relato não recuperado, que tem caixa própria qualquer que seja o motivo [@rethlefsen2022prisma]; relato adicional de estudo já incluído, que é ligado ao estudo; e estudo que não reporta dados de desfecho utilizáveis, que não pode ser excluído só por isso [@lefebvre2025searching, MECIR C40].
+
+| Código | Motivo | Uso |
+|---|---|---|
+| E1 | Contexto ou população fora do protocolo (ex.: fora do Brasil, outro nível de governo) | Exclusão |
+| E2 | Não estuda a intervenção como objeto empírico (só menciona) | Exclusão |
+| E3 | Não mede nem analisa desfecho do protocolo | Exclusão |
+| E4 | Desenho ou tipo de evidência inelegível (normativo, teórico, só jurisprudência) | Exclusão |
+| E5 | Não é estudo primário (revisão, editorial) | Exclusão do conjunto de estudos primários; revisão alimenta a bola de neve (em rápida ou *overview*, só no nível de revisão, com CCA; @sec-01-regras) |
+| E6 | Retratado | Exclusão com registro do aviso (@sec-05-retratacoes) |
+| AC | Informação insuficiente ou idioma que a equipe não lê | "Aguardando classificação", fora das exclusões [@lefebvre2025searching, sec. 4.4.5] |
+| NR | Texto não localizado, inacessível ou autor sem resposta | "Relatos não recuperados" [@rethlefsen2022prisma] |
+| LR | Relato adicional de estudo incluído | Ligação de relatos, não exclusão |
+
+A lista de excluídos que acompanha o relatório traz só os estudos que um leitor esperaria ver incluídos, com o motivo [@lefebvre2025searching, sec. 4.6.5; @page2021prisma, item 16b].
+
+## Esquema unificado e proveniência {#sec-05-esquema}
+
+As bases exportam metadados diferentes: a WoS traz 79 variáveis e o Publish or Perish, 26, o que obriga a padronizar antes de empilhar [@schaefer_oqfunciona, p. 28]. Os scripts de exemplo do REFIS padronizam em 13 colunas (`titulo`, `palavras_chave`, `n_autores`, `pais`, `primeiro_autor`, `resumo`, `ano`, `tipo_publicacao`, `idioma`, `nome_publicacao`, `doi`, `base`, `estrutura`) [@schaefer2026codigos]. O esquema resolve o empilhamento, mas perde o que as etapas seguintes pedem. No REFIS não há identificador por registro nem linha de origem, a lista de autores é calculada e descartada, a coluna `palavras_chave` do OpenAlex recebe o tópico atribuído pela base, as teses da BDTD recebem `pais = "Brasil"` e `n_autores = 1` fixos e ficam sem palavras-chave e sem DOI (158 registros), e o `id_rs` é criado com `row_number()` depois dos filtros, o que muda a numeração a cada rodada [@schaefer2026codigos]. Sem identificador estável, as decisões das IAs foram juntadas por título, e quatro das 21 linhas do DeepSeek não casaram (@sec-05-exemplo).
+
+| Grupo | Campos mínimos | Por que |
+|---|---|---|
+| Proveniência | `id_registro`, `busca_id`, `fonte`, `metodo_identificacao` (base, citação, cinzenta, manual), `arquivo_origem`, `linha_origem`, `id_fonte`, `importado_em` | Reconstituir a origem de cada linha e separar os ramos do fluxograma |
+| Bibliográficos | `doi`, `titulo`, `titulo_alt`, `autores` ("Sobrenome, Nomes", separados por barra vertical), `primeiro_autor_sobrenome`, `n_autores`, `ano`, `tipo_publicacao_orig`, `tipo_publicacao`, `idioma`, `veiculo`, `volume`, `numero`, `paginas`, `url` | Deduplicar, gerar chave de citação, conferir o PDF certo |
+| Conteúdo e contexto | `resumo`, `resumo_truncado`, `palavras_chave`, `pais_afiliacao`, `instituicao`, `citado_por`, `estrutura` | Triar, etiquetar, descrever o corpus |
+
+Regras de harmonização (contrato da skill, @sec-especificacao-contrato): arquivos brutos intocados e com hash; colunas mapeadas por nome, nunca por posição; valor original de tipo e idioma ao lado do normalizado; campo ausente é `NA`, não string vazia nem valor inventado. A tabela de relatos únicos (`registros_unicos.csv`) recebe `id_rs`, `id_estudo`, os `ids_registro` fundidos, as fontes, o tipo de duplicata e os campos mesclados, com prioridade de fonte e o resumo mais longo não truncado. Gerenciar referências em base própria ajuda a achar duplicatas, mas serve sobretudo para rastrear o destino de cada artigo [@petticrew2006systematic, p. 104], e excluídos nunca são apagados, porque critérios mudam e pareceristas perguntam [@petticrew2006systematic, p. 120]. A PRISMA-S pede o total de registros por fonte e a descrição do processo e do software de deduplicação [@rethlefsen2021prismas, itens 15 e 16].
+
+## Estudar versus mencionar: critérios aplicáveis {#sec-05-criterios}
+
+Critério bom é uma pergunta de sim ou não que duas pessoas respondem igual lendo o mesmo resumo; o piloto serve para garantir que os critérios sejam aplicados de forma consistente por mais de uma pessoa [@lefebvre2025searching, sec. 4.6.4]. O EPPI-Centre organizou a exclusão em rodadas nomeadas (escopo, tipo de estudo, local, idioma) e numerou os critérios, o que dá o motivo de cada exclusão [@thomas2003children, pp. 133-134]. Uma revisão conduzida pelo autor desta base entre 2025 e 2026 (a revisão A da @sec-11-licoes) usou o mesmo desenho: três critérios em sequência (geográfico, metodológico, substantivo), exclusão no primeiro que falha e pedido de registro de qual falhou. Só que a resposta pedida tinha dois campos, decisão e justificativa: o critério que falhou ficava no texto livre, sem campo próprio para contar ou auditar.
+
+A falha mais instrutiva dessa revisão foi de redação. Na versão 1 do prompt, o critério substantivo exigia que o estudo *mencionasse* a intervenção. Um estudo que só citava a intervenção na conclusão, como oportunidade de política, passava sem estudar intervenção nenhuma. A versão 2 trocou "mencionar" por "analisar empiricamente como intervenção principal, exposição ou objeto central" e acrescentou exemplos: é válido quando a atividade é tratamento ou foco da análise; é inválido quando aparece como contexto geográfico, implicação de política, recomendação ou referência. Dois detalhes do versionamento servem de alerta: o cabeçalho da v2 dizia que o critério de desfecho não tinha mudado, mas o texto passou de "mencionar" a "avaliar" desfechos; e o cabeçalho listava três modelos, enquanto a documentação da revisão descrevia cinco. Diferença entre versões se registra por comparação automática dos textos, não de memória.
+
+A mesma distinção aparece no material didático sobre filtragem como "o que você quer" e "o que você não quer" [@schaefer2026aula4, p. 45], com os campos "Exemplo" vazios no slide, e nos celulares, que excluíram um estudo sobre celular ao volante por não tratar de desempenho escolar [@schaefer2025proibicao, p. 102, nota 6]. Modelo de critério para o REFIS, com títulos reais da base (classificação ilustrativa, feita só pelo título):
+
+| Ordem | Critério (pergunta) | Conta como sim | Não conta | Exemplo da base |
+|---|---|---|---|---|
+| C1 | O relato estuda um programa de refinanciamento ou parcelamento especial de tributos como objeto empírico? | REFIS, PAES, PERT ou parcelamento especial como tratamento, exposição ou foco | Planejamento tributário sem REFIS [@schaefer2026aula4, p. 26]; programa só como contexto | Não: "A influência do ciclo de vida organizacional sobre o nível de planejamento tributário" |
+| C2 | Mede ou analisa arrecadação, falência, emprego ou *compliance*? | Um dos quatro, ou mecanismo, implementação ou percepção ligados a eles | Constitucionalidade ou isonomia em abstrato | Sim: "Eficácia do REFIS na recuperação da dívida ativa no município de Fortaleza" |
+| C3 | Contexto brasileiro? | Programa federal, estadual ou municipal no Brasil | Anistias de outros países | |
+| C4 | Usa dados (quanti ou quali)? | Registros administrativos, entrevistas, questionários, séries | Estudo normativo, teórico ou só de jurisprudência [@schaefer2026aula4, p. 26] | Não: "O princípio da segurança jurídica no planejamento tributário" |
+
+Cada decisão guarda `criterio_falhou` em campo próprio e um trecho literal do título ou resumo; decisão sem trecho não entra na consolidação. O piloto usa casos claramente elegíveis, claramente inelegíveis e duvidosos (a Cochrane sugere seis a oito artigos para testar critérios; o limiar de calibração desta base pede amostra maior) [@lefebvre2025searching, sec. 4.6.4]. Uma dupla com um especialista e um não especialista ajuda, porque especialistas trazem opinião prévia sobre relevância [@lefebvre2025searching, sec. 4.6.4].
+
+Belur e colegas, leitura indicada no material didático sobre extração de dados [@schaefer2026aula5, p. 34], mostram na prática de revisões de prevenção ao crime o que o piloto precisa prever. Com três testes de concordância de cerca de 100 registros (no início, no meio e no fim da triagem), a equipe criou a categoria "incluir: talvez, para discussão" e, ao fim do primeiro teste, "excluir, mas relevante como informação de fundo"; decisões de reuniões que não foram escritas voltaram como confusão no teste seguinte; e os codificadores ficaram mais rígidos ao perceber que teriam de buscar e ler tudo o que incluíssem [@belur2021interrater, versão aceita, pp. 10-13, 16]. Três consequências operacionais: `incerto` é categoria prevista, não improviso; toda decisão de calibração vira nova versão escrita dos critérios; e a instrução diz explicitamente que, na T/A, a dúvida avança para o texto completo.
+
+## Concordância entre revisores {#sec-05-concordancia}
+
+Para dois revisores e decisão binária, com $a$ = ambos incluem, $d$ = ambos excluem, $b$ = só A inclui e $c$ = só B inclui, em $n$ registros:
+
+$$
+p_o = \frac{a+d}{n}, \qquad
+p_e = \frac{(a+b)(a+c) + (c+d)(b+d)}{n^2}, \qquad
+\kappa = \frac{p_o - p_e}{1 - p_e}, \qquad
+\text{PABAK} = 2p_o - 1
+$$
+
+As definições de κ e do PABAK (*prevalence-adjusted bias-adjusted kappa*) seguem @chen2009measuring. O κ depende da distribuição entre categorias (prevalência) e da diferença entre as margens dos revisores (viés), e por isso não deve ser relatado sozinho [@byrt1993bias]. Prevalência desequilibrada tende a baixar o κ; margens diferentes tendem a inflá-lo; nenhuma variante corrige os dois efeitos ao mesmo tempo [@hallgren2012computing].
+
+Exemplo ilustrativo com 120 registros e a mesma concordância observada ($p_o = 0{,}933$):
+
+| Cenário | $a$ | $b$ | $c$ | $d$ | $p_e$ | κ | PABAK | Dos incluídos por A, B também incluiu |
+|---|---|---|---|---|---|---|---|---|
+| Prevalência baixa (10% de incluídos) | 8 | 4 | 4 | 104 | 0,820 | 0,63 | 0,87 | 67% |
+| Prevalência equilibrada (47%) | 52 | 4 | 4 | 60 | 0,502 | 0,87 | 0,87 | 93% |
+
+O primeiro cenário é típico de triagem: κ passa em 0,6, a concordância parece alta e, mesmo assim, B deixou de incluir um terço do que A incluiu. O caso real vai na mesma direção: num dos dois estudos de Belur e colegas, a concordância entre três codificadores subiu de 86,8% para 89,2% entre o primeiro e o segundo teste, enquanto o κ caiu de 0,43 para 0,31, porque quase tudo era exclusão [@belur2021interrater, versão aceita, pp. 12-14]. Por isso esta base exige κ e concordância juntos na calibração e, quando um dos triadores é IA, mede recall contra a referência humana (@sec-11-regras).
+
+Os rótulos de @landis1977measurement, usados no script de validação do REFIS [@schaefer2026codigos], são: 0,00–0,20 leve, 0,21–0,40 razoável, 0,41–0,60 moderada, 0,61–0,80 substancial e 0,81–1,00 quase perfeita [conforme @hallgren2012computing]. Chen e colegas descrevem essas faixas como atribuídas arbitrariamente [@chen2009measuring, tabela 1]; o uso delas é debatido e há cortes mais conservadores, como os de Krippendorff, que descartam conclusões abaixo de 0,67 [@hallgren2012computing]; McHugh considera a mesma escala (que atribui a Cohen) leniente para estudos de saúde e trata κ abaixo de 0,60 como concordância inadequada [@mchugh2012interrater]. Use o rótulo como descrição, nunca como aprovação.
+
+Regras de cálculo desta base:
+
+1. **Não revisado é `NA`** e sai do cálculo. O script de validação do REFIS define a âncora humana como presença do `id_rs` na lista confirmada e atribui 0 ao resto, inclusive ao que ninguém leu e ao que ficou em dúvida [@schaefer2026codigos], o que infla a concordância nas exclusões.
+2. **Incerto conta como "avança"**. A decisão validada na T/A é seguir ou não para o texto completo; `incluir` e `incerto` formam uma categoria. Uma análise secundária com três categorias pode usar κ não ponderado.
+3. **Mesmo conjunto para todos os pares**. Um classificador que só respondeu para um subconjunto (o DeepSeek no REFIS) não entra num κ calculado apenas nas linhas completas sem que isso seja dito.
+4. **Três ou mais avaliadores**: o κ de Cohen vale para pares. Quando todos avaliam todos os registros (desenho cruzado), use a média dos κ por par (Light); o κ de Fleiss foi formulado para quando cada item é avaliado por uma amostra diferente de avaliadores e é inadequado para desenho cruzado [@hallgren2012computing]. O script de validação do REFIS usa Fleiss com três avaliadores nas mesmas linhas [@schaefer2026codigos].
+5. **Relatar sempre** $n$, $p_o$, κ com IC, PABAK e a tabela 2×2, quantos conflitos foram resolvidos por consenso e quantos por terceiro revisor. Das 100 sínteses de prevenção ao crime examinadas por Belur e colegas, só 49 mencionavam concordância, 16 relatavam percentual e 3 relatavam κ [@belur2021interrater, versão aceita, p. 7].
+
+## Contagens PRISMA e invariantes {#sec-05-prisma}
+
+O modelo de fluxograma do PRISMA 2020 para bases e registros tem as caixas: registros identificados (por base e por registro); removidos antes da triagem (duplicatas, marcados como inelegíveis por ferramentas de automação, removidos por outros motivos); triados; excluídos; relatos buscados; não recuperados; avaliados para elegibilidade; excluídos com motivos; estudos incluídos; relatos dos estudos incluídos. A nota do modelo pede indicar quantos registros foram excluídos por humano e quantos por automação [@page2021prisma, fig. 1]. Classificador que elimina registros antes da triagem aparece como "marcados como inelegíveis por ferramentas de automação" [@page2021explanation, item 8]. Nesta base, todo filtro por script que exclui (ano, idioma, tipo ou dicionário, sempre com previsão no protocolo) entra nessa caixa com a quebra por filtro; "outros motivos" fica para remoções humanas antes da triagem que não são duplicata. A convenção é desta base: o PRISMA não define a caixa para filtros por regra.
+
+Três esclarecimentos de @rethlefsen2022prisma. A caixa de não recuperados recebe todo relato que não se conseguiu obter, qualquer que seja o motivo. "Estudos incluídos" e "relatos dos estudos incluídos" são números distintos: sem essa distinção, fluxogramas avaliam 50 relatos, excluem 40 e incluem 8 estudos sem dizer que dois deles tinham dois relatos. E no ramo "outros métodos" a boa prática é contar todos os registros identificados em cada fonte, não só os que passaram nos critérios.
+
+As contagens saem das tabelas de decisões, nunca de digitação. Com $I$ identificados, $D$ duplicatas, $A$ removidos por automação, $O$ removidos por outros motivos, $T$ triados, $E_{TA}$ excluídos na T/A, $B$ buscados, $N$ não recuperados, $V$ avaliados, $E_{TC}$ excluídos no TC, $R$ relatos incluídos e $S$ estudos incluídos, os invariantes são (contrato da skill, @sec-especificacao-contrato):
+
+$$
+T = I - D - A - O, \qquad T = E_{TA} + B, \qquad V = B - N, \qquad V = E_{TC} + R, \qquad S \le R
+$$
+
+Cada ramo tem os próprios invariantes. Registro sem decisão é pendência, não exclusão: com pendência aberta o fluxograma não fecha e não é gerado; onde a informação não existe (projeto parcial, contagem de outra equipe) imprime-se "NR". O relatório do EPPI-Centre mostra um fluxo que fecha e ensina a separar as categorias: 9.947 citações, 1.735 duplicatas e 7.574 excluídas por seis critérios numerados deixam 638, que somadas a 72 de busca manual dão 710 potencialmente relevantes; 46 não foram obtidas a tempo, 664 foram lidas, 392 excluídas (de novo por critério) e 272 relatos de 193 estudos seguiram para o mapa [@thomas2003children, pp. 27-28, fig. 3.1]. Até ali há um tropeço: o texto fala em 660 relatos obtidos, a figura em 664 [@thomas2003children, p. 27].
+
+## Retratações e erratas {#sec-05-retratacoes}
+
+A Cochrane exige examinar avisos de retratação e erratas dos candidatos, inclusive dos já incluídos quando a revisão é atualizada, lembra que publicações podem ter correções, retratações ou expressões de preocupação e mantém uma política para estudos potencialmente problemáticos [@lefebvre2025searching, sec. 4.4.6 e MECIR C48]. Desde 2023 a base do Retraction Watch pertence à Crossref e é aberta; no anúncio, eram 14 mil retratações na Crossref e 43 mil no Retraction Watch, cerca de 50 mil ao todo [@crossref2023retraction]. Na API da Crossref, retratações aparecem no campo `update-to` dos avisos, com `source` igual a `publisher` ou `retraction-watch`; o arquivo CSV é atualizado a cada dia útil e traz, entre outras colunas, o DOI do trabalho original e a natureza do aviso (retratação, correção, expressão de preocupação, reintegração) [@crossref2025retractionwatch]. Na consulta de um DOI retratado, o registro original traz `updated-by` com `type: retraction`, e o filtro `updates:<doi>` devolve o aviso (verificação em 15/09/2026). Relatos sem DOI, como teses da BDTD e textos do IPEA, exigem conferência pelo título no CSV e no repositório de origem. O resultado vira etiqueta (`retratado`, `errata`, `expressao_de_preocupacao`) e decisão explícita no TC.
+
+## Ferramentas {#sec-05-ferramentas}
+
+| Ferramenta | O que faz nesta etapa | Evidência ou ressalva |
+|---|---|---|
+| Rayyan | Triagem colaborativa, com sugestões de um modelo de predição e comparação de decisões entre revisores [@ouzzani2016rayyan] | Maior sensibilidade de deduplicação no teste de @mckeown2021considerations (0,96), com especificidade 0,97 |
+| Covidence e EPPI-Reviewer | Deduplicação, triagem, texto completo | Ferramentas preferidas pela Cochrane [@lefebvre2025searching, sec. 4.6.6.1]; Covidence com especificidade 1,00 na deduplicação [@mckeown2021considerations] |
+| ASReview | Aprendizado ativo: mostra um registro, reaprende com o rótulo e reordena o restante até um critério de parada definido pelo usuário [@vandeschoot2021open] | Economia de trabalho sobre a ordem aleatória a 95% de *recall* (WSS@95) de 83% em média, em simulação com quatro conjuntos [@vandeschoot2021open]; parada e eliminação automática na @sec-11-regras |
+| Zotero, EndNote, Mendeley | Gerenciar referências | Sensibilidade padrão de 0,52 (Zotero) e 0,57 (EndNote) para duplicatas [@mckeown2021considerations] |
+| R ou Python com planilha | O que o material didático usa [@schaefer2026aula4, p. 43], associado a rastreabilidade e reprodutibilidade [@schaefer2026aula4, p. 23] | Sem trilha de decisões por revisor, a menos que ela seja construída |
+
+O material didático cita Rayyan e Covidence para triagem colaborativa [@schaefer2026aula4, p. 22]. A skill `revisao-sistematica` não concorre com essas plataformas na interface; ela ocupa o lugar do *ledger*: identificadores estáveis, decisões por revisor com critério e trecho, contagens derivadas e invariantes. Quando a equipe tria numa plataforma externa, as contagens são reconstruídas das exportações dela, com os mesmos invariantes.
+
+## Passo a passo {#sec-05-passos}
+
+1. **Congelar os critérios** de T/A e TC a partir do protocolo (@sec-03-regras): cada critério como pergunta, com exemplos válidos e inválidos, na ordem de aplicação. Mudança posterior é emenda com nova versão.
+2. **Importar cada exportação** sem alterar o bruto, com `busca_id`, fonte, data, linhas e hash; conferir o número importado contra o log de buscas (@sec-04-regras).
+3. **Harmonizar** para o esquema unificado (@sec-05-esquema).
+4. **Deduplicar** com R1 a R4 e versões automáticos, R5 como candidatos e bloqueios; decidir todos os R5; revisar a lista de R4; registrar duplicatas por tipo.
+5. **Aplicar o funil formal no modo etiqueta**; testar o dicionário contra falsos acertos conhecidos. Se o protocolo prevê exclusão, rodar a amostra de elusão antes de excluir.
+6. **Rodar o piloto de calibração** com dois revisores independentes (≥ 100 registros ou ≥ 10 incluídos), calcular $p_o$, κ e PABAK; abaixo do limiar, reescrever os critérios e repetir em registros novos. Repetir o teste no meio e no fim da triagem.
+7. **Triar títulos e resumos** no regime escolhido, com `incluir`, `incerto` ou `excluir`, `criterio_falhou` e trecho, cada revisor sem ver o outro. Sem resumo, `incerto`.
+8. **Resolver conflitos**: discussão; persistindo, terceiro revisor; faltando informação, `incerto`. Precedência: decisão humana que corrige > árbitro > consenso; o resto vai para a fila humana.
+9. **Se houver IA**, seguir o protocolo da @sec-11-regras antes de usar as decisões; interseção de modelos nunca inclui nem exclui sem validação.
+10. **Buscar os textos completos** de todo `incluir` e `incerto`, conferindo título e autores no próprio PDF; marcar não recuperados.
+11. **Avaliar a elegibilidade no TC** em dupla, com os códigos da @sec-05-regras.
+12. **Ligar relatos a estudos** comparando autores, local, período, amostra, fonte de dados e identificadores de financiamento, adaptando os critérios da Cochrane [@lefebvre2025searching, sec. 4.6.2; @li2024collecting, sec. 5.2.1]; atribuir `id_estudo`, justificar o relato primário e contatar autores se a dúvida persistir.
+13. **Checar retratações e erratas** de todos os incluídos (@sec-05-retratacoes).
+14. **Triar a bola de neve** com a mesma versão de critérios, no ramo "outros métodos" (@sec-04-regras), até não surgirem novas inclusões.
+15. **Gerar contagens e fluxograma** a partir das tabelas, com os invariantes, e a lista de excluídos notáveis com motivo.
+
+## O que as diretrizes exigem {#sec-05-diretrizes}
+
+| Norma e item | Exigência | Como esta etapa cumpre |
+|---|---|---|
+| PRISMA 2020, item 8 | Métodos de seleção: revisores por registro e por relato, independência, automação [@page2021prisma] | Regime, calibração, conflitos e IA descritos a partir do log |
+| PRISMA 2020 E&E, item 8 | Dizer se registros foram excluídos só por máquina, a validação feita e o risco de estudos perdidos; descrever tradução e contato com investigadores [@page2021explanation] | Funil que etiqueta; elusão; declaração de IA (@sec-11-relato) |
+| PRISMA 2020, item 16a | Resultados da busca e da seleção, de registros a estudos, idealmente com fluxograma [@page2021prisma]; motivos principais de exclusão e exclusões humanas vs automação [@page2021explanation] | Fluxograma calculado com invariantes |
+| PRISMA 2020, item 16b | Citar estudos que pareceriam elegíveis e foram excluídos, com motivo [@page2021prisma], inclusive os potencialmente relevantes sem texto acessível [@page2021explanation] | Tabela de excluídos notáveis e de não recuperados |
+| PRISMA 2020, itens 24c e 27 | Emendas ao protocolo; dados e código disponíveis [@page2021prisma] | Versões de critérios e prompts; tabelas de registros e decisões no pacote de dados (@sec-10-relato) |
+| PRISMA-S, itens 15 e 16 | Total de registros por fonte; processo e software de deduplicação [@rethlefsen2021prismas] | `busca_id` por registro e `dedup_pares.csv` |
+| MECIR C35 | Justificar restrições de data e formato [@lefebvre2025searching] | Filtros no modo etiqueta, com justificativa no protocolo |
+| MECIR C39 | Duas pessoas independentes decidem a elegibilidade; processo de desacordo definido antes [@lefebvre2025searching] | TC sempre em dupla |
+| MECIR C40 | Não excluir por falta de dados de desfecho utilizáveis [@lefebvre2025searching] | Motivo inexistente na lista |
+| MECIR C41 | Documentar decisões de todos os registros; listas por estudo [@lefebvre2025searching] | `decisoes.jsonl` e `id_estudo` |
+| MECIR C42 | Juntar relatos do mesmo estudo e justificar o primário [@lefebvre2025searching] | Ligação de relatos |
+| MECIR C48 | Examinar retratações e erratas [@lefebvre2025searching] | Checagem via Crossref antes do portão de TC |
+
+## Exemplo trabalhado {#sec-05-exemplo}
+
+### REFIS: o que o pipeline de exemplo fez
+
+As contagens marcadas como reprodução foram refeitas por mim em R com a mesma lógica dos scripts sobre `rs_dados_brutos.xlsx`, `rs_dados_limpos.xlsx`, `screening_resultado.xlsx`, o texto do DeepSeek e as planilhas `rs_dados_verificar*.xlsx` [@schaefer2026codigos]; os totais do funil batem com o script (186, 184, 182, 181, 181, 120).
+
+| Passo | O que foi feito | Resultado | O que deveria ser feito |
+|---|---|---|---|
+| Identificação | WoS 3, SciELO 21, OpenAlex 4, BDTD 158; IPEA 4 à parte [@schaefer2026aula4, p. 39] | IPEA "não incluídos na deduplicação formal" [@schaefer2026aula4, p. 48] | Todo registro no mesmo esquema, com ramo "outros métodos" |
+| Junção | 13 colunas, sem ID nem linha de origem [@schaefer2026codigos] | 168 dos 186 sem DOI (reprodução) | Esquema com proveniência |
+| Deduplicação | DOI em minúsculas, senão título sem pontuação; mantém a primeira ocorrência [@schaefer2026codigos] | 2 removidos: WoS × OpenAlex pelo DOI com caixa diferente; OpenAlex × BDTD pelo título, a mesma dissertação de 2020 (reprodução) | R1 a R5 com auditoria |
+| Ano | `ano >= 2001`, com a justificativa de que a lei é de 2001 [@schaefer2026aula4, p. 27] | 2 teses de 2000 excluídas (reprodução) | A Lei nº 9.964 é de 10 de abril de 2000 [@brasil2000lei9964], como diz o slide da p. 8 [@schaefer2026aula4, p. 8] |
+| Idioma | Lista fechada de grafias; remove "POLONES" [@schaefer2026codigos] | O registro removido tem título e resumo em português (reprodução) | Conferir no texto; metadado estranho não exclui |
+| Tipo | Lista com "report" e "other" [@schaefer2026codigos] | 0 removidos (reprodução) | Não excluir relatório sem previsão |
+| Dicionário de método | Substring em título, resumo e palavras-chave; exclui quem não casa [@schaefer2026codigos] | 120 de 181 passam; 61 excluídos (54 teses, 6 SciELO, 1 WoS); com fronteira de palavra passariam 98, com siglas em caixa 94 e com sigla ignorada em texto todo em maiúsculas 90 (reprodução) | Etiquetar e ordenar; excluir só com elusão |
+| Excluídos pelo dicionário | Não foram lidos | 13 dos 61 têm REFIS, parcelamento, recuperação fiscal ou *tax installment* no título, como "TAX INSTALLMENT IN BRAZIL: WHO BENEFITS?" (WoS, 2023) e "Eficácia do REFIS na recuperação da dívida ativa no município de Fortaleza" (2020) (reprodução) | A amostra de elusão teria achado esses títulos |
+| Triagem por IA | Prompt pedindo "quantos trabalhos permanecem (a) e quais são eles (b)"; Claude 16 de 120; DeepSeek "21"; ChatGPT 0 porque "não identificou resumos" [@schaefer2026aula4, pp. 44-46] | O arquivo do DeepSeek tem 21 linhas, 6 delas marcadas pelo próprio modelo como excluídas (reprodução) | Uma decisão por `id_rs`, validada por esquema; falha técnica é erro a refazer |
+| Junção das decisões | Por título normalizado [@schaefer2026codigos] | 4 das 21 linhas do DeepSeek não casaram: o modelo cortou o final "durante o período 2013/2018" de um título, escreveu "polícias" no lugar de "políticas" em outro e encurtou mais dois, um deles com reticências; duas eram inclusões (reprodução) | Junção por identificador |
+| Consenso | Interseção Claude ∩ DeepSeek "incluídos automaticamente" [@schaefer2026aula4, p. 46] | 10 ambas incluem, 4 ambas excluem, 3 divergências, 103 sem par; a coluna de conferência manual repete as IAs nos 14 consensos, sem revisor nem leitura cega (reprodução) | Validação por amostra cega (@sec-11-regras) |
+| Conferência manual | "14 ficaram, 14 em revisão" [@schaefer2026aula4, p. 44] | Em `rs_dados_verificar3.xlsx`, os 14 incluídos contêm os 10 do consenso, e 13 dos 14 em dúvida tinham sido excluídos pelo Claude (reprodução); o fluxograma diz "15 incluídos · 14 em dúvida" [@schaefer2026aula4, p. 48] | Contagens tiradas da tabela de decisões |
+| Kappa | Âncora humana = presença na lista confirmada; resto = 0; Fleiss nas linhas completas [@schaefer2026codigos] | Não revisados e dúvidas contam como exclusão | Regras da @sec-05-concordancia |
+
+Conferindo o fluxograma do slide [@schaefer2026aula4, p. 48] com os invariantes: $186 - 2 - 2 - 1 - 61 = 120$ fecha; a triagem manual de "110 resumos + 1 IPEA" não bate com os 120 triados, e os 10 do consenso não entram em nenhuma contagem seguinte; três dos quatro registros do IPEA não têm destino; o "1 não localizado" está entre os excluídos, quando é relato não recuperado; e "16 aprovados − 5 excluídos + 9 novos por bola de neve" não dá 21. A reconstrução completa do fluxograma está na @sec-10-exemplo. O slide também chama de "elegibilidade" a leitura de título e resumo [@schaefer2026aula4, p. 43], que no PRISMA 2020 é triagem [@page2021prisma, fig. 1].
+
+::: {.callout-note}
+## O que o pipeline do REFIS acerta e o que muda
+O pipeline de exemplo já tem tudo em código, dicionários em três línguas, triagem com mais de um avaliador e cálculo de concordância [@schaefer2026codigos]. O ajuste está em outro lugar: um funil que exclui a cada passo acumula perdas que ninguém lê, e um fluxograma digitado esconde essas perdas. O padrão de excluir por dicionário também se espalhou: em duas revisões conduzidas pelo autor desta base entre 2025 e 2026 (A e C da @sec-11-licoes), a menção a metodologia no resumo foi aplicada como filtro sequencial antes da triagem.
+:::
+
+### Celulares nas escolas: o que foi feito e o que deveria
+
+A busca recuperou 1.740 documentos (400 do Google Scholar via Publish or Perish, 87 do SciELO, 798 da Scopus e 455 da WoS) [@schaefer_oqfunciona, p. 28; @schaefer2025proibicao, p. 102]. Os filtros deixaram 1.517 após duplicatas (223 removidos), 1.430 após ano a partir de 2007 (87), 1.382 após tipo de documento (48), 790 após o dicionário de metodologia (592) e 741 após o dicionário substantivo (49); a leitura de resumos chegou a 19 trabalhos, e mais dois foram acrescentados, totalizando 21 [@schaefer_oqfunciona, pp. 28-29].
+
+Quatro pontos pedem ajuste. (1) O dicionário de metodologia excluiu 592 registros, 43% do que restava, sem leitura de amostra; pela regra desta base, iriam para o fim da fila, e a exclusão exigiria elusão. (2) A janela temporal aparece de três formas: 2010–2024 no quadro do preprint [@schaefer_oqfunciona, pp. 11-12], 2004–2024 no quadro do artigo e "a partir de 2007" no filtro [@schaefer2025proibicao, pp. 101-102]. A justificativa pelo lançamento do iPhone é do tipo que a Cochrane aceita, porque a intervenção só existe depois de certa data [@lefebvre2025searching, MECIR C35], mas precisa ser a mesma no protocolo, no filtro e no relato. (3) Os dois trabalhos acrescentados são revisões sistemáticas de busca manual no preprint [@schaefer_oqfunciona, p. 29] e "bola de neve através de citações" no artigo [@schaefer2025proibicao, p. 102]; revisões nunca entram no mesmo conjunto de síntese que os estudos primários, e aqui deveriam ter servido à bola de neve e à validação da busca. (4) A validação diz que todos os trabalhos encontrados estavam nas revisões [@schaefer_oqfunciona, p. 29], a direção inversa do que interessa: o teste de recall pergunta se os estudos elegíveis das revisões prévias estão entre os achados (@sec-04-regras). Nem o preprint nem o artigo dizem quantas pessoas leram os resumos, embora o preprint recomende ao menos duas [@schaefer_oqfunciona, p. 29].
+
+## Erros comuns e como evitá-los {#sec-05-erros}
+
+| Erro | Caso real | Como evitar |
+|---|---|---|
+| Deduplicação só exata, sem cruzar DOI e título | REFIS [@schaefer2026codigos]; na revisão A do autor desta base (@sec-11-licoes), uma duplicata só apareceu na leitura manual; na revisão C, 13 pares repetidos entre temas faziam 127 trabalhos parecerem 140 | R1 a R5 com blocagem, auditoria e ligação de relatos |
+| Preprint e publicado tratados por prefixo ou janela estreita | SciELO Preprints e periódicos com o mesmo prefixo, três anos de distância (@sec-05-regras) | Tipo do registro, relação nos dois sentidos, janela maior para versões |
+| Mesclar candidatos em lote | Mesclagem em lote no EndNote gerou mais falsos positivos [@mckeown2021considerations] | R5 sempre decidido por humano |
+| Contar relatos como estudos | Na revisão B do autor desta base (@sec-11-licoes), 5 dos 35 PDFs eram o mesmo estudo sob dois registros do OpenAlex | `id_estudo` e MECIR C42 [@lefebvre2025searching] |
+| Dicionário por substring excluindo registros | "sem" em 46 registros; 13 títulos sobre REFIS excluídos (@sec-05-exemplo) | Modo etiqueta, fronteira de palavra, siglas com caixa, elusão |
+| Confiar no metadado para excluir | Resumo em português rotulado "POLONES"; ano errado do marco legal | Conferir no texto; justificar a janela com a fonte legal |
+| Registro sem dados excluído | Campo vazio vira "sem menção" no script de exemplo do REFIS [@schaefer2026codigos]; na revisão B, título e resumo ausentes viravam exclusão e não havia opção de incerto | `incerto` e busca do texto |
+| Critério que aceita menção | Prompt v1 da revisão A (@sec-05-criterios) | Critério de "estudar", com exemplos válidos e inválidos |
+| Critério que falhou só em texto livre | Resposta com decisão e justificativa, sem campo para o critério, nas revisões A e B (@sec-11-licoes) | `criterio_falhou` como campo validado |
+| Revisão sistemática aceita como estudo | Celulares [@schaefer_oqfunciona, p. 29]; o prompt v2 da revisão A aceitava "meta-análise, revisão sistemática quantitativa" no critério metodológico | Etiqueta `rs_para_bola_de_neve`; nunca no mesmo conjunto de síntese que os estudos primários (em rápida ou *overview*, só no nível de revisão, com CCA) |
+| Pedido agregado ao modelo e falha tratada como resultado | "Quantos trabalhos permanecem"; ChatGPT com 0 incluídos por não ler o arquivo [@schaefer2026aula4, pp. 44-45] | Uma decisão por `id_rs`; erro técnico refeito |
+| Junção por título | O DeepSeek reescreveu títulos e 4 de 21 decisões se perderam (@sec-05-exemplo) | Junção por identificador estável |
+| Dúvida ou erro virando exclusão | Na revisão C, casos de dúvida ou erro sem decisão do modelo viraram exclusão, em planilhas rotuladas como validação manual que não tiveram validação manual | Fila humana; nome de arquivo que diga o que foi feito |
+| Unânimes e interseções nunca conferidos | Na revisão A, 63 inclusões e 174 exclusões unânimes sem leitura humana registrada, e cada um dos 120 divergentes lido por um só revisor; 10 "incluídos automaticamente" no REFIS | Amostra de validação e elusão (@sec-11-regras) |
+| Não revisado ou dúvida como exclusão no κ | Script de validação do REFIS [@schaefer2026codigos] | `NA` fora do cálculo; incerto = avança |
+| Decisão de calibração não escrita | Confusão no teste seguinte [@belur2021interrater, versão aceita, p. 12] | Critérios versionados |
+| Não localizado contado como excluído | "4 não respondiam + 1 não localizado" [@schaefer2026aula4, p. 48] | Caixa "relatos não recuperados" |
+| Fluxograma digitado | Números que não fecham no REFIS | Contagens derivadas e invariantes |
+| Retratação ignorada | Status de retratado nem sempre aparece nas bases [@lefebvre2025searching, sec. 4.4.6] | Consulta à Crossref antes do portão de TC |
+
+## Na skill `revisao-sistematica` {#sec-05-skill}
+
+A skill está em construção; o contrato abaixo é o resumido na @sec-especificacao-contrato, com os nomes de comandos da versão em desenvolvimento do `rs.py`.
+
+**Etapas e portões.** Esta matéria cobre as etapas 5 (importação, deduplicação e funil que etiqueta), 6 (triagem T/A com validação, portão **G4**) e 7 (textos completos, elegibilidade, ligação de relatos, bola de neve re-triada e retratações, portão **G5**). Deduplicação automática e filtros formais são portões moles: ficam no log, sem parada. No autopiloto, G4 e G5 viram pendências, e relatório e fluxograma saem como rascunho não validado.
+
+**Comandos.** `rs.py status` sempre primeiro; `rs.py importar --arquivo … --busca-id B01` (formato por assinatura, ou `--mapa` para CSV arbitrário; `--metodo` separa base, citação, cinzenta e manual); `rs.py dedup` (limiares 95 e 85; grava `01-busca/dedup_pares.csv`; liga preprint e publicado por `id_estudo` em `03-textos/ligacao_relatos.csv`, sem fundir; `--revisar` aplica as decisões humanas `confirmado`, `rejeitado` ou `ligado` e exige o papel de quem decidiu, na planilha ou em `--por`); `rs.py filtrar --config filtros_v1.json --ancoras` (modo etiqueta; exclusão só com previsão no protocolo e, para dicionário, referência à elusão; estudo-âncora excluído encerra com código 2); `rs.py triagem preparar|mesclar|consolidar|override|fila|api` (a fila humana pode voltar do Excel com ponto e vírgula ou em `.xlsx`, não é regravada com decisões ainda não aplicadas, e toda exclusão humana exige um critério que exista na rodada; `triagem fila --etapa tc` gera a fila do texto completo); `rs.py validar amostrar|elusao|calcular|estabilidade`; `rs.py textos para-baixar|inventario|elegibilidade|ligar-relatos|retratacoes`; `rs.py bola-de-neve`; `rs.py prisma` (ou `--manual contagens.json`, com "NR"). Pedido de "só a triagem": `init --parcial triagem` → `importar` → `dedup` opcional → `triagem` → `validar`.
+
+**Artefatos.** `dados/registros.csv`, `dados/registros_unicos.csv`, `dados/decisoes.jsonl` (`id_rs`, etapa, rodada, revisor, tipo de ator, modelo, hash do prompt, `incluir|excluir|incerto`, `criterio_falhou`, justificativa, trecho, lote, data, correção e motivo), `02-triagem/{lotes,prompts,validacao}/`, `03-textos/para_baixar.csv`, `prisma_contagens.json`, `prisma.mermaid`, `prisma.svg` e `checklist_prisma.csv`. Planejados: `assets/templates/criterios_triagem.md`, `assets/codebooks/elegibilidade_modelo.csv`, o dicionário `metodo_pt_en_es.csv`, os esquemas `decisao` e `lote_resposta` e as referências `03-organizacao-triagem.md` e `04-textos-elegibilidade.md`.
+
+**Regras de comportamento.** O Claude nunca edita `rs_estado.json`, `rs_log.jsonl` ou `decisoes.jsonl` à mão. A triagem padrão usa subagentes (`triador-ta`) em lotes de 20 a 30 registros por `id_rs`, no máximo quatro em paralelo, com resposta JSON validada e trecho conferido; lote inválido vai para outro subagente. Acima de cerca de 1.500 registros recomenda-se o modo API (dois modelos e árbitro de terceiro provedor, com revisores anônimos). Registro sem resumo recebe `incerto`. Textos completos são pedidos à skill `baixar-pdfs-academicos` por `chave` e `id_rs`, nunca por título. O fluxograma é calculado das tabelas, e invariante violado aborta.
+
+## Como relatar {#sec-05-relato}
+
+O texto mínimo de métodos diz: como os registros foram unidos e deduplicados (ferramenta, regras, revisão humana de candidatos); que filtros formais foram aplicados, em que modo e com que validação; quantos revisores triaram cada registro e cada relato, se de forma independente, com que piloto e que concordância; como se resolveram conflitos e incertos; como relatos foram ligados a estudos; se houve checagem de retratações; e que automação foi usada, com a declaração da @sec-11-relato [@page2021prisma, item 8; @page2021explanation, item 8; @rethlefsen2021prismas, item 16]. Nos resultados: fluxograma com registros por fonte, exclusões humanas e automáticas separadas, relatos não recuperados, motivos de exclusão no TC, número de estudos e de relatos e lista de excluídos notáveis [@page2021prisma, itens 16a e 16b].
+
+Exemplo de redação (números entre colchetes vêm das contagens do projeto):
+
+> Os registros das [cinco] fontes foram importados para um esquema comum que preserva a origem de cada linha. A deduplicação usou regras exatas (DOI normalizado, identificador da base, título normalizado com ano e sobrenome do primeiro autor) e similaridade de título; os [n] pares candidatos foram decididos por um revisor e conferidos por outro, e versões preprint e publicada foram mantidas como relatos ligados do mesmo estudo, com o publicado como relato principal. Filtros de ano, idioma, tipo e dicionário de método só etiquetaram e ordenaram os registros; nenhum registro foi excluído por filtro automático. Dois revisores triaram títulos e resumos de forma independente após piloto com [n] registros (concordância de [x]%; κ = [x], IC 95% [x–x]; PABAK = [x]), repetido no meio e no fim da triagem. Registros sem resumo ou com informação insuficiente seguiram para o texto completo. Conflitos foram resolvidos por consenso ou por um terceiro revisor. Os textos completos foram avaliados em dupla, com o primeiro critério não atendido registrado como motivo. Relatos do mesmo estudo foram ligados comparando autores, local, período e fonte de dados. O status de retratação dos incluídos foi verificado na Crossref, que incorpora a base do Retraction Watch, em [data].
+
+## Leituras {#sec-05-leituras}
+
+**Normas**
+
+- @page2021prisma: checklist e fluxograma do PRISMA 2020; itens 8, 16a e 16b e glossário de registro, relato e estudo.
+- @page2021explanation: explicação dos itens 8 e 16, com o Box 3 sobre regimes de triagem e o relato de automação.
+- @rethlefsen2022prisma: perguntas frequentes sobre o fluxograma (não recuperados, estudos e relatos, outros métodos).
+- @rethlefsen2021prismas: itens 15 e 16 sobre contagem por fonte e deduplicação.
+- @lefebvre2025searching: Cochrane Handbook, cap. 4; seleção de estudos (4.6), restrições de idioma, data e formato (4.4.5), retratações (4.4.6) e expectativas MECIR.
+- @li2024collecting: Cochrane Handbook, cap. 5; estudos, não relatos, como unidade e como ligá-los.
+
+**Evidência metodológica**
+
+- @gartlehner2020single: quanto a triagem única perde diante da dupla.
+- @mckeown2021considerations e @borissov2022reducing: desempenho de ferramentas e algoritmos de deduplicação.
+- @byrt1993bias, @chen2009measuring, @hallgren2012computing e @mchugh2012interrater: κ, PABAK, prevalência, viés e interpretação; @landis1977measurement para os rótulos.
+- @belur2021interrater: variação entre codificadores na triagem em ciências sociais (leitura indicada no material didático sobre extração de dados).
+- @crossref2023retraction e @crossref2025retractionwatch: base aberta de retratações e como consultá-la.
+- @doi2025handbook: regra de caixa dos DOIs.
+- @ouzzani2016rayyan e @vandeschoot2021open: Rayyan e ASReview.
+
+**Material didático e casos**
+
+- @schaefer_oqfunciona (pp. 10-12, 27-29, 58-59): o funil do método OQF e o dicionário de metodologia.
+- @schaefer2025proibicao (pp. 101-102): a seleção no caso dos celulares.
+- @schaefer2026aula4 (pp. 22-27, 39-48) e @schaefer2026codigos: junção, filtragem formal, triagem por IA e fluxograma do REFIS; @schaefer2026aula5 (p. 34) indica @belur2021interrater.
+- @thomas2003children (pp. 18-20, 27-28, 133-134): critérios de exclusão em rodadas e fluxo de relatos e estudos numa revisão do EPPI-Centre.
+- @petticrew2006systematic (pp. 83-84, 104, 118-121): triagem e gestão de referências nas ciências sociais.

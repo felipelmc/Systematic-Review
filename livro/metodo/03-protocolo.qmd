@@ -1,0 +1,445 @@
+---
+title: "Protocolo, pré-registro e emendas"
+---
+
+O protocolo é o documento em que a equipe decide, antes de ver os estudos, como vai localizar, selecionar, avaliar, extrair e sintetizar a evidência. Na proposta OQF, é o que dá sentido à palavra "sistemática": a revisão se define pela adoção de um protocolo *ex ante* para cada etapa, de modo que o processo possa ser reproduzido [@schaefer_oqfunciona, p. 7-8; @schaefer2026aula2, p. 5]. As normas dizem o mesmo com mais precisão: como uma revisão envolve muitos juízos, eles devem ser feitos, na medida do possível, sem depender dos resultados dos estudos incluídos, e por isso os métodos precisam estar estabelecidos e documentados antes [@lasserson2024starting, sec. 1.5]. Esta etapa exige cinco grupos de decisões: (i) o que entra (elegibilidade, recorte temporal, idiomas, desenhos); (ii) como se busca e se seleciona; (iii) o que se extrai e como se avalia o risco de viés; (iv) como se sintetiza e se julga a certeza, incluindo o que conta como efeito relevante; (v) onde o protocolo fica público e como mudanças serão registradas. O capítulo cobre o que precisa estar pré-especificado, as plataformas de registro e o controle de versões e emendas. A pergunta, a teoria do programa e o *framework* (PICOC, CMMO) são insumos do protocolo e estão na @sec-02-regras; os detalhes técnicos de cada plano (busca, triagem, risco de viés, extração, síntese, certeza e IA) ficam nos capítulos seguintes desta parte, e aqui aparecem só como o conteúdo mínimo que o protocolo deve fixar.
+
+## Decisões e regras {#sec-03-regras}
+
+### Regras gerais
+
+| Decisão | Regra | Fonte |
+|---|---|---|
+| Quando escrever | Antes da busca definitiva. Uma busca exploratória para checar se a pergunta é respondível e se já há revisões é permitida e esperada; ela não substitui o protocolo | @schaefer2026aula4 [p. 7, 19]; @petticrew2006systematic [p. 48] |
+| Quem decide | Equipe com pelo menos duas pessoas, com domínio do tema e de método de revisão (incluindo estatística) | @lasserson2024starting [sec. 1.3] |
+| Nível de detalhe | Métodos escritos no futuro e como se houvesse estudos suficientes para todas as análises planejadas; o que não puder ser feito vira "diferença entre protocolo e revisão" | @cumpston2026reporting [sec. III.2, III.3.4.1] |
+| Formato mínimo | Cobrir os 17 itens numerados do PRISMA-P 2015 (26 com subitens), adaptados ao tipo de revisão | @moher2015prismap [tabela 3] |
+| Registro | Tornar o protocolo público antes da busca definitiva e da triagem, declarando a etapa em que a revisão está; em ciências sociais, OSF Registries com o formulário geral de revisão sistemática; PROSPERO só para revisões com desfechos de saúde | @lasserson2024starting [sec. 1.5]; @vandenakker2023increasing [GSRRF-7]; @moher2015prismap [tabela 1]; @peters2024scoping [sec. 10.2] |
+| Mudanças | Permitidas, desde que datadas, justificadas e não motivadas pelo efeito que terão sobre os resultados | @moher2015prismap [item 4]; @lasserson2024starting [sec. 1.5] |
+| Relato final | Informar registro (nome e número), onde o protocolo está e todas as emendas com justificativa | @page2021prisma [itens 24a-24c] |
+
+::: {.callout-important}
+## Regra inviolável
+Nenhuma mudança de critério, de desfecho ou de análise pode ser decidida em função do resultado que ela produz. Decisões *post hoc* tomadas quando o impacto nos resultados já é conhecido (excluir estudos selecionados, trocar a análise estatística) são altamente suscetíveis a viés e só se justificam com razões explícitas e razoáveis [@lasserson2024starting, sec. 1.5]. Petticrew e Roberts formulam o mesmo limite: a decisão de revisar o protocolo não pode ter como motivo o fato de os estudos não darem a resposta "certa" [@petticrew2006systematic, p. 45].
+:::
+
+### O que precisa estar pré-especificado
+
+A tabela abaixo é a lista de conferência do protocolo. A coluna "PRISMA-P" indica o item correspondente do checklist de protocolos [@moher2015prismap, tabela 3]; a coluna "Detalhe" aponta o capítulo onde a técnica é explicada.
+
+| Componente | Conteúdo mínimo no protocolo | PRISMA-P | Detalhe |
+|---|---|---|---|
+| Identificação e registro | Título que identifica o documento como protocolo de revisão sistemática (e se é atualização); nome do registro e número | 1a, 1b, 2 | este capítulo |
+| Autoria e apoio | Contatos, contribuições, garantidor, financiadores e papel do financiador | 3a, 3b, 5a-5c | @sec-10-relato |
+| Plano de emendas | Como mudanças importantes serão documentadas | 4 | este capítulo |
+| Justificativa e pergunta | Racional à luz do que já se sabe; pergunta com PICO(C) ou equivalente | 6, 7 | @sec-02-regras |
+| Elegibilidade | Características dos estudos (PICOC, desenho, contexto, período dos dados) e dos relatos (anos de publicação, idioma, status de publicação), cada uma com justificativa | 8 | @sec-01-regras, @sec-06-regras |
+| Fontes | Todas as bases, repositórios, literatura cinzenta, contato com autores, com as datas de cobertura planejadas | 9 | @sec-04-regras |
+| Estratégia de busca | Rascunho completo da estratégia para ao menos uma base, com limites, reproduzível | 10 | @sec-04-regras |
+| Gestão dos registros | Onde e como os registros e decisões serão guardados | 11a | @sec-05-regras |
+| Seleção | Número de revisores por fase, independência, desempate, piloto | 11b | @sec-05-regras |
+| Coleta de dados | Formulário (codebook v0), piloto, duplicidade, contato com autores | 11c, 12 | @sec-07-regras |
+| Desfechos | Lista e definição de todos os desfechos, com prioridade entre principal e adicionais e justificativa | 13 | @sec-02-regras, @sec-07-regras |
+| Risco de viés | Ferramenta por desenho, nível (estudo ou desfecho) e como o julgamento entra na síntese | 14 | @sec-06-regras |
+| Síntese | Critérios para síntese quantitativa; medidas de efeito; métodos de combinação e de heterogeneidade; análises adicionais; alternativa se não houver meta-análise | 15a-15d | @sec-08a-regras, @sec-08b-regras |
+| Metavieses | Viés de publicação e relato seletivo | 16 | @sec-08a-regras |
+| Certeza | Como a força do corpo de evidência será julgada (p. ex., GRADE) | 17 | @sec-09-regras |
+| Uso de IA | Ferramenta, papel por etapa, supervisão humana e validação planejada | não há item próprio; ver PRISMA 2020 itens 8, 9 e 11 | @sec-11-regras |
+
+Três conteúdos que o PRISMA-P não detalha, mas que as normas de condução e o formato OQF exigem, também entram no protocolo: a regra de escolha entre resultados múltiplos de um mesmo estudo (a "regra de modelo principal"), os critérios de comparabilidade que definem quais estudos podem ser sintetizados juntos e o limiar de relevância prática do efeito. Eles são tratados em seções próprias abaixo.
+
+### Onde registrar
+
+| Plataforma | Quando usar | Observações | Fonte |
+|---|---|---|---|
+| OSF Registries, *template* "Generalized Systematic Review Registration" | Quando não há registro especializado para a área (caso de ciência política, políticas públicas, economia, direito) e para revisões de escopo | 65 campos (GSRRF-1 a GSRRF-65) mapeados aos itens do PRISMA 2020; todos obrigatórios no OSF, com "não se aplica" justificado quando for o caso | @vandenakker2023increasing |
+| OSF Registries, outros *templates* | "OSF Preregistration", "Open-Ended", "Qualitative Preregistration", "Secondary Data" etc., quando o formulário geral não servir | Registro não é editável depois de submetido; mudanças entram como *update* com justificativa obrigatória; embargo de até quatro anos | @cos2026registration |
+| PROSPERO | Só revisões com desfechos de saúde | O próprio PRISMA-P define o PROSPERO como registro de revisões com desfechos relacionados à saúde; o PROSPERO não aceita revisões de escopo | @moher2015prismap [tabela 1]; @vandenakker2023increasing; @peters2024scoping [sec. 10.2] |
+| Campbell | Quando a revisão será publicada na Campbell | O processo tem três estágios (registro de título, protocolo, revisão); o título é definido com *stakeholders* e usa PICO | @campbell2026submit |
+| JBI | Revisões de escopo pelo método JBI | Protocolo *a priori* é requisito; como o PROSPERO não aceita revisões de escopo, o registro pode ser feito no OSF ou no Figshare, e o protocolo também pode ser publicado em alguns periódicos, como a JBI Evidence Synthesis | @peters2024scoping [sec. 10.2] |
+
+::: {.callout-note}
+## Material didático e normas
+O material didático sobre filtragem indica OSF Registries e PROSPERO "para revisões de saúde" [@schaefer2026aula4, p. 19], o que está correto. O exemplo de pré-registro anexado à proposta OQF, porém, é o *template* de manuscrito de revisão de escopo do JBI, estruturado em PCC e sem campos para risco de viés, medidas de efeito ou plano de meta-análise [@schaefer_oqfunciona, p. 48-53]. Para uma avaliação de efetividade no formato OQF, use o formulário geral do OSF (ou o esqueleto da seção "Modelo de protocolo", abaixo) e trate o *template* JBI como referência só para revisões de escopo.
+:::
+
+### Emendas: tipos e tratamento
+
+| Situação | Exemplo | Tratamento | Fonte |
+|---|---|---|---|
+| Mudança planejada como contingência | "Se houver menos estudos que o necessário num subgrupo, a análise de moderador não será feita" | Escrever a contingência no protocolo; ao acontecer, só registrar que foi acionada | @vandenakker2023increasing [instruções] |
+| Emenda antes da triagem | Nova base incluída após o piloto da busca; critério reescrito após piloto de triagem | Nova versão datada do protocolo e *update* do registro; re-aplicar a todos os registros | @vandenakker2023increasing [GSRRF-6]; @cos2026registration |
+| Emenda depois de ver dados | Ampliar a população; trocar a medida de efeito; incluir desenho antes excluído | Datar, justificar, dizer o que já se sabia dos resultados, reportar o resultado com e sem a mudança quando possível | @lasserson2024starting [sec. 1.5]; @moher2015prismap [sec. Background] |
+| Método planejado que não pôde ser executado | Funil e meta-regressão não feitos por falta de estudos | Seção "Diferenças entre protocolo e revisão" | @cumpston2026reporting [sec. III.3.4.1] |
+| Erro de redação ou incoerência descoberta | Ano errado do marco legal; base citada no protocolo e não buscada | Corrigir por emenda, explicitando se afetou algum registro | @moher2015prismap [item 4] |
+
+## Componentes do protocolo em detalhe {#sec-03-componentes}
+
+### Por que protocolo *ex ante*
+
+Um protocolo publicado antes de conhecer os estudos reduz o impacto dos vieses dos autores, torna métodos transparentes, reduz duplicação, permite revisão por pares dos métodos antes da execução e ajuda a planejar recursos [@lasserson2024starting, sec. 1.5]. O PRISMA-P acrescenta que o protocolo reduz a arbitrariedade na extração e no uso dos dados e permite que o leitor identifique desvios do plano e avalie se eles enviesam a interpretação [@moher2015prismap, sec. Background]. No JBI, o protocolo de uma revisão de escopo define de antemão objetivos, métodos e relato, dá transparência ao processo e ajuda a limitar o viés de relato; desvios do protocolo devem ser destacados e explicados na revisão [@peters2024scoping, sec. 10.2]. Na proposta OQF, o benefício aparece duplo: menos viés na escolha do que será lido e mais transparência [@schaefer_oqfunciona, p. 8].
+
+Há um limite reconhecido pela própria Cochrane: revisões são retrospectivas, e algum conhecimento prévio da evidência é inevitável. Esse é um motivo para incluir na equipe pessoas de método que não são especialistas no tema [@lasserson2024starting, sec. 1.5]. Protocolos também mudam muito na prática: Petticrew e Roberts relatam que, num estudo de Silagy e colegas, 68% dos protocolos examinados tiveram mudanças importantes, sobretudo na seção de métodos [@petticrew2006systematic, p. 44-45]. Por isso o protocolo precisa dizer, desde a primeira versão, como as mudanças serão documentadas [@moher2015prismap, item 4].
+
+### PRISMA-P 2015 e as sete etapas do protocolo OQF
+
+O protocolo *ex ante* do caso REFIS organiza-se em sete etapas: (1) pergunta; (2) *framework* PICOC e CMO; (3) descritores em português, inglês e espanhol e bases; (4) critérios de inclusão, exclusão, recorte temporal e áreas; (5) avaliação por leitura de títulos e resumos; (6) sistematização em variáveis formais, metodológicas, substantivas, de resultado e de mecanismo; (7) análise, com meta-análise para efeitos e análise temática para mecanismos [@schaefer2026protocolo]. Nos slides, o protocolo aparece com pergunta e objetivos, bases e descritores, critérios definidos antes da busca, estratégia de síntese e pré-registro no OSF [@schaefer2026aula4, p. 29]; na proposta OQF, ele integra a dimensão de planejamento [@schaefer_oqfunciona, p. 9, 11]. É uma boa espinha dorsal, mas cobre só parte do PRISMA-P. O mapeamento abaixo mostra o que acrescentar.
+
+| Etapa do protocolo OQF | Itens PRISMA-P cobertos | O que acrescentar |
+|---|---|---|
+| 1 Pergunta | 7 | Item 6 (racional, incluindo revisões existentes) e item 13 (prioridade entre desfechos) |
+| 2 *Framework* | 7, parte do 8 | Definições operacionais de cada elemento do PICOC; direção desejada de cada desfecho |
+| 3 Descritores e bases | 9 (parcial) | Item 10 (estratégia completa para ao menos uma base), datas de cobertura, literatura cinzenta |
+| 4 Critérios | 8 (parcial) | Justificativa de recorte, idioma, tipo de publicação e desenho; distinção entre período dos dados e ano de publicação |
+| 5 Avaliação T/A | 11b (parcial) | Número de revisores, independência, desempate, piloto, texto completo, plano de validação de IA |
+| 6 Sistematização | 12 (parcial) | Item 11c (piloto e duplicidade), codebook v0 anexado, regra para resultados múltiplos |
+| 7 Análise | 15 (parcial) | Itens 14, 15a, 15c, 15d, 16 e 17; critérios de comparabilidade; limiar de efeito relevante |
+| (ausente) | 1-5 | Identificação, registro, autoria, plano de emendas, financiamento |
+
+### Critérios de elegibilidade
+
+O PRISMA-P separa dois tipos de critério que costumam ser confundidos: características dos estudos (PICO, desenho, contexto, período em que os dados foram produzidos) e características dos relatos (anos considerados, idioma, status de publicação) [@moher2015prismap, item 8]. Regras operacionais:
+
+1. Descreva desenhos elegíveis pelas suas características (como os grupos foram formados, se a intervenção foi atribuída a indivíduos ou a conglomerados), não só por rótulos [@cumpston2026reporting, sec. III.3.4.2].
+2. Não exclua estudos apenas porque não relatam o desfecho de interesse; se medir um desfecho específico for critério, diga e justifique [@cumpston2026reporting, sec. III.3.4.2].
+3. Decida antes o que fazer com estudos que cobrem só parte da população elegível [@cumpston2026reporting, sec. III.3.4.2].
+4. Liste pelo menos um benefício e um dano potencial entre os desfechos importantes, defina como cada desfecho pode ser medido, quais medidas serão sintetizadas juntas e as janelas de tempo (curto, médio, longo prazo) [@cumpston2026reporting, sec. III.3.4.3]. Na teoria do programa do exemplo do REFIS, os danos correspondem aos incentivos perversos do DAG (@sec-02-regras).
+5. Para perguntas de efetividade sem ensaios randomizados, desenhos quase-experimentais tendem a ser a melhor evidência disponível; excluir estudos não controlados *a priori* tem pouca justificativa quando não há estudos controlados, mas somar estudos enviesados não remove o viés [@petticrew2006systematic, p. 63-66]. A decisão de desenho elegível (por exemplo, com a escala de Maryland) é diferente da avaliação de risco de viés; ver @sec-06-regras.
+
+::: {.callout-warning}
+## Critérios que não são de elegibilidade
+O guia de Carrera-Rivera e colegas lista como critérios possíveis excluir literatura cinzenta, periódicos abaixo de certo fator de impacto e textos inacessíveis [@carrerarivera2022howto, p. 4]. Em revisões de efetividade, os três contrariam as normas: a busca não deve ser restrita por status de publicação, sob risco de viés de publicação [@lasserson2024starting, MECIR C19]; a Campbell exige busca em literatura cinzenta [@aloe2024campbell, seção 3]; e textos que não se conseguiu obter aparecem no fluxo PRISMA como "relatos não recuperados", não como excluídos por critério [@page2021prisma]. Qualidade do periódico não é proxy de risco de viés do estudo.
+:::
+
+### Recorte temporal justificado
+
+O recorte temporal é um critério como outro qualquer e precisa de razão escrita. O *template* JBI pede explicitamente que o intervalo de datas e qualquer limite de idioma sejam justificados [@schaefer_oqfunciona, p. 51]. Carrera-Rivera e colegas indicam dois tipos de justificativa: o ano em que a tecnologia (ou intervenção) surgiu e a data da última revisão sobre o tema [@carrerarivera2022howto, p. 4]. Em avaliação de políticas, o exemplo do REFIS usa um terceiro: o marco legal que criou a intervenção [@schaefer2026aula4, p. 27].
+
+Regras para aplicar:
+
+| Pergunta | Regra |
+|---|---|
+| Qual é o limite inferior? | A data a partir da qual um estudo elegível pode existir: criação da política (lei, decreto, portaria), surgimento da tecnologia ou fim da cobertura de uma revisão anterior que será atualizada. Cite o ato normativo com número e data conferidos na fonte oficial (no Brasil, o Planalto) |
+| O limite se aplica a quê? | Declare se é ano de publicação, período dos dados ou ambos [@moher2015prismap, item 8]. Um estudo publicado em 2015 pode analisar dados de 1995; o filtro por ano de publicação é só uma aproximação do período da intervenção |
+| Houve versões anteriores da intervenção? | Verifique a história da política. Se houve ondas anteriores (programas estaduais antes do federal, proibições anteriores à tecnologia atual), diga se ficam fora e por quê |
+| Qual é o limite superior? | Por padrão, a data da busca, que o PRISMA 2020 manda relatar por fonte [@page2021prisma, item 6]. Um ano de corte anterior à busca precisa de justificativa |
+| O recorte é igual em todas as bases? | Deve ser. Filtros aplicados na interface de cada base (ano, área) entram no log de busca e precisam coincidir com o protocolo (@sec-04-regras) |
+
+### Idiomas justificados
+
+A norma Cochrane manda planejar a busca sem restrição de idioma ou status de publicação e observa que tirar o filtro de idioma em bases de língua inglesa não substitui buscar periódicos e bases em outras línguas [@lasserson2024starting, MECIR C19]. A proposta OQF lembra o limite prático: incluir termos em outras línguas só faz sentido se a equipe tem domínio suficiente para interpretar termos e estudos [@schaefer_oqfunciona, p. 27]. A regra que concilia as duas posições:
+
+1. Para políticas brasileiras, adote português, inglês e espanhol como padrão, como no caso REFIS [@schaefer2026aula4, p. 25]; menos que isso exige justificativa [@lasserson2024starting, MECIR C19].
+2. Para contexto global (como no caso dos celulares), toda restrição de idioma é uma limitação a ser justificada no protocolo e discutida no relato [@page2021prisma, item 23c].
+3. Estudos aparentemente elegíveis excluídos por idioma devem ser citados com o motivo da exclusão, como qualquer exclusão próxima do limite [@page2021prisma, item 16b].
+
+### Fontes e strings preliminares
+
+O PRISMA-P exige a lista de todas as fontes com datas de cobertura planejadas e o rascunho da estratégia de busca de pelo menos uma base eletrônica, com os limites, de forma que possa ser repetida [@moher2015prismap, itens 9 e 10]. O formulário geral do OSF pede também interfaces por base, estratégia de literatura cinzenta, strings por combinação base/interface, procedimento de validação da busca, busca por citações, contato com autores e prazo de validade da busca [@vandenakker2023increasing, GSRRF-21 a GSRRF-32]. Para políticas brasileiras, a literatura cinzenta relevante inclui o repositório do IPEA e teses do Catálogo CAPES e da BDTD [@schaefer_oqfunciona, p. 11, 27; @schaefer2026aula4, p. 21]. A construção das strings, a revisão por pares (PRESS) e o conjunto de estudos-âncora estão na @sec-04-regras; no protocolo basta o rascunho testado e a descrição do método de validação.
+
+### Processo de seleção
+
+O protocolo diz quem tria em cada fase, se de forma independente e como divergências são resolvidas [@moher2015prismap, item 11b]. A proposta OQF recomenda ao menos duas pesquisadoras e uma terceira, mais experiente, para desempate [@schaefer_oqfunciona, p. 10, 29]. O JBI sugere piloto com 25 títulos e resumos sorteados, triados por toda a equipe, começando a triagem só com concordância de 75% ou mais [@peters2024scoping, sec. 10.2.6]. Limiares, validação de IA e ledger de decisões estão na @sec-05-regras e na @sec-11-regras.
+
+### Codebook v0
+
+O protocolo lista e define todas as variáveis a extrair, com suposições e simplificações planejadas, e descreve o piloto do formulário e a extração em duplicidade [@moher2015prismap, itens 11c e 12]. "Codebook v0" é a primeira versão desse formulário, anexada ao protocolo e versionada. O JBI recomenda testar o formulário de extração em duas ou três fontes, com ao menos dois membros da equipe, para garantir que todos os resultados relevantes sejam extraídos [@peters2024scoping, sec. 10.2.7]. Carrera-Rivera e colegas alertam que atualizar o formulário no meio da extração é possível, mas caro [@carrerarivera2022howto, p. 5], o que é mais um motivo para pilotar antes. No formato OQF, o codebook segue as três dimensões (formal, metodológica, substantiva) e os blocos por tipo de estudo, descritos na @sec-07-regras.
+
+### Risco de viés por desenho
+
+É obrigatório planejar antes as ferramentas de risco de viés, como serão aplicadas e os critérios de cada julgamento [@lasserson2024starting, MECIR C20], além do nível (estudo ou desfecho) e de como o julgamento entra na síntese [@moher2015prismap, item 14]. O material didático sobre filtragem apresenta RoB 2, ROBINS-I e CASP como protocolos de adequação metodológica [@schaefer2026aula4, p. 49], mas o protocolo REFIS não diz qual ferramenta se aplica a qual tipo de estudo [@schaefer2026protocolo]. A correspondência entre desenho (a1, a2, b1, b2) e ferramenta, e o uso dos julgamentos em sensibilidade e estratificação, estão na @sec-06-regras. No protocolo, escreva a correspondência e a regra de uso, por exemplo: "estudos com risco alto ou crítico entram na síntese principal e são removidos na análise de sensibilidade".
+
+### Medidas de efeito, regra de modelo principal e comparabilidade
+
+**Medidas de efeito.** A escolha da medida de efeito, do modelo de meta-análise e da forma de avaliar heterogeneidade é item obrigatório de planejamento [@lasserson2024starting, MECIR C21], e a Campbell pede justificativa para a medida e para o modelo e o estimador [@aloe2024campbell, seção 6]. Delineamentos não randomizados podem exigir medidas próprias (séries temporais interrompidas medem mudança de nível e de inclinação), e isso também deve estar especificado [@cumpston2026reporting, sec. III.3.4.5]. As conversões entre métricas ficam na @sec-07-regras e o modelo na @sec-08a-regras.
+
+**Regra de modelo principal.** Estudos de política costumam relatar vários modelos, especificações, desfechos e tempos. O PRISMA 2020 pede que se diga se todos os resultados compatíveis com cada desfecho foram coletados e, se não, qual método decidiu quais coletar [@page2021prisma, item 10a]; a Cochrane pede a regra de decisão para escolher entre resultados elegíveis múltiplos [@cumpston2026reporting, sec. III.3.4.5]; a Campbell exige método para lidar com dependência entre tamanhos de efeito [@aloe2024campbell, seção 6]. O protocolo deve conter uma regra hierárquica escrita antes da extração, por exemplo: (1) o modelo que os autores declaram como principal; (2) na ausência, o modelo com o conjunto completo de controles pré-especificado pelos autores; (3) o tempo de seguimento mais próximo da janela definida para o desfecho; (4) se ainda houver empate, o primeiro na ordem da tabela principal. Escolher o modelo "mais significativo" é o tipo de decisão dependente de resultados que a Cochrane manda evitar [@lasserson2024starting, sec. 1.5]. O tratamento estatístico da dependência (um efeito por estudo ou modelos multinível) está na @sec-08a-regras.
+
+**Critérios de comparabilidade.** Cada comparação da síntese deve ser especificada com detalhe suficiente para que um leitor replique a decisão de quais estudos entram nela, usando as mesmas características do PICO que definem a elegibilidade [@cumpston2026reporting, sec. III.3.4.5]. O PRISMA 2020 pede o processo usado para decidir que estudos eram elegíveis para cada síntese, comparando características tabuladas com os grupos planejados [@page2021prisma, item 13a]. Na prática, o protocolo lista as dimensões de agrupamento e o que acontece quando um estudo não se encaixa. O artigo sobre celulares identificou, só na discussão, quatro dimensões que variavam entre os estudos: tipo de proibição, público (fundamental, médio, superior), foco da intervenção e tipo de avaliação [@schaefer2025proibicao, p. 109]. Essas quatro dimensões são o conteúdo típico de um critério de comparabilidade que deveria estar no protocolo. Moderadores para subgrupos também precisam ser pré-definidos, em número limitado e com justificativa [@lasserson2024starting, MECIR C22].
+
+### Limiar de efeito relevante (SESOI, δ) e *benchmarks* de magnitude
+
+Uma conclusão do tipo "a política não tem efeito relevante" ou "o efeito é fraco" só é defensável se o limiar tiver sido fixado antes. O formulário geral do OSF tem um campo para critérios de inferência, como um tamanho mínimo de efeito de interesse ou um nível de significância [@vandenakker2023increasing, GSRRF-57]. A Cochrane pede que se declare a diferença minimamente importante de cada desfecho [@cumpston2026reporting, sec. III.3.4.5]. A Campbell recomenda interpretar a magnitude em relação à população estudada e dá o exemplo da educação, em que o efeito é comparado ao ganho esperado em anos de aprendizagem; a interpretação não deve se basear na significância do efeito combinado [@aloe2024campbell, seção 7].
+
+No protocolo, para cada desfecho principal, registre: (i) a direção desejada (aumento ou redução é benefício); (ii) o limiar δ, em unidade do desfecho ou em diferença padronizada, com a fonte do valor (literatura do campo, custo da política, meta legal); (iii) as faixas de magnitude que serão usadas para rotular efeitos, com referência do próprio campo. O uso desses limiares nos rótulos de efeito (positivo, nulo, inconclusivo) e na certeza está na @sec-08a-regras e na @sec-09-regras.
+
+### Plano de certeza
+
+Os métodos para julgar a certeza do corpo de evidência dos desfechos mais importantes precisam estar pré-especificados, assim como os desfechos que entrarão na tabela de resumo, escolhidos sem olhar a magnitude esperada ou observada do efeito [@lasserson2024starting, MECIR C23]. O relato deve dizer quais domínios foram avaliados e quais limiares levaram a rebaixar a certeza [@cumpston2026reporting, sec. III.3.4.5]. O protocolo indica a abordagem (GRADE para efeitos, GRADE-CERQual para achados qualitativos) e os limiares; o método está na @sec-09-regras.
+
+### Plano de uso de IA
+
+O PRISMA 2020 pede detalhes das ferramentas de automação na seleção, na coleta e no risco de viés [@page2021prisma, itens 8, 9 e 11], e o fluxograma separa exclusões humanas e automáticas [@page2021prisma]; o formulário do OSF pede, por rodada, se o trabalho é humano, automático ou automático supervisionado [@vandenakker2023increasing, GSRRF-33 e GSRRF-44]; a Campbell exige dizer como a automação foi usada, com qual software e qual validação [@aloe2024campbell, seção 4]. No exemplo do REFIS, a IA foi usada para construir strings e para triar resumos, com as versões das strings registradas [@schaefer2026aula4, p. 33, 44-46], mas o protocolo REFIS não tem plano de uso de IA [@schaefer2026protocolo].
+
+O plano mínimo no protocolo tem, por etapa: ferramenta e modelo, papel (propõe, decide, prioriza), o que o humano verifica, como o prompt será desenvolvido e congelado, o desenho da amostra de validação, as métricas e os limiares de aceitação e o que acontece se o limiar não for atingido. Os limiares e o protocolo de validação estão na @sec-11-regras.
+
+### *Stakeholders*
+
+Petticrew e Roberts recomendam definir as perguntas com os usuários potenciais (financiadores, gestores, profissionais, usuários finais), consultados cedo e convidados a comentar o protocolo, e advertem contra o envolvimento *tokenista*: a equipe precisa dizer o que é e o que não é negociável [@petticrew2006systematic, p. 29-31]. A Cochrane recomenda mapear os *stakeholders* da pergunta, usar grupos consultivos quando as opiniões divergem e incluir pessoas vulneráveis e marginalizadas [@lasserson2024starting, sec. 1.3.1-1.3.2]; o relato deve dizer como houve envolvimento ou declarar que não houve [@cumpston2026reporting, sec. III.3.4.7]. A Campbell exige indicar a relevância da pergunta para as necessidades dos interessados [@aloe2024campbell, seção 1b]. Em políticas brasileiras, a aplicação direta é registrar quais órgãos gestores, de controle (TCU, CGU) ou grupos de beneficiários foram consultados sobre pergunta, desfechos e contexto, e em que etapa.
+
+### Checagem de revisões existentes e registradas
+
+Uma nova revisão não se justifica se já há uma boa revisão que responde à pergunta ou outra em andamento na mesma área [@petticrew2006systematic, p. 29]; se a existente está desatualizada ou é tendenciosa, atualizá-la ou fazer uma nova pode fazer sentido, e é boa prática escrever aos autores da anterior [@petticrew2006systematic, p. 36-38]. O *template* JBI exige declarar a busca preliminar por revisões concluídas ou em andamento e dizer em que a nova difere [@schaefer_oqfunciona, p. 49-50]; o formulário do OSF pede as revisões existentes no campo de contexto [@vandenakker2023increasing, GSRRF-10]. No material didático, a busca exploratória verifica se há revisões e se a pergunta é respondível [@schaefer2026aula4, p. 7], inclusive com ferramentas como o Consensus [@schaefer_oqfunciona, p. 27].
+
+Onde procurar: OSF Registries [@schaefer2026aula2, p. 39], PROSPERO [@moher2015prismap, sec. Background], as bases da Campbell e da Cochrane [@petticrew2006systematic, p. 37] e as bases gerais com filtro de revisão. Registre as buscas (data, fonte, termos, resultados) e cite no racional as revisões encontradas.
+
+## Pré-registro, versionamento e emendas {#sec-03-registro}
+
+### Como registrar no OSF
+
+O fluxo de registro no OSF é: criar um rascunho a partir de um projeto (ou sem projeto), escolher o *template*, preencher metadados e respostas, revisar e submeter; os administradores do projeto têm 48 horas para aprovar ou cancelar, e depois disso a aprovação é automática (exceto em registros operados por comunidades). O registro pode ser público ou ficar sob embargo por até quatro anos [@cos2026registration]. O registro submetido não pode ser editado. Mudanças são feitas por *update*, que o OSF descreve como forma transparente de refletir mudanças necessárias no desenho, reservadas a eventos fora do controle da equipe ou anomalias inesperadas; o *update* exige preencher uma justificativa e alterar ao menos um campo, e não permite adicionar ou remover arquivos [@cos2026registration].
+
+Dois campos do formulário geral merecem atenção. O GSRRF-6 pede as etapas da revisão e sugere incluir pilotos seguidos de atualização do registro (por exemplo, piloto de triagem com 100 registros, atualização, triagem, piloto de extração com 10 fontes, atualização) [@vandenakker2023increasing]. O GSRRF-7 pede a etapa em que a revisão está no momento do congelamento, lembrando que, em muitos contextos, só registros feitos nas etapas iniciais contam como pré-registro [@vandenakker2023increasing]. Um registro feito depois da busca ou da triagem continua útil, mas deve se apresentar como tal.
+
+### Versionamento
+
+A especificação da skill adota três convenções (ver @sec-03-skill):
+
+1. **Numere versões** do protocolo (v1.0 no congelamento; v1.1 para correção sem efeito sobre decisões; v2.0 para mudança de critério, desfecho ou análise). Cada artefato derivado (critérios de triagem, prompt, codebook) tem sua própria versão e aponta para a versão do protocolo que o originou.
+2. **Congele por *hash***: guarde o arquivo da versão congelada e seu SHA-256, e só altere por nova versão.
+3. **Espelhe no registro**: cada nova versão maior gera um *update* no OSF com a justificativa, e o *changelog* do protocolo cita a data e o identificador do *update*.
+
+As emendas devem ser rastreadas e datadas [@moher2015prismap, tabela 3], e o formulário geral recomenda publicar registros atualizados para documentar e justificar decisões no mesmo formato ao longo do caminho [@vandenakker2023increasing, instruções].
+
+### Log de emendas
+
+O log fica ao lado do protocolo e é a fonte da seção "Diferenças entre protocolo e revisão" do relatório [@cumpston2026reporting, sec. III.3.4.1]. Campos mínimos:
+
+| Campo | Conteúdo |
+|---|---|
+| `id` e `data` | Identificador sequencial e data da decisão |
+| `versao_de` / `versao_para` | Versões do protocolo antes e depois |
+| `secao` | Item afetado (p. ex., PRISMA-P 8, critério de população) |
+| `descricao` | O que mudou, com texto antigo e novo |
+| `motivo` | Contingência prevista, circunstância imprevista, erro ou inviabilidade |
+| `etapa_no_momento` | Em que etapa a revisão estava (antes da busca, após a triagem, após a extração, após a análise) |
+| `resultados_conhecidos` | O que a equipe já sabia dos resultados quando decidiu (nada; contagens; efeitos) |
+| `impacto` | Registros ou estudos afetados; se exige re-triagem, re-extração ou reanálise |
+| `acao` | O que foi refeito e se o resultado será apresentado com e sem a mudança |
+| `aprovado_por` e `registro` | Quem aprovou e o identificador do *update* no OSF |
+
+O campo `resultados_conhecidos` operacionaliza o critério da Cochrane de que mudanças não se baseiem em como afetam o resultado [@lasserson2024starting, sec. 1.5]. O campo `acao` responde ao objetivo declarado do PRISMA-P de permitir que o leitor avalie se um desvio enviesa a interpretação [@moher2015prismap, sec. Background].
+
+## Passo a passo {#sec-03-passos}
+
+1. **Parta da pergunta aprovada** (G1 na skill), da teoria do programa e do *framework* definidos na @sec-02-regras. Sem pergunta clara, não comece a revisão [@petticrew2006systematic, p. 35].
+2. **Cheque revisões existentes e registradas** e registre essa busca. Decida entre nova revisão, atualização ou desistência [@petticrew2006systematic, p. 29, 36-38].
+3. **Mapeie e consulte *stakeholders*** sobre pergunta, desfechos (incluindo danos) e contexto; registre quem, quando e o que mudou [@lasserson2024starting, sec. 1.3.1-1.3.2].
+4. **Faça a busca exploratória** em poucas bases para estimar volume, bases úteis e termos; é aceitável refinar a pergunta com o que se aprende nessa etapa [@petticrew2006systematic, p. 48]. Estime recursos: numa amostra antiga de 37 meta-análises, o tempo médio foi de 1.139 horas, com amplitude de 216 a 2.518 [@petticrew2006systematic, p. 49].
+5. **Escreva os critérios de elegibilidade** separando características do estudo e do relato, com justificativa do recorte temporal (marco legal conferido na fonte oficial) e dos idiomas.
+6. **Redija a estratégia de busca completa** de pelo menos uma base e liste as demais fontes com datas de cobertura; descreva a validação da busca (@sec-04-regras).
+7. **Defina seleção e piloto**: revisores por fase, independência, desempate, tamanho do piloto e critério para iniciar (@sec-05-regras).
+8. **Anexe o codebook v0** e a regra de modelo principal; planeje o piloto de extração (@sec-07-regras).
+9. **Associe ferramenta de risco de viés a cada desenho** e diga como o julgamento entra na síntese (@sec-06-regras).
+10. **Escreva o plano de síntese**: critérios de comparabilidade, medida de efeito, modelo, heterogeneidade, subgrupos pré-especificados, sensibilidade, viés de publicação, alternativa sem meta-análise, limiar δ e faixas de magnitude, e o plano qualitativo e de integração (@sec-08a-regras, @sec-08b-regras).
+11. **Escreva o plano de certeza** e o plano de uso de IA com validação (@sec-09-regras, @sec-11-regras).
+12. **Faça a revisão metodológica do protocolo** (advogado do diabo, abaixo) e peça comentários de alguém do tema e de um potencial usuário [@petticrew2006systematic, p. 285].
+13. **Congele a v1.0**, calcule o *hash*, registre no OSF declarando a etapa atual e anote o identificador do registro no protocolo.
+14. **Durante a revisão**, toda mudança passa pelo log de emendas antes de ser aplicada; mudanças maiores geram *update* no OSF.
+
+### Revisão metodológica do protocolo (advogado do diabo)
+
+A revisão por pares dos métodos antes da execução é uma das razões para publicar o protocolo [@lasserson2024starting, sec. 1.5], e é boa prática submetê-lo a quem conhece o tema e a usuários potenciais [@petticrew2006systematic, p. 52, 285]; Carrera-Rivera e colegas também recomendam ouvir pares durante a elaboração [@carrerarivera2022howto, p. 2]. O advogado do diabo procura, antes do congelamento, incoerências e decisões em aberto que forçariam mudanças depois. Perguntas mínimas, cada uma ligada a uma exigência já citada:
+
+| Pergunta | Exigência que testa |
+|---|---|
+| Algum critério depende de algo que só se sabe depois de ver os resultados? | Decisões independentes dos resultados [@lasserson2024starting, sec. 1.5] |
+| Os termos das strings são coerentes com os critérios de exclusão? (uma string que busca "planejamento tributário" num protocolo que exclui planejamento tributário vai gerar ruído previsível) | Busca derivada da elegibilidade [@lasserson2024starting, MECIR C19] |
+| Todas as bases citadas no protocolo têm string e data prevista? | PRISMA-P itens 9 e 10 |
+| O recorte temporal e os idiomas têm justificativa escrita e conferida? | PRISMA-P item 8; *template* JBI [@schaefer_oqfunciona, p. 51] |
+| Há pelo menos um dano entre os desfechos? A prioridade entre desfechos está explícita? | @cumpston2026reporting [sec. III.3.4.3]; PRISMA-P item 13 |
+| Se um estudo relatar dez modelos, qual será extraído? | @page2021prisma [item 10a] |
+| Que estudos podem ser sintetizados juntos, e o que acontece com os que não se encaixam? | @page2021prisma [item 13a] |
+| O que conta como efeito relevante e como nulo? | @vandenakker2023increasing [GSRRF-57] |
+| Onde a IA decide sozinha e como isso será validado? | @page2021prisma [itens 8, 9, 11] |
+| O que acontece se houver menos estudos que o esperado? | Contingências [@vandenakker2023increasing, instruções] |
+
+Na skill, esse papel é do agente `revisor-metodologico`, acionado no portão G2 (ver @sec-03-skill).
+
+### Modelo de protocolo
+
+Esqueleto que combina as sete etapas do protocolo OQF com os itens do PRISMA-P e os campos do formulário geral do OSF. Os números entre colchetes são itens do PRISMA-P.
+
+```markdown
+# [1a] Protocolo de revisão sistemática: <X> e <Y> em <contexto>
+Versão: v1.0 | Congelado em: AAAA-MM-DD | SHA-256: ...
+[2] Registro: OSF Registries, <DOI/URL>, etapa no registro: <antes da busca>
+[3a-3b] Autoria, contatos, contribuições (CRediT), garantidor
+[5a-5c] Financiamento e papel do financiador | Conflitos | Autoria sobreposta
+[4] Plano de emendas: log em 00-protocolo/emendas.md; update no OSF para versões maiores
+
+## 1. Pergunta e justificativa
+[6] Racional; revisões existentes e registradas encontradas (fonte, data, resultado)
+[7] Pergunta principal e secundárias (X -> Y; mecanismos, moderadores, implementação)
+Stakeholders consultados (quem, quando, o que mudou)
+
+## 2. Framework e teoria do programa
+PICOC com definições operacionais; CMMO; DAG (efeitos esperados e perversos)
+[13] Desfechos: principal, secundários, danos; direção desejada; janelas de tempo
+
+## 3. Fontes e busca
+[9] Bases, interfaces, literatura cinzenta (IPEA, CAPES, BDTD...), cobertura
+[10] String completa de ao menos uma base; limites; validação (estudos-âncora, PRESS)
+
+## 4. Elegibilidade
+[8] Estudo: população, intervenção, comparação, desenho, contexto, período dos dados
+[8] Relato: anos de publicação (justificativa: marco legal <ato, data>), idiomas
+    (justificativa), status de publicação
+Tratamento de estudos parcialmente elegíveis
+
+## 5. Seleção
+[11a] Gestão de registros e decisões
+[11b] Revisores por fase, independência, desempate, piloto e critério de início
+Plano de uso de IA na triagem (papel, validação, limiares, contingência)
+
+## 6. Extração (sistematização)
+[11c] Piloto, duplicidade, contato com autores
+[12] Codebook v0 anexo (versão, hash); regra de modelo principal
+
+## 7. Risco de viés, síntese e certeza
+[14] Ferramenta por desenho; nível; uso na síntese
+[15a] Critérios de comparabilidade e comparações planejadas
+[15b] Medida de efeito, modelo, heterogeneidade
+[15c] Subgrupos pré-especificados (com justificativa), sensibilidade
+[15d] Síntese sem meta-análise; síntese qualitativa e integração
+Limiar delta e faixas de magnitude por desfecho (fonte)
+[16] Viés de publicação e relato seletivo
+[17] Certeza (GRADE; GRADE-CERQual)
+Contingências (poucos estudos, dados faltantes)
+
+## 8. Divulgação e dados
+Produtos (artigo, policy brief); dados e código a compartilhar (repositório)
+```
+
+## O que as diretrizes exigem {#sec-03-diretrizes}
+
+**PRISMA-P 2015** [@moher2015prismap, tabela 3]. Checklist de relato do protocolo, com 17 itens numerados (26 com subitens) em três seções: informações administrativas, introdução e métodos. No protocolo REFIS faltam, entre outros, os itens 2 (registro), 4 (emendas), 10 (estratégia completa de uma base), 13 (prioridade dos desfechos), 14 (risco de viés), 15a (critérios para síntese quantitativa), 16 (metavieses) e 17 (força da evidência). A tabela recomenda ler o checklist com o documento de explicação e elaboração e diz que emendas devem ser rastreadas e datadas.
+
+**PRISMA 2020** [@page2021prisma]. No relato final, o item 24a pede nome e número do registro ou a declaração de que não houve registro; o 24b, onde o protocolo pode ser acessado ou a declaração de que não foi preparado; o 24c, descrever e explicar emendas ao registro ou ao protocolo. Os itens de métodos 5 a 15 são o espelho, no relato, do que o protocolo antecipou; o item 27 pede informar a disponibilidade de formulários, dados e código.
+
+**Cochrane Handbook v6.5** [@lasserson2024starting; @cumpston2026reporting]. As expectativas MECIR obrigatórias de planejamento são C19 (busca sem restrição de idioma ou status de publicação), C20 (risco de viés), C21 (síntese, medida de efeito, heterogeneidade, modelo), C22 (subgrupos pré-definidos, poucos e justificados) e C23 (certeza e desfechos da tabela de resumo). O capítulo III lista as seções do protocolo e manda descrever, na revisão, todas as emendas na seção "Diferenças entre protocolo e revisão".
+
+**Campbell Standards (2024)** [@aloe2024campbell]. Checklist único de condução e relato, em sete seções, obrigatório para protocolos e revisões da Campbell. Para o protocolo pesam a seção 1 (perguntas, relevância para interessados, equidade, efeitos adversos, registro *a priori*, desvios justificados), a seção 2 (elementos do PICO, desenhos, período e escopo geográfico), a seção 5 (piloto da codificação, ferramenta de avaliação crítica) e a seção 6 (medida de efeito, modelo, dependência; contagem de votos não é aceita para dados quantitativos de efetividade). O processo começa pelo registro de título [@campbell2026submit].
+
+**JBI** [@peters2024scoping, sec. 10.2]. Para revisões de escopo, o protocolo *a priori* é requisito do método e define de antemão objetivos, métodos e relato; desvios do protocolo devem ser destacados e explicados na revisão; como o PROSPERO não aceita revisões de escopo, o registro pode ser feito no OSF ou no Figshare, ou o protocolo pode ser publicado em alguns periódicos, como a JBI Evidence Synthesis.
+
+**Formulário geral de registro (OSF)** [@vandenakker2023increasing]. Os 65 campos cobrem métodos da revisão (tipo, etapas, etapa atual, hipóteses, variáveis, software, conflitos), busca, triagem, extração e síntese, cada um mapeado ao item correspondente do PRISMA 2020. As instruções pedem transparência sobre desvios, planos de contingência e registros atualizados.
+
+## Exemplo trabalhado {#sec-03-exemplo}
+
+### REFIS: o protocolo *ex ante*
+
+**O que foi feito.** O protocolo em sete etapas descrito acima fixa quatro desfechos (arrecadação, falências, emprego, *compliance*), um PICOC com programas federais, estaduais e municipais (REFIS, PAES, PAEX, PERT) no Brasil entre 2001 e 2025, um CMO com mecanismos positivos e negativos, seis bases (OpenAlex, SciELO, WoS, Scopus, BDTD, IPEA) e, na análise, meta-análise para efeitos e análise temática para mecanismos [@schaefer2026protocolo]. Os slides acrescentam os idiomas (português, inglês, espanhol), a exclusão de estudos normativos, de análise exclusiva de jurisprudência e de planejamento tributário sem foco em REFIS, e a justificativa do recorte: o REFIS federal teria sido criado pela "Lei n.º 9.964/2001" [@schaefer2026aula4, p. 25-27]. O pré-registro no OSF é recomendado [@schaefer2026aula4, p. 19, 29].
+
+**O que um advogado do diabo encontraria.**
+
+1. **Ano do marco legal.** A Lei nº 9.964, que institui o Refis, é de 10 de abril de 2000 [@brasil2000lei9964]. O slide 8 do mesmo material traz 2000 e o slide 27, 2001 [@schaefer2026aula4, p. 8, 27]. Um recorte que começa em 2001 pode ser defensável (as avaliações só aparecem depois da lei), mas a justificativa escrita está errada e precisa de emenda.
+2. **Recorte divergente entre protocolo e execução.** O filtro aplicado na BDTD foi de 2000 a 2024 [@schaefer2026aula4, p. 39], enquanto o protocolo diz 2001-2025. Além disso, a busca no OpenAlex é de 26/04/2026 [@schaefer2026aula4, p. 35], de modo que o limite de 2025 exclui sem justificativa o que foi publicado entre janeiro e abril de 2026.
+3. **Fonte prevista e não buscada.** O protocolo lista Scopus [@schaefer2026protocolo; @schaefer2026aula4, p. 21], mas o quadro final de buscas não tem Scopus [@schaefer2026aula4, p. 39]. É um desvio que deveria constar no log.
+4. **String incoerente com a exclusão.** Planejamento tributário sem foco em REFIS é critério de exclusão, mas as strings da WoS SciELO e da BDTD incluem "planejamento tributário" e "tax planning" [@schaefer2026aula4, p. 26, 39].
+5. **Itens ausentes.** Não há plano de emendas, número de revisores e desempate, ferramenta de risco de viés por desenho, regra de modelo principal, critérios para quando fazer meta-análise, medida de efeito, prioridade entre os quatro desfechos, limiar de efeito relevante, plano de certeza nem plano de uso de IA [@schaefer2026protocolo], embora a IA tenha sido usada para construir strings e triar resumos [@schaefer2026aula4, p. 33, 44-46]. A meta-análise prevista no protocolo não aparece no script de análise do caso, que implementa testes combinados (Fisher, Stouffer, Winer, Cooper) e análise textual, mas não carrega pacotes de meta-análise; a justificativa (heterogeneidade de desenhos e estimadores) aparece só num comentário do script [@schaefer2026analise]. Sem critério prévio de quando sintetizar quantitativamente, a mudança de plano não fica registrada como emenda ao protocolo.
+6. **Escopo federativo.** O PICOC inclui programas estaduais e municipais, mas o marco do recorte é federal. O protocolo precisa dizer se programas subnacionais anteriores a 2000, caso existam, ficam fora.
+
+**Como ficaria (trechos reescritos).**
+
+> *Elegibilidade, relato.* Serão elegíveis trabalhos publicados de 10/04/2000 (Lei nº 9.964, que instituiu o Refis federal) até a data da última busca, em português, inglês ou espanhol, de qualquer status de publicação (artigos, teses, dissertações, textos para discussão do IPEA, relatórios). Programas estaduais ou municipais de parcelamento são elegíveis quando avaliados em período posterior a essa data; estudos sobre programas anteriores serão listados à parte e não entrarão na síntese.
+>
+> *Desfechos.* Principal: arrecadação tributária (direção desejada: aumento). Secundários: falência de empresas (redução), emprego (aumento), *compliance* (aumento). Dano previsto pela teoria do programa: inadimplência estratégica futura por expectativa de novos programas (aumento é dano).
+>
+> *Regra de modelo principal.* Será extraído o modelo que os autores declaram como principal; na ausência, o de especificação completa; entre tempos de seguimento, o mais próximo de 24 meses após a adesão; nunca o de maior significância.
+>
+> *Emendas.* Toda mudança será registrada em `00-protocolo/emendas.md` com data, versão, motivo, etapa, resultados já conhecidos e impacto; mudanças de critério, desfecho ou análise gerarão *update* no registro OSF.
+
+(A janela de 24 meses é ilustrativa; no protocolo real ela precisa vir da teoria do programa ou da literatura sobre o REFIS.)
+
+### Celulares nas escolas: recorte, idioma e escopo
+
+**O que foi feito.** O artigo sobre proibição de celulares define PICOC com população de estudantes, escolas e redes de ensino, intervenção de proibição ou restrição em sala de aula, comparação entre escolas com e sem restrição, desfecho de desempenho em avaliações padronizadas e contexto global [@schaefer2025proibicao, p. 100]. O quadro de critérios traz recorte temporal de 2004 a 2024 e idiomas português e inglês; na seleção, porém, aplicou-se um filtro que manteve só estudos publicados a partir de 2007, ano de lançamento do iPhone; a triagem incluiu apenas estudos empíricos revisados por pares [@schaefer2025proibicao, p. 102]. A proposta OQF descreve o mesmo caso e acrescenta que duas revisões sobre o tema foram usadas no fim, para incluir trabalhos e validar a busca, e que a análise foi expandida para incluir trabalhos sobre ensino superior [@schaefer_oqfunciona, p. 29]. O artigo não menciona registro de protocolo.
+
+**Problemas de protocolo.**
+
+1. **Três recortes diferentes.** 2004-2024 no quadro, 2007 no filtro [@schaefer2025proibicao, p. 102] e 2010-2024 no exemplo da tabela 1 da proposta [@schaefer_oqfunciona, p. 11-12]. O corte aplicado (2007) usa um marco tecnológico emprestado de Campbell e colegas [@schaefer_oqfunciona, p. 28], mas as primeiras proibições de celulares e *pagers* em escolas norte-americanas são do fim dos anos 1980 e início dos 1990 [@campbell2024evidence, p. 244]. Restringir a smartphones é escolha de escopo legítima, desde que escrita como tal.
+2. **Idioma e contexto global.** Com contexto global, restringir a português e inglês é uma limitação que precisa de justificativa e de discussão [@lasserson2024starting, MECIR C19].
+3. **Status de publicação.** Incluir só estudos revisados por pares exclui a literatura cinzenta, contra a norma [@lasserson2024starting, MECIR C19]. Na revisão de escopo de Campbell e colegas, 12 dos 22 estudos incluídos não eram publicados [@campbell2024evidence, p. 247]; um filtro por revisão por pares teria removido mais da metade da base de evidência.
+4. **Mudança de população sem emenda.** A expansão para o ensino superior [@schaefer_oqfunciona, p. 29] é a razão que o artigo dá para seu efeito diferir de outra meta-análise restrita ao ensino básico [@schaefer2025proibicao, p. 105]. Uma mudança desse peso deveria estar no log de emendas, com a data da decisão e o resultado com e sem esses estudos.
+5. **Revisões existentes consultadas tarde.** As revisões prévias entraram como validação ao final [@schaefer_oqfunciona, p. 29]. Checá-las antes teria informado o recorte, os idiomas e os desfechos [@petticrew2006systematic, p. 36].
+6. **Magnitude sem limiar prévio.** O efeito combinado foi rotulado como "fraco (conforme critérios da literatura)" [@schaefer2025proibicao, p. 105], sem limiar fixado antes. As quatro dimensões de heterogeneidade listadas nas limitações [@schaefer2025proibicao, p. 109] são o que deveria ter entrado como critérios de comparabilidade no protocolo.
+
+### Contraponto: o registro de Campbell e colegas
+
+A revisão de escopo de Campbell e colegas, citada no caso dos celulares, registrou o plano de extração e síntese no OSF [@campbell2024evidence, p. 246] e é um bom exemplo de como comparar registro e artigo. O registro (*template* "OSF Preregistration", datado de 21/09/2021) previa busca em inglês de 2007 a 2021 e excluía estudos cujos desfechos se referissem a sujeitos que não fossem os estudantes, como pais e professores [@campbell2021evidenceosf]. O artigo relata buscas feitas em 19 e 20 de setembro de 2021, atualizadas em maio de 2023, e critério temporal de 2007 a 2023 [@campbell2024evidence, p. 246]; a tabela de estudos inclui um estudo cujos participantes são professores do ensino secundário [@campbell2024evidence, p. 248]. Duas lições para o protocolo:
+
+- A ampliação do período por atualização da busca é uma mudança legítima, mas precisa aparecer como emenda [@page2021prisma, item 24c], e não só como novo critério na tabela.
+- A data do registro (21/09/2021) é um dia posterior ao fim das buscas relatadas. O formulário do OSF pede que se declare a etapa em que a revisão está no momento do registro justamente para que o leitor saiba se o registro é prospectivo [@vandenakker2023increasing, GSRRF-7].
+
+## Erros comuns e como evitá-los {#sec-03-erros}
+
+| Erro | Como aparece | Como evitar | Fonte |
+|---|---|---|---|
+| Protocolo como lista de tópicos | Sete etapas com uma linha cada, sem regras de decisão | Usar o PRISMA-P como checklist de completude e o modelo deste capítulo | @moher2015prismap |
+| Justificativa de recorte errada ou ausente | "Lei n.º 9.964/2001"; 2004, 2007 e 2010 para o mesmo caso | Conferir o ato normativo na fonte oficial; um único recorte, escrito, aplicado igual em todas as bases | @brasil2000lei9964; @schaefer2026aula4 [p. 27] |
+| Idioma restrito sem justificativa | Contexto global com dois idiomas | Justificar, ampliar ou declarar como limitação | @lasserson2024starting [MECIR C19] |
+| Excluir literatura cinzenta, fator de impacto ou "inacessível" | Critérios copiados de guias de outras áreas | Buscar cinzenta; textos não obtidos entram como "não recuperados" | @aloe2024campbell [seção 3]; @page2021prisma |
+| Critério de qualidade como corte de inclusão sem plano | "Nota mínima" de checklist para excluir | Declarar ferramenta por desenho e uso na síntese | @moher2015prismap [item 14]; @carrerarivera2022howto [p. 6] |
+| Nenhuma regra para resultados múltiplos | Extração do modelo mais favorável | Regra de modelo principal no protocolo | @page2021prisma [item 10a] |
+| Meta-análise prometida sem critério de quando fazê-la | "Meta-análise para sistematização dos efeitos" | Critérios de comparabilidade e alternativa sem meta-análise | @moher2015prismap [itens 15a, 15d] |
+| Rotular magnitude depois de ver o efeito | "Efeito fraco, conforme a literatura" | δ e faixas de magnitude por desfecho no protocolo | @vandenakker2023increasing [GSRRF-57]; @aloe2024campbell [seção 7] |
+| IA usada sem plano | Strings e triagem por LLM decididas no caminho | Plano de IA por etapa com validação e contingência | @page2021prisma [itens 8, 9, 11] |
+| Registro depois do início | Registro após buscas ou triagem, apresentado como pré-registro | Registrar antes da triagem formal e declarar a etapa atual | @vandenakker2023increasing [GSRRF-7] |
+| Mudança sem emenda | Expansão de população, base prevista e não buscada | Log de emendas com etapa, resultados conhecidos e impacto | @lasserson2024starting [sec. 1.5]; @page2021prisma [item 24c] |
+| Revisões existentes descobertas no fim | Revisões prévias usadas só como validação | Checagem registrada antes do protocolo | @petticrew2006systematic [p. 29, 36] |
+| *Stakeholders* decorativos | Consulta sem efeito sobre pergunta ou desfechos | Registrar quem foi consultado, quando e o que mudou; ser claro sobre o que é negociável | @petticrew2006systematic [p. 31]; @cumpston2026reporting [sec. III.3.4.7] |
+
+## Na skill `revisao-sistematica` {#sec-03-skill}
+
+Esta etapa corresponde ao passo 3 do fluxo da skill e fecha no portão **G2**. O contrato planejado é o seguinte (a skill está em construção).
+
+- **Ordem**: 1 pergunta e tipo, com checagem de revisões existentes e registradas (**G1**) → 2 teoria do programa e *framework* → 3 protocolo com codebook v0, ferramentas de risco de viés, plano de síntese e plano de IA, e registro no OSF (**G2**) → 4 busca.
+- **Portão G2 é humano em qualquer modo.** No modo *checkpoints*, a skill para em todos os portões; no autopiloto, para só em G1 e G2. O protocolo congelado é pré-condição para as etapas seguintes.
+- **Congelamento e emendas**: critérios, ferramentas de risco de viés, codebook v0, plano de síntese e plano de IA são congelados no G2; mudança posterior é emenda registrada em `00-protocolo/emendas.md` com evento `emenda_protocolo` no log.
+- **Estado**: `rs_estado.json` guarda `versoes_ativas` (protocolo, critérios de T/A e de texto completo, prompt de triagem, codebook, filtros) e `artefatos` com caminho, `sha256` e `congelado_em`; o log append-only `rs_log.jsonl` registra `artefato_versionado`, `emenda_protocolo` e `portao`. Claude nunca edita esses arquivos à mão; só `rs.py` escreve neles, e toda sessão começa por `rs.py status`.
+- **Templates e codebooks**: `assets/templates/protocolo.md` e `emendas.md`; `declaracao_uso_ia.md` (preenchida depois a partir do log); codebooks `elegibilidade_modelo.csv`, `oqf_decomposicao.csv` (blocos a1/a2/b1/b2), `escopo_pcc.csv`, `qualitativa.csv` e os de risco de viés (`rob2`, `robins_i`, `casp`, `jbi_transversal`, `mmat`, `desenho_maryland`); checklists `prisma2020`, `prisma_scr`, `prisma_s`, `prisma_traice`, `press`, `swim`. A instrução operacional fica em `references/01-pergunta-protocolo.md`.
+- **Agente `revisor-metodologico`** (advogado do diabo): acionado em G2 e em G8; no G2, revisa o protocolo antes da aprovação humana, e as perguntas da seção de passos servem de roteiro.
+- **Regras da especificação que dependem do protocolo**: filtros por dicionário só excluem se o protocolo previr e houver amostra de elusão; a regra de modelo principal é fixada no protocolo; os *benchmarks* de magnitude por campo são fixados no protocolo; o δ que define o rótulo "Nulo" da caixa de ferramentas é fixado *a priori*; moderadores que explicam um rótulo "Misto" precisam ser pré-especificados; a escala de Maryland entra só como critério de elegibilidade de desenho; o log de desvios do protocolo é uma etapa própria.
+- **Layout**: `rs.py init` cria `00-protocolo/` como primeira pasta do projeto. Pedidos parciais que não passam por protocolo (por exemplo, "só a triagem") marcam `etapas_ignoradas` no estado, e o fluxo PRISMA imprime "NR" onde a informação não existe.
+
+## Como relatar {#sec-03-relato}
+
+O relato mínimo sobre protocolo e registro, na seção de métodos e em "outras informações", deve conter:
+
+1. Nome do registro, número ou DOI e data; ou a declaração de que não houve registro [@page2021prisma, item 24a].
+2. Onde o protocolo pode ser acessado (versão congelada), ou a declaração de que não houve protocolo [@page2021prisma, item 24b].
+3. Etapa em que a revisão estava quando foi registrada [@vandenakker2023increasing, GSRRF-7].
+4. Todas as emendas, com data, justificativa e efeito, e os métodos planejados que não puderam ser executados [@page2021prisma, item 24c; @cumpston2026reporting, sec. III.3.4.1].
+5. Como *stakeholders* participaram, ou a declaração de que não participaram [@cumpston2026reporting, sec. III.3.4.7].
+6. Revisões existentes identificadas e em que a revisão difere delas [@schaefer_oqfunciona, p. 49-50].
+
+**Exemplo de redação.**
+
+> O protocolo (PRISMA-P 2015) foi registrado no OSF Registries com o formulário geral de revisões sistemáticas (DOI 10.17605/OSF.IO/XXXXX) em 12/05/2026, antes da busca definitiva; a versão congelada (v1.0) e o log de emendas estão no registro. Busca preliminar no OSF Registries, no PROSPERO e na Campbell (05/05/2026) não encontrou revisão concluída ou em andamento sobre programas de parcelamento tributário no Brasil. Gestores da área tributária comentaram os desfechos, o que levou a incluir a inadimplência subsequente como dano. Houve duas emendas: (1) em 20/06/2026, antes da triagem, a Scopus foi substituída pelo OpenAlex por falta de acesso, com *update* do registro; (2) em 15/08/2026, após a extração, a janela do desfecho principal passou de 24 para 36 meses porque 6 de 11 estudos só relatavam 36 meses; a síntese é apresentada com as duas janelas. A meta-regressão planejada não foi feita porque o número de estudos ficou abaixo do mínimo previsto.
+
+(Datas, identificadores e contagens do exemplo são fictícios.)
+
+## Leituras {#sec-03-leituras}
+
+**Normas e guias**
+
+- @moher2015prismap: checklist PRISMA-P 2015; base da tabela de pré-especificação.
+- @page2021prisma: PRISMA 2020, itens 24a-24c e itens de métodos.
+- @lasserson2024starting: Cochrane Handbook v6.5, cap. 1; razões do protocolo, MECIR C19-C23, mudanças e *stakeholders*.
+- @cumpston2026reporting: Handbook, cap. III; conteúdo do protocolo e "Diferenças entre protocolo e revisão".
+- @aloe2024campbell: Campbell Standards de 2024.
+- @vandenakker2023increasing: formulário geral de registro de revisões sistemáticas no OSF.
+- @peters2024scoping: JBI Manual (edição em PDF de 2024), cap. 10, revisões de escopo; protocolo *a priori*, registro e pilotos de triagem e extração.
+- @cos2026registration: ajuda do OSF sobre registro, embargo e *update*.
+- @campbell2026submit: etapas de uma revisão Campbell.
+
+**Leituras de apoio**
+
+- @schaefer_oqfunciona: proposta OQF; planejamento, tabela de passos e Anexo C.
+- @schaefer2026aula2, @schaefer2026aula4 e @schaefer2026protocolo: slides e script do protocolo *ex ante* REFIS.
+- @schaefer2025proibicao: celulares nas escolas; caso de recorte, idioma e mudança de escopo.
+- @petticrew2006systematic: caps. 2 e 3 e apêndice 1; revisões existentes, *stakeholders*, protocolo e critérios em ciências sociais.
+- @carrerarivera2022howto: lista de conferência de planejamento, com as ressalvas deste capítulo.
+- @campbell2024evidence e @campbell2021evidenceosf: revisão de escopo sobre celulares e seu registro; comparação entre registro e artigo.
+- @schaefer2026ementa: programa de leituras, com um módulo dedicado ao protocolo.

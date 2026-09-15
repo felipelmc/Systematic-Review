@@ -1,0 +1,437 @@
+---
+title: "Busca da literatura"
+---
+
+A busca é a etapa que define o universo de onde a revisão vai tirar suas conclusões. Tudo o que vem depois (triagem, extração, síntese, certeza) opera sobre o conjunto de registros que a busca trouxe; um estudo que não foi encontrado não pode ser incluído, e a ausência não aparece em nenhum diagrama de fluxo. Por isso as normas tratam a busca como parte do controle de viés, e não como tarefa administrativa: uma revisão sistemática exige busca completa, objetiva e reprodutível em várias fontes, e depender de uma base só produz um conjunto de estudos que pode não representar a evidência disponível [@lefebvre2025searching, sec. 4.2.2; @macdonald2024searching, sec. 3.2.1]. Nas ciências sociais o problema se agrava, porque resumos estruturados são raros, a terminologia é pouco padronizada e muitos trabalhos sobre políticas públicas saem como notas técnicas, *preprints* ou relatórios [@macdonald2024searching, sec. 3.2; @schaefer_oqfunciona, p. 27].
+
+Esta etapa exige decisões que precisam estar no protocolo (@sec-03-regras) e ser registradas à medida que são tomadas: quais conceitos da pergunta entram na estratégia e quais ficam de fora; em que idiomas buscar; quais bases, repositórios e sites consultar; como traduzir a mesma lógica para a sintaxe de cada base; como saber se a estratégia está recuperando o que deveria (revisão por pares e estudos-âncora); quando parar; como documentar cada execução de modo que outra pessoa consiga repeti-la; e quando atualizar. O capítulo cobre ainda a busca por citações (bola de neve), a literatura cinzenta brasileira e internacional, o uso de IA para sugerir termos e o papel apenas exploratório da bibliometria. A deduplicação, o funil e a triagem dos registros encontrados ficam na @sec-05-regras; a validação de ferramentas de IA, na @sec-11-regras.
+
+## Decisões e regras {#sec-04-regras}
+
+As tabelas desta seção resumem as regras padrão. Cada regra tem uma exceção possível, mas a exceção precisa ser justificada no protocolo ou numa emenda e testada contra os estudos-âncora (ver a seção de validação adiante).
+
+### Estrutura da estratégia
+
+A lógica é a mesma em todas as normas: identificar os conceitos principais da pergunta, juntar sinônimos e variantes de cada conceito com OR e combinar os conceitos com AND [@lefebvre2025searching, sec. 4.4.2; @macdonald2024searching, sec. 6.5.1]. O material didático sobre busca apresenta a mesma estrutura em blocos P, I, (M), O e C, com truncamento e termos em português, inglês e espanhol [@schaefer2026aula3, p. 19]. A diferença está em quantos blocos usar: cada bloco a mais exige que o registro contenha pelo menos um termo daquele bloco, e qualquer estudo que não descreva o conceito no título ou no resumo some da busca [@macdonald2024searching, sec. 6.5.1].
+
+| Decisão | Regra padrão | Quando mudar | Fonte |
+|---|---|---|---|
+| Conceitos na string | População ou contexto AND intervenção. Comparador quase nunca entra | Incluir o desfecho (O) quando ele define a pergunta e aparece de forma consistente em títulos e resumos, e o teste com âncoras mostra que o bloco não derruba estudos elegíveis | @lefebvre2025searching [sec. 4.4.2]; @macdonald2024searching [sec. 6.3, 6.10] |
+| Pergunta mista (efeito e mecanismo, percepção, implementação) | Estratégia em mais de um fio, unidos por OR: P AND I AND O para efeito; P AND I AND termos de percepção, implementação ou mecanismo; ou simplesmente P AND I, sem bloco de desfecho | Pergunta só de efeito | @lefebvre2025searching [sec. 4.4.2] |
+| Termos dentro do bloco | Sinônimos, variantes de grafia, siglas, nomes de programas e leis, em PT, EN e ES, unidos por OR | Não há; a lista cresce por iteração documentada | @lefebvre2025searching [MECIR C33]; @schaefer2026aula3 [p. 19] |
+| Operador NOT | Não usar | Só com teste registrado mostrando que nenhuma âncora é removida | @lefebvre2025searching [MECIR C32]; @macdonald2024searching [sec. 6.5.1] |
+| Frases e proximidade | Aspas para expressões fixas; proximidade (NEAR/x, W/n, ~N) quando as palavras variam de ordem ou têm termos no meio | Base sem proximidade: usar frase ou AND e aceitar mais ruído | @macdonald2024searching [sec. 6.5.2] |
+| Truncamento | Radical longo o bastante para não capturar palavras de outro campo, testado nos resultados | Google Scholar não tem truncamento; escrever as variantes | @whitehead2013searching [p. 60]; @boeker2013google |
+| Siglas ambíguas | Incluir a sigla só quando ela for exclusiva do tema, ou amarrada a um termo do tema por proximidade ou AND | Sigla sem outro significado relevante | Regra operacional desta base; siglas fazem parte dos termos livres [@lefebvre2025searching, MECIR C33] e o custo é precisão [@lefebvre2025searching, sec. 4.4.3] |
+| Campos | Título, resumo e palavras-chave | Texto completo só com justificativa e teste de precisão | @macdonald2024searching [sec. 6.5.4]; @openalex2026search |
+| Idioma | Termos em PT, EN e ES; nenhum limite de idioma na base | Se o idioma for critério de elegibilidade, aplicá-lo na triagem, não na busca | @lefebvre2025searching [sec. 4.4.5]; @schaefer2026aula3 [p. 19] |
+| Datas | Sem limite; se o critério de elegibilidade tiver marco (lei, criação do programa), buscar a partir de uma data anterior ao marco | Atualização de revisão: começar antes do fim da busca anterior, com sobreposição | @lefebvre2025searching [MECIR C35, sec. 4.4.5]; @petticrew2006systematic [pp. 102-103] |
+| Tipo de documento e área temática da base | Sem limites | Justificar e testar com âncoras; registrar no log | @lefebvre2025searching [sec. 4.4.5]; @macdonald2024searching [sec. 6.5.6]; @rethlefsen2021prismas [item 9] |
+
+::: {.callout-important}
+## Regra inviolável: restrição não substitui fonte
+Tirar o filtro de idioma de uma base anglófona não equivale a buscar em periódicos e bases de outros idiomas [@lefebvre2025searching, MECIR C19]. Uma revisão sobre política brasileira que só busca na Web of Science e na Scopus, mesmo com termos em português, pode continuar cega para boa parte da produção nacional: na área de Comunicação e Informação, pouco mais de 20% da produção dos programas de pós-graduação está indexada na WoS [@lycariao2025comunidade, p. 3].
+:::
+
+### Fontes
+
+| Componente | Regra | Fonte |
+|---|---|---|
+| Bases bibliográficas | Pelo menos duas bases, escolhidas pelo tema; uma base só não é adequada | @lefebvre2025searching [sec. 4.3.1.1]; @macdonald2024searching [sec. 3.2.1] |
+| Bases temáticas e regionais | Incluir a base da disciplina (EconLit, ERIC, PubMed etc.) e a base regional pertinente (SciELO, LILACS) | @lefebvre2025searching [MECIR C25] |
+| Teses e dissertações | Catálogo de Teses da CAPES ou BDTD em perguntas sobre o Brasil | @lefebvre2025searching [MECIR C28]; @schaefer2026aula3 [p. 21] |
+| Literatura cinzenta | Sites e repositórios de órgãos de governo, institutos e organismos internacionais pertinentes, escolhidos e justificados no protocolo | @lefebvre2025searching [MECIR C28]; @macdonald2024searching [sec. 4.3.1]; @schaefer2026aula3 [p. 22] |
+| Revisões anteriores | Buscar revisões sobre o mesmo tema antes de montar a string e examinar seus estudos e estratégias | @lefebvre2025searching [MECIR C29]; @whitehead2013searching [p. 60] |
+| Listas de referências | Conferir as referências de todos os estudos incluídos e das revisões relevantes (obrigatório) | @lefebvre2025searching [MECIR C30] |
+| Busca para frente (quem cita) | Considerar seriamente em temas difíceis de buscar, partindo de todos os incluídos | @hirt2024tarcis [rec. 2 e 4] |
+| Google Scholar | Nunca fonte principal; se usado, via Publish or Perish, com número de resultados triados definido e relatado | @gusenbauer2020which; @haddaway2015google; @lefebvre2025searching [sec. 4.5] |
+| Contato com autores e especialistas | Registrar se foi feito, com quem e o que rendeu | @rethlefsen2021prismas [item 6]; @petticrew2006systematic [pp. 104-105] |
+
+### Validação, parada e atualização
+
+| Controle | Regra ou limiar | O que fazer se falhar | Fonte |
+|---|---|---|---|
+| Revisão por pares da estratégia | Aplicar PRESS 2015 depois de pronta a estratégia da base principal e antes de traduzi-la para as demais | Revisar e registrar a versão nova | @mcgowan2016press; @lefebvre2025searching [sec. 4.4.8] |
+| Estudos-âncora de validação | Conjunto definido antes da string; meta: recuperar todas as âncoras indexadas nas bases buscadas; manter as âncoras de validação fora da escolha de termos (regra operacional desta base) | Diagnosticar cada âncora perdida (não indexada ou indexada e não recuperada) e revisar a string no segundo caso | @macdonald2024searching [sec. 5.2]; @lefebvre2025searching [sec. 4.4.11] |
+| Recall relativo por base | Calcular e relatar; base com recall baixo indica tradução ruim | Revisar a tradução daquela base | @lefebvre2025searching [sec. 4.4.11] |
+| Incluídos vindos de outros métodos | Alerta quando mais de 25% a 30% dos estudos incluídos vierem só de citações, sites ou contatos | Verificar se esses estudos estão indexados nas bases e por que a string não os trouxe; emendar e rodar de novo | Especificação desta base (@sec-especificacao-regras, item 9); @lefebvre2025searching [sec. 4.4.11] |
+| Parada na construção da string | Parar quando novos termos não trazem registros relevantes novos e quando retirar termos passa a perder relevantes | Continuar iterando | @lefebvre2025searching [sec. 4.4.11]; @macdonald2024searching [sec. 6.9] |
+| Iterações da bola de neve | Nova rodada enquanto a anterior render estudos elegíveis | Encerrar e registrar o número de rodadas | @hirt2024tarcis [rec. 8] |
+| Atualização | Se a busca tiver mais de 12 meses (de preferência seis) na data prevista de publicação, rodar de novo todas as fontes e triar | Relatar estudos novos como aguardando classificação, se não der para incorporar | @lefebvre2025searching [MECIR C37, C38] |
+| Buscadores web e Google Scholar | Definir antes o número de resultados triados por consulta e relatar esse número, não o total exibido | Estender o corte se ainda aparecerem relevantes perto do limite | @lefebvre2025searching [sec. 4.5]; @lefebvre2024technical [p. 35] |
+
+O limiar de 25% a 30% não é uma norma internacional: é uma regra operacional adotada nesta base para disparar diagnóstico. Proporções altas são comuns em ciências sociais (numa revisão sobre habitação, só cerca de um terço dos estudos veio das bases) [@petticrew2006systematic, p. 80], ao passo que, em buscas biomédicas conduzidas por um especialista em informação, 84 de 1.830 referências incluídas (4,6%) vieram de outros métodos [@bramer2017optimal]. O alerta não significa que a revisão falhou; significa que é preciso verificar se as bases não tinham esses estudos (problema de fonte) ou se tinham e a string não os pegou (problema de estratégia). A Cochrane faz a mesma leitura: muitos estudos novos vindos da busca por citação sugerem que a busca original não foi ótima [@lefebvre2025searching, sec. 4.4.11].
+
+## Sensibilidade, precisão e estudos-âncora {#sec-04-validacao}
+
+Sensibilidade (ou *recall*) é a fração dos relatos relevantes existentes que a busca recuperou; precisão é a fração dos relatos recuperados que são relevantes [@lefebvre2025searching, sec. 4.4.3]:
+
+$$\text{sensibilidade} = \frac{a}{a+b} \qquad \text{precisão} = \frac{a}{a+c}$$
+
+em que $a$ são relevantes recuperados, $b$ relevantes não recuperados e $c$ irrelevantes recuperados. Aumentar a sensibilidade reduz a precisão, e revisões sistemáticas devem maximizar a primeira aceitando precisão baixa, porque triar resumos é relativamente rápido: 60 a 120 por hora, ou 500 a 1.000 num dia de oito horas [@lefebvre2025searching, sec. 4.4.3]. Em temas sociais a precisão costuma ser muito baixa: uma revisão sobre efeitos de novas estradas triou mais de 23.000 títulos e resumos para chegar a 32 estudos [@petticrew2006systematic, p. 84].
+
+::: {.callout-warning}
+## Armadilha terminológica
+Petticrew e Roberts chamam de *specificity* o que a Cochrane chama de precisão (proporção de recuperados que são relevantes) [@petticrew2006systematic, p. 83]. Em estatística de testes diagnósticos, especificidade é outra coisa. Neste livro, use sempre "precisão" para a busca e reserve "especificidade" para a validação da triagem (@sec-05-regras e @sec-11-regras).
+:::
+
+Como $b$ nunca é conhecido, a sensibilidade real não pode ser calculada. O que se calcula é o recall relativo contra um conjunto de estudos sabidamente elegíveis. A técnica de recall relativo mede, para cada base, quantos dos estudos elegíveis que estão indexados naquela base a estratégia daquela base recuperou [@lefebvre2025searching, sec. 4.4.11]. O guia Campbell chama esses estudos de artigos-semente ou *benchmark*: devem ser reunidos antes da construção da estratégia, representar a diversidade de evidência esperada (disciplina, região, período, desenhos, variáveis) e, idealmente, ser recuperados em sua totalidade pela busca combinada; o guia admite usar o mesmo conjunto para colher termos e para testar a estratégia [@macdonald2024searching, sec. 5.2].
+
+Esse uso duplo tem um risco de circularidade que o material didático também não trata. Se os termos da string forem escolhidos olhando os títulos e resumos das âncoras, a string vai encontrar as âncoras por construção, e o teste deixa de dizer algo sobre os estudos desconhecidos. A Cochrane adverte que achar só os estudos-chave pode indicar uma estratégia enviesada para o que já se conhecia [@lefebvre2025searching, sec. 4.4.11]. A regra operacional desta base resolve isso dividindo as âncoras em dois grupos:
+
+| Grupo | Origem | Uso permitido |
+|---|---|---|
+| Âncoras de desenvolvimento | Estudos que a equipe já conhecia, resultados da busca exploratória | Colher termos, testar versões intermediárias da string |
+| Âncoras de validação | Estudos incluídos em revisões anteriores, indicados por especialistas ou achados por busca por citação independente, conferidos contra os critérios de elegibilidade | Só o teste final; ninguém que escolhe termos lê seus títulos e resumos antes do teste |
+
+As métricas a registrar são:
+
+$$R_{\text{comb}} = \frac{|A_v \cap R|}{|A_v^{\text{idx}}|} \qquad R_b = \frac{|A_v^{\text{idx},b} \cap R_b|}{|A_v^{\text{idx},b}|} \qquad p_{\text{om}} = \frac{n^{\text{só outros métodos}}_{\text{incl}}}{n_{\text{incl}}}$$
+
+em que $A_v$ é o conjunto de âncoras de validação, $R$ a união dos registros recuperados por todas as estratégias em bases, $A_v^{\text{idx}}$ as âncoras indexadas em pelo menos uma base buscada, $R_b$ os registros da base $b$ e $A_v^{\text{idx},b}$ as âncoras indexadas nessa base. Para saber se uma âncora está indexada, busque-a pelo título ou DOI na própria base. Em $p_{\text{om}}$, um estudo achado pela bola de neve que também estava nos resultados de alguma base conta como identificado pelas bases.
+
+Como referência de ordem de grandeza, e não como limiar normativo, Bramer e colegas usaram 95% de recall como parâmetro e estimaram que 60% das revisões publicadas não o alcançam por não buscarem bases suficientes [@bramer2017optimal].
+
+## Sintaxe por base e formatos de exportação {#sec-04-sintaxe}
+
+Cada base interpreta aspas, curingas, proximidade e precedência de operadores de um jeito, e a mesma string colada em duas interfaces pode produzir buscas diferentes. A estratégia deve ser substantivamente a mesma em todas as bases e adaptada à sintaxe e ao vocabulário de cada uma [@macdonald2024searching, sec. 6.10]. As regras abaixo foram conferidas na documentação disponível em setembro de 2026; interfaces mudam, e a data da documentação consultada deve ir para o log.
+
+| Fonte | Campo recomendado | Frase e proximidade | Truncamento e curingas | Pontos de atenção | Exportação (nos exemplos) |
+|---|---|---|---|---|---|
+| Web of Science Core Collection (Clarivate) | `TS=` (título, resumo, palavras-chave do autor e Keywords Plus) | Aspas; `NEAR/x`, com distância padrão de 15 palavras | `*` à direita exige pelo menos três caracteres antes | Precedência NEAR/x, SAME, NOT, AND, OR: use parênteses | BibTeX, texto (`savedrecs.txt`), planilha [@schaefer2026codigos; @schaefer_oqfunciona, p. 28] |
+| SciELO Citation Index na plataforma WoS | `TS=` | Sintaxe da plataforma WoS | Sintaxe da plataforma WoS | Relatar "SciELO Citation Index, plataforma Web of Science", não só "SciELO" | TSV (`wos_scielo.txt`) [@schaefer2026codigos] |
+| SciELO (search.scielo.org) | Conferir a ajuda da interface | Conferir | Conferir | Não misturar resultados da interface própria com os da plataforma WoS sem registrar as duas buscas | CSV |
+| Scopus (Elsevier) | `TITLE-ABS-KEY()` | Aspas retas = frase aproximada; chaves `{}` = frase exata; `W/n` sem ordem, `PRE/n` com ordem | Curingas funcionam dentro de aspas e viram caracteres literais dentro de chaves | Precedência OR, depois W/n e PRE/n, depois AND, depois AND NOT; aspas curvas podem gerar erro de análise | CSV (`scopus.csv`) [@schaefer2026codigos] |
+| OpenAlex API | `filter=title_and_abstract.search:` ou `search=` (este inclui texto completo) | Aspas; `"termo1 termo2"~N` | Curingas `*` e `?` exigem `search.exact` e três caracteres antes; a busca padrão aplica *stemming* | AND, OR e NOT em maiúsculas; URL limitada a cerca de 4 KB, então strings longas precisam ser divididas | CSV e `.rds` [@schaefer2026codigos] |
+| Google Scholar via Publish or Perish | Todo o registro (sem controle de campo) | Aspas; sem proximidade documentada | Sem truncamento | Máximo de 1.000 resultados; consultas acima de ~250 caracteres têm o excedente ignorado; ordenação não transparente; o PoP reescreve a consulta na sintaxe do Scholar | CSV com `GSRank` e `QueryDate` [@schaefer2026codigos]; também BibTeX, EndNote, RIS |
+| Catálogo de Teses CAPES (dados abertos via `capesR`) | Título e resumo, filtrados localmente | Expressões regulares com fronteira de palavra | Definido na expressão regular | Cobertura documentada do pacote: 1987 a 2022 (versão 0.1.0) | Planilha gerada no R [@schaefer2026codigos] |
+| BDTD (IBICT) | Busca avançada | Conferir a ajuda | Conferir | Cerca de 900 mil teses e dissertações | Ferramenta de exportação lançada em 2024 |
+| Portal de Periódicos CAPES | Não é base: é o acesso institucional a WoS, Scopus e outras [@schaefer_oqfunciona, pp. 27-28] | Sintaxe da base acessada | Idem | Relatar a base e a plataforma de fato usadas | Da base acessada |
+| PubMed e LILACS | Palavras do texto combinadas com vocabulário controlado (MeSH, com explosão) | Conforme a ajuda | Conforme a ajuda | Temas de saúde; LILACS é a base regional latino-americana | Conforme a interface |
+| EconLit, SSRN, RePEc | Conforme a ajuda | Conforme a ajuda | Conforme a ajuda | Economia; SSRN e RePEc concentram *working papers* | Conforme a interface |
+
+Fontes da tabela: WoS [@clarivate2026wos]; Scopus [@elsevier2026scopus]; OpenAlex [@openalex2026search]; Publish or Perish e Google Scholar [@harzing2007publish; @boeker2013google; @lefebvre2024technical, p. 10]; `capesR` [@medeiros2024capesr]; BDTD [@ibict2024bdtd]; PubMed e vocabulário controlado [@whitehead2013searching, p. 60; @lefebvre2025searching, MECIR C33]; LILACS [@lefebvre2025searching, MECIR C25]; EconLit, SSRN e RePEc [@schaefer_oqfunciona, pp. 53-54; @petticrew2006systematic, pp. 112-113]. Pelo Publish or Perish, os limites também valem para outras fontes: 200 resultados para Scopus e para Web of Science, 1.000 para OpenAlex e Crossref [@harzing2007publish].
+
+::: {.callout-note}
+## Google Scholar: por que não como fonte principal
+O Google Scholar mostra no máximo 1.000 resultados e não informa como os escolhe, o que compromete transparência e reprodutibilidade [@lefebvre2024technical, p. 10]. Numa comparação de 28 sistemas, foi considerado inadequado como sistema principal [@gusenbauer2020which]. Com strings semelhantes, a sobreposição com a WoS variou de 10% a 67%, e ele deixou de achar literatura importante em cinco de seis estudos de caso; para literatura cinzenta, os autores sugerem concentrar a triagem nos primeiros 200 a 300 resultados [@haddaway2015google]. Use-o como fonte complementar, com o número triado registrado.
+:::
+
+### OpenAlex na prática
+
+O OpenAlex é aberto, tem cerca de 250 milhões de trabalhos (junho de 2024) e permite busca para frente e para trás [@lefebvre2024technical, p. 11]. Três cuidados. Primeiro, o parâmetro `search` cobre título, resumo e texto completo, o que tende a trazer registros que só mencionam os termos de passagem; para reproduzir a lógica de "título, resumo e palavras-chave" das bases comerciais, use o filtro por campo [@openalex2026search]. Segundo, a busca padrão aplica *stemming* e remove palavras vazias; curingas só funcionam com `search.exact` [@openalex2026search], de modo que uma string escrita para a Scopus com `"tax amnest*"` não significa a mesma coisa no OpenAlex. Terceiro, conte antes de baixar: o script de exemplo do REFIS chama `oa_fetch(..., count_only = TRUE)` antes da coleta e guarda o objeto completo em `.rds` [@schaefer2026codigos]. Anote a contagem no log.
+
+```r
+# Ilustrativo (não executar sem adaptar): contar, depois coletar
+library(openalexR)
+q <- '("tax amnesty" OR "tax debt relief" OR "parcelamento tributário") AND (revenue OR arrecadação)'
+# chamada no estilo do script de exemplo do REFIS: `search` inclui texto completo
+n <- oa_fetch(entity = "works", search = q, count_only = TRUE)
+# alternativa restrita a título e resumo, pelo filtro por campo da API:
+# https://api.openalex.org/works?filter=title_and_abstract.search:<string codificada>
+# registrar n, a data, o parâmetro usado e a versão da string antes da coleta
+```
+
+Para citações, cada trabalho traz `referenced_works` (o que ele cita), o filtro `cites:W...` devolve quem cita um trabalho e `cited_by:W...` devolve os trabalhos citados por ele. A lista `referenced_works` pode ser mais curta que a bibliografia impressa, porque só entram referências que casam com registros do OpenAlex [@openalex2026search].
+
+## Bases por área, fontes lusófonas e literatura cinzenta {#sec-04-fontes}
+
+### Por que bases lusófonas não são opcionais
+
+Lycarião e colegas buscaram revisões sistemáticas lusófonas de Comunicação e Informação publicadas entre 2010 e 2021. A busca por "revisão sistemática" retornou 0 registros na WoS, 18 na SciELO, 37 na Scopus e 69 no DOAJ [@lycariao2025comunidade, p. 4]; das 49 revisões selecionadas, 32 vieram do DOAJ, 9 da Scopus, 8 da SciELO e nenhuma da WoS [@lycariao2025comunidade, p. 5]. Ao mesmo tempo, a WoS era o sistema mais usado por essas mesmas revisões (24 menções) [@lycariao2025comunidade, p. 6]. Os autores chamam isso de invisibilidade autoproduzida e lembram que pouco mais de 20% da produção dos programas de pós-graduação da área está indexada na WoS [@lycariao2025comunidade, p. 3]. O trade-off é real: DOAJ não permite buscas booleanas precisas e replicáveis, enquanto SciELO e Scopus se saem melhor nesse quesito [@lycariao2025comunidade, p. 7]. A regra que decorre é combinar bases com boa sintaxe e bases com boa cobertura da comunidade em questão, registrando as limitações de cada uma. Os autores listam ainda Redalyc, Dialnet, Redib e Sumários.org entre as fontes que dão visibilidade à produção lusófona em humanidades [@lycariao2025comunidade, p. 8].
+
+O mesmo vale para teses e repositórios. Repositórios institucionais são úteis para achar evidência produzida no Sul Global [@macdonald2024searching, sec. 4.3.6]. No caso REFIS, 158 dos 190 registros identificados vieram do catálogo de teses e dissertações [@schaefer2026aula4, p. 39].
+
+### Bases por área
+
+| Área | Bases indicadas no material didático | Complementos com base nas normas |
+|---|---|---|
+| Políticas sociais e educação | Web of Science, Scopus/EBSCO, PsycINFO/ERIC, Portal CAPES [@schaefer2026aula3, p. 21] | SciELO; Catálogo CAPES ou BDTD; revisões Campbell [@macdonald2024searching, sec. 4.3.2] |
+| Saúde pública | PubMed/MEDLINE, Cochrane Library, LILACS, SciELO [@schaefer2026aula3, p. 21] | Epistemonikos para revisões sistemáticas em saúde [@rada2020epistemonikos] |
+| Meio ambiente e recursos naturais | WoS, Scopus/GreenFILE, Environmental Science DB, OpenAlex [@schaefer2026aula3, p. 21] | SciELO e teses quando o contexto é brasileiro [@lefebvre2025searching, MECIR C25, C28] |
+| Economia e políticas públicas | EconLit/SSRN, 3ie/Campbell, IPEA/Banco Mundial, CAPES teses [@schaefer2026aula3, p. 21] | RePEc [@petticrew2006systematic, p. 113]; Overton para documentos de política [@szomszor2022overton] |
+| Ciências sociais em geral (lista da proposta OQF, sem divisão por área) | Google Scholar, WoS (SSCI), Scopus, Catálogo CAPES, JSTOR, SSRN, PAIS, Worldwide Political Science Abstracts, EconLit, HeinOnline, OECD iLibrary, SciELO, Redalyc, ProQuest Dissertations & Theses [@schaefer_oqfunciona, pp. 53-54] | Repositórios institucionais, inclusive de escolas de governo [@macdonald2024searching, sec. 4.3.6] |
+
+O Anexo D da proposta OQF foi montado a partir de um verbete da Wikipedia [@schaefer_oqfunciona, p. 54]; trate-o como lista de partida, não como avaliação de cobertura.
+
+### Literatura cinzenta
+
+Literatura cinzenta é o que circula fora dos canais comerciais de publicação: relatórios de órgãos de governo, ONGs, instituições acadêmicas, anais, teses, *white papers* [@macdonald2024searching, sec. 4.3.1]. Nas ciências sociais, parte da pesquisa mais importante nunca sai em periódico [@petticrew2006systematic, pp. 99-100], e em avaliação de políticas muitos trabalhos saem como notas técnicas, *preprints* ou relatórios [@schaefer_oqfunciona, p. 27]. Não há regra sobre quanto buscar; a equipe deve decidir onde e como, considerando tempo e capacidade, e justificar as fontes [@macdonald2024searching, sec. 4.3.1].
+
+| Fonte | Tipo | Como registrar |
+|---|---|---|
+| Repositório do IPEA (repositorio.ipea.gov.br) | Instituto de pesquisa federal | Termos usados, coleções percorridas, data, número triado |
+| TCU e CGU (Base de Conhecimento da CGU, repositorio.cgu.gov.br) | Documentos de governo e relatórios de avaliação e auditoria [@schaefer2026aula3, p. 22] | Idem, com o tipo de documento pesquisado |
+| Ministérios e institutos estaduais | Documentos de governo e relatórios de avaliação [@schaefer2026aula3, p. 22] | URL da seção percorrida; salvar cópia local dos documentos |
+| Repositórios institucionais (universidades, Enap e outras escolas de governo) | Teses, relatórios e artigos, publicados ou não [@macdonald2024searching, sec. 4.3.6] | Idem |
+| FGV e outros institutos brasileiros | Think tanks [@schaefer2026aula3, p. 22] | Idem |
+| Banco Mundial (Open Knowledge Repository), BID, OCDE, ONU, FAO | Organismos internacionais [@schaefer2026aula3, p. 22; @petticrew2006systematic, p. 113] | Idem |
+| 3ie Development Evidence Portal | Avaliações de impacto e revisões em desenvolvimento [@schaefer2026aula3, p. 21] | String e filtros da interface |
+| Overton | Documentos de política que citam pesquisa acadêmica [@szomszor2022overton] | String, filtros, data |
+| OSF | Estudos não publicados e em andamento, inclusive fora da saúde [@macdonald2024searching, sec. 4.3.4, 4.3.5] | Termos e data |
+
+Petticrew e Roberts citam o GAO, braço de auditoria e avaliação do Congresso dos EUA, como fonte relevante de avaliações de programas [@petticrew2006systematic, p. 96]; o material didático aponta TCU e CGU como referências para o caso brasileiro [@schaefer2026aula3, p. 22].
+
+Para cada site, registre nome, URL, data, estratégia (termos e limites), caminho percorrido (navegação por menus, busca interna ou base dentro do site), filtros pré-definidos usados, observações e quem fez a busca [@macdonald2024searching, sec. 9.2]. Salve localmente os documentos relevantes, porque páginas somem [@lefebvre2025searching, sec. 4.5]. Buscas na web não são reprodutíveis como buscas em bases, mas precisam ser documentadas para que o leitor avalie sua confiabilidade [@lefebvre2025searching, sec. 4.5].
+
+## Busca por citações e outros métodos {#sec-04-citacoes}
+
+A declaração TARCiS padronizou a terminologia: busca por citação é o termo guarda-chuva; busca para trás examina as referências citadas; busca para frente examina os trabalhos que citam; as referências de partida são as sementes [@hirt2024tarcis, rec. 1]. Uma revisão de escopo com 47 estudos metodológicos encontrou valor agregado da busca por citação em quase todos que avaliaram seu benefício, mas uso raro de múltiplos índices, iterações ou software [@hirt2023citation].
+
+| Recomendação | Aplicação prática |
+|---|---|
+| Em temas difíceis de buscar, considerar seriamente busca para trás e para frente como técnicas suplementares [@hirt2024tarcis, rec. 2] | Avaliação de políticas costuma cair aqui: terminologia pouco padronizada e resumos sem estrutura [@macdonald2024searching, sec. 3.2] |
+| Usar como sementes todos os registros incluídos da busca primária [@hirt2024tarcis, rec. 4] | Rodar depois da elegibilidade em texto completo, não sobre uma seleção de "estudos importantes" |
+| Busca para trás triando títulos e resumos das referências [@hirt2024tarcis, rec. 5] | Exportar as referências com metadados, não só ler a bibliografia em PDF |
+| Considerar dois índices de citação combinados [@hirt2024tarcis, rec. 6] | Por exemplo, OpenAlex e WoS, ou OpenAlex e Google Scholar para quem cita |
+| Deduplicar antes da triagem [@hirt2024tarcis, rec. 7] | Deduplicar contra todo o corpus já triado, não só dentro da rodada |
+| Nova iteração se a rodada achar elegíveis [@hirt2024tarcis, rec. 8] | Novos incluídos viram sementes da rodada seguinte |
+| Não usar busca por citação isolada quando se busca completude [@hirt2024tarcis, rec. 9] | Bola de neve complementa, não substitui, as bases |
+
+Duas regras adicionais valem nesta base. Os registros da bola de neve são triados com a mesma versão dos critérios de elegibilidade usada na busca principal e entram no ramo "outros métodos" do diagrama PRISMA, que tem modelo próprio para buscas em bases, registros e outras fontes [@page2021prisma]. E revisões sistemáticas encontradas no caminho não entram como estudos primários: servem de semente e de fonte de âncoras (@sec-05-regras). Ferramentas como o citationchaser automatizam a busca para trás e para frente [@haddaway2022citationchaser]; no OpenAlex, os filtros `cites:` e `cited_by:` fazem o mesmo, com a ressalva de cobertura já mencionada. Trabalhos muito recentes demoram a ser citados, o que limita a busca para frente [@petticrew2006systematic, p. 98].
+
+Contato com autores e especialistas é outro método. Deve ser feito depois das buscas iniciais, com a lista do que já foi encontrado [@petticrew2006systematic, p. 104; @macdonald2024searching, sec. 4.3.4], e registrado conforme o item 6 do PRISMA-S [@rethlefsen2021prismas].
+
+## Construção iterativa, IA e bibliometria {#sec-04-iteracao}
+
+A escolha de termos requer conhecimento do campo, consulta a especialistas e a outras revisões, ou tentativa e erro, "(que deve ser reportada)" [@schaefer_oqfunciona, pp. 26-27]. Desenvolver uma estratégia é iterativo: os termos mudam com base no que já foi recuperado [@lefebvre2025searching, MECIR C33]. Hawker e colegas, citados por Petticrew e Roberts, refinaram a estratégia examinando como os estudos achados nas primeiras buscas tinham sido indexados [@petticrew2006systematic, p. 89]. O material didático sobre busca pede que todas as versões testadas sejam documentadas [@schaefer2026aula3, p. 19]. Na prática, cada versão da string recebe um identificador e uma linha no registro de desenvolvimento:
+
+| versão | base | data | mudança | motivo | n | âncoras de desenvolvimento recuperadas |
+|---|---|---|---|---|---|---|
+| v1 | Scopus | aaaa-mm-dd | versão inicial P AND I | protocolo | ... | ... de ... |
+| v2 | Scopus | aaaa-mm-dd | retirada a sigla X | registros de outra área na amostra examinada | ... | ... de ... |
+
+Esse registro alimenta a narrativa da busca que a Cochrane recomenda para explicar as decisões ao revisor por pares [@lefebvre2025searching, sec. 4.5].
+
+### IA para sugerir termos
+
+A Cochrane lista chatbots como ChatGPT e Claude entre as opções para sugerir estruturas de busca a partir de uma descrição detalhada da pergunta [@lefebvre2025searching, sec. 4.4.2]. O suplemento técnico, porém, registra problemas: modelos treinados até certa data, treinados em revisões com buscas de má qualidade, sugestões de termos controlados incorretos, respostas diferentes para o mesmo *prompt* em momentos distintos e referências fabricadas [@lefebvre2024technical, pp. 64-65]. O guia Campbell recomenda cautela [@macdonald2024searching, sec. 6.4.3]. No exemplo do REFIS, o bloco de mecanismos da string foi construído com auxílio de IA, e várias ferramentas foram comparadas para gerar e validar strings [@schaefer2026aula4, pp. 32-33].
+
+As regras desta base são: a IA pode sugerir sinônimos, traduções PT, EN e ES, siglas e estruturas; cada termo sugerido passa por verificação de sentido por alguém da área e por teste de contagem e de âncoras de desenvolvimento antes de entrar; a sintaxe gerada pela IA é reescrita e testada em cada base; a IA nunca é fonte de registros (listas de estudos geradas por chatbot não entram no corpus); e o log guarda modelo, data e *prompt*. A declaração de uso de IA e sua validação estão na @sec-11-regras.
+
+### Bibliometria como apoio
+
+Mineração de texto e ferramentas como o VOSviewer, que analisa coocorrência de termos e mostra relações entre temas, ajudam a identificar e agrupar conceitos em temas complexos [@lefebvre2024technical, pp. 61, 63]. O VOSviewer foi desenhado para mapas de palavras-chave por coocorrência e de autores ou periódicos por cocitação [@vaneck2010software, p. 524]; o bibliometrix permite análises semelhantes no R, como redes de coocorrência de palavras-chave [@aria2017bibliometrix; @schaefer_oqfunciona, p. 102]. O material didático sobre busca apresenta a bibliometria como análise do corpus (volume por ano, redes, impacto) [@schaefer2026aula3, p. 26], e a proposta OQF a usa de forma exploratória, para mapear coocorrência de palavras-chave [@schaefer_oqfunciona, p. 102].
+
+::: {.callout-warning}
+## Bibliometria não é filtro
+Mapas bibliométricos servem para achar termos e clusters que a string esqueceu, a partir de um conjunto piloto. Não servem para decidir inclusão: clusters, número de citações ou fator de impacto não são critérios de elegibilidade. Um mapa feito sobre os resultados de uma string também herda os pontos cegos dessa string. Filtros textuais sobre o corpus seguem a regra de etiquetar, e não excluir, descrita na @sec-05-regras.
+:::
+
+## Passo a passo {#sec-04-passos}
+
+1. **Partir do protocolo congelado.** Liste os conceitos a partir da pergunta e do framework (PICOC, CMMO; @sec-02-regras) e dos critérios de elegibilidade (@sec-03-regras). A busca deve ser motivada diretamente pelos critérios [@lefebvre2025searching, MECIR C19].
+2. **Procurar revisões existentes.** Campbell Library, Cochrane Library, Epistemonikos (saúde), 3ie, registros no OSF, além de buscas exploratórias; ferramentas de IA como a Consensus podem ajudar a localizá-las [@schaefer_oqfunciona, pp. 26-27]. Anote estratégias reaproveitadas (PRISMA-S item 11) e os estudos incluídos nelas.
+3. **Montar as âncoras antes da string.** Separe âncoras de desenvolvimento e de validação conforme a tabela da seção anterior. Registre para cada âncora: identificador, DOI ou título, de onde veio, e se está indexada em cada base prevista.
+4. **Montar a tabela de termos.** Uma linha por conceito, colunas PT, EN e ES, com sinônimos, variantes, siglas, nomes de programas e leis, e termos de desenho de estudo quando pertinentes. Para avaliações de políticas, a lista de termos de avaliação não experimental de Petticrew e Roberts (quase-experimento, experimento natural, séries temporais interrompidas, antes e depois controlado, avaliação de impacto, descontinuidade de regressão) é um bom ponto de partida [@petticrew2006systematic, p. 82].
+5. **Escolher os blocos.** Comece com P AND I. Teste o bloco O com as âncoras de desenvolvimento: se ele derruba âncoras, deixe-o fora ou crie um fio sem ele.
+6. **Rodar v1 na base principal e iterar.** Examine uma amostra dos resultados para localizar fontes de ruído (siglas, truncamentos amplos) e termos ausentes. Registre cada versão. Pare quando novos termos não trazem relevantes novos [@lefebvre2025searching, sec. 4.4.11].
+7. **Revisão por pares PRESS.** Com a estratégia da base principal pronta e antes de traduzi-la, peça a outra pessoa com experiência em busca que a revise pelos seis elementos do PRESS: tradução da pergunta; operadores booleanos e de proximidade; cabeçalhos de assunto; busca por palavras do texto; ortografia, sintaxe e números de linha; limites e filtros [@mcgowan2016press]. Registre quem revisou, quando e o que mudou.
+8. **Traduzir para cada base.** Mantenha a lógica e ajuste campo, frase, proximidade, truncamento e precedência (tabela de sintaxe). Confira limites de tamanho (cerca de 250 caracteres no Google Scholar, cerca de 4 KB de URL no OpenAlex), use aspas retas e, quando uma ferramenta intermediária reescreve a consulta (como o PoP), guarde a consulta efetivamente enviada.
+9. **Contar antes de exportar.** Rode cada estratégia, anote o número exibido e compare com as versões anteriores. Diferenças grandes sem mudança na string indicam erro de digitação ou mudança na interface.
+10. **Executar a busca final e exportar.** Copie e cole a string exatamente como rodou, sem redigitar [@lefebvre2025searching, sec. 4.5]. Anote base, plataforma, data, campos, limites, número de resultados e número exportado. Exporte todos os registros com resumo, guarde o arquivo bruto sem edição e calcule um *hash* do arquivo.
+11. **Validar.** Calcule $R_{\text{comb}}$ e $R_b$ com as âncoras de validação. Para cada âncora indexada e não recuperada, identifique o termo ou bloco responsável, corrija, registre a emenda e rode de novo as bases afetadas.
+12. **Buscar literatura cinzenta e sites.** Aplique termos simplificados, defina antes o número de resultados triados e registre cada site conforme a lista do guia Campbell [@macdonald2024searching, sec. 9.2].
+13. **Rodar a bola de neve depois do texto completo.** Sementes = todos os incluídos. Para trás e para frente, em dois índices se possível; deduplicar contra o corpus; triar com a mesma versão dos critérios; iterar enquanto surgirem incluídos [@hirt2024tarcis].
+14. **Calcular $p_{\text{om}}$.** Acima de 25% a 30%, diagnosticar: os estudos estavam indexados? Que termos eles usam? Emendar a string e rodar de novo, se for o caso.
+15. **Atualizar antes de publicar.** Se a última busca tiver mais de 12 meses na data prevista de publicação, rodar de novo todas as fontes e triar [@lefebvre2025searching, MECIR C37]. Alertas salvos nas plataformas ajudam a acompanhar o tema [@lefebvre2025searching, sec. 4.4.9].
+16. **Montar o material suplementar.** Estratégias completas por base, log PRISMA-S, lista de âncoras com resultado do teste, relatório PRESS, sementes e rodadas da bola de neve, registro dos sites.
+
+## O que as diretrizes exigem {#sec-04-diretrizes}
+
+### PRISMA-S
+
+O PRISMA-S tem 16 itens, organizados em fontes e métodos (1 a 7), estratégias de busca (8 a 13), revisão por pares (14) e gestão de registros (15 e 16), e o material suplementar deve permitir replicar a busca [@rethlefsen2021prismas]. A coluna da direita diz o que o log precisa guardar para que o item possa ser relatado.
+
+| Item | Exigência (paráfrase) | Campo do log |
+|---|---|---|
+| 1 | Nome de cada base e da plataforma | `fonte`, `plataforma` |
+| 2 | Se várias bases foram buscadas juntas numa plataforma, listar todas | `bases_na_plataforma` |
+| 3 | Registros de estudos buscados | `fonte` com tipo "registro" |
+| 4 | Sites e fontes on-line ou impressas navegadas, e como | `tipo_fonte = site`, `caminho` |
+| 5 | Se referências citadas ou citantes foram examinadas e com que método, citando as sementes | `metodo = citacao`, `sementes`, `indice` |
+| 6 | Contato com autores, especialistas ou outros | `metodo = contato` |
+| 7 | Outras fontes ou métodos | `metodo = outro` |
+| 8 | Estratégias completas de cada fonte, copiadas exatamente como rodadas | `string_exata`, `versao_string` |
+| 9 | Declarar ausência de limites ou descrever e justificar os limites | `limites`, `justificativa_limites` |
+| 10 | Filtros de busca publicados usados, citados | `filtro_publicado` |
+| 11 | Estratégias adaptadas de revisões anteriores, citadas | `origem_estrategia` |
+| 12 | Métodos de atualização; se a sintaxe mudou, relatar original e nova | `atualizacao` |
+| 13 | Data da última busca de cada estratégia | `data_execucao` |
+| 14 | Processo de revisão por pares da busca | `press_revisor`, `press_data` |
+| 15 | Total de registros por base e fonte | `n_resultados`, `n_exportado` |
+| 16 | Processo e software de deduplicação | registrado na etapa 5 (@sec-05-regras) |
+
+### PRISMA 2020, PRISMA-ScR, MECIR, MECCIR e PRESS
+
+| Diretriz | Item | Exigência pertinente |
+|---|---|---|
+| PRISMA 2020 | 6 | Todas as bases, registros, sites, organizações, listas de referências e outras fontes, com a data da última consulta de cada uma [@page2021prisma] |
+| PRISMA 2020 | 7 | Estratégias completas de todas as bases, registros e sites, com filtros e limites [@page2021prisma] |
+| PRISMA 2020 | 16a | Resultados da busca e seleção, do número de registros identificados aos estudos incluídos, idealmente em diagrama [@page2021prisma] |
+| PRISMA 2020 (resumo) | 4 | Fontes de informação e data da última busca de cada uma [@page2021prisma] |
+| PRISMA-ScR | 7 | Todas as fontes, com datas de cobertura e contatos, e a data da busca mais recente [@tricco2018prisma] |
+| PRISMA-ScR | 8 | Estratégia eletrônica completa de pelo menos uma base, com limites, de forma a poder ser repetida [@tricco2018prisma] |
+| MECIR (Cochrane) | C19, C35 | Planejar a busca; não restringir idioma e status de publicação; justificar datas e formatos [@lefebvre2025searching] |
+| MECIR | C25, C28, C29, C30 | Bases regionais e temáticas; literatura cinzenta; revisões anteriores; listas de referências (C30 obrigatório) [@lefebvre2025searching] |
+| MECIR | C32, C33 | Estrutura por conceitos, sem NOT; vocabulário controlado e termos livres com variantes, siglas, truncamento e proximidade [@lefebvre2025searching] |
+| MECIR | C36, C37, C38 | Documentar a busca; rodar de novo se passar de 12 meses; incorporar os estudos novos [@lefebvre2025searching] |
+| MECCIR (Campbell), item 3 | Estratégia de busca | Múltiplas bases, cinzenta, referências de revisões e incluídos; log com data, resultados, base, plataforma e estratégia exata; contato com especialistas [@macdonald2024searching, sec. 9.1.1] |
+| PRESS 2015 | Seis elementos | Revisão por pares antes de rodar e antes de traduzir [@mcgowan2016press] |
+| TARCiS | Rec. 1 a 10 | Terminologia, uso e relato da busca por citação [@hirt2024tarcis] |
+
+O PRISMA 2020 foi desenhado para intervenções em saúde, mas seus itens se aplicam a revisões de intervenções sociais e educacionais [@page2021prisma]. O guia Campbell recomenda fortemente o PRISMA-S, mais detalhado que o MECCIR para a busca [@macdonald2024searching, sec. 9.1.2].
+
+## Exemplo trabalhado {#sec-04-exemplo}
+
+### Caso 1: proibição de celulares nas escolas
+
+**O que foi feito.** O protocolo usou PICOC com população de estudantes, escolas e redes, intervenção de proibição ou restrição de celulares e contexto global [@schaefer2025proibicao, p. 100]. A busca foi feita em Web of Science, Google Scholar (via Publish or Perish 8.0), Scopus e SciELO, com acesso a WoS e Scopus pelo portal institucional [@schaefer2025proibicao, p. 101]. Foram recuperados 1.740 documentos: 400 do Google Scholar, 87 da SciELO, 798 da Scopus e 455 da WoS [@schaefer2025proibicao, p. 102; @schaefer_oqfunciona, p. 28]. O Anexo H da proposta mostra as strings: no Google Scholar, uma em português e outra em inglês, 200 resultados cada; na SciELO, `(("celular" OR "smartphone" OR "telefone") AND ("escola" OR "estudante"))`; na WoS e na Scopus, uma string em inglês com quatro blocos e restrições de área temática [@schaefer_oqfunciona, p. 101]. Depois da triagem restaram 19 trabalhos, e mais dois foram acrescentados por busca manual; na proposta, esses dois são descritos como duas revisões sistemáticas sobre o tema, e a validação da busca consistiu em verificar que "todos os trabalhos que encontramos estavam nas revisões" [@schaefer_oqfunciona, p. 29]. No artigo publicado, os dois acréscimos aparecem como bola de neve por citações [@schaefer2025proibicao, p. 102].
+
+**Onde está a fragilidade.** A lista abaixo é de aprimoramentos, não de invalidação; a maioria dos pontos é comum em revisões publicadas.
+
+| Ponto | O que se observa | Consequência | Fonte |
+|---|---|---|---|
+| Strings não equivalentes | SciELO só com dois blocos e só em português; WoS e Scopus só em inglês | Sensibilidade e precisão diferentes por base; estudos em português ficam fora das bases comerciais | @schaefer_oqfunciona [p. 101] |
+| Versões divergentes | No artigo, a WoS tem o bloco `(achievement OR learn OR development OR success)` e `student` sem truncamento; na proposta, `(achievement OR learn*)` | Não se sabe qual string rodou; item 8 do PRISMA-S não é atendido | @schaefer2025proibicao [p. 101]; @schaefer_oqfunciona [p. 101] |
+| Google Scholar | As exportações do PoP mostram a consulta enviada: parênteses removidos, OR convertido em barra vertical e AND em espaço (187 caracteres na versão em português), com `bani*`, `escola*` e `aprend*` passados literalmente | O Scholar não tem truncamento, então esses termos não funcionam como radicais; o texto relatado no quadro não é o texto enviado | @schaefer2026codigos; @boeker2013google |
+| Corte de 200 por consulta | As duas exportações têm exatamente 200 registros (posições 1 a 200); o Scholar devolve até 1.000 e o PoP permite fixar um máximo menor | Legítimo se pré-definido e relatado como número triado, não como total encontrado | @schaefer2026codigos; @harzing2007publish; @lefebvre2025searching [sec. 4.5] |
+| Termos genéricos | `phone`, `policy`, `rule`, `class*` (captura *classification*) e `ban*` (captura *bank*, *band*) | Precisão baixa: dos 1.740 registros, 19 trabalhos respondiam à pergunta; os primeiros resultados do Scholar em português são livros de educação sem relação com celulares; o volume foi reduzido com filtros de dicionário que excluem registros | @schaefer_oqfunciona [pp. 28-29, 101]; @schaefer2026codigos |
+| Datas de busca | Não informadas no artigo, embora as exportações do PoP registrem 19/03/2025; recorte temporal aparece como 2004-2024 no quadro, 2010-2024 na tabela da proposta e 2007 no filtro aplicado | Itens 13 do PRISMA-S e 6 do PRISMA 2020 não atendidos | @schaefer2025proibicao [pp. 101-102]; @schaefer_oqfunciona [pp. 11-12, 28]; @schaefer2026codigos |
+| Validação na direção errada | Conferiu-se se os estudos achados estavam nas revisões anteriores, e não se os estudos das revisões foram achados | Não mede recall; um conjunto pequeno e todo contido nas revisões é compatível com busca fraca | @schaefer_oqfunciona [p. 29]; @lefebvre2025searching [sec. 4.4.11] |
+| Revisões como estudos | Duas revisões entraram no banco de trabalhos analisados | Dupla contagem de evidência; deveriam ser sementes da bola de neve e fonte de âncoras | @schaefer_oqfunciona [p. 29] |
+
+**O que deveria ser feito.** (a) Duas revisões sobre o tema, a revisão de escopo de Campbell e colegas [@campbell2024evidence] e a revisão rápida de Böttger e Zierer [@bottger2024ban], seriam usadas antes da busca: seus estudos incluídos, conferidos contra os critérios, formariam as âncoras de validação, e as próprias revisões seriam sementes de busca por citação. (b) A pergunta é mista (efeito e percepção), então a estratégia teria dois fios: um com bloco de desfecho acadêmico e outro com termos de percepção e implementação no lugar desse bloco, para não perder estudos qualitativos que não medem desempenho. (c) Termos em PT, EN e ES em todas as bases, com proximidade para amarrar "política" e "regra" ao celular. (d) Log PRISMA-S com datas e strings exatas. Uma tradução ilustrativa para a WoS, a ser testada e revisada por pares antes de usar:
+
+```text
+# Ilustrativo, Web of Science Core Collection. Bloco C = celular perto de proibição
+# C:
+TS=(("mobile phone" OR "mobile phones" OR "cell phone" OR "cell phones" OR cellphone*
+     OR smartphone* OR "mobile device" OR "mobile devices" OR celular OR celulares
+     OR "teléfono móvil" OR "teléfonos móviles")
+    NEAR/5
+    (ban OR bans OR banned OR banning OR prohibit* OR restrict* OR "phone-free"
+     OR policy OR policies OR rule OR rules OR proibi* OR restri* OR prohibi* OR restric*))
+# E (ambiente escolar):
+TS=(school* OR pupil* OR student* OR classroom* OR escola* OR alun* OR estudante*
+    OR escuela* OR alumn*)
+# Fio A (efeito):     C AND E AND TS=(achievement OR "academic performance" OR "test scores"
+#                     OR grades OR desempenho OR aprendizagem OR rendimiento)
+# Fio B (percepção e implementação): C AND E AND TS=(perception* OR attitude* OR teacher*
+#                     OR implement* OR enforc* OR percep* OR implementa* OR docente* OR professor*)
+# Estratégia final: fio A OR fio B. Registrar também a contagem de C AND E sem terceiro
+# bloco: a diferença mostra quantos registros os blocos de desfecho deixam de fora.
+```
+
+Na Scopus, a mesma lógica usaria `TITLE-ABS-KEY` com aspas retas; no OpenAlex, sem curingas na busca padrão, as variantes precisariam ser escritas por extenso ou a busca passaria para `search.exact`; no Google Scholar, a string teria de ser dividida em consultas curtas, cada uma com seu número triado registrado.
+
+### Caso 2: programas de refinanciamento tributário (REFIS)
+
+**O que foi feito.** O protocolo previa descritores em português e inglês e as bases "Scholar, Scielo, Portal de Teses e Dissertações" [@schaefer2026aula3, p. 16]. A busca executada usou OpenAlex, SciELO pela plataforma WoS, WoS, Scopus, teses e dissertações e IPEA [@schaefer2026aula4, p. 21]. O material didático sobre filtragem mostra uma string simples com blocos I, O e C, um bloco de mecanismos construído com IA e duas versões da string do OpenAlex na mesma data (26/04/2026): a primeira com as siglas "PAES", "PAEX", "PERT" e "PRT", que na interface web retornou 86 trabalhos, e a segunda sem essas siglas [@schaefer2026aula4, pp. 31-37]. O quadro-resumo registra WoS 3, WoS SciELO 21, SciELO 0, "BDTD" 158 (com filtros de área e de ano 2000-2024), OpenAlex 4 e IPEA 4, total 190, com "Nenhum" como filtro nas demais linhas [@schaefer2026aula4, p. 39]. No fluxo PRISMA, 186 registros das bases entram na deduplicação, os 4 do IPEA ficam fora dela, e a bola de neve acrescenta 9 estudos a um corpus final de 21 [@schaefer2026aula4, p. 48].
+
+O código mostra como a linha "BDTD" foi produzida: o script baixa os dados abertos do Catálogo de Teses da CAPES com `capesR` para 2000 a 2024, filtra por expressão regular aplicada só ao título, com os termos unidos por `|` e sem fronteira de palavra (incluindo "tax avoidance", "tax planning" e "planejamento tributário"), remove duplicatas por título, filtra por área e grava o resultado como `bdtd.xlsx` [@schaefer2026codigos]. O script de junção lê os arquivos do OpenAlex, das teses, da SciELO e da WoS; não há arquivo do IPEA nem da bola de neve [@schaefer2026codigos].
+
+**Diagnóstico.**
+
+| Ponto | Consequência | Correção |
+|---|---|---|
+| Fonte rotulada como "BDTD" é o Catálogo da CAPES | Item 1 do PRISMA-S incorreto; leitor procuraria na base errada | Relatar "Catálogo de Teses e Dissertações da CAPES, dados abertos via `capesR`" |
+| Anos 2023 e 2024 pedidos a um pacote que documenta cobertura até 2022 [@medeiros2024capesr] | O filtro "2000 até 2024" pode prometer cobertura que não existe | Conferir os anos efetivamente baixados e registrar a cobertura real |
+| Regex só no título e sem fronteira de palavra | "refis" casa com "Refiscalizar"; estudos com o termo só no resumo ficam fora | Buscar em título e resumo, com fronteira de palavra e testes contra falsos acertos |
+| Termos "tax planning" e "planejamento tributário" na busca de teses, contra o critério que exclui planejamento tributário sem foco no REFIS [@schaefer2026aula4, p. 26] | Pode trazer registros fora do escopo e aumentar a carga de triagem | Manter apenas se as âncoras mostrarem necessidade, e aí registrar a justificativa |
+| String da WoS com o fragmento "regis (Topic)" | Indica string redigitada ou colada com erro | Copiar do histórico da base, exatamente como rodou |
+| Datas ausentes, exceto no OpenAlex; campos não informados | Busca não reprodutível | Log PRISMA-S completo |
+| Scopus listada entre as bases, sem linha no quadro | Não se sabe se foi buscada e com que resultado | Toda busca executada vira uma linha do log, mesmo com zero resultados |
+| Duas versões da string do OpenAlex, sem registro de qual gerou o arquivo; 86 na web contra 4 no quadro | Não se sabe o efeito da retirada das siglas | Registrar versão, contagem e motivo de cada mudança |
+| IPEA fora da deduplicação e bola de neve fora do pipeline | Ramo "outros métodos" do PRISMA sem lastro; duplicatas possíveis | Registros de sites e citações entram no mesmo esquema, com `metodo_identificacao` |
+| 9 dos 21 estudos finais (43%) vieram da bola de neve | Acima do alerta de 25% a 30% | Verificar se os 9 estão indexados nas bases e que termos usam; emendar a string |
+
+O último ponto é o mais informativo. Com WoS devolvendo 3 registros e OpenAlex 4, é plausível que as strings das bases estivessem restritivas demais (o bloco de contexto exigia "Brazil" ou "Brasil", e o de desfecho exigia termos de arrecadação, falência, emprego ou conformidade). Isso é hipótese, não achado: a verificação consiste em buscar cada um dos 9 estudos pelo título nas bases e ver qual bloco o excluiu.
+
+Um log mínimo para o REFIS, preenchido com o que o material didático e os scripts permitem saber, ficaria assim ("NR" = não relatado):
+
+| busca_id | fonte | plataforma/acesso | data | campos | versão | limites | n | arquivo |
+|---|---|---|---|---|---|---|---|---|
+| B01 | Web of Science Core Collection | Clarivate | NR | Topic | NR | NR | 3 | `wos.bib` |
+| B02 | SciELO Citation Index | Web of Science | NR | NR | NR | NR | 21 | `wos_scielo.txt` |
+| B03 | SciELO | NR | NR | NR | NR | NR | 0 | NR |
+| B04 | Catálogo de Teses e Dissertações CAPES | dados abertos, `capesR` | NR | título (regex) | NR | área; anos 2000-2024 | 158 | `bdtd.xlsx` |
+| B05 | OpenAlex | NR | 2026-04-26 | NR | NR (duas versões na mesma data) | NR | 4 | `openalex.csv` |
+| B06 | Scopus | NR | NR | NR | NR | NR | NR | NR |
+| O01 | Repositório do IPEA | site | NR | NR | "refis" | NR | 4 | NR |
+| O02 | Busca por citação | NR | NR | NR | sementes NR | NR | 9 incluídos | NR |
+
+Fontes da tabela: @schaefer2026aula4 [pp. 21, 35-39, 48]; @schaefer2026codigos.
+
+## Erros comuns e como evitá-los {#sec-04-erros}
+
+| Erro | Exemplo | Como evitar |
+|---|---|---|
+| Uma base, um idioma, um termo | Revisão sobre desenho de políticas só na WoS, só artigos, só inglês, string única "policy design*" [@aguiar2023mapeando, pp. 4-5] | Pelo menos duas bases mais uma regional e teses; termos PT, EN, ES; justificar qualquer limite |
+| Bases comerciais anglófonas para tema lusófono | Nenhuma das 49 revisões lusófonas estava na WoS [@lycariao2025comunidade, p. 5] | SciELO, teses, repositórios brasileiros como componentes obrigatórios |
+| Strings não equivalentes entre bases | SciELO com dois blocos e WoS com quatro no caso dos celulares | Tabela de tradução por base; PRESS antes de traduzir |
+| Muitos blocos | Bloco de desfecho ou de país derrubando estudos que não citam o conceito no resumo | Testar cada bloco com âncoras; fio sem o bloco |
+| NOT e filtros de área da base | Exclusão silenciosa de registros relevantes | Não usar NOT; filtros só justificados e registrados |
+| Truncamento curto ou onde não existe | `ban*`, `class*`, `cerv*` [@whitehead2013searching, p. 60]; truncamento no Google Scholar | Variantes por extenso; conferir amostra de resultados |
+| Siglas ambíguas | Siglas de programas que coincidem com outros termos técnicos | Amarrar a sigla ao tema por proximidade ou AND; testar |
+| Aspas curvas e sintaxe reescrita pela ferramenta | Aspa de fechamento curva em `"Brazil*”` [@schaefer2026aula3, p. 20]; PoP convertendo a string para a sintaxe do Scholar | Editor de texto simples; aspas retas; conferir a consulta efetivamente enviada e o limite de tamanho de cada interface |
+| String redigitada | Fragmento "regis (Topic)" no quadro do REFIS | Copiar do histórico da base; salvar captura de tela quando não houver histórico |
+| Bloco da tabela ausente da string | Tabela de termos com bloco de comparação que não aparece na string final [@schaefer2026aula3, p. 20] | Gerar a string a partir da tabela, por script ou revisão cruzada |
+| Portal no lugar da base | "Portal de Periódicos CAPES" relatado como sistema de busca [@lycariao2025comunidade, p. 6] | Relatar base e plataforma efetivas |
+| Validação circular ou invertida | Âncoras usadas para escolher termos; conferir se os achados estão nas revisões | Âncoras de validação separadas; recall relativo |
+| Outros métodos fora do ledger | Registros do IPEA fora da deduplicação; bola de neve sem arquivo | Todo registro entra com `busca_id` e método de identificação |
+| Revisão incluída como estudo | Duas revisões no banco de trabalhos dos celulares | Revisões viram sementes e fonte de âncoras |
+| Busca envelhecida | Publicação mais de 12 meses depois da última busca | Rodar de novo antes de publicar [@lefebvre2025searching, MECIR C37] |
+| String gerada por IA aceita sem teste | Sintaxe ou termo controlado incorreto; referências inventadas [@lefebvre2024technical, pp. 64-65] | Verificação humana, contagem e âncoras para cada termo; IA nunca como fonte de registros |
+| Bibliometria como critério | Excluir por cluster, citações ou fator de impacto | Uso apenas exploratório; decisão de elegibilidade segue os critérios |
+
+## Na skill `revisao-sistematica` {#sec-04-skill}
+
+A skill está em construção; esta seção descreve o contrato planejado para a etapa 4 do fluxo, que termina no portão G3 (strings por base, PRESS, âncoras independentes, log PRISMA-S).
+
+- **Estado e pastas.** `rs.py status` roda sempre primeiro. O projeto criado por `rs.py init` tem `01-busca/brutos/` (exportações sem edição) e `01-busca/strings/` (versões das strings). O `rs_estado.json` guarda uma lista `buscas` com `id`, `fonte`, `string_id`, `executada_em`, `n_bruto`, `filtros_na_base`, `arquivo` e `sha256`; cada busca gera um evento `busca_registrada` no `rs_log.jsonl`, e cada versão de string ou do conjunto de âncoras gera `artefato_versionado`. Claude não edita esses arquivos à mão; só `rs.py` escreve neles.
+- **Templates e checklists.** `assets/templates/log_buscas.csv` (colunas do log PRISMA-S desta seção), `assets/checklists/prisma_s` e `assets/checklists/press`, e `assets/dicionarios/metodo_pt_en_es.csv` como ponto de partida para termos de desenho de estudo. As instruções operacionais ficam em `references/02-busca.md`.
+- **Scripts.** O módulo `rslib/busca_openalex` executa buscas no OpenAlex (contagem, coleta, reconstrução do resumo) e registra a busca; `rslib/bola_de_neve` faz a busca para trás por `referenced_works` e para frente por `cites:`, marca os registros com método de identificação "citação", deduplica contra o corpus e repete rodadas até não haver novas inclusões. As exportações manuais das demais bases (WoS em texto, TSV, BibTeX ou planilha; Scopus CSV; SciELO; Publish or Perish; CAPES e BDTD; Zotero) são lidas pelos importadores da etapa 5 (@sec-05-regras), que preservam `busca_id` e `metodo_identificacao` em `registros.csv`.
+- **Portão G3.** No modo checkpoints, a skill para e pede aprovação humana com: strings por base, relatório PRESS, resultado do teste de âncoras de validação e log PRISMA-S completo. No modo autopiloto, G3 vira pendência registrada e os produtos saem marcados como rascunho não validado.
+- **Alertas.** Busca com mais de 12 meses; proporção de incluídos por outros métodos acima de 25% a 30% (calculada depois da etapa 7, na qual a bola de neve é re-triada com a mesma versão dos critérios, portão G5).
+- **Pedido parcial "só a busca/strings".** A skill trabalha só com as referências de pergunta, protocolo e busca, sem abrir projeto nem dados.
+- **Contagens.** O PRISMA gerado por `rs.py prisma` calcula os registros identificados por base e por outros métodos a partir das tabelas de registros, nunca de números digitados.
+
+## Como relatar {#sec-04-relato}
+
+O texto mínimo da seção de métodos precisa dizer: fontes consultadas, com base e plataforma, e a data da última busca de cada uma; estrutura da estratégia (conceitos, idiomas, campos) e onde estão as strings completas; limites aplicados e sua justificativa, ou a declaração de que não houve limites; como os termos foram desenvolvidos (revisões anteriores, especialistas, IA com validação); revisão por pares da estratégia; teste com estudos-âncora e resultado; literatura cinzenta e sites, com critério de quantos resultados triar; busca por citação (sementes, direção, índices, rodadas); contato com autores; atualização. O material suplementar traz as strings exatamente como rodadas, o log e a lista de âncoras.
+
+Exemplo de redação, para uma revisão sobre proibição de celulares nas escolas refeita com as regras deste capítulo (valores entre colchetes a preencher):
+
+> Buscamos na Web of Science Core Collection (Clarivate), na Scopus (Elsevier), no SciELO Citation Index (plataforma Web of Science), no OpenAlex (API) e no Catálogo de Teses e Dissertações da CAPES (dados abertos), com última busca em [data] em todas as bases. A estratégia combinou termos para celular e para proibição ou restrição, em português, inglês e espanhol, com um bloco de ambiente escolar; um segundo fio, com termos de percepção e implementação no lugar do bloco de desempenho, capturou estudos qualitativos. Não aplicamos limites de idioma, data ou tipo de documento. Os termos foram derivados do protocolo e de duas revisões anteriores [refs.]; sugestões de sinônimos geradas por [modelo, data] foram verificadas e testadas antes de entrar na estratégia. A estratégia da Scopus foi revisada por [pessoa com experiência em busca] com o checklist PRESS 2015 antes de ser traduzida para as demais bases. Um conjunto de [k] estudos-âncora de validação, extraído dos estudos incluídos nas revisões anteriores e não usado na escolha de termos, foi recuperado integralmente pela busca combinada ([k]/[k]; recall relativo por base no Apêndice [X]). Consultamos os repositórios do IPEA e da CGU e o 3ie Development Evidence Portal, triando os [N] primeiros resultados de cada consulta. Fizemos busca por citação para trás e para frente a partir de todos os estudos incluídos, no OpenAlex e no Google Scholar, em [r] rodadas, até que nenhuma rodada rendesse novos estudos elegíveis. As estratégias completas, como executadas, e o registro de todas as buscas estão no Apêndice [Y], seguindo o PRISMA-S.
+
+## Leituras {#sec-04-leituras}
+
+**Normas e guias**
+
+- @rethlefsen2021prismas: checklist de 16 itens para relatar buscas; base do log desta etapa.
+- @page2021prisma: itens 6, 7 e 16a do PRISMA 2020 e modelos de diagrama com "outros métodos".
+- @tricco2018prisma: itens 7 e 8 para revisões de escopo.
+- @mcgowan2016press: os seis elementos da revisão por pares de estratégias e o momento de fazê-la.
+- @lefebvre2025searching: capítulo 4 do Cochrane Handbook, com as expectativas MECIR sobre fontes, estrutura, limites, parada, documentação e atualização.
+- @lefebvre2024technical: suplemento técnico com índices de citação, Google Scholar, OpenAlex, mineração de texto e IA.
+- @macdonald2024searching: guia Campbell, a transposição das regras Cochrane para ciências sociais, com artigos-semente e documentação de sites.
+- @hirt2024tarcis: dez recomendações para busca por citação.
+
+**Evidência metodológica sobre fontes**
+
+- @bramer2017optimal: quanto cada combinação de bases recupera; referência para o parâmetro de 95% de recall.
+- @gusenbauer2020which: comparação de 28 sistemas de busca e por que o Google Scholar não serve como fonte principal.
+- @haddaway2015google e @boeker2013google: limites do Google Scholar para busca sistemática e para literatura cinzenta.
+- @hirt2023citation: evidência sobre o valor agregado da busca por citação.
+- @szomszor2022overton e @rada2020epistemonikos: o que há em Overton e Epistemonikos.
+
+**Leituras de apoio**
+
+- @petticrew2006systematic (cap. 4): busca em ciências sociais, termos para avaliações não experimentais, literatura cinzenta, parada e registro.
+- @whitehead2013searching: introdução operacional a palavras-chave, truncamento, filtros e relato.
+- @lycariao2025comunidade: evidência sobre a invisibilidade da produção lusófona nas bases mais usadas.
+- @aguiar2023mapeando: exemplo de estratégia com uma base e um termo, útil para discutir limitações.
+- @schaefer_oqfunciona e @schaefer2025proibicao: estratégia de busca do método OQF e sua aplicação ao caso dos celulares.
+- @schaefer2026aula3 e @schaefer2026aula4: blocos, bases por área, cinzenta, IA e o caso REFIS.
+- @vaneck2010software, @aria2017bibliometrix e @arruda2022vosviewer: ferramentas de bibliometria para apoio exploratório.

@@ -1,0 +1,395 @@
+---
+title: "Qualidade dos estudos e risco de viés"
+---
+
+Depois da elegibilidade em texto completo, cada estudo incluído é lido com outra pergunta: não mais "este estudo responde à minha pergunta?", e sim "quanto posso confiar neste resultado?". Vieses de desenho e de execução costumam inflar efeitos, e uma revisão que soma estudos sem considerar isso herda o viés deles [@petticrew2006systematic, p. 126, 154]. A etapa exige decisões tomadas no protocolo: quais desenhos são elegíveis; qual ferramenta de *risk of bias* (risco de viés) cabe a cada desenho e a cada bloco da tipologia a1/a2/b1/b2; qual resultado é avaliado; quem avalia e com que papel para a IA; e como o julgamento entra na síntese e na certeza. O capítulo separa o que a literatura aplicada costuma fundir: o nível do desenho numa hierarquia, o risco de viés de um resultado e a qualidade do relato.
+
+## Decisões e regras {#sec-06-regras}
+
+### Perguntas diferentes, instrumentos diferentes
+
+| Pergunta | Instrumento | Responde | Não responde |
+|---|---|---|---|
+| O desenho pode, em tese, responder à pergunta? | Hierarquia de evidência; Maryland Scientific Methods Scale (SMS); lista de desenhos elegíveis | Adequação do tipo de estudo; critério de elegibilidade e descritor | Se aquele resultado está enviesado |
+| O resultado está sujeito a erro sistemático? | RoB 2, ROBINS-I, EPOC, ROBINS-E; CASP, JBI e MMAT | Julgamento por domínio, com justificativa e fonte | Imprecisão e generalização |
+| O relato permite julgar? | Respostas "sem informação" ou "não é possível dizer" das ferramentas | Lacunas que pedem contato com autores | Se o estudo foi bem conduzido |
+| Quanto confiar no conjunto de estudos de um desfecho? | GRADE e CERQual (@sec-09-regras) | Certeza por desfecho ou achado | Nada sobre um estudo isolado |
+
+Viés é erro sistemático, distinto da imprecisão e da validade externa [@boutron2024considering, sec. 7.1.1]. Um estudo bem conduzido pode ser mal relatado [@petticrew2006systematic, p. 127], e hierarquia de desenhos serve para julgar a adequação do tipo de estudo, não substitui a apreciação crítica [@petticrew2006systematic, p. 129-130].
+
+::: {.callout-important title="Regras invioláveis"}
+1. **Desenho não é risco de viés.** Hierarquia e SMS entram como critério de elegibilidade e descritor; o risco de viés é julgado por domínio, com a ferramenta do desenho (@sec-especificacao-regras, item 8).
+2. **Julga-se o resultado, não o estudo.** Um resultado ajustado e outro não ajustado do mesmo estudo podem ter riscos diferentes [@boutron2024considering, sec. 7.1.2; @sterne2025robinsi, p. 7].
+3. **Nada de escore somado.** Escalas diferentes aplicadas aos mesmos ensaios deram conclusões opostas [@petticrew2006systematic, p. 129; @boutron2024considering, sec. 7.1.2]; MMAT e AMSTAR 2 desaconselham escore global [@hong2018mmatguide, p. 1; @shea2017amstar].
+4. **Duas pessoas independentes**, com regra de desacordo definida antes (MECIR C53, obrigatório) [@boutron2024considering, sec. 7.3.2].
+5. **Todo julgamento tem justificativa e fonte** (citação com página, resumo do relato ou correspondência; MECIR C54 e C55) [@boutron2024considering, sec. 7.3.2].
+6. **O uso do julgamento é pré-especificado** [@boutron2024considering, sec. 7.6.2]; excluir por qualidade só vale se a regra estiver nos critérios de inclusão [@waddington2017quasi, p. 19, nota 22].
+7. **Ausência de informação não é prova de viés nem de sua ausência.** Não presuma o que os autores fizeram; busque outros relatos e contate autores [@casp2024qualitative, p. 1; @hong2018mmatguide, p. 1; @epoc2017suggested, p. 2].
+8. **A IA só rascunha** respostas às perguntas-sinalizadoras (*signalling questions*), com trecho e página; os julgamentos são humanos (@sec-especificacao-ia; @sec-11-regras).
+:::
+
+### Qual ferramenta para qual desenho
+
+| Desenho do resultado | Ferramenta | Julgamentos | Fonte |
+|---|---|---|---|
+| Ensaio randomizado individual | RoB 2 (5 domínios) | Baixo; algumas preocupações; alto | @higgins2024assessing; @sterne2019rob2 |
+| Ensaio randomizado por cluster (escolas, turmas, municípios) | RoB 2 para cluster | Idem | @higgins2024including, sec. 23.1.2 |
+| Seguimento não randomizado (coorte; painel de indivíduos ou firmas com ajuste ou pareamento) | ROBINS-I V2 (6 domínios) + perguntas de Waddington et al. para estratégias quase-experimentais | Baixo (no confundimento, "exceto por confundimento não controlado"); moderado; grave; crítico | @sterne2025robinsi, p. 3-4; @waddington2017quasi, p. 18 |
+| Antes-depois controlado (CBA, inclusive DiD com dados agregados) e série temporal interrompida (ITS) | Critérios EPOC (9 para CBA; 7 para ITS) ou variantes da versão 1 do ROBINS-I, escolhidas no protocolo | Baixo; alto; incerto (EPOC) | @epoc2017suggested; @sterne2024assessing, sec. 25.5-25.6 |
+| Efeito de exposição não deliberada, em coorte | ROBINS-E (7 domínios) | Baixo; algumas preocupações; alto; muito alto | @higgins2024robinse |
+| Qualitativo (a1, b1) | CASP qualitativo ou checklist JBI de pesquisa qualitativa (10 itens cada) | Sim; não; não é possível dizer ou incerto | @casp2024qualitative; @jbi2024qualitative |
+| Descritivo de prevalência ou cobertura (a2) | JBI para estudos de prevalência (9 itens) | Sim; não; incerto; não se aplica | @munn2015methodological |
+| Transversal que estima associação (a2) | JBI revisado para transversais analíticos (8 perguntas) | Idem, por estudo, desfecho ou resultado | @barker2026revised |
+| Estudo primário misto | MMAT 2018, categoria 5 e categorias dos componentes | Sim; não; não é possível dizer | @hong2018mmatguide, p. 2, 7 |
+| Revisão sistemática (só em revisão de revisões) | AMSTAR 2 ou ROBIS | Confiança alta a criticamente baixa; risco de viés da revisão | @shea2017amstar; @whiting2016robis |
+
+A especificação desta base indica ROBINS-I V2 com Waddington et al. para quase-experimentos e EPOC para ITS e CBA (@sec-especificacao-regras, item 8). A fronteira precisa de regra: a V2 descreve só estudos de seguimento [@sterne2025robinsi, p. 1, 3], e o Handbook classifica a análise de diferença em diferenças (*difference-in-differences*, DiD) como análise de CBA [@sterne2024assessing, sec. 25.6]. Assim, DiD com unidades agregadas (municípios, escolas) vai para o bloco CBA; painel de indivíduos com diferenciação na unidade de análise pode ir para a V2. Declare a regra e aplique-a a todos os estudos do mesmo desenho.
+
+### Tipologia a1/a2/b1/b2 e ferramenta de cada bloco
+
+O material didático classifica os estudos em qualitativo ou quantitativo e em interpretação/descrição ou teste/explicação, e aceita os quatro blocos no funil [@schaefer2026aula4, p. 43, 50; @schaefer2026aula5, p. 26-30]. As regras de fronteira estão na @sec-07-regras.
+
+| Bloco | Ferramenta | Descritores que acompanham |
+|---|---|---|
+| b2, quantitativo explicativo | RoB 2; ROBINS-I V2 + Waddington; EPOC para CBA/DiD agregado e ITS; ROBINS-E para exposição | Par SMS (método, implementação); hierarquia 0-6 da OQF |
+| b1, qualitativo explicativo (QCA, comparação de casos, rastreamento de processos) | CASP ou JBI qualitativo | `selecao_casos`, `mecanismo_identificado`, `limitacoes` [@schaefer2026codigos]; nível de Daly et al. [@daly2007hierarchy] |
+| a1, qualitativo interpretativo | CASP ou JBI qualitativo | Nível de Daly et al. |
+| a2, quantitativo descritivo | JBI prevalência ou JBI transversal analítico | `amostragem`, `fonte_dados` [@schaefer2026codigos] |
+| Estudo primário misto | MMAT categoria 5 e categorias dos componentes | Blocos dos componentes |
+| Revisão ou meta-análise encontrada | Fora da síntese de estudos primários (@sec-especificacao-regras, item 3) | Não se aplica |
+
+O MMAT foi desenhado para revisões que misturam estudos qualitativos, quantitativos e mistos [@hong2018mmatguide, p. 1]; se o protocolo o adotar para todos os estudos, as categorias 1 e 4 substituem CASP/JBI em a1/b1 e a2. Um estudo pode ter resultados em mais de um bloco (um DiD com survey de percepção anexo); cada resultado vai para a ferramenta do seu desenho.
+
+### Como o julgamento entra na síntese
+
+| Estratégia | Quando | Fonte |
+|---|---|---|
+| Análise primária restrita a resultados de baixo risco, com sensibilidade incluindo os demais | Há resultados de baixo risco suficientes e a perda de precisão é aceitável | @boutron2024considering, sec. 7.6.2 |
+| Análises estratificadas por risco geral | O risco varia entre estudos; ausência de diferença entre estratos não prova ausência de viés, porque o poder é baixo | @boutron2024considering, sec. 7.6.2; limiares de k na @sec-08a-regras |
+| Todos os estudos, com discussão narrativa | Só se todos têm o mesmo risco; nos demais casos o risco some do resumo e das conclusões | @boutron2024considering, sec. 7.6.2 |
+| Excluir resultados de risco crítico (ROBINS-I) | Pré-especificado; a ferramenta diz que eles "should generally be excluded from evidence syntheses" | @sterne2025robinsi, p. 4 |
+| Ponderar por escore de qualidade ou ajustar por viés | Não: pesos sem base empírica; ajuste bayesiano com pressupostos fortes | @petticrew2006systematic, p. 132; @waddington2017quasi, p. 19; @boutron2024considering, sec. 7.6.2 |
+| Domínio de risco de viés do GRADE | Sempre, por desfecho; com ROBINS-I, corpos não randomizados partem de certeza alta e em geral caem ao menos dois níveis | @schunemann2019grade; @sec-09-regras |
+
+Duas leituras mostram usos pré-especificados. Thomas et al. dividiram as avaliações em alta qualidade, qualidade média (lacunas de relato) e "não sólidas": as médias entraram na meta-análise marcadas para sensibilidade e as não sólidas ficaram fora [@thomas2003children, p. 21, 49]. García e Saavedra codificaram a qualidade em dupla independente pelos padrões do What Works Clearinghouse, mostraram que as estimativas não mudavam sem os estudos de menor qualidade e testaram a qualidade como covariável [@garcia2017educational, p. 929, 934, 939, 948].
+
+### Parâmetros que o protocolo fixa
+
+| Parâmetro | Regra | Fonte |
+|---|---|---|
+| Desenhos elegíveis | Lista de desenhos ou nível SMS mínimo; o What Works Growth usa SMS 3 | @madaleno2015guide, p. 18; @whatworksgrowth2015sms |
+| Ferramenta e versão | Nome, versão e data; a ROBINS-I V2 de 20/11/2025 ainda é rascunho sujeito a mudança | @riskofbias2025robinsiv2 |
+| Resultados avaliados | Os da tabela de síntese e da caixa de ferramentas; nunca escolhidos pelo julgamento provável | @higgins2024assessing, sec. 8.2.1 |
+| Efeito de interesse | Atribuição (intenção de tratar) para decisões de política; a variante cluster do RoB 2 só trata esse efeito | @higgins2024assessing, sec. 8.2.2; @higgins2024including, sec. 23.1.2 |
+| Confundidores importantes | Lista única no nível da pergunta, derivada do DAG (@sec-02-regras) | @sterne2025robinsi, p. 6 |
+| Dados faltantes | Não há limiar sensato de "pouco": julga-se o mecanismo. Se a equipe fixar um valor (a literatura usa de 80% a 95% de dados completos), aplique a todos | @higgins2024assessing, sec. 8.5.2; @hong2018mmatguide, p. 4 |
+| Calibração | Piloto com três a seis artigos; desacordo por discussão e, sem consenso, terceiro avaliador | @boutron2024considering, sec. 7.3.2 |
+| Informação ausente como exclusão | Só se constar dos critérios; caso contrário, entra no julgamento | @waddington2017quasi, p. 19, nota 22 |
+
+## Hierarquias de evidência e a escala de Maryland {#sec-06-hierarquias}
+
+### Hierarquias e suas críticas
+
+A hierarquia reproduzida por Petticrew e Roberts ordena sete desenhos por validade interna: revisões sistemáticas e meta-análises; ensaios randomizados com resultados definitivos; ensaios com resultados não definitivos; coortes; caso-controle; inquéritos transversais; relatos de caso [@petticrew2006systematic, p. 58]. O material didático sobre extração de dados a apresenta ao lado dos níveis I a V de Bagshaw e Bellomo, do ensaio bem conduzido e com poder adequado à série de casos sem controles [@schaefer2026aula5, p. 20], no mesmo quadro de Nutley, Powell e Davies [@nutley2013counts, p. 10]. A proposta OQF traduz a ideia em três faixas (topo: revisões e RCT; meio: quase-experimentos, coorte e caso-controle; base: pré-pós, estudos de caso e opinião) [@schaefer_oqfunciona, p. 17] e numa variável de 0 a 6: 0 estudos de caso e opiniões, 1 pré e pós-teste, 2 "estudos de caso controlados", 3 coorte, 4 quase-experimentos, 5 RCT, 6 revisões sistemáticas, sem aplicação a pesquisas qualitativas [@schaefer_oqfunciona, p. 89].
+
+Quatro limites orientam o uso.
+
+1. **Vale para perguntas de efetividade.** Esse propósito original "is often forgotten" [@petticrew2006systematic, p. 58]; para processo, aceitabilidade ou implementação, pensa-se em tipologias que cruzam pergunta e desenho [@petticrew2006systematic, p. 59-60], base da matriz do slide 21 do material sobre extração de dados [@schaefer2026aula5, p. 21; @nutley2013counts, p. 15-16].
+2. **Ordena desenhos, não estudos.** Um ensaio pequeno ou com perdas sem seguimento não deve ficar acima de estudos bem conduzidos com desenho menos forte [@petticrew2006systematic, p. 60]. Hierarquias por desenho subestimam bons observacionais, desperdiçam evidência quando usadas como filtro, ignoram a teoria do programa e não bastam para recomendar uma política [@nutley2013counts, p. 11-13].
+3. **Revisões não são degrau acima do RCT dentro de uma revisão.** O lugar delas varia entre hierarquias [@nutley2013counts, p. 10]; neste método, vão para a bola de neve e a validação da busca, ou para AMSTAR 2 e ROBIS numa revisão de revisões (@sec-especificacao-regras, item 3).
+4. **A rubrica 0-6 precisa de regras de codificação.** "Estudos de caso controlados" pode ser lido como estudo de caso ou como caso-controle, o termo das hierarquias de origem [@petticrew2006systematic, p. 58]; e o nível 4 junta DiD, regressão descontínua, variáveis instrumentais e pareamento, desenhos com pressupostos distintos [@waddington2017quasi, p. 5-10].
+
+Para quase-experimentos, a ordenação útil é a de Waddington et al., pela capacidade teórica de lidar com confundimento não observado: randomizados; desenhos "como se randomizados" (experimentos naturais, regressão descontínua e ITS, variáveis instrumentais); diferenciação (DiD, efeitos fixos), que remove só não observáveis invariantes no tempo na unidade de análise; e diferença simples e pareamento por escore, que dependem de seleção em observáveis. Os autores esperam que muitos quase-experimentos caiam abaixo dessa categoria a priori porque os pressupostos não se sustentam na execução [@waddington2017quasi, p. 5-8]. Para pesquisa qualitativa, Daly et al. propõem quatro níveis de evidência para a prática: caso único, descritivo, conceitual e generalizável [@daly2007hierarchy]. O GRADE responde às críticas começando pelo desenho e ajustando por limitações, inconsistência, indireção, imprecisão e viés de relato [@nutley2013counts, p. 11-12]; ver @sec-09-regras.
+
+::: {.callout-note title="Material didático e normas"}
+O material didático apresenta hierarquias, a matriz pergunta × desenho e quatro ferramentas (RoB 2, ROBINS-I, CASP e MMAT) [@schaefer2026aula4, p. 49; @schaefer2026aula5, p. 19-21], com a SMS e Thomas et al. entre as leituras indicadas para filtragem e controle de qualidade [@schaefer2026ementa, p. 6]. Não diz qual ferramenta cabe a cada bloco, quem aplica, que limiar usar nem como o resultado entra na análise, e a proposta OQF trata a hierarquia como medida da validade interna [@schaefer_oqfunciona, p. 20]. A variável continua útil como descritor, não como medida de risco de viés.
+:::
+
+### A Maryland Scientific Methods Scale
+
+A SMS classifica avaliações de políticas de 1 a 5 pela capacidade do método, e da sua implementação, de lidar com o viés de seleção para o tratamento [@madaleno2015guide, p. 1]. O guia do What Works Centre for Local Economic Growth ajusta a escala de Sherman et al., tornando-a um pouco mais rígida para separar os níveis 3, 4 e 5, base das suas revisões [@madaleno2015guide, p. 4-5]. Em paráfrase:
+
+| Nível | Desenho típico | Exigência central |
+|---|---|---|
+| 1 | Comparação transversal tratados × não tratados, ou antes-depois só dos tratados | Sem variáveis de controle |
+| 2 | Os mesmos desenhos | Controles ou pareamento adequados |
+| 3 | Antes-depois com grupo de comparação (ex.: DiD) | Comparador justificado e comparabilidade demonstrada; diferenças não observadas provavelmente persistem |
+| 4 | Quase-aleatoriedade explorada (instrumento, descontinuidade) | Adequação do instrumento ou da descontinuidade demonstrada |
+| 5 | Randomização explícita | Balanço entre grupos, controles sem mudar muito o resultado, atrito seletivo desprezível, pouca ou nenhuma contaminação |
+
+Fonte: paráfrase de @madaleno2015guide [p. 5].
+
+Cada estudo recebe um par (método, implementação): o método fixa o teto e a implementação pode rebaixar. Pontuação rápida resumida (páginas de @madaleno2015guide):
+
+| Método | Teto | Condições para manter o teto | Rebaixamento | p. |
+|---|---|---|---|---|
+| Ensaio randomizado | 5 | Randomização bem-sucedida (testes de balanço); atrito tratado; sem contaminação | 4 se um critério for gravemente violado; 3 se dois ou mais | 7, 30 |
+| Variável instrumental | 4 | Instrumento relevante, exógeno e excluível | Inválido: nota do método subjacente (transversal 2; DiD 3) | 11, 30 |
+| Regressão descontínua | 4 | Descontinuidade nítida (ou método *fuzzy*); só o tratamento muda no corte; sem manipulação | Condições violadas: método subjacente | 13-14, 30 |
+| Hazard misto (MPH) | 4 | Sem antecipação; variação no momento do tratamento | 3 se um falha; 2 se ambos | 31, 34 |
+| Heckman ou função de controle | 4 com instrumento válido; 3 com DiD ou painel; 2 transversal | Equação de seleção com instrumento válido ou observáveis relevantes | Método subjacente ou um nível abaixo | 31, 37 |
+| Diferença em diferenças | 3 | Tendência comum crível; período de tratamento conhecido | 2 se um falha | 19, 30 |
+| Painel com efeitos fixos | 3 | Efeito fixo na unidade de observação; efeitos de ano; controles variantes no tempo | 2 se algum falha | 21, 30 |
+| Primeiras diferenças; Arellano-Bond | 3 | Efeitos de ano; controles variantes no tempo | 2 se algum falha | 21, 30, 39 |
+| Pareamento com DiD ou painel | 3 | Variáveis de pareamento relevantes; suporte comum; critérios do DiD ou painel | 2 | 24, 31 |
+| Pareamento transversal | 2 | Variáveis relevantes para a seleção; suporte comum amplo | 1 | 24, 31 |
+| Regressão transversal; antes-depois | 2 | Controles adequados | 1 | 26, 31 |
+| Efeitos declarados pelos participantes; modelagem de impacto | Não pontuável | Sem contrafactual observado | Não se aplica | 28-29, 32 |
+
+Três observações. "Efeitos fixos" num corte transversal são só controles, e o teto continua 2 [@madaleno2015guide, p. 23]. Pontuar envolve julgamento [@madaleno2015guide, p. 1], logo a nota precisa de justificativa escrita. E, fora dos ensaios, a escala não examina dados faltantes, medida do desfecho nem relato seletivo; nas revisões Campbell de prevenção do crime ela foi usada junto com taxa de resposta, atrito e validade da medida [@petticrew2006systematic, p. 135].
+
+**Uso neste método.** (i) Critério de elegibilidade para perguntas de efeito: "We define SMS 3 methods to be the minimum standard for our reviews" [@madaleno2015guide, p. 18], e o centro pré-seleciona toda avaliação que possa atingir 3 ou mais [@whatworksgrowth2015sms]; na revisão brasileira sobre homicídios, Kopittke e Ramos exigiram "pelo menos o nível 3 da Escala Maryland" e excluíram por esse motivo 75 das 195 avaliações analisadas [@kopittke2021funciona, p. 419, 423]. (ii) Descritor na extração, em duas colunas (`sms_metodo`, `sms_implementacao`) com justificativa. (iii) Nunca substituto de RoB 2, ROBINS-I ou EPOC.
+
+::: {.callout-warning title="Duas versões da escala e inconsistências do guia"}
+Na versão original, usada por Kopittke e Ramos, o nível 2 inclui antes-depois com grupo não equivalente e o nível 4 é o nível 3 com número "bastante elevado" de unidades [@kopittke2021funciona, p. 421]; na ajustada, o nível 4 exige quase-aleatoriedade [@madaleno2015guide, p. 5]. Declare a versão. O guia de 2016 tem inconsistências: antes-depois com controles inadequados vale "2, 2" no texto [@madaleno2015guide, p. 27] e "2, 1" no apêndice [@madaleno2015guide, p. 31]; o texto sobre painel anuncia "two main criteria" e lista três [@madaleno2015guide, p. 21]; a tabela de RDD repete o exemplo do instrumento inválido [@madaleno2015guide, p. 13]. Fixe a regra no codebook (aqui: antes-depois sem controles adequados = 1).
+:::
+
+## Ferramentas de risco de viés por desenho {#sec-06-ferramentas}
+
+### RoB 2 para ensaios randomizados
+
+O RoB 2 avalia um resultado de um ensaio em cinco domínios obrigatórios: processo de randomização; desvios das intervenções pretendidas; dados de desfecho faltantes; medida do desfecho; seleção do resultado relatado [@higgins2024assessing, sec. 8.2.3; @sterne2019rob2]. As perguntas-sinalizadoras admitem sim, provavelmente sim, provavelmente não, não e sem informação; "sim" e "provavelmente sim" têm a mesma implicação, e "sem informação" só se usa quando não seria razoável responder "provavelmente" [@higgins2024assessing, sec. 8.2.3]. O algoritmo propõe o julgamento de cada domínio, que pode ser alterado com justificativa, lendo "risco" como risco de viés material; a direção do viés é opcional e não deve ser chutada [@higgins2024assessing, sec. 8.2.3]. O julgamento geral é baixo se todos os domínios forem baixos; algumas preocupações se houver ao menos uma e nenhum alto; alto se houver um domínio alto ou preocupações em vários domínios que reduzam substancialmente a confiança [@higgins2024assessing, sec. 8.2.4].
+
+A revisão escolhe antes o efeito de interesse (atribuição ou adesão), porque isso muda o domínio de desvios [@higgins2024assessing, sec. 8.2.2]. Em dados faltantes, a tradição de chamar menos de 5% de "pouco" e mais de 20% de "muito" não substitui o exame do mecanismo e da diferença entre grupos [@higgins2024assessing, sec. 8.5.2-8.5.3].
+
+Em políticas públicas a randomização costuma ser por cluster. A variante acrescenta um domínio sobre o momento de identificação e recrutamento: se os indivíduos entram depois da alocação dos clusters, o conhecimento da alocação pode afetar quem entra, e desequilíbrios entre participantes (não entre clusters) sinalizam o problema; com poucos clusters, desequilíbrios ao acaso são comuns e não indicam viés [@higgins2024including, sec. 23.1.2]. O erro de unidade de análise estreita intervalos de confiança e é tratado na extração e na síntese [@higgins2024including, sec. 23.1.3] (ver @sec-07-regras).
+
+Ferramentas clínicas aplicadas ao pé da letra punem avaliações sociais pela falta de duplo-cego, muitas vezes impossível [@petticrew2006systematic, p. 128-129]. A pergunta útil é se quem mediu o desfecho sabia a alocação: cegar avaliadores e analistas costuma ser viável, embora raro [@waddington2017quasi, p. 16].
+
+### ROBINS-I V2 para estudos não randomizados de intervenções
+
+A versão 2, publicada em 20 de novembro de 2025 como rascunho [@riskofbias2025robinsiv2], avalia um resultado de um estudo de seguimento não randomizado [@sterne2025robinsi, p. 3] em quatro momentos.
+
+1. **Planejamento.** Lista única de confundidores importantes no nível da pergunta, com conhecimento substantivo [@sterne2025robinsi, p. 6].
+2. **Considerações preliminares.** Para cada resultado: o número avaliado (com tabela ou parágrafo), se vale prosseguir, o *target trial* (ensaio hipotético que o estudo emula), se a análise estima efeito de intenção de tratar ou por protocolo e as fontes consultadas; tudo combinado entre avaliadores antes do trabalho individual [@sterne2025robinsi, p. 3, 7-13]. A triagem leva direto a risco crítico quando não houve controle de confundimento e o potencial de confundimento basta para descartar o resultado, ou quando a medida do desfecho é inadequada [@sterne2025robinsi, p. 9].
+3. **Seis domínios:** confundimento; classificação das intervenções; seleção de participantes (para o estudo ou a análise); dados faltantes; medida do desfecho; seleção do resultado relatado. O domínio de desvios das intervenções saiu e é tratado no confundimento quando o efeito é por protocolo [@sterne2025robinsi, p. 3]. No confundimento, pergunta-se também se houve ajuste por variáveis afetadas pela intervenção (mediadores, colisores) e se controles negativos sugerem confundimento residual [@sterne2025robinsi, p. 19].
+4. **Julgamento geral**, pelo algoritmo abaixo, que pode ser sobreposto com justificativa [@sterne2025robinsi, p. 4].
+
+As perguntas-sinalizadoras da V2 têm as respostas "sim", "provavelmente sim", "provavelmente não", "não" e "sem informação" (Y, PY, PN, N, NI), e algumas ganham uma versão fraca e uma forte do sim ou do não para separar risco maior de menor [@sterne2025robinsi, p. 3]. No confundimento, por exemplo, a pergunta sobre o controle dos confundidores importantes aceita WN (não, mas o descontrole provavelmente não é substancial) e SN (não, e provavelmente é) [@sterne2025robinsi, p. 17]; em outras perguntas aparecem SY e WY [@sterne2025robinsi, p. 26]. Os códigos fraco e forte levam a julgamentos diferentes no algoritmo e não se traduzem para o vocabulário do RoB 2.
+
+| Julgamento | Regra do algoritmo |
+|---|---|
+| Baixo, exceto por confundimento não controlado | Esse julgamento no domínio 1 e baixo nos demais |
+| Moderado | Ao menos um moderado e nenhum grave ou crítico |
+| Grave | Ao menos um grave e nenhum crítico, ou vários moderados que somam grave |
+| Crítico (resultado em geral fora da síntese) | Ao menos um crítico, ou vários graves que somam crítico |
+
+Fonte: @sterne2025robinsi [p. 4, 49].
+
+A ferramenta não trata modificação de efeito [@sterne2025robinsi, p. 6], assunto da @sec-08a-regras. A versão 1, descrita no capítulo 25 do Handbook, tinha sete domínios em outra ordem [@sterne2024assessing, sec. 25.3.4]: não misture formulários ou gráficos das duas.
+
+### Quase-experimentos: DiD, RDD, IV, pareamento e controle sintético
+
+Waddington et al. mostraram que as ferramentas para não randomizados disponíveis até 2014, incluindo a precursora do ROBINS-I, cobriam mal os quase-experimentos: as perguntas de confundimento tratavam de ajuste por observáveis e não verificavam a exogeneidade da variável de identificação nem a especificação estatística [@waddington2017quasi, p. 11-13]. A V2 segue sem perguntas próprias para esses desenhos [@sterne2025robinsi, p. 17-19]. Regra deste método: usar a estrutura de domínios da ferramenta escolhida, registrar no domínio de confundimento (e no de resultado relatado) as perguntas abaixo e sobrepor o algoritmo com justificativa quando preciso [@sterne2025robinsi, p. 4].
+
+| Desenho | Pressupostos | Perguntas-sinalizadoras sugeridas | Rebaixamento na SMS |
+|---|---|---|---|
+| DiD e efeitos fixos | Diferenciação remove só confundimento invariante no tempo na unidade de análise; tendências iguais; suporte comum | Em que unidade ocorre a diferenciação? Há balanço na linha de base? Ajuste para covariáveis variantes no tempo? Atrito diferencial? Tendências prévias paralelas? | Tendência comum não crível ou data desconhecida: 3 → 2 |
+| Regressão descontínua (*regression discontinuity design*, RDD) e ITS pela data | Variável de corte contínua ou ordinal com valores suficientes; não usada para outra intervenção; não antecipável nem manipulável | Pelo menos quatro valores únicos de cada lado do corte? Teste de manipulação? Covariáveis contínuas no corte? Banda e forma funcional justificadas? | Condições violadas: método subjacente |
+| Variáveis instrumentais (*instrumental variables*, IV) e experimento natural | Relação monotônica e forte com o tratamento; exclusão; sem causas comuns com o desfecho; sem transbordamento (SUTVA) | Primeiro estágio forte? Instrumentos significativos? Teste de sobreidentificação? Exclusão defendida substantivamente? | Instrumento inválido: método subjacente |
+| Pareamento por escore (*propensity score matching*, PSM) | Seleção só em observáveis; suporte comum | As variáveis explicam a seleção? Quantas observações ficaram fora do suporte? Houve diferenciação? | Transversal: teto 2; com DiD ou painel: 3 |
+
+Fontes: @waddington2017quasi [p. 7, 10, 18, nota 21]; @madaleno2015guide [p. 10-14, 18-19, 23-24]. Para RDD, os padrões do What Works Clearinghouse acrescentam teste formal de densidade da variável de corte, atrito baixo e continuidade das covariáveis; nesses padrões, quase-experimentos chegam no máximo a "atende com ressalvas" [@garcia2017educational, p. 932].
+
+Em avaliações retrospectivas com muitas especificações possíveis, o domínio de resultado relatado pesa mais, e um plano de análise prévio ajuda a julgar [@waddington2017quasi, p. 16-17]. A regra de modelo principal da extração (@sec-07-regras) deve ser a mesma que escolhe o resultado avaliado.
+
+::: {.callout-warning title="Controle sintético e event study"}
+O codebook OQF de exemplo, no bloco b2, prevê `synthetic_control` e `event_study` [@schaefer2026codigos], mas nenhuma fonte lida traz perguntas-sinalizadoras próprias para esses desenhos. Até haver extensão verificada, declare no protocolo as perguntas usadas, avalie pela estrutura de domínios com julgamento justificado e registre a limitação no relato.
+:::
+
+### EPOC para antes-depois controlado e séries temporais interrompidas
+
+O grupo Cochrane EPOC propõe nove critérios para estudos com grupo de controle separado: geração da sequência, ocultação da alocação, desfechos e características semelhantes na linha de base, dados incompletos, conhecimento da alocação, contaminação, relato seletivo e outros riscos; não randomizados e CBA recebem "alto risco" na geração da sequência, e CBA também na ocultação [@epoc2017suggested, p. 1-3]. Para ITS, sete: intervenção independente de outras mudanças, forma do efeito pré-especificada, intervenção sem efeito sobre a coleta, conhecimento da alocação, dados incompletos, relato seletivo e outros riscos, como sazonalidade. ITS que ignora a tendência e compara pré e pós com teste t simples não entra, salvo reanálise [@epoc2017suggested, p. 3-4]. Seguimento completo não se presume sem declaração explícita [@epoc2017suggested, p. 2].
+
+As variantes da versão 1 do ROBINS-I para antes-depois cobrem ameaças equivalentes: pontos pré-intervenção suficientes para caracterizar tendências, eventos simultâneos, ponto de interrupção escolhido para maximizar o efeito, antecipação da política antes da data formal, mudança na forma de registrar o desfecho e, nos CBA, regressão à média [@sterne2024assessing, sec. 25.5-25.6]. Antes-depois com uma medida em cada período costuma ficar em risco grave ou crítico [@sterne2024assessing, sec. 25.5].
+
+### ROBINS-E para exposições
+
+Quando o "X" é uma exposição, e não uma intervenção deliberada (por exemplo, violência no território), o ROBINS-E avalia coortes em sete domínios: confundimento, medida da exposição, seleção de participantes, intervenções pós-exposição, dados faltantes, medida do desfecho e seleção do resultado relatado [@higgins2024robinse, sec. 5]. Os julgamentos vão de baixo a muito alto; o geral, por padrão, é o do pior domínio, com direção do viés e ameaça às conclusões [@higgins2024robinse, sec. 3, 6].
+
+### Estudos qualitativos (a1 e b1): CASP e JBI
+
+Não há consenso sobre a melhor ferramenta qualitativa; checklists não garantem rigor, mas tornam transparente a verificação do básico [@petticrew2006systematic, p. 150-153]. O **CASP qualitativo (2024)** tem dez perguntas em três seções (os resultados são válidos? quais são? ajudam localmente?), respostas sim, não e não é possível dizer, e resumo em pontos positivos, negativos e desconhecidos; muitas respostas "não é possível dizer" pedem cautela [@casp2024qualitative, p. 1-5]. O **checklist JBI (2024)** tem dez itens: congruência entre posição teórica, metodologia, pergunta, coleta, análise e interpretação; localização do pesquisador; influência do pesquisador; vozes dos participantes; ética; conclusões derivadas dos dados. Seu campo "incluir / excluir / buscar mais informação" só se usa se a exclusão estiver no protocolo [@jbi2024qualitative].
+
+Para b1, as variáveis de qualidade do codebook de exemplo complementam a ferramenta [@schaefer2026codigos]. Nenhuma fonte lida traz ferramenta própria para QCA ou rastreamento de processos; a checagem da calibração em QCA está na @sec-08b-regras.
+
+### Estudos quantitativos descritivos (a2): JBI
+
+Estudos a2 descrevem beneficiários, cobertura ou implementação sem estimar efeito causal [@schaefer2026aula5, p. 29]. Para prevalências, o checklist JBI tem nove itens: quadro amostral, amostragem, tamanho da amostra, descrição de sujeitos e contexto, cobertura da análise, validade da identificação da condição, padronização da medida, análise estatística e taxa de resposta [@munn2015methodological]. Para associações num corte transversal, a ferramenta JBI revisada tem oito perguntas (critérios de inclusão, medida da condição, da exposição e do desfecho, identificação de confundidores e estratégias para eles, análise estatística, descrição de sujeitos e contexto), agrupadas em validade interna com o domínio de viés de cada pergunta, validade de conclusão estatística e completude do relato [@barker2026revised].
+
+Survey em que os participantes atribuem efeitos ao programa não mede efeito: a SMS o considera não pontuável [@madaleno2015guide, p. 28], e o benefício declarado pode refletir lealdade a quem presta o serviço [@petticrew2006systematic, p. 59]. Trate como percepção.
+
+### Métodos mistos primários: MMAT 2018
+
+O MMAT tem duas perguntas de triagem e cinco categorias com cinco critérios cada: qualitativo, ensaio randomizado, não randomizado, quantitativo descritivo e métodos mistos [@hong2018mmatguide, p. 1-2; @hong2018mmat]. Um estudo misto é avaliado pela categoria 5 (justificativa do desenho, integração, interpretação da integração, tratamento das divergências) e, pelo critério 5.5, cada componente pela categoria do seu desenho; a qualidade geral não passa a do componente mais fraco [@hong2018mmatguide, p. 2, 7]. O guia recomenda dois revisores independentes, desaconselha escore global e afirma que "Excluding studies with low methodological quality is usually discouraged" [@hong2018mmatguide, p. 1]. Numa revisão OQF, o MMAT fica com estudos primários mistos (@sec-especificacao-regras, item 8).
+
+### Revisões sistemáticas: AMSTAR 2 e ROBIS
+
+Só se aplicam quando a unidade de análise é a revisão. O AMSTAR 2 tem 16 itens, sete críticos (registro prévio do protocolo, busca, justificativa das exclusões, risco de viés dos estudos, métodos meta-analíticos, risco de viés na interpretação, viés de publicação), e classifica a confiança em alta (nenhuma ou uma fraqueza não crítica), moderada (mais de uma não crítica), baixa (uma falha crítica) ou criticamente baixa (mais de uma), num esquema que os autores chamam de consultivo [@shea2017amstar, box 1-2]. O ROBIS tem três fases (relevância, opcional; preocupações em quatro domínios: elegibilidade, identificação e seleção, coleta e apreciação, síntese; julgamento do risco) [@whiting2016robis].
+
+## Quem avalia e o papel da IA {#sec-06-quem}
+
+Avaliam pelo menos duas pessoas independentes, com conhecimento do conteúdo ou do método; treinamento padronizado melhora a confiabilidade [@boutron2024considering, sec. 7.3.2]. Em quase-experimentos o julgamento depende mais de conhecimento estatístico e substantivo, o que torna a dupla avaliação ainda mais necessária [@waddington2017quasi, p. 17]. No ROBINS-I, as considerações preliminares são combinadas antes do trabalho individual [@sterne2025robinsi, p. 3].
+
+Sobre concordância, o Handbook não recomenda kappa para descrever essas avaliações e prioriza explorar cada desacordo [@boutron2024considering, sec. 7.3.2]; quem medir concordância nas perguntas do RoB 2 deve juntar "sim" com "provavelmente sim" e "não" com "provavelmente não" [@higgins2024assessing, sec. 8.2.3]. Waddington et al. pedem avaliação da confiabilidade entre avaliadores [@waddington2017quasi, p. 17]. Este método registra os julgamentos originais de cada avaliador e os desacordos por domínio, com o modo de resolução, sem limiar de kappa como critério de aceitação para risco de viés. A concordância por domínio (proporção, κ e PABAK) pode ser calculada para descrever a confiabilidade e apontar domínios a discutir, mas não substitui o consenso nem o exame de cada desacordo.
+
+A especificação desta base permite que um modelo de linguagem rascunhe respostas às perguntas-sinalizadoras com trecho literal e página; os julgamentos são humanos (@sec-especificacao-ia). A regra segue três fatos: o Handbook exige a fonte de cada julgamento (MECIR C55) e relata concordância apenas leve a moderada entre ferramentas de aprendizado de máquina e revisores humanos no julgamento [@boutron2024considering, sec. 7.3.2]; e o PRISMA 2020 pede detalhes das ferramentas de automação nessa etapa [@page2021prisma, item 11]. Validação e declaração de uso estão na @sec-11-regras.
+
+::: {.callout-warning title="O que a IA não faz nesta etapa"}
+Não atribui julgamento de domínio nem geral; não responde "sim" sem trecho; não avalia pelo resumo; não substitui um dos avaliadores humanos. Rascunho com trecho ausente do PDF é rejeitado pelo gate de citação e refeito por outro subagente (@sec-especificacao-contrato).
+:::
+
+## Estudos brasileiros, teses e relatórios {#sec-06-brasil}
+
+Na revisão brasileira sobre homicídios, 11 dos 41 estudos incluídos eram dissertações ou teses e 3 eram relatórios [@kopittke2021funciona, p. 424]. Na planilha de decomposição do caso REFIS (`base_decomposição.xlsx`, aba `Final`, 20 registros), há 11 dissertações, uma tese, uma nota técnica e uma monografia [@schaefer2026codigos]. Daí cinco regras.
+
+1. **Tipo de publicação não define risco de viés.** A ferramenta segue o desenho do resultado; Kopittke e Ramos aplicaram o mesmo critério a estudos publicados e não publicados, em qualquer língua [@kopittke2021funciona, p. 419].
+2. **Avalie o estudo com todos os seus relatos.** O ROBINS-I V2 pede o máximo de informação e lista tese não publicada entre as fontes [@sterne2025robinsi, p. 13]; tese e artigo do mesmo estudo são ligados no texto completo (@sec-05-regras).
+3. **Falta de relato não é falha de método.** Contatar autores evita confundir relato inadequado com estudo ruim [@petticrew2006systematic, p. 127]; o Handbook sugere perguntas abertas aos autores, como indagar que processo usaram para atribuir cada participante à intervenção [@boutron2024considering, sec. 7.3.1].
+4. **Registre vínculo institucional.** Relação institucional com a intervenção avaliada é indício de conflito de interesse não financeiro [@boutron2024considering, sec. 7.8.5], cujo registro é altamente desejável (MECIR C59) [@boutron2024considering, sec. 7.8.6]. Nota técnica de órgão que gere o programa entra com esse registro, sem rebaixamento automático.
+5. **Desconfie de avaliação sem contrafactual.** Muitas avaliações patrocinadas por governos não usam estratégias críveis para estimar impacto [@madaleno2015guide, p. 3]; relatórios baseados em efeitos declarados ou modelagem de impacto não são pontuáveis na SMS [@madaleno2015guide, p. 28-29].
+
+## Visualização {#sec-06-visualizacao}
+
+O PRISMA 2020 pede o risco de viés de cada estudo e dos estudos de cada síntese [@page2021prisma, itens 18 e 20a]. O Handbook recomenda *forest plots* com os julgamentos ao lado de cada estudo, tabelas completas disponíveis e, em gráficos de barras, regiões proporcionais ao peso na meta-análise, não ao número de estudos [@boutron2024considering, sec. 7.4].
+
+O pacote R `robvis` produz o gráfico semáforo (*traffic light plot*) com `rob_traffic_light()` e o resumo em barras com `rob_summary()`, a partir de uma tabela com estudo, domínios, julgamento geral e peso [@mcguinness2021robvis]. Cuidados verificados em teste local (setembro de 2026, versão 0.3.1 do CRAN): `rob_tools()` lista ROB2, ROBINS-I, QUADAS-2, ROB1 e ROBINS-I Online, e o modelo genérico falha (a versão de desenvolvimento 0.3.0.900 acrescenta ROB2-Cluster, só no semáforo, ROBINS-E, QUIPS e Generic); o modelo ROBINS-I rotula os domínios na ordem da versão 1 (D2 seleção, D3 classificação), enquanto a V2 inverte a ordem e tem seis domínios [@sterne2025robinsi, p. 3]; e `rob_summary()` pondera por padrão e falha sem a coluna de pesos. Para CASP, JBI e MMAT, use tabela.
+
+```r
+# Ilustrativo (não executado no livro)
+library(robvis)
+rob_tools()                                  # modelos da versão instalada
+rob2 <- read.csv("04-qualidade/rob2_resultados.csv")
+rob_traffic_light(data = rob2, tool = "ROB2")
+rob_summary(data = rob2, tool = "ROB2", weighted = TRUE)
+```
+
+## Passo a passo {#sec-06-passos}
+
+1. **Protocolo** (@sec-03-regras): desenhos elegíveis e nível SMS mínimo, se usado; ferramenta e versão por desenho e bloco, com a regra de fronteira entre V2, EPOC e variantes antes-depois; efeito de interesse; confundidores e cointervenções derivados do DAG (@sec-02-regras); regra de desacordo; uso na síntese; papel da IA.
+2. **Formulários** a partir das ferramentas oficiais: uma linha por resultado, com pergunta, resposta, trecho, página, fonte, julgamento, justificativa e direção.
+3. **Piloto** com três a seis estudos de desenhos diferentes, em dupla; ajuste o guia de decisão e versione o formulário.
+4. **Classificação** de cada estudo: bloco (@sec-07-regras), desenho pelo fluxo de Waddington et al. [@waddington2017quasi, p. 8] e par SMS justificado.
+5. **Resultados a avaliar**: os da tabela de síntese e da caixa de ferramentas, pelo modelo principal e desfecho, com tabela e linha anotadas.
+6. **Relatos**: reúna artigo, tese, relatório, apêndice e plano de análise; anote lacunas para contato com autores.
+7. **Rascunho por IA (opcional)** com trecho e página; o gate confere cada trecho no PDF.
+8. **Avaliação independente** por A e B: respostas, julgamentos por domínio (algoritmo como proposta) e julgamento geral.
+9. **Consenso**, com terceiro avaliador se previsto; registre julgamentos originais e finais, desacordos por domínio e quem resolveu cada um; aplique o algoritmo da ferramenta ao consenso e justifique toda sobreposição.
+10. **Exclusões pré-especificadas** (risco crítico no ROBINS-I; ITS com teste t sem reanálise), com motivo no ledger (@sec-05-regras).
+11. **Tabelas e gráficos**, com asserção de que as contagens somam o número de resultados avaliados.
+12. **Síntese e certeza**: análises primária, estratificada e de sensibilidade (@sec-08a-regras, @sec-08b-regras) e domínio de risco de viés no GRADE (@sec-09-regras).
+13. **Relato** conforme a @sec-06-relato, com os formulários publicados [@page2021prisma, item 27].
+
+## O que as diretrizes exigem {#sec-06-diretrizes}
+
+| Diretriz e item | Exigência |
+|---|---|
+| PRISMA 2020, item 11 | Ferramentas, avaliadores por estudo, independência e ferramentas de automação |
+| PRISMA 2020, itens 13e e 13f | Métodos para explorar heterogeneidade e análises de sensibilidade |
+| PRISMA 2020, itens 15 e 22 | Métodos e resultados da avaliação de certeza (@sec-09-regras) |
+| PRISMA 2020, item 18 | Risco de viés de cada estudo incluído |
+| PRISMA 2020, itens 20a e 20d | Risco de viés dos estudos de cada síntese; resultados das análises de sensibilidade |
+| PRISMA 2020, itens 23b e 24c | Limitações da evidência; emendas ao protocolo, inclusive troca de ferramenta ou versão |
+| PRISMA 2020, item 27 | Formulários e dados extraídos disponíveis |
+| PRISMA-ScR, itens 12 e 16 | Apreciação crítica opcional em revisões de escopo; se feita, justificar, descrever método e uso e apresentar os dados |
+| MECIR C52 a C55 (obrigatórios) | Avaliar os resultados da tabela-resumo; dupla independente com regra prévia de desacordo; justificar; registrar a fonte |
+| MECIR C56, C57, C59 (altamente desejáveis) | Resumir por desfecho-chave; tratar o risco na síntese (estratificar ou restringir); tratar conflitos de interesse |
+| AMSTAR 2, itens 9 e 13 (críticos) | Quem avaliar a sua revisão vai checar se o risco de viés foi avaliado adequadamente e considerado na interpretação |
+
+Fontes: @page2021prisma; @tricco2018prisma [itens 12 e 16]; @boutron2024considering [sec. 7.1.2, 7.3.2, 7.5, 7.6.1, 7.8.6]; @shea2017amstar [box 1]. O uso de IA segue também PRISMA-trAIce e RAISE (@sec-11-regras).
+
+## Exemplo trabalhado {#sec-06-exemplo}
+
+### Proibição de celulares nas escolas
+
+**O que foi feito.** A revisão selecionou trabalhos com "características mínimas de qualidade": estudos empíricos revisados por pares, com foco na relação entre proibição e desempenho e com "descrição metodológica mínima" [@schaefer2025proibicao, p. 102]. Codificou desenho, estratégia de identificação e validade interna [@schaefer2025proibicao, p. 103], medida na proposta OQF pela hierarquia 0-6 [@schaefer_oqfunciona, p. 20, 89]. Entre os oito estudos quantitativos causais, a identificação foi descrita como experimental em três, "seleção em observáveis em quatro casos (diferença em diferenças)" e meta-análise em um; sete apontaram efeito positivo e o g combinado foi 0,22 [@schaefer2025proibicao, p. 104]. As limitações atribuem parte da variabilidade a diferenças de desenho e de forma de avaliação, inclusive testes aplicados pelos professores, sem avaliação de risco de viés por estudo [@schaefer2025proibicao, p. 109].
+
+**O que deveria ser feito.**
+
+1. *Protocolo.* Declarar elegíveis resultados b2 com grupo de comparação (equivalente a SMS ≥ 3); fixar RoB 2 (variante cluster para turmas ou escolas), EPOC para DiD com escolas ou redes agregadas e ROBINS-I V2 para painéis de alunos; listar confundidores da adoção a partir do DAG (nível socioeconômico, desempenho prévio, mudanças simultâneas); efeito de interesse: atribuição da política.
+2. *Retirar a meta-análise da síntese* e mandar seus estudos para a bola de neve (@sec-especificacao-regras, item 3). Como a revisão compara seu g com o de outra meta-análise [@schaefer2025proibicao, p. 105], essa revisão pode ser apreciada antes com AMSTAR 2 ou ROBIS.
+3. *Corrigir a classificação.* DiD não é seleção em observáveis: remove confundimento invariante no tempo e depende de tendências paralelas [@waddington2017quasi, p. 7, 10], o que muda as perguntas de confundimento.
+4. *Avaliar por resultado.* Num estudo com prova externa e teste do professor, o domínio de medida pergunta se quem mediu sabia qual turma estava sob proibição [@higgins2024assessing, sec. 8.2.3; @waddington2017quasi, p. 16]; os dois resultados podem receber julgamentos diferentes.
+5. *Usar o julgamento.* Estratificar randomizados e não randomizados, repetir sem resultados de risco alto, grave ou crítico e levar o risco ao GRADE; a limitação passa a citar o risco de viés.
+
+Formulário ilustrativo (estudo **hipotético**):
+
+| Campo | Registro |
+|---|---|
+| Resultado | Nota padronizada de matemática; DiD entre escolas de uma rede com e sem proibição; tabela principal, coluna 2 |
+| Bloco, desenho, ferramenta | b2; DiD agregado por escola, logo CBA; EPOC + perguntas de Waddington; SMS (3, 3) se tendência comum crível e data conhecida |
+| Linha de base | Há gráfico de tendências prévias e ajuste para covariáveis variantes? Trecho e página; proposta da IA revista por A e B |
+| Outras mudanças | A rede mudou o currículo no mesmo ano? Registrar a busca em documentos da secretaria |
+| Dados incompletos | Quantas escolas ficaram sem nota no pós, e isso difere entre grupos? |
+| Relato seletivo | Há plano de análise? O número do resumo é o da tabela principal? |
+| Julgamento e fontes | Julgamentos de A, B e consenso; artigo e dissertação do mesmo estudo; e-mail aos autores sobre atrito |
+
+### REFIS
+
+**O que foi feito.** O funil chegou a 21 trabalhos e aceitou os quatro blocos [@schaefer2026aula4, p. 43, 48]. O bloco b2 do codebook de exemplo marca como "Qualidade" `controle_id`, `n_controles`, `controle_temporal`, `controle_espacial` e `teste_falsificacao` [@schaefer2026codigos]; a planilha do caso não tem variável de risco de viés.
+
+**O que deveria ser feito.** As dummies misturam desenho e execução e não cobrem dados faltantes, medida do desfecho nem relato seletivo, mas viram perguntas-sinalizadoras: `controle_temporal` corresponde aos efeitos de ano exigidos para painéis na SMS [@madaleno2015guide, p. 21]; `teste_falsificacao` informa as tendências prévias em DiD [@waddington2017quasi, p. 18] e funciona como controle negativo no confundimento do ROBINS-I V2 [@sterne2025robinsi, p. 19]. O confundimento é o problema central: o ingresso no Refis "dar-se-á por opção da pessoa jurídica" [@brasil2000lei9964, art. 2º], e a autosseleção pode enviesar o efeito para cima ou para baixo, conforme adiram as firmas mais organizadas ou as mais endividadas [@madaleno2015guide, p. 3-4]. Consequências:
+
+- Comparação de aderentes e não aderentes num único ano, com controles, tem teto SMS 2 [@madaleno2015guide, p. 26] e fica fora de uma pergunta que exija SMS ≥ 3.
+- Séries de arrecadação antes e depois de cada programa são ITS: antecipação da política (contribuintes mudando o comportamento antes da data formal) e outras mudanças tributárias no período entram nos domínios da variante antes-depois [@sterne2024assessing, sec. 25.5] ou nos critérios EPOC [@epoc2017suggested, p. 3].
+- Nota técnica governamental e dissertação com o mesmo desenho recebem o mesmo tratamento, com registro de vínculo institucional (@sec-06-brasil).
+
+## Erros comuns e como evitá-los {#sec-06-erros}
+
+| Erro | Por que é problema | Como evitar |
+|---|---|---|
+| Hierarquia 0-6 como medida de validade interna [@schaefer_oqfunciona, p. 20, 89] | Ordena desenhos, não julga execução [@petticrew2006systematic, p. 129-130] | Hierarquia e SMS como descritores; risco de viés por domínio |
+| Meta-análise contada como estudo ("meta-análise em um" dos oito) [@schaefer2025proibicao, p. 104] | Dupla contagem e mistura de unidades | Revisões fora da síntese primária |
+| "Descrição metodológica mínima" como filtro de qualidade [@schaefer2025proibicao, p. 102] | Mede relato, não viés [@petticrew2006systematic, p. 127] | Ferramenta por desenho, depois da elegibilidade |
+| DiD chamado de "seleção em observáveis" [@schaefer2025proibicao, p. 104] | Perguntas de confundimento erradas | Fluxo de Waddington et al. [@waddington2017quasi, p. 7-8] |
+| Rótulo "MMAT" para uma pergunta global Sim/Não/Parcialmente respondida por LLM: na revisão C conduzida pelo autor desta base (@sec-11-licoes), o prompt de sistema anunciava avaliação "segundo o" MMAT 2018, e o formulário usava uma versão simplificada | O MMAT tem triagem e cinco critérios por categoria [@hong2018mmatguide, p. 1-2]; julgamento deve ser humano | Critérios oficiais; LLM só rascunha; nomear o que foi feito |
+| Não checar se a resposta do modelo veio completa (na mesma revisão, respostas truncadas perderam a avaliação em 5 de 13 artigos de um tema) | Campo faltante vira "não avaliado" em silêncio | Conferir o último campo e cada domínio antes de consolidar |
+| Avaliar o estudo inteiro | Resultados do mesmo estudo têm riscos diferentes [@sterne2025robinsi, p. 7] | Uma linha por resultado |
+| Excluir por "baixa qualidade" sem previsão, ou não usar a avaliação | Perde evidência [@nutley2013counts, p. 13] ou apaga o risco das conclusões [@boutron2024considering, sec. 7.6.2] | Uso pré-especificado |
+| "O que funciona" por contagem de significativos, com p < 0,1 lido como "90%" de chance de repetição [@kopittke2021funciona, p. 421-422] | Ignora magnitude e viés; leitura errada do valor p | Direção pelo estimador (@sec-08a-regras); risco como estrato |
+| Misturar SMS original e ajustada [@kopittke2021funciona, p. 421; @madaleno2015guide, p. 5] | Notas não comparáveis | Declarar a versão |
+| Descritores que não fecham (nível 4 = 5 e nível 3 = 35 somam 40 de 41 estudos) [@kopittke2021funciona, p. 424] | Um estudo sem classificação | Contagens geradas da planilha, com asserção de soma |
+| Dados da ROBINS-I V2 no modelo ROBINS-I do `robvis` 0.3.1 | Rótulos da versão 1, em outra ordem | Tabela própria ou legenda conferida |
+| Limiares antigos do EPOC para ITS (20 pontos pré com ARIMA; concordância de 90% ou kappa ≥ 0,8) [@petticrew2006systematic, p. 139-140] | Não constam dos critérios de 2017 [@epoc2017suggested, p. 3-4] | Citar e datar a versão |
+
+## Na skill `revisao-sistematica` {#sec-06-skill}
+
+A skill está em construção; este é o contrato planejado (@sec-especificacao-contrato).
+
+- **Portões.** Ferramentas de risco de viés são congeladas no protocolo (**G2**); mudança posterior é emenda. O piloto de extração (**G6**) inclui dois a três estudos por bloco. Extração e risco de viés correm em paralelo na etapa 9 e fecham no **G7**, que, fora de revisões de escopo e mapas de evidências, só aprova com o risco de viés consolidado (evento `rob_consolidado`) e com os arquivos da consolidação inalterados. No autopiloto, julgamentos pendentes viram `pendencias`, e relatório e declaração de IA saem marcados "RASCUNHO NÃO VALIDADO".
+- **Consolidação em dupla.** `rs.py qualidade consolidar` tem duas fases. Na primeira (`--a` e `--b`), lê as avaliações independentes de A e B (formato longo, largo ou o *master* do fichamento), mede a concordância por domínio (proporção, κ e PABAK, só descritivos) e grava o arquivo de consenso com os julgamentos de A e B, já preenchido onde eles concordam e vazio nos desacordos, que formam a fila humana. Na segunda (`--consenso`), exige um julgamento de consenso e o papel humano de quem resolveu cada desacordo e aplica o algoritmo da ferramenta: pior domínio no RoB 2 e no ROBINS-I V2 (com aviso quando o julgamento aditivo pode agravar o geral), pior critério no EPOC (incerto = moderado, convenção declarada no protocolo) e a linha geral nas checklists; um julgamento geral humano e justificado pode sobrepor o algoritmo, só para agravar. O resultado vai para `04-qualidade/rob_geral.csv`, com a marca de validação humana de cada resultado.
+- **Pasta e referências.** Formulários e julgamentos em `04-qualidade/`; instrução em `references/05-qualidade.md`; junções por `chave` ou `id_rs`, nunca por título.
+- **Codebooks** em `assets/codebooks/` (`rob2`, `robins_i`, `epoc`, `casp_qualitativo`, `jbi_transversal`, `mmat`, `desenho_maryland`), no formato de `fichamento-sistematico` (`dimensao, variavel, descricao, prompt, tipo, aplicavel_se`), com `tipo_estudo` a1/a2/b1/b2 decidindo o que se aplica. O do ROBINS-I V2 usa os códigos de resposta oficiais (Y, PY, PN, N, NI, e WN/SN ou SY/WY onde o documento os prevê).
+- **Agente `avaliador-rob`.** Rascunha respostas com trecho e página, sem julgamento; um PDF por vez (até três em paralelo, via fichador da skill irmã), leitura em faixas de até 20 páginas com cobertura registrada; resumo de subagente não é prova (só o gate de citação confirma) e saída rejeitada vai para novo subagente.
+- **Síntese.** A meta-análise inclui sensibilidade sem resultados de risco alto ou crítico; a exclusão de resultados de risco crítico da análise principal, quando prevista no protocolo, vale na meta-análise, na síntese sem meta-análise e nos testes combinados, sempre depois de escolhido o efeito, a direção ou o p de cada estudo e com a análise completa em sensibilidade; na caixa de ferramentas, "Positivo" sem meta-análise exige que os estudos não sejam só de risco alto (@sec-especificacao-caixa; @sec-08b-regras). A junção do `rob_geral` com os efeitos é feita por chave e construto, porque o julgamento é por resultado. `robvis` é dependência R opcional.
+- **Estado.** `rs.py status` aponta a tarefa pendente de extração e risco de viés e o portão G7; o rascunho das fichas passa pelo handoff para `fichamento-sistematico`, e a consolidação dos julgamentos humanos, por `rs.py qualidade consolidar`.
+
+## Como relatar {#sec-06-relato}
+
+O relato mínimo informa ferramenta e versão por desenho e a regra de fronteira; resultados avaliados; avaliadores, independência e resolução de desacordos; uso de IA; critérios de desenho e de exclusão previstos; como o julgamento entrou nas análises; risco de viés de cada estudo e de cada síntese; limitação resultante [@page2021prisma, itens 11, 18, 20a, 23b].
+
+> **Métodos.** A elegibilidade para as perguntas de efeito exigiu desenho com grupo de comparação (nível 3 ou superior na versão de 2016 da Maryland Scientific Methods Scale), registrado também como descritor. O risco de viés foi avaliado por resultado, para os desfechos da tabela de síntese: RoB 2 (variante cluster quando a randomização foi por escola); critérios EPOC (2017) para diferença em diferenças com dados agregados e séries temporais interrompidas; ROBINS-I V2 (rascunho de 20/11/2025) para painéis de alunos, com as perguntas de Waddington et al. (2017). Estudos qualitativos foram apreciados com o CASP (2024) e descritivos com o checklist JBI para prevalência. Dois avaliadores trabalharam de forma independente após piloto com cinco estudos; desacordos foram resolvidos por discussão ou por terceiro avaliador. Um modelo de linguagem [modelo, versão] rascunhou respostas às perguntas-sinalizadoras com trecho e página; todos os julgamentos foram humanos. Conforme o protocolo, resultados de risco crítico foram excluídos; a meta-análise foi estratificada por desenho e repetida sem resultados de risco alto, grave ou crítico.
+>
+> **Resultados.** Dos [n] resultados de ensaios, [n] tiveram risco baixo, [n] algumas preocupações e [n] alto; dos [n] não randomizados, [n] moderado, [n] grave e [n] crítico (Figura X). O domínio mais vezes grave foi o confundimento. Sem os resultados de risco alto ou grave, a estimativa passou de [valor] para [valor]. Houve [n] desacordos antes do consenso, concentrados em [domínio].
+
+## Leituras {#sec-06-leituras}
+
+**Normas e ferramentas**
+
+- @boutron2024considering: princípios gerais, dupla avaliação, fontes, uso na síntese e conflitos de interesse.
+- @higgins2024assessing, @sterne2019rob2 e @higgins2024including: RoB 2 e variante cluster.
+- @sterne2025robinsi e @riskofbias2025robinsiv2: ROBINS-I V2; @sterne2024assessing para a versão 1 e as variantes antes-depois.
+- @waddington2017quasi: pressupostos e perguntas para DiD, RDD, IV e experimentos naturais.
+- @epoc2017suggested: critérios para CBA e ITS; @higgins2024robinse: exposições.
+- @casp2024qualitative, @jbi2024qualitative, @munn2015methodological e @barker2026revised: qualitativos e descritivos.
+- @hong2018mmatguide e @hong2018mmat: métodos mistos; @shea2017amstar e @whiting2016robis: revisões.
+- @mcguinness2021robvis: visualização; @page2021prisma e @tricco2018prisma: relato; @schunemann2019grade: ROBINS-I no GRADE.
+
+**Leituras de apoio**
+
+- @madaleno2015guide e @whatworksgrowth2015sms: a SMS com critérios e exemplos por método.
+- @thomas2003children (cap. 2 e 4): apreciação por tipo de estudo, com uso em sensibilidade.
+- @petticrew2006systematic (cap. 3 e 5): hierarquias × tipologias, escores e ferramentas clínicas.
+- @nutley2013counts e @daly2007hierarchy: críticas às hierarquias; hierarquia para pesquisa qualitativa.
+- @kopittke2021funciona e @garcia2017educational: SMS como filtro numa revisão brasileira; qualidade em dupla com sensibilidade e meta-regressão.
+- @schaefer_oqfunciona e @schaefer2025proibicao: a proposta OQF e o caso de referência.

@@ -1,0 +1,389 @@
+---
+title: "Pergunta de pesquisa, teoria do programa e frameworks"
+---
+
+Esta etapa transforma uma preocupação de política pública numa pergunta que a literatura pode responder e numa teoria causal explícita que vai orientar todo o resto: blocos da busca, critérios de elegibilidade, variáveis do codebook, células da síntese e rótulos da caixa de ferramentas. Na proposta OQF, ela é a primeira metade da dimensão de planejamento, que define a pergunta e os elementos que a compõem antes do protocolo [@schaefer_oqfunciona, p. 9-10]. Petticrew e Roberts resumem a regra de partida: não se começa uma revisão sistemática antes de conseguir formular uma pergunta clara [@petticrew2006systematic, p. 35]. As decisões exigidas são oito: (1) o que é a intervenção (X), o resultado (Y), os mecanismos (M) e os moderadores (Z); (2) se a pergunta é sobre um problema, sobre uma intervenção ou sobre uma intervenção e vários resultados; (3) se já existe revisão que responde à pergunta; (4) como a intervenção deveria funcionar e como pode falhar, incluindo incentivos perversos; (5) qual *framework* estrutura a pergunta; (6) qual é a direção desejável de cada desfecho; (7) como equidade e *stakeholders* entram; (8) qual título identifica a revisão. O produto é uma ficha da pergunta, um diagrama causal versionado e uma tabela de *framework*, que entram no protocolo (@sec-03-regras) e nos blocos de busca (@sec-04-regras). A escolha do tipo de revisão está na @sec-01-regras.
+
+## Decisões e regras {#sec-02-regras}
+
+### Regras gerais
+
+| Decisão | Regra | Fonte |
+|---|---|---|
+| Enquadrar a avaliação | Nomear X (intervenção, variável independente) e Y (resultado, variável dependente); tratar M como resposta a "por quê? como?" e Z como resposta a "para quem? quando? onde?". X e ao menos um Y precisam estar definidos antes de qualquer busca definitiva; M e Z podem começar como hipóteses | @schaefer2026aula2 [p. 13]; @schaefer_oqfunciona [p. 19-20] |
+| Nível da intervenção | Definir X no nível do programa (a solução para uma causa do problema), ou como família de programas listados; perguntas no nível da política (o problema central) viram perguntas "de problema" | @lassance2021politica [p. 63-64] |
+| Escala da pergunta | Classificar a pergunta como (1) ampla, focada no problema; (2) restrita, X sobre Y; ou (3) X sobre vários Y. O formato OQF é indicado para (2) e (3) | @schaefer_oqfunciona [p. 19] |
+| Amplitude e agrupamento | Uma pergunta ampla é aceitável se o protocolo disser como populações, intervenções e desfechos serão agrupados em cada síntese (a "PICO de cada síntese") | @thomas2024determining [sec. 2.3.1-2.3.2]; @mckenzie2024defining [sec. 3.1] |
+| Busca exploratória | Buscar revisões concluídas e registradas antes de fixar a pergunta; refinar a pergunta com o que se aprendeu é boa prática antes do protocolo e emenda depois dele (@sec-03-regras) | @petticrew2006systematic [p. 36, 48]; @thomas2024determining [sec. 2.1]; @schaefer2026aula4 [p. 7] |
+| Teoria antes dos dados | Construir a teoria do programa (modelo lógico ou DAG) antes de definir strings e codebook; procurar primeiro modelos lógicos existentes e adaptá-los | @thomas2024determining [sec. 2.5.1]; @cordoba2023teoria [p. 20, 24] |
+| Como a intervenção falha | Para cada elo da cadeia causal, registrar o efeito pretendido e o efeito não intencional possível; os não intencionais danosos entram como desfechos | @pawson2005realist [p. 22-23]; @thomas2024determining [sec. 2.5.1, MECIR C3] |
+| Desfechos | Listar desfechos críticos e importantes, com pelo menos um benefício e um dano possíveis; até sete entram nas versões resumidas; declarar se algum desfecho é critério de elegibilidade | @mckenzie2024defining [sec. 3.2.4.1-3.2.4.2, MECIR C8, C14]; @cumpston2026reporting [sec. III.3.4.3] |
+| Direção desejada | Declarar, por desfecho, se o benefício é aumento ou redução, antes da extração (exigência da especificação desta base, @sec-especificacao-regras, item 2; a Cochrane pede que a direção do efeito, aumento ou redução, benefício ou dano, fique sempre clara no relato) | @cumpston2026reporting [sec. III.3.5.3]; @schaefer_oqfunciona [p. 91-92]; @schaefer2026codigos |
+| Equidade | Decidir *a priori* se desigualdades importam; se sim, escolher fatores PROGRESS-Plus e hipóteses de efeito diferencial | @thomas2024determining [sec. 2.4.3, MECIR C4]; @aloe2024campbell [seção 1c] |
+| *Framework* | Escolher pelo tipo de pergunta (tabela abaixo); PICOC para "efeitos das causas", CMMO para "causas dos efeitos", os dois juntos na revisão mista | @schaefer2026aula3 [p. 18]; @schaefer2026aula4 [p. 16-18] |
+| Título | Incluir o tipo de revisão e os elementos da pergunta, seguindo o modelo do tipo | @page2021prisma [item 1]; @campbell2026startreview |
+
+::: {.callout-important}
+## Regra inviolável
+A pergunta, os desfechos com direção desejada e a teoria do programa (com os incentivos perversos) são fixados antes de ver os resultados dos estudos incluídos. Mudanças depois do protocolo congelado são emendas justificadas e não podem ser motivadas pelo efeito que terão sobre os resultados (@sec-03-regras). A regra vale também para moderadores: um moderador descoberto depois da síntese é hipótese para pesquisa futura, não explicação confirmada.
+:::
+
+### Escala da pergunta
+
+| Escala | Forma | Exemplo | Consequência |
+|---|---|---|---|
+| (1) Ampla, de problema | "O que funciona para Y?" | "O que funciona para melhorar o desempenho dos estudantes?" [@schaefer_oqfunciona, p. 19] | Muitas famílias de intervenção; cada família vira uma célula separada. Avaliar se o tipo adequado é mapa de evidências ou escopo (@sec-01-regras) |
+| (2) Restrita, X sobre Y | "X melhora Y?" | "O incremento salarial de professores por meta alcançada melhora o desempenho?" [@schaefer_oqfunciona, p. 19] | Uma célula principal; teoria do programa detalhada; o formato OQF se aplica diretamente |
+| (3) X sobre vários Y | "Quais os impactos de X?" | REFIS sobre (a) arrecadação, (b) falências, (c) emprego, (d) *compliance* [@schaefer2026aula4, p. 6] | Uma célula por construto de desfecho; direção desejada e momento de medida por desfecho |
+
+O manual Cochrane apresenta a escolha entre revisão ampla e restrita como uma troca: a ampla dá visão abrangente e permite explorar consistência entre populações e implementações, mas custa mais recursos; a restrita é manejável e simples, mas pode ter evidência escassa e perder efeitos diferenciais [@thomas2024determining, sec. 2.3.1]. O mesmo vale para "juntar" (*lumping*) e "separar" (*splitting*) estudos: juntar permite investigar heterogeneidade e introduz heterogeneidade não explicada; separar dá comparações homogêneas com o risco de sobrarem poucos estudos por análise [@thomas2024determining, sec. 2.3.2]. Petticrew e Roberts acrescentam que o tamanho dos grupos depende do modelo teórico da intervenção e de como ela funciona em grupos diferentes [@petticrew2006systematic, p. 48], o que liga esta decisão à teoria do programa.
+
+### O que fazer com o resultado da busca exploratória
+
+| Achado | Decisão | Fonte |
+|---|---|---|
+| Revisão recente, de boa qualidade, com a mesma pergunta | Não duplicar; considerar outra pergunta (população, contexto, desfecho diferente) e justificar a diferença, ou divulgar a revisão existente | @petticrew2006systematic [p. 28, 36]; @peters2024scoping [sec. 10.2.3] |
+| Revisão boa, mas desatualizada | Atualizar em vez de fazer nova | @petticrew2006systematic [p. 38] |
+| Revisão enviesada ou com método frágil | Nova revisão, com a fragilidade da anterior declarada no racional | @petticrew2006systematic [p. 36] |
+| Revisão registrada e em andamento | Evitar duplicação; checar o escopo registrado antes de prosseguir | @thomas2024determining [sec. 2.1] |
+| Poucos ou nenhum estudo empírico | A revisão ainda pode documentar a ausência de evidência; declarar isso como objetivo | @petticrew2006systematic [p. 35] |
+| Estudos com definições muito diferentes da intervenção | Criar tipologia da intervenção *a priori* (por exemplo, proibição total ou parcial) e decidir o agrupamento | @thomas2024determining [sec. 2.3.2]; @campbell2024evidence [p. 243] |
+
+Revisões e meta-análises achadas na busca exploratória servem para o racional, para testar a busca e para a bola de neve; não entram como estudos primários (@sec-05-regras).
+
+### Qual *framework* usar
+
+| *Framework* | Elementos | Quando usar | Exemplo de política | Fonte |
+|---|---|---|---|---|
+| PICO | *Population, Intervention, Comparison, Outcome* | Efetividade de intervenção com comparador claro | O Programa Bolsa Família aumenta o desempenho acadêmico? | @thomas2024determining [MECIR C2]; @schaefer2026aula2 [p. 30] |
+| PICOC | PICO + *Context* | Intervenções sociais cujo efeito depende de onde e como são entregues | Transferências condicionadas e desempenho acadêmico na América Latina | @petticrew2006systematic [p. 42-44]; @schaefer2026aula2 [p. 31] |
+| PECO / PEO | *Population, Exposure, (Comparator), Outcome* | Exposições não atribuídas pelo gestor, etiologia e risco | Reassentamento urbano e condições de vida de famílias removidas | @morgan2018identifying [p. 1027]; @moola2024etiology [sec. 7.3.5]; @schaefer2026aula2 [p. 31] |
+| PCC | *Population, Concept, Context* | Revisão de escopo; não exige desfecho nem intervenção explícitos | Políticas de segurança alimentar em populações indígenas | @peters2024scoping [sec. 10.2.2]; @schaefer2026aula1 [p. 27] |
+| PIRT | *Participants, Index test, Reference standard, Target condition* | Acurácia de instrumento (diagnóstico, focalização) | Acurácia do Cadastro Único frente a levantamento domiciliar para elegibilidade | @schaefer2026aula2 [p. 31] |
+| SPICE | *Setting, Perspective, Intervention/phenomenon of Interest, Comparison, Evaluation* | Avaliação de serviços a partir da perspectiva de um grupo | Capacitação de gestores em municípios pequenos | @booth2006clear; @booth2019formulating [tabela 2]; @schaefer2026aula2 [p. 32] |
+| SPIDER | *Sample, Phenomenon of Interest, Design, Evaluation, Research type* | Síntese qualitativa ou mista | Barreiras à colaboração intersetorial em serviços rurais | @cooke2012beyond; @schaefer2026aula2 [p. 32] |
+| PerSPEcTiF | *Perspective, Setting, Phenomenon of interest/problem, Environment, (Comparison), Time/timing, Findings* | Síntese qualitativa de intervenção complexa, com perspectiva de sistema | Da perspectiva de gestantes rurais, cuidado em unidade de saúde frente a parteira, em ambiente de transporte precário | @booth2019formulating [tabelas 1-2] |
+| CMO | *Context, Mechanism, Outcome* | Revisão realista: o que funciona, para quem, em que circunstâncias | Assistência técnica federal a municípios de baixa capacidade | @pawson2005realist [p. 22]; @schaefer2026aula2 [p. 33] |
+| CMMO | Contexto, Mecanismo(s), Moderador(es), *Outcome* | Parte explicativa da revisão mista OQF | Mecanismos e moderadores do REFIS | @schaefer2026aula3 [p. 18]; @schaefer2026aula4 [p. 17] |
+| CIMO | *Context, Intervention, Mechanism, Outcome* | Proposições de desenho (conhecimento prescritivo) a partir de síntese | Em que contexto, qual tipo de arranjo, por qual mecanismo, com que resultado | @denyer2008developing [p. 393] |
+
+Booth e colegas analisaram 38 *frameworks* e propõem uma regra de escolha útil: numa "perspectiva de intervenção", servem *frameworks* baseados em população e intervenção com contexto acrescentado (PICOC) ou *setting* (SPICE); numa "perspectiva de sistema", servem o PerSPEcTiF ou um modelo lógico [@booth2019formulating]. Para revisões qualitativas no método JBI, o equivalente é o PICo (*Population, Phenomena of Interest, Context*), sem desfecho explícito [@aromataris2024jbi, cap. 3, sec. 3.6.2]. SPIDER foi proposto como alternativa ao PICO para pesquisa qualitativa e mista, com a ressalva dos próprios autores de que precisa ser refinado e testado em mais temas [@cooke2012beyond].
+
+::: {.callout-note}
+## Material didático e normas: PICOC e CMMO
+O material didático sobre busca resume a escolha assim: PICOC trata dos "efeitos das causas", responde se a política funciona e é ideal para revisões quantitativas; CMMO trata das "causas dos efeitos", responde como e para quem, e é ideal para revisões explicativas e mistas [@schaefer2026aula3, p. 18]. No material sobre filtragem, o mesmo quadro diz "qualitativas/mistas" [@schaefer2026aula4, p. 18], e o protocolo REFIS usa os dois juntos [@schaefer2026aula3, p. 16]. A regra operacional deste livro é: na revisão mista sequencial, o PICOC define elegibilidade, blocos de busca e células de efeito; o CMMO define o que se extrai sobre mecanismo e moderador e as perguntas da síntese qualitativa. O CMMO não deve funcionar como filtro de elegibilidade, porque estudos diferentes contribuem com elementos diferentes da explicação [@pawson2005realist, p. 24, 28]: um estudo de impacto sem discussão de mecanismo continua valendo para a célula de efeito.
+:::
+
+## Conceitos e ferramentas {#sec-02-conceitos}
+
+### Política, programa e unidade da intervenção
+
+A confusão entre política e programa é crônica na administração pública e aparece nas perguntas de revisão. Lassance propõe definições operacionais: política é uma proposta institucionalizada de solução de um problema central, orientada por uma concepção; programa é a solução dada a cada problema causal que a estratégia julgou decisivo para enfrentar o problema central [@lassance2021politica, p. 63]. A política é o ambiente macro, que mira impactos de longo prazo; o programa é o ambiente micro, onde se focaliza o público-alvo, se estimam recursos e se escolhem indicadores e metas de produtos (curto prazo), resultados (médio) e impactos (longo) [@lassance2021politica, p. 64]. Duas consequências para a revisão. Primeiro, o X de uma pergunta restrita costuma ser um programa ou uma família de programas com o mesmo mecanismo (o PICOC do REFIS, por exemplo, lista REFIS, PAES, PAEX e PERT como intervenção) [@schaefer2026codigos]; uma pergunta sobre "a política" inteira tende a ser de escala (1). Segundo, focalização é escolha de programa, não de política [@lassance2021politica, p. 64-65], o que obriga a revisão a dizer qual público-alvo cada programa atende antes de agrupar estudos.
+
+O rótulo não define a intervenção. Pawson e colegas chamam de "ingenuidade do rótulo" supor que intervenções com o mesmo nome implementam a mesma teoria, já que programas mudam por adaptação local e empréstimo entre gestores [@pawson2005realist, p. 23]. A Cochrane recomenda descrever o que é entregue, por quem, como, onde, quando e quanto, com o TIDieR como lista de características [@mckenzie2024defining, sec. 3.2.2]. Na prática: defina a intervenção por componentes e mecanismo, e trate o nome do programa como palavra-chave de busca.
+
+O guia de desenho de políticas oferece mais uma checagem útil antes de fixar X e Y. O método parte da cadeia de causalidade do problema (causa direta, intermediária e de fundo) e da escolha de uma "causa crítica", aquela que está no espaço de governabilidade de quem formula e cuja modificação afeta o problema [@aguiar2025desenho, p. 37-44]. Se a intervenção revisada age sobre uma causa, o Y principal deve ser a mudança nessa causa ou no problema que ela produz. Uma pergunta em que X age sobre a privação de renda e Y é escolaridade, por exemplo, pula elos da cadeia e precisa desses elos explícitos na teoria.
+
+### Teoria do programa, teoria da mudança e modelo lógico
+
+Os termos variam, mas o núcleo é o mesmo: teoria do programa designa as formas de construir um modelo causal que liga insumos e atividades a uma cadeia de resultados pretendidos ou observados e de usar esse modelo para guiar a avaliação; modelo lógico é o resumo dessa teoria, em geral em diagrama [@rogers2008programme, p. 30]. O guia CLEAR trata a teoria da mudança como tradução visual da teoria do programa e sugere uma frase-teste: "Se fizermos [atividades], então entregaremos [produtos], o que levará a [resultados], contribuindo para [impactos]" [@lima2025guia, p. 67-68]. No material didático sobre protocolo, a teoria da mudança é o modelo lógico que conecta a intervenção a resultados possíveis [@schaefer2026aula2, p. 18].
+
+| Componente | Definição | Exemplo (BPC ou alimentação escolar) | Fonte |
+|---|---|---|---|
+| Insumos (recursos) | Orçamento, pessoas, infraestrutura, normas, sistemas | Infraestrutura e pessoal do INSS | @lima2025guia [p. 69]; @aguiar2025desenho [p. 94, 96] |
+| Atividades | Ações executadas com os insumos | Agendar atendimento, avaliar a deficiência | @lima2025guia [p. 69]; @aguiar2025desenho [p. 94-95] |
+| Produtos | Bens e serviços entregues, sob controle da gestão | Benefícios concedidos e pagos | @lima2025guia [p. 69-70] |
+| Resultados | Mudanças nos beneficiários; dependem de outros fatores | No Bolsa Família, mais refeições diárias (intermediário) e ganho de peso das crianças (final) | @lima2025guia [p. 70]; @aguiar2025desenho [p. 95] |
+| Impacto | Transformação de longo prazo ligada ao problema | Redução da pobreza | @lima2025guia [p. 70-71] |
+| Riscos | Ameaças à execução, sobretudo nos elos iniciais | Falta de fornecedores atrasa a merenda | @lima2025guia [p. 71-72, 81] |
+| Hipóteses | Pressupostos para que produtos gerem resultados | A merenda aumenta a frequência "desde que" o transporte escolar funcione | @lima2025guia [p. 72, 92] |
+
+O modelo lógico simples da W. K. Kellogg Foundation, com recursos, atividades, produtos, resultados e impacto ligados por "se... então", é uma versão particularmente influente [@rogers2008programme, p. 33]. Rogers aponta dois riscos quando ele é tomado ao pé da letra: ao omitir contexto, programas concorrentes e características dos beneficiários, superestima a contribuição da intervenção; e, usado para metas, provoca deslocamento de objetivos, em que a meta é cumprida à custa do objetivo real [@rogers2008programme, p. 34]. Modelos simples também tendem a apresentar uma única teoria da mudança em vez das visões de diferentes *stakeholders* sobre quais resultados são desejáveis [@rogers2008programme, p. 34]. Por isso devem ser tratados como simplificações heurísticas [@rogers2008programme, p. 35]. A formulação de Rogers é a regra de trabalho: "the art of dealing with the complicated and complex real world lies in knowing when to simplify and when, and how, to complicate" [@rogers2008programme, p. 30].
+
+**Como construir.** A revisão integrativa de Córdoba-Vieira e colegas (29 artigos) encontrou que todos os 26 que descreviam a construção envolveram *stakeholders*, com análise documental, pesquisa na literatura e análise contextual como estratégias complementares, e que vários construíram a teoria de trás para a frente, partindo do impacto desejado [@cordoba2023teoria, p. 11-12]. As boas práticas identificadas incluem expor nexos causais, suposições de cada etapa, precondições, resultados negativos possíveis, particularidade contextual e variáveis mediadoras e moderadoras, com nexos e suposições apoiados em evidência e atualização periódica [@cordoba2023teoria, p. 22]. A Cochrane recomenda procurar modelos lógicos existentes antes de criar um novo, e descreve que modelos novos costumam partir dos desfechos e teorizar as precondições para alcançá-los [@thomas2024determining, sec. 2.5.1]. O guia CLEAR tem um roteiro de nove passos (problema e impacto, resultados, produtos, atividades, insumos, diagrama, hipóteses e riscos por seta, validação com diferentes públicos, documentação de versões) e ressalva que, para política já em andamento, pode ser mais adequado começar pelos insumos e atividades existentes [@lima2025guia, p. 74-76], que é a situação típica de uma revisão.
+
+**Para que serve na revisão.** A Cochrane lista usos do modelo lógico: refinar perguntas, decidir agrupamentos, identificar componentes, definir elegibilidade, orientar a busca, justificar análises de subgrupo e pensar consequências não intencionais e danos [@thomas2024determining, sec. 2.5.1]. Córdoba-Vieira e colegas registram os mesmos usos na pesquisa: delimitar a pergunta, escolher critérios de inclusão e exclusão e orientar a extração e a interpretação [@cordoba2023teoria, p. 20, 24]. O guia CLEAR acrescenta dois usos diretos para a extração. Cada seta é uma hipótese do tipo "se X, então Y, desde que Z", que gera uma pergunta avaliativa [@lima2025guia, p. 92-93]. E a teoria permite distinguir falha de implementação (a política foi mal executada) de falha de teoria (foi bem executada, mas a lógica não se sustentou) [@lima2025guia, p. 79-80]. Uma revisão que não extrai implementação e fidelidade não consegue fazer essa distinção quando encontra efeito nulo (@sec-07-regras).
+
+### Intervenções simples, complicadas e complexas
+
+Rogers classifica aspectos de intervenções, e não intervenções inteiras, em simples, complicados (muitas partes) e complexos (emergentes) [@rogers2008programme, p. 31-32]. A tabela traduz a classificação em decisões de revisão.
+
+| Aspecto | Versão não simples | Rótulo | O que fazer na revisão | Fonte |
+|---|---|---|---|---|
+| Governança e implementação | Várias agências, jurisdições ou níveis de governo | Complicado | Um modelo lógico comum, com dados por jurisdição; codificar nível federativo e arranjo institucional como moderadores | @rogers2008programme [p. 32, 35-36]; @pires2016governanca [p. 122, 127] |
+| Cadeias causais simultâneas | Várias cadeias, todas necessárias | Complicado | Extrair indicadores de cada cadeia; ausência de uma é falha de implementação | @rogers2008programme [p. 32, 36] |
+| Cadeias causais alternativas | Mecanismos diferentes em contextos diferentes | Complicado | Usar CMMO; pré-especificar contextos e moderadores; não agregar sem checar comparabilidade | @rogers2008programme [p. 32, 36-38] |
+| Não linearidade | Retroalimentação, pontos de virada | Complexo | Desenhar o ciclo desdobrado no tempo; tratar dose e limiares como moderadores | @rogers2008programme [p. 32, 38]; @hernan2020causal [p. 262] |
+| Resultados emergentes | Resultados que surgem na implementação | Complexo | Limitar a pretensão de medir Y pré-definido; considerar síntese qualitativa ou realista e declarar a limitação | @rogers2008programme [p. 32, 39-40] |
+
+Arranjos institucionais, entendidos como regras, mecanismos e processos que articulam atores e interesses na implementação de uma política [@pires2016governanca, p. 122], são candidatos naturais a moderador em políticas brasileiras. Na comparação de oito programas federais, capacidades técnico-administrativas se associaram à entrega de produtos e capacidades político-relacionais à inovação, com a ressalva dos autores de que os achados não se generalizam [@pires2016governanca, p. 127, 141]. O mesmo vale para a qualidade do desenho, analisada por coerência entre objetivos, consistência entre instrumentos e congruência entre os dois [@aguiar2025desenho, p. 90-92; @lima2022desenho, p. 29].
+
+### Como a intervenção falha: efeitos não intencionais por elo
+
+Pawson e colegas tratam intervenções como teorias: toda intervenção supõe que, se entregue de certa forma, produzirá uma melhora [@pawson2005realist, p. 22]. No exemplo da divulgação pública de dados de desempenho, a cadeia pretendida tem quatro elos (identificação do problema, divulgação, sanção, resposta do mal avaliado) e cada elo pode falhar de um jeito próprio: problema mal construído, mensagem distorcida, sanção que não acontece, resistência do avaliado [@pawson2005realist, p. 22-23]. O mapa inicial de teorias acrescenta teorias rivais: resistência à medida, enquadramento da mídia e manipulação da medida, em que a resposta mira o indicador e não o desempenho [@pawson2005realist, p. 26-27]. Como não é possível revisar tudo, a revisão prioriza um subconjunto de teorias [@pawson2005realist, p. 23, 27-28].
+
+A regra deste livro é tabular, para cada elo da teoria, o efeito pretendido, o efeito não intencional possível, a direção desejada e onde ele seria medido. O manual Cochrane considera obrigatório pensar em efeitos adversos importantes e garantir que sejam tratados [@thomas2024determining, MECIR C3], e a Campbell pede o mesmo no escopo da revisão [@aloe2024campbell, seção 1d]. Córdoba-Vieira e colegas registram que mapear resultados não pretendidos é difícil e que teorias construídas a partir de um único referencial podem ignorar teorias conflitantes [@cordoba2023teoria, p. 21], o que justifica pedir explicitamente teorias rivais a *stakeholders* e à literatura.
+
+### DAG em três níveis
+
+O material didático apresenta a teoria do programa em três níveis de detalhe, com o caso REFIS: intervenção e resultado; intervenção, mecanismo e resultado; e o diagrama completo, com vários resultados e incentivos perversos [@schaefer2026aula4, p. 11-14].
+
+| Nível | Estrutura | Exemplo REFIS | Serve para | Fonte |
+|---|---|---|---|---|
+| 1 | I → R | REFIS → arrecadação; REFIS → redução de falências | Fixar X e Y, blocos de busca | @schaefer2026aula4 [p. 11] |
+| 2 | I → M → R | REFIS → alívio financeiro → sobrevivência; REFIS → risco moral → inadimplência futura; REFIS → *compliance* voluntário → arrecadação futura | Variáveis de mecanismo no codebook; hipóteses da síntese qualitativa | @schaefer2026aula4 [p. 12] |
+| 3 | Completo | Mediadores (redução de juros e multas, suspensão penal, adesão, parcelamento), mecanismo latente (*compliance* futuro), quatro resultados e incentivos perversos (evasão estratégica, *moral hazard*, substituição contábil) | Desfechos adversos, confundidores e seleção a checar nos estudos, moderadores pré-especificados | @schaefer2026aula4 [p. 14]; @schaefer2026aula3 [p. 12] |
+
+Um DAG (*directed acyclic graph*) tem arestas com direção e nenhum ciclo: uma variável não pode causar a si mesma, direta ou indiretamente [@hernan2020causal, p. 71]. Três limites do DAG afetam como ele é usado numa revisão. Primeiro, a seta não diz se o efeito é protetor ou danoso, e um nó com duas causas não informa como elas interagem [@hernan2020causal, p. 71]; por isso a convenção dos scripts do REFIS de separar canais positivos e perversos (verde sólido e vermelho tracejado) é anotação útil, não parte da semântica do grafo [@schaefer2026codigos]. Segundo, DAGs são pouco úteis para representar modificação de efeito: um DAG válido não distingue se o efeito tem a mesma direção nos estratos, direção oposta ou existe só em um deles [@hernan2020causal, p. 83]. Moderadores (Z) vão, portanto, para uma tabela própria com a hipótese de modificação, e não viram setas apontando para o tratamento. Terceiro, ciclos de retroalimentação só cabem num DAG quando desdobrados no tempo, como em A~k−1~ → L~k~ → A~k~ [@hernan2020causal, p. 262]. Programas recorrentes, como parcelamentos que se repetem, exigem esse desdobramento.
+
+### Papéis das variáveis e o que eles implicam para extração e síntese
+
+| Papel | Definição | Exemplo | Na extração | Na síntese | Fonte |
+|---|---|---|---|---|---|
+| Confundidor | Causa comum de X e Y; abre caminho de associação não causal | Renda familiar causa recebimento do Bolsa Família e desempenho escolar | Registrar se o estudo lida com ele (desenho ou ajuste) | Insumo do domínio de confundimento no risco de viés; sensibilidade (@sec-06-regras) | @hernan2020causal [p. 72, 89]; @schaefer2026aula2 [p. 25] |
+| Colisor | Efeito comum de duas variáveis; condicionar nele cria associação espúria | Seleção para reforço escolar causada por baixa renda e por desempenho no IDEB | Registrar restrições de amostra e seleção (por exemplo, só empresas que aderiram) | Não "controlar"; estudos que condicionam no colisor recebem alerta de viés de seleção | @hernan2020causal [p. 75-77]; @schaefer2026aula2 [p. 25] |
+| Mediador | Afetado por X e causa de Y | Frequência às aulas entre transporte escolar e aprendizagem | Registrar se o modelo ajusta pelo mediador (efeito direto) ou não (efeito total); trecho do mecanismo | Não agregar efeitos diretos com totais; o modelo principal estima o efeito total; mediação alimenta a dimensão "mecanismo" | @hernan2020causal [p. 239]; @schaefer2026aula2 [p. 25] |
+| Preditor de Y | Afeta Y sem ser afetado pela intervenção | Escolaridade dos pais e desenvolvimento infantil na avaliação de creche pública | Registrar como covariável; não é ameaça | Incluí-lo reduz variância nos estudos primários; não é moderador por definição | @schaefer2026aula2 [p. 25] |
+| Moderador (Z) | Muda o efeito de X sobre Y entre estratos | Porte da empresa, setor, região no REFIS | Extrair efeitos por subgrupo e características do contexto | Subgrupos ou meta-regressão pré-especificados (@sec-08a-regras); explica rótulo "Misto" | @hernan2020causal [p. 83-84]; @schaefer2026aula4 [p. 17] |
+| Mecanismo latente | Mecanismo proposto e raramente medido | *Compliance* futuro | Trecho verbatim quando o estudo menciona, testa ou identifica | Síntese qualitativa e integração (@sec-08b-regras) | @schaefer2026aula4 [p. 14]; @schaefer_oqfunciona [p. 22-23] |
+| Incentivo perverso | Elo que produz efeito não intencional danoso | *Moral hazard*, evasão estratégica | Desfecho adverso com direção desejada declarada | Célula de efeito própria; resultado danoso entra no rótulo "Negativo" da caixa de ferramentas (@sec-08b-regras) | @pawson2005realist [p. 22-23]; @schaefer2026aula3 [p. 12] |
+
+::: {.callout-warning}
+## DAG não substitui a leitura do estudo
+O DAG da revisão é a teoria da equipe, não a de cada estudo. Ele serve para saber o que procurar (quais confundidores e seleções ameaçam cada comparação, quais mediadores não podem ser ajustados, quais danos medir). O julgamento de risco de viés continua sendo feito por domínio, com a ferramenta do desenho (@sec-06-regras).
+:::
+
+### Desfechos e direção desejada
+
+Para intervenções sociais há muitos desfechos possíveis, e avaliar efetividade envolve coletar impactos positivos e negativos e pesar o balanço entre eles [@petticrew2006systematic, p. 42]. As regras de desfecho da Cochrane valem para políticas: definir *a priori* os desfechos críticos e importantes, escolher os que importam aos usuários da revisão (incluindo gestores), definir medidas aceitáveis, regra de escolha quando há várias medidas e momento de medida [@mckenzie2024defining, MECIR C14-C18]; até sete desfechos críticos ou importantes entram nas versões resumidas [@mckenzie2024defining, sec. 3.2.4.2]; e os desfechos importantes devem refletir ao menos um benefício e um dano potenciais [@cumpston2026reporting, sec. III.3.4.3]. Também é obrigatório esclarecer se os desfechos listados são critérios de inclusão, já que o relato de desfechos raramente deve determinar a elegibilidade [@mckenzie2024defining, sec. 3.2.4.1, MECIR C8].
+
+O codebook OQF extrai "direção ampla" (positiva ou negativa) e "direção restrita" (positiva, sem relação ou negativa) da relação entre X e Y [@schaefer_oqfunciona, p. 91-92], mas não diz em relação a quê a direção é positiva. Num desfecho como falências, coeficiente positivo é dano. A solução é declarar, por desfecho, a direção desejada antes da extração e registrar a direção de cada estimativa em relação a ela; o painel de DAGs dos scripts do REFIS já faz isso ao marcar "(b) Falências ↓" e "(c) Empregos ↑" [@schaefer2026codigos]. A tabela mínima por desfecho tem: construto, medidas aceitáveis, momento, direção desejada, classificação (benefício ou dano; crítico ou importante), se é critério de elegibilidade e o elo da teoria de onde vem. O limiar de efeito relevante é fixado no protocolo (@sec-03-regras), e a regra que usa a direção pelo estimador está na @sec-07-regras.
+
+Quando *stakeholders* discordam sobre o que é desejável (arrecadar mais ou preservar empresas, por exemplo), o conflito é registrado como duas direções desejadas de desfechos distintos, e não resolvido em silêncio pela equipe [@rogers2008programme, p. 34].
+
+### Lente de equidade (PROGRESS-Plus)
+
+Petticrew e Roberts justificam o contexto no PICOC com o argumento de que, em intervenções sociais, a capacidade de se beneficiar e de acessar a intervenção varia com escolaridade, nível socioeconômico, gênero, etnia e local, o que torna vazios julgamentos de efetividade feitos para o "cidadão médio" [@petticrew2006systematic, p. 43]. O PROGRESS é um acrônimo para fatores que estratificam oportunidades e resultados: local de residência, raça/etnia/cultura/idioma, ocupação, gênero/sexo, religião, educação, nível socioeconômico e capital social [@oneill2014applying]; o "Plus" acrescenta características como orientação sexual, idade e deficiência [@thomas2024determining, sec. 2.4.3]. A Cochrane classifica como altamente desejável considerar equidade antes e planejar os métodos [@thomas2024determining, MECIR C4] e lembra que intervenções bem-intencionadas podem ampliar desigualdades [@thomas2024determining, sec. 2.4.3]; a Campbell inclui populações em situação de iniquidade no escopo exigido da revisão [@aloe2024campbell, seção 1c].
+
+Regra operacional em cinco passos: (1) escolher os fatores PROGRESS-Plus plausíveis pela teoria do programa; (2) escrever a hipótese de efeito diferencial com direção (por exemplo, "efeito maior entre estudantes de escolas mais vulneráveis"); (3) incluir no codebook campos para efeitos por subgrupo e para a composição da amostra nesses fatores; (4) pré-especificar a análise de subgrupo ou a síntese narrativa por estrato; (5) no Brasil, operacionalizar com as categorias disponíveis nos estudos (raça/cor, região, urbano ou rural, faixa de renda, escolaridade). Como a focalização é decisão de programa [@lassance2021politica, p. 64-65], o público-alvo declarado de cada programa também é extraído.
+
+### *Stakeholders* na construção da teoria
+
+O registro de como *stakeholders* participaram do protocolo está na @sec-03-regras. Aqui o foco é o papel deles na teoria. O envolvimento de *stakeholders* na construção da teoria da mudança foi universal nos artigos que descreveram o processo [@cordoba2023teoria, p. 11], e as recomendações incluem envolver o usuário final e testar a teoria antes de implementá-la [@cordoba2023teoria, p. 21-22]. Pawson e colegas consideram a participação dos usuários essencial na delimitação do escopo, porque são eles que encarnam as teorias a revisar [@pawson2005realist, p. 28]. O guia CLEAR pede validação com gestores, técnicos, parceiros e beneficiários [@lima2025guia, p. 75]. Há uma tensão entre as fontes: Córdoba-Vieira e colegas registram a recomendação de consenso sobre os componentes da teoria [@cordoba2023teoria, p. 22], enquanto Rogers descreve processos participativos que reconhecem diferenças em vez de buscar um consenso que pode refletir diferenças de poder [@rogers2008programme, p. 44]. A regra aqui é registrar divergências como teorias rivais a testar [@pawson2005realist, p. 26-27], e não forçar um diagrama único.
+
+### IA para rascunhar a teoria
+
+O material didático sugere usar um assistente de IA configurado para teoria da mudança e, em paralelo, a literatura e a legislação da política (o exemplo é a página de monitoramento e avaliação do Bolsa Verde) [@schaefer2026aula4, p. 13]. É um uso razoável para rascunho, com quatro cautelas derivadas das fontes deste capítulo. (1) Procurar antes modelos lógicos existentes da política [@thomas2024determining, sec. 2.5.1]. (2) Cada nó e cada seta recebe etiqueta de origem (documento legal, estudo, *stakeholder* ou "hipótese gerada por IA, não verificada"), já que nexos e suposições devem ser apoiados em evidência [@cordoba2023teoria, p. 22] e cada seta carrega uma hipótese que precisa ser plausível [@lima2025guia, p. 73]. (3) Pedir explicitamente teorias rivais e efeitos não intencionais por elo [@pawson2005realist, p. 22-23, 26-27], já que uma teoria construída a partir de um único referencial pode ignorar teorias conflitantes [@cordoba2023teoria, p. 21]. (4) A equipe humana decide a versão congelada; modelo, data e prompt vão para o log. As regras de validação e declaração de uso de IA estão na @sec-11-regras.
+
+### Título por tipo de revisão
+
+| Tipo | Modelo de título | Exemplo | Fonte |
+|---|---|---|---|
+| Revisão sistemática de intervenção | [Intervenção] para [melhorar/reduzir/aumentar] [resultado] em [problema/população] em [local/situação]: uma revisão sistemática | Programas de habitação social para reduzir o déficit habitacional em famílias de baixa renda em áreas urbanas: uma revisão sistemática | @campbell2026startreview; @schaefer2026aula1 [p. 27] |
+| Fatores de risco ou proteção | [Tipo de fator] associado(s) a [resultado] em [população] em [local]: uma revisão sistemática | Fatores socioeconômicos associados ao abandono escolar de adolescentes vulneráveis no Brasil: uma revisão sistemática | @campbell2026startreview; @schaefer2026aula1 [p. 27] |
+| Mapa de evidências e lacunas | [Intervenção] para [população/problema] ou [local] ou [resultado]: um mapa de evidências e lacunas | Transferências condicionadas para redução da pobreza em países de baixa renda: um mapa de evidências e lacunas | @campbell2026startreview; @schaefer2026aula1 [p. 27] |
+| Síntese qualitativa | [Experiências/significados/adequação] de [fenômeno] em síntese de evidências qualitativas | Experiências de beneficiários do Bolsa Família no acesso a serviços de saúde em síntese de evidências qualitativas | @campbell2026startreview; @schaefer2026aula1 [p. 27] |
+| Revisão de escopo | [Conceito] em [população] em [contexto]: uma revisão de escopo; título não formulado como pergunta | Políticas de segurança alimentar em populações indígenas em contextos de vulnerabilidade: uma revisão de escopo | @peters2024scoping [sec. 10.2.1-10.2.2]; @campbell2026startreview |
+| OQF mista sequencial | Pergunta X → Y, seguida da identificação do tipo | "A proibição do uso de celulares melhora o desempenho acadêmico dos estudantes? Evidências a partir de uma revisão sistemática mista e sequencial" | @schaefer2025proibicao; @page2021prisma [item 1] |
+
+O título-pergunta do formato OQF atende ao PRISMA 2020 desde que identifique o relato como revisão sistemática [@page2021prisma, item 1]. A orientação de não formular o título como pergunta é do JBI para revisões de escopo [@peters2024scoping, sec. 10.2.2].
+
+## Passo a passo {#sec-02-passos}
+
+1. **Escreva a preocupação em uma frase e nomeie X e Y.** Use a forma "X melhora/reduz Y?" e classifique a escala (1, 2 ou 3) [@schaefer_oqfunciona, p. 19; @schaefer2026aula2, p. 13-15]. Se X for uma política inteira, desça ao nível do programa ou declare a escala (1) [@lassance2021politica, p. 63-64].
+2. **Faça a busca exploratória com registro.** Consulte OSF Registries [@schaefer2026aula2, p. 39], PROSPERO [@thomas2024determining, sec. 2.1], bibliotecas da Campbell e da Cochrane [@petticrew2006systematic, p. 37], Epistemonikos e EPPI [@peters2024scoping, sec. 10.2.3], 3ie [@schaefer2026aula3, p. 21], o filtro de artigos de revisão do Google Scholar e o repositório do IPEA [@schaefer_oqfunciona, p. 27], além de OpenAlex [@schaefer2026aula3, p. 23]. Ferramentas de busca com IA, como o Consensus, ajudam a achar revisões e estudos [@schaefer_oqfunciona, p. 27; @schaefer2026aula4, p. 5-7], mas cada registro sugerido é conferido na fonte. Anote data, fonte, termos e resultados.
+3. **Decida com a tabela de achados da busca exploratória** (seção de regras): prosseguir, mudar o ângulo, atualizar ou desistir. Se prosseguir, liste as revisões encontradas e em que a nova difere [@peters2024scoping, sec. 10.2.3].
+4. **Levante a teoria existente.** Legislação, documentos de monitoramento, modelos lógicos publicados, revisões anteriores e *stakeholders* [@thomas2024determining, sec. 2.5.1; @cordoba2023teoria, p. 12; @schaefer2026aula4, p. 13]. Se usar IA, siga as quatro cautelas da seção anterior.
+5. **Desenhe o nível 1 (I → R)** para cada desfecho candidato e escreva a frase "se... então... desde que..." de cada seta [@lima2025guia, p. 67, 92-93].
+6. **Desenhe o nível 2 (I → M → R)**, com os mecanismos candidatos de cada desfecho [@schaefer2026aula4, p. 12].
+7. **Desenhe o nível 3.** Acrescente mediadores, mecanismos latentes, confundidores e colisores plausíveis e, para cada elo, o efeito não intencional possível [@pawson2005realist, p. 22-23; @schaefer2026aula4, p. 14]. Não desenhe moderadores como pais do tratamento; liste-os na tabela Z [@hernan2020causal, p. 83]. Desdobre ciclos no tempo [@hernan2020causal, p. 262].
+8. **Classifique os aspectos simples, complicados e complexos** [@rogers2008programme, p. 32] e anote as consequências (moderadores de governança, cadeias que precisam ser extraídas, limites da pergunta).
+9. **Monte a tabela de desfechos**: construto, medidas, momento, direção desejada, benefício ou dano, crítico ou importante, se é critério de elegibilidade [@mckenzie2024defining, MECIR C8, C14-C18; @cumpston2026reporting, sec. III.3.4.3]. No máximo sete críticos ou importantes para o resumo [@mckenzie2024defining, sec. 3.2.4.2].
+10. **Aplique a lente de equidade**: fatores PROGRESS-Plus, hipóteses com direção, campos do codebook [@thomas2024determining, sec. 2.4.3; @oneill2014applying].
+11. **Escolha e preencha o *framework*** pela tabela de *frameworks*. Na revisão mista OQF, preencha PICOC e CMMO e ligue cada elemento a um nó do DAG [@schaefer2026aula3, p. 16, 18].
+12. **Valide com *stakeholders*** a teoria, os desfechos e as direções desejadas; registre divergências como teorias rivais [@lima2025guia, p. 75; @rogers2008programme, p. 44].
+13. **Escreva o título** pelo modelo do tipo de revisão [@campbell2026startreview; @page2021prisma, item 1].
+14. **Congele a versão** da ficha da pergunta, do DAG (imagem e código) e da tabela de *framework*, com data, e leve ao protocolo (@sec-03-regras).
+
+Um esqueleto de código ajuda a manter o DAG versionado e legível por máquina. O exemplo é ilustrativo e usa o pacote `dagitty`, disponível no R; moderadores ficam fora do grafo e o ciclo de programas recorrentes é desdobrado em dois períodos.
+
+```r
+library(dagitty)
+
+# Nível 3, REFIS (ilustrativo). Sufixos _t1 e _t2 desdobram a recorrência no tempo.
+refis_dag <- dagitty('dag {
+  crise_t1 -> refis_t1
+  crise_t1 -> arrecadacao
+  divida_empresa -> adesao
+  divida_empresa -> falencia
+  refis_t1 -> reducao_juros -> adesao -> parcelamento -> fluxo_mensal -> arrecadacao
+  refis_t1 -> suspensao_penal -> adesao
+  parcelamento -> alivio_financeiro -> falencia -> emprego
+  refis_t1 -> expectativa_novo_refis -> inadimplencia_estrategica -> refis_t2
+  inadimplencia_estrategica -> compliance
+  inadimplencia_estrategica -> arrecadacao
+}')
+
+# Moderadores (Z) em tabela à parte, com hipótese e direção
+moderadores <- data.frame(
+  z        = c("porte_empresa", "setor", "nivel_federativo"),
+  desfecho = c("falencia", "arrecadacao", "arrecadacao"),
+  hipotese = c("efeito protetor maior em pequenas empresas",
+               "a definir com stakeholders",
+               "a definir; ver arranjo institucional")
+)
+
+# Direção desejada por desfecho
+direcao_desejada <- c(arrecadacao = "aumento", falencia = "reducao",
+                      emprego = "aumento", compliance = "aumento")
+```
+
+## O que as diretrizes exigem {#sec-02-diretrizes}
+
+| Diretriz | Item | Exigência | Como esta etapa atende |
+|---|---|---|---|
+| PRISMA 2020 | 1 | Identificar o relato como revisão sistemática | Título pelo modelo do tipo [@page2021prisma] |
+| PRISMA 2020 | 3 | Racional no contexto do conhecimento existente | Busca exploratória e revisões encontradas [@page2021prisma] |
+| PRISMA 2020 | 4 | Declaração explícita dos objetivos ou perguntas | Ficha da pergunta com X, Y, M, Z e *framework* [@page2021prisma] |
+| PRISMA 2020 | 5 | Critérios de inclusão e exclusão e como estudos foram agrupados para as sínteses | PICOC da revisão e PICO de cada síntese [@page2021prisma] |
+| PRISMA 2020 | 10a, 10b | Listar e definir desfechos e demais variáveis extraídas | Tabela de desfechos com direção desejada; variáveis de mecanismo, moderador e equidade [@page2021prisma] |
+| PRISMA 2020 | 13a | Processo para decidir quais estudos entram em cada síntese | Células família de intervenção × desfecho vindas do DAG [@page2021prisma] |
+| PRISMA-P 2015 | 6, 7 | Racional; pergunta explícita em termos de participantes, intervenções, comparadores e desfechos | Ficha da pergunta e *framework* no protocolo [@moher2015prismap] |
+| PRISMA-ScR | 1, 3, 4 | Identificar como revisão de escopo; explicar por que a pergunta pede escopo; objetivos com elementos-chave (população, conceito, contexto) | PCC e título do tipo [@tricco2018prisma] |
+| Cochrane MECIR | C1-C4 | Pergunta e desfechos relevantes aos usuários; objetivos com PICO definidos antes; efeitos adversos considerados (obrigatórios); equidade (altamente desejável) | Tabela de desfechos com danos; lente PROGRESS-Plus [@thomas2024determining] |
+| Cochrane MECIR | C5, C7, C8, C14-C18 | Critérios de participantes, intervenções e comparadores; papel dos desfechos; domínios, medidas e momentos dos desfechos | Tabela de desfechos e tipologia da intervenção [@mckenzie2024defining] |
+| Campbell (MECCIR 2024) | Seção 1, itens a-f | Perguntas claras com *framework*; relevância aos interessados; iniquidades; efeitos adversos; objetivos sobre heterogeneidade com fontes e moderadores definidos; justificativa da síntese | Ficha da pergunta, tabela Z, lente de equidade [@aloe2024campbell] |
+| JBI (escopo) | Sec. 10.2.1-10.2.3 | Título e pergunta com PCC; congruência entre título, pergunta e critérios; declarar busca preliminar por revisões e em que a nova difere | Busca exploratória registrada e PCC [@peters2024scoping] |
+
+Para revisões realistas, Pawson e colegas pedem que a pergunta seja refinada de forma iterativa, com fase de "pré-revisão" negociada com os demandantes, e desaconselham protocolos que fixem pergunta e propósito antes de a revisão começar [@pawson2005realist, p. 25]. Isso não dispensa o registro das versões da teoria; muda o que é congelado (@sec-08b-regras).
+
+## Exemplo trabalhado {#sec-02-exemplo}
+
+### Caso 1: proibição de celulares nas escolas
+
+**O que foi feito.** A pergunta é X → Y: se a restrição ou banimento de celular em salas de aula (X) melhora o desempenho escolar (Y) [@schaefer2025proibicao, p. 98]. O PICOC publicado define população como "estudantes, escolas e redes de ensino"; intervenção como proibição ou restrição do uso em sala de aula, com a Lei nº 15.100/2025 e o Decreto nº 12.385/2025 como exemplos; comparação entre escolas com e sem restrição; desfecho como desempenho em avaliações padronizadas; e contexto global [@schaefer2025proibicao, p. 100]. Os slides repetem esse PICOC e registram o dilema entre tema amplo, problema específico e quantidade de material [@schaefer2026aula2, p. 41]. Na versão da proposta metodológica, o contexto era "escolas públicas e privadas de ensino médio ou fundamental" [@schaefer_oqfunciona, p. 11]. Mecanismos (redução de distração), moderadores (vulnerabilidade socioeconômica, desempenho prévio baixo, nível escolar, grau de implementação) e problemas de implementação (fiscalização pelos professores gerando tensão) aparecem nos resultados [@schaefer2025proibicao, p. 105-107].
+
+**O que a etapa deveria ter produzido.**
+
+| Elemento | Situação no estudo | Correção nesta etapa | Fonte |
+|---|---|---|---|
+| Busca exploratória | Três revisões (de escopo ou sistemáticas) aparecem entre as pesquisas analisadas, e a estratégia de identificação de um dos oito estudos quantitativos é "meta-análise" | Achar essas revisões antes do protocolo, usá-las no racional e na bola de neve e declarar em que a nova difere; nunca incluí-las como estudo | @schaefer2025proibicao [p. 98-99, 104]; @petticrew2006systematic [p. 36] |
+| O que a busca exploratória teria mostrado | A revisão de escopo de Campbell e colegas (22 estudos) não achou ensaios randomizados e registrou definições diferentes de proibição (parcial ou total) | Tipologia *a priori* da intervenção: total ou parcial; sala de aula ou escola inteira; guarda na entrada | @campbell2024evidence [p. 243] |
+| População | Estudantes, escolas e redes numa só categoria; estudos de ensino superior incluídos, o que os autores usam para explicar a diferença em relação a outra meta-análise | Fixar o nível de ensino da política (a lei trata da educação básica) ou pré-especificar o nível como moderador com sínteses separadas | @schaefer2025proibicao [p. 98, 105] |
+| Intervenção | "Em sala de aula" | A lei cobre aula, recreio e intervalos; declarar se cada variante entra e como será agrupada | @schaefer2025proibicao [p. 98] |
+| Desfechos | Só desempenho; ansiedade e sociabilidade aparecem depois como "efeitos colaterais positivos" | Tabela de desfechos antes da busca: desempenho (aumento, crítico); ansiedade (redução) e *cyberbullying* (redução) como importantes ou declaradamente fora; tensão escolar como dano | @schaefer2025proibicao [p. 97-98]; @cumpston2026reporting [sec. III.3.4.3] |
+| Objetivo da lei × Y | A lei declara objetivo de saúde mental, física e psíquica; a revisão testa desempenho | Registrar que Y não é o objetivo declarado da política e justificar a escolha, ou incluir saúde mental como desfecho | @schaefer2025proibicao [p. 98] |
+| Teoria e incentivos perversos | Mecanismos e problemas de implementação identificados só depois | DAG nível 3 antes: restrição → menos distração → atenção → desempenho; elo perverso: fiscalização pelo professor → conflito → menor efeito; aplicação desigual das regras → resistência | @schaefer2025proibicao [p. 106-107]; @pawson2005realist [p. 22-23] |
+| Equidade | Efeito maior entre vulneráveis e de baixo desempenho, achado *ex post* | Pré-especificar nível socioeconômico e educação (PROGRESS-Plus) com hipótese de direção e extração por subgrupo | @schaefer2025proibicao [p. 106]; @thomas2024determining [sec. 2.4.3] |
+
+### Caso 2: REFIS
+
+**O que foi feito.** A pergunta inicial é se programas de refinanciamento tributário aumentam a arrecadação, com busca exploratória no Consensus e um artigo de referência no SSRN; a Lei nº 9.964/2000 aparece como marco temporal [@schaefer2026aula4, p. 5-8]. A pergunta se amplia para quatro desfechos: arrecadação, falência de empresas, emprego e *compliance* [@schaefer2026aula4, p. 6]. A teoria do programa é desenhada em três níveis [@schaefer2026aula4, p. 11-14], e os scripts geram um DAG de efeitos positivos e outro de incentivos perversos [@schaefer2026codigos]. O PICOC dos slides define população como empresas com dívida tributária no Brasil, comparador como empresas sem adesão e contexto como Brasil de 2001 a 2025; o CMO lista contexto (crise fiscal, recorrência, setor), mecanismos, moderadores (porte, setor, região) e desfechos [@schaefer2026aula4, p. 16-17]. O quadro do protocolo *ex ante* traz outro PICOC (contribuintes elegíveis e entes da federação; antes e depois, com e sem programa; arrecadação efetiva; âmbito federal, estadual e municipal) e um CMO com "implementação de programas de refinanciamento" como contexto [@schaefer2026aula3, p. 16].
+
+**Problemas e correções.**
+
+1. **Moderadores desenhados como causas do tratamento.** No script, crise econômica, dívida, tamanho e setor são pais do REFIS, com o comentário de que "afetam adoção/intensidade" [@schaefer2026codigos]. Em semântica de DAG, variáveis que causam o tratamento e também o resultado são confundidores [@hernan2020causal, p. 72]. É plausível que a crise econômica afete tanto a criação de programas quanto a arrecadação, e que a dívida da empresa afete tanto a adesão quanto a falência (o próprio script liga dívida à adesão); se for assim, essas variáveis são confundidores. Correção: manter essas setas como confundimento (lista a checar nos estudos) e mover a hipótese de moderação para a tabela Z, porque o DAG não representa modificação de efeito [@hernan2020causal, p. 83].
+2. **Painel negativo sem as arestas do tratamento.** No script do DAG negativo, as arestas são desenhadas por grupos de nós de origem (moderadores, perversos, intermediários); o grupo que contém as arestas que saem do REFIS e de "falências" é calculado, mas nunca desenhado [@schaefer2026codigos]. Por isso o nó REFIS aparece ligado só aos moderadores e "empregos em risco" aparece isolado no painel [@schaefer2026codigos]. Correção: desenhar todas as arestas e conferir o grafo contra a lista de relações (por exemplo, comparando arestas desenhadas e declaradas).
+3. **Recorrência sem desdobramento temporal.** A teoria inclui "expectativa de novo REFIS" [@schaefer2026codigos], que é retroalimentação: programas geram expectativa de programas futuros. Correção: nós indexados no tempo (REFIS~t1~ → expectativa → inadimplência estratégica → REFIS~t2~) [@hernan2020causal, p. 262]; na classificação de Rogers, é causalidade recursiva, aspecto complexo [@rogers2008programme, p. 32, 38].
+4. **Contexto confundido com intervenção.** "Implementação de programas de refinanciamento" como contexto do CMO [@schaefer2026aula3, p. 16; @schaefer2026codigos] repete o I. Correção: contexto são condições em que o mecanismo opera (crise fiscal, recorrência de programas, capacidade da administração tributária, nível federativo) [@pawson2005realist, p. 22; @schaefer2026aula4, p. 17].
+5. **Unidades misturadas.** "Contribuintes elegíveis" e "entes da federação" na mesma população [@schaefer2026aula3, p. 16] correspondem a dois estimandos: efeito na empresa (falência, adimplência) e efeito na receita do ente (arrecadação). Correção: duas PICO de síntese, com unidade declarada, e desfechos atribuídos a cada uma [@mckenzie2024defining, sec. 3.1].
+6. **Comparador com autosseleção.** "Empresas sem adesão" [@schaefer2026aula4, p. 16] compara grupos que diferem justamente nas causas da adesão (por exemplo, a dívida da empresa, que o script põe como causa do programa) [@schaefer2026codigos]. Correção: registrar na ficha que essa comparação tem confundimento previsível e que estudos restritos a aderentes ou a empresas sobreviventes condicionam num colisor ou em variável pós-tratamento [@hernan2020causal, p. 75-77]; o julgamento fica para o risco de viés (@sec-06-regras).
+7. **Direção desejada implícita.** O painel marca falências ↓ e empregos ↑ [@schaefer2026codigos], mas a direção não entra no PICOC nem no codebook [@schaefer_oqfunciona, p. 91-92]. Correção: arrecadação (aumento), falência (redução), emprego (aumento), *compliance* (aumento), e cada incentivo perverso como desfecho adverso com a mesma lógica.
+8. **Recorte temporal inconsistente.** O marco legal citado é a Lei 9.964/2000 [@schaefer2026aula4, p. 8], mas o PICOC começa em 2001 [@schaefer2026aula4, p. 16] e o slide do recorte temporal data a mesma lei de 2001 [@schaefer2026aula4, p. 27]. Correção: um único marco, justificado no protocolo (@sec-03-regras).
+
+**Tabela nó → *framework* → codebook → síntese (REFIS, extrato).**
+
+| Nó do DAG | Papel | Onde entra | Variável no codebook | Uso na síntese |
+|---|---|---|---|---|
+| REFIS, PAES, PAEX, PERT | Tratamento | PICOC I | tipo de programa; componentes (desconto, prazo, suspensão penal) | Família de intervenção da célula |
+| Arrecadação | Resultado (aumento) | PICOC O; CMMO O | desfecho, medida, janela, direção pelo estimador | Célula de efeito "arrecadação" |
+| Falência | Resultado (redução) | PICOC O | idem | Célula "falência" |
+| Parcelamento, adesão | Mediador | CMMO M | ajuste por mediador (sim/não); trecho | Mecanismo; alerta de efeito direto |
+| *Compliance* futuro | Mecanismo latente | CMMO M | trecho | Síntese qualitativa |
+| *Moral hazard*, evasão estratégica | Incentivo perverso | PICOC O (adverso); CMMO M | desfecho adverso; trecho | Célula própria; rótulo "Negativo" |
+| Crise econômica, dívida | Confundidor | Ficha de ameaças | estratégia de identificação; controles | Risco de viés; sensibilidade |
+| Porte, setor, nível federativo | Moderador | CMMO Z; tabela Z | efeitos por subgrupo | Subgrupo ou meta-regressão pré-especificados |
+
+## Erros comuns e como evitá-los {#sec-02-erros}
+
+| Erro | Consequência | Como evitar | Fonte |
+|---|---|---|---|
+| Começar a buscar sem pergunta clara | Strings e critérios mudam a cada rodada | Ficha da pergunta com X, Y e escala antes da busca definitiva | @petticrew2006systematic [p. 35] |
+| Não procurar revisões existentes | Duplicação; revisões incluídas como estudo | Busca exploratória registrada, com tabela de decisão | @petticrew2006systematic [p. 36]; @schaefer2025proibicao [p. 104] |
+| Tratar política e programa como sinônimos | X vago; estudos de programas diferentes agrupados | Definir X no nível do programa e por componentes | @lassance2021politica [p. 63-64]; @pawson2005realist [p. 23] |
+| Modelo lógico linear tomado ao pé da letra | Superestimar a contribuição da intervenção; ignorar contexto | Classificar aspectos simples, complicados e complexos | @rogers2008programme [p. 34-35] |
+| Teoria só com o caminho pretendido | Danos não buscados nem extraídos; rótulo "Positivo" sem ver efeitos perversos | Efeito não intencional por elo; danos como desfechos | @pawson2005realist [p. 22-23]; @thomas2024determining [MECIR C3] |
+| Moderador como seta para o tratamento | Confunde moderação com confundimento | Tabela Z separada; setas só para causas | @hernan2020causal [p. 72, 83] |
+| Ciclos no DAG | Grafo inválido; recorrência escondida | Desdobrar no tempo | @hernan2020causal [p. 71, 262] |
+| Figura do DAG diferente do grafo declarado | Leitor e skill trabalham com teorias distintas | Versionar o código do DAG e conferir arestas desenhadas contra as declaradas | @schaefer2026codigos |
+| Contexto igual à intervenção no CMO | CMMO vazio, sem condições de funcionamento | Contexto = condições em que o mecanismo opera | @pawson2005realist [p. 22] |
+| "Direção positiva" sem referência | Sinais trocados na síntese (falência "positiva") | Direção desejada por desfecho | @schaefer_oqfunciona [p. 91-92] |
+| Desfechos decididos depois de ler os estudos | Relato seletivo de desfechos | Tabela de desfechos antes da busca | @mckenzie2024defining [MECIR C14] |
+| População com unidades diferentes | Estimandos misturados na mesma célula | Uma PICO de síntese por unidade | @mckenzie2024defining [sec. 3.1] |
+| CMMO como filtro de elegibilidade | Exclui estudos de impacto que não discutem mecanismo | PICOC filtra; CMMO orienta extração | @pawson2005realist [p. 24, 28] |
+| Equidade só nos resultados | Moderadores achados *ex post* apresentados como confirmados | PROGRESS-Plus com hipóteses *a priori* | @thomas2024determining [sec. 2.4.3, MECIR C4] |
+| Rascunho de IA aceito como teoria | Nexos sem evidência; teorias conflitantes ignoradas | Etiqueta de origem por seta; pedir rivais; decisão humana registrada | @cordoba2023teoria [p. 22]; @pawson2005realist [p. 26-27] |
+| Consenso forçado entre *stakeholders* | Teoria reflete quem tem mais poder | Registrar divergências como teorias rivais | @rogers2008programme [p. 44] |
+
+## Na skill `revisao-sistematica` {#sec-02-skill}
+
+A skill está em construção; esta seção descreve o contrato planejado.
+
+- **Posição no fluxo.** Esta etapa corresponde aos passos 1 (pergunta e tipo, com checagem de revisões existentes e registradas, que fecha no portão **G1**) e 2 (teoria do programa e *framework*) do fluxo: 0 configuração → 1 pergunta e tipo (G1) → 2 teoria do programa + *framework* → 3 protocolo (G2).
+- **Portão G1 é humano em qualquer modo.** No modo *checkpoints*, a skill para em todos os portões; no autopiloto ("roda tudo com pendências"), para só em G1 e G2. A pergunta e o tipo de revisão nunca são decididos sem aprovação humana.
+- **Estado.** `rs.py init` cria o projeto; `rs_estado.json` guarda `projeto{titulo, pergunta, tipo_revisao, idioma_produtos}`; artefatos versionados entram em `artefatos` com caminho, `sha256` e `congelado_em`, e o log append-only registra `artefato_versionado` e `portao`. Claude não edita esses arquivos à mão; toda sessão começa por `rs.py status`. Este capítulo recomenda tratar a ficha da pergunta, a tabela de desfechos e o DAG como artefatos versionados.
+- **Referências.** A instrução operacional fica em `references/01-pergunta-protocolo.md`; a matriz de tipos, com o *framework* de cada tipo (OQF mista sequencial: PICOC + CMMO + DAG; escopo: PCC; realista: CMOC, com o humano dono da teoria), em `references/tipos-de-revisao.md`.
+- **DAG.** O contrato da skill prevê `scripts/R/dag.R` como componente opcional; sem R, a teoria segue como tabela e texto.
+- **Codebook.** `assets/codebooks/oqf_decomposicao.csv` (blocos a1/a2/b1/b2) contém variáveis de mecanismo, moderador e direção do efeito; este capítulo recomenda derivá-las do DAG. A especificação desta base (@sec-especificacao) exige `direcao_desejada` declarada por desfecho, usada para registrar a direção pelo estimador, e trata sinais errados como armadilha checada (`formula_id` + `direcao_desejada`).
+- **Caixa de ferramentas.** A célula é família de intervenção × construto de desfecho; o rótulo "Negativo" inclui efeitos perversos do DAG; "Misto" exige moderador pré-especificado ou achado qualitativo que explique a variação. Por isso a tabela de desfechos e a tabela Z desta etapa são pré-condição da síntese.
+- **Equidade e contexto.** A especificação inclui lente PROGRESS-Plus como etapa própria; na certeza, a indireção considera contexto institucional, nacional e nível de governo, e a etapa "da evidência à prática" avalia transferibilidade ao Brasil.
+- **Pedidos parciais.** "Só a busca/strings" parte da pergunta e usa as referências 01 e 02, sem dados; o projeto marca `etapas_ignoradas` quando a etapa não foi feita.
+- **Revisão metodológica.** O agente `revisor-metodologico` (advogado do diabo) atua no G2 e no G8; no G2 ele revisa o protocolo, que já contém a pergunta, a teoria do programa e o *framework* definidos nesta etapa.
+
+## Como relatar {#sec-02-relato}
+
+O relato mínimo desta etapa, na introdução e nos métodos, deve conter:
+
+1. Título que identifica o tipo de revisão [@page2021prisma, item 1].
+2. Racional com as revisões existentes encontradas na busca exploratória (fontes, data) e em que a revisão difere delas [@page2021prisma, item 3; @peters2024scoping, sec. 10.2.3].
+3. Pergunta explícita com os elementos do *framework* (PICOC, e CMMO quando mista) [@page2021prisma, item 4; @moher2015prismap, item 7].
+4. Teoria do programa (diagrama e narrativa), com origem dos nexos, efeitos não intencionais considerados e versão congelada [@thomas2024determining, sec. 2.5.1; @cordoba2023teoria, p. 22].
+5. Desfechos críticos e importantes, com medidas, momentos e direção desejada, e se algum foi critério de elegibilidade [@page2021prisma, item 10a; @mckenzie2024defining, MECIR C8].
+6. Moderadores e fatores de equidade pré-especificados, com hipóteses [@aloe2024campbell, seção 1c, 1e].
+7. Como *stakeholders* e ferramentas de IA participaram da formulação (detalhes na @sec-03-relato e @sec-11-relato).
+
+**Exemplo de redação.**
+
+> Busca exploratória no OSF Registries, PROSPERO, Biblioteca Campbell, Epistemonikos, OpenAlex e repositório do IPEA (03/03/2026) identificou [n] revisões anteriores sobre restrição de celulares em escolas ([referências]); a presente revisão difere delas por [restringir à educação básica e extrair implementação e equidade]. Essas revisões foram usadas no racional e na bola de neve, e não como estudos. A pergunta principal é: restrições ao uso de celular na educação básica (proibição total ou parcial; em sala de aula ou em toda a escola) aumentam o desempenho dos estudantes em avaliações padronizadas, em comparação com escolas sem restrição? Os desfechos críticos são desempenho (direção desejada: aumento; 6 a 24 meses) e sintomas de ansiedade (redução); *cyberbullying* (redução) e conflitos escolares registrados (redução) são importantes e o último é tratado como dano potencial. Nenhum desfecho foi critério de elegibilidade. A teoria do programa (Figura S1, versão 1.0, congelada em 10/03/2026) foi rascunhada a partir da Lei nº 15.100/2025, de duas revisões e de uma sugestão gerada por IA, revista pela equipe e comentada por dois gestores de rede estadual; ela inclui o elo perverso "fiscalização pelo professor → conflito → menor efeito". Pré-especificamos como moderadores o nível socioeconômico da escola e o desempenho prévio (PROGRESS-Plus), com a hipótese de efeito maior entre estudantes mais vulneráveis, e o tipo de restrição.
+
+## Leituras {#sec-02-leituras}
+
+**Normas e guias metodológicos**
+
+- @thomas2024determining: Cochrane, cap. 2; escopo amplo ou restrito, agrupamento, *stakeholders*, PROGRESS-Plus e modelos lógicos, com MECIR C1-C4.
+- @mckenzie2024defining: Cochrane, cap. 3; PICO da revisão e de cada síntese, regras de desfecho (MECIR C5-C18).
+- @cumpston2026reporting: Cochrane, cap. III; desfechos com benefício e dano e relato de objetivos.
+- @aloe2024campbell: padrões Campbell (MECCIR 2024); escopo com iniquidades, efeitos adversos e heterogeneidade.
+- @peters2024scoping: JBI, revisões de escopo; PCC, título e busca preliminar por revisões.
+- @moola2024etiology: JBI, etiologia e risco; PEO.
+- @page2021prisma, @moher2015prismap e @tricco2018prisma: itens de relato de título, racional, objetivos e desfechos.
+- @petticrew2006systematic: cap. 2; quando fazer uma revisão, revisões existentes, PICOC e agrupamento em ciências sociais.
+- @booth2019formulating: 38 *frameworks* comparados e o PerSPEcTiF para intervenções complexas.
+- @cooke2012beyond, @booth2006clear, @morgan2018identifying, @denyer2008developing: origem de SPIDER, SPICE, PECO e CIMO.
+- @oneill2014applying: PROGRESS como lente de equidade.
+- @hernan2020causal: caps. 6-8 e 20; DAGs, confundimento, colisores, mediadores, modificação de efeito e ciclos desdobrados no tempo.
+- @campbell2026startreview: modelos de título por tipo de revisão.
+
+**Leituras de apoio**
+
+- @schaefer_oqfunciona: proposta OQF; escala da pergunta, PICOC, caixa de ferramentas e codebook de direção.
+- @rogers2008programme: teoria do programa para aspectos complicados e complexos; quando simplificar e quando complicar.
+- @pawson2005realist: intervenções como teorias, efeitos não intencionais por elo e teorias rivais.
+- @cordoba2023teoria: revisão integrativa sobre teoria da mudança; componentes, construção participativa e limites.
+- @lassance2021politica: definições operacionais de política e programa.
+- @aguiar2025desenho: guia de desenho de políticas; cadeia causal, causa crítica, coerência e modelo lógico.
+- @lima2022desenho: coerência, consistência e congruência aplicadas a políticas municipais.
+- @pires2016governanca: arranjos institucionais e capacidades estatais como condições de resultado.
+- @lima2025guia: guia CLEAR; teoria da mudança, riscos e hipóteses, falhas de teoria e de implementação.
+- @schaefer2026aula1, @schaefer2026aula2, @schaefer2026aula3, @schaefer2026aula4 e @schaefer2026codigos: slides e scripts com X/Y/M/Z, *frameworks*, DAGs do REFIS e títulos.
+- @schaefer2025proibicao e @campbell2024evidence: caso dos celulares e revisão de escopo anterior sobre o tema.

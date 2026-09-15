@@ -1,0 +1,73 @@
+# Ciência aberta e reprodutibilidade {#sec-reprodutibilidade}
+
+Uma revisão é reprodutível quando outra pessoa, com os materiais publicados, consegue refazer a busca, chegar às mesmas contagens do fluxograma, reconstruir cada decisão de inclusão, reextrair os efeitos e rodar a análise até os mesmos números e rótulos. O PRISMA 2020 transforma essa exigência em itens de relato: registro e protocolo (24a e 24b), emendas (24c) e disponibilidade de formulários, dados extraídos, dados analisados, código e outros materiais (27) [@page2021prisma]. Este apêndice reúne as regras operacionais que os capítulos distribuem entre protocolo, busca, triagem, IA e relato. O que entra no pacote aberto, arquivo por arquivo, está na @sec-10-passos; o texto de relato, na @sec-10-relato.
+
+## Regras mínimas {#sec-apb-regras}
+
+| O quê | Regra | Fonte |
+|---|---|---|
+| Registro | Registrar o protocolo antes da triagem formal e declarar a etapa em que a revisão estava; em ciências sociais, OSF Registries com o formulário geral de revisão sistemática | @vandenakker2023increasing [GSRRF-7]; @sec-03-registro |
+| Mudanças no registro | Registro submetido não se edita; mudanças entram como *update*, com justificativa, e o registro pode ficar sob embargo por até quatro anos | @cos2026registration |
+| Emendas | Toda emenda é datada e rastreada, e o relato informa a mudança, o motivo e a etapa em que ocorreu | @moher2015prismap [tabela 3]; @page2021explanation [item 24c] |
+| Estratégias de busca | Publicar as strings exatamente como foram rodadas, com data da última busca e total por fonte | @rethlefsen2021prismas [itens 8, 13 e 15] |
+| Decisões de seleção | Documentar a decisão sobre todos os registros; listas de incluídos e excluídos por estudo | @lefebvre2025searching [MECIR C41]; @sec-05-regras |
+| Prompts e modelos | Registrar texto integral do prompt e versão do modelo; versões novas em arquivo novo, saídas nunca sobrescritas | @thomas2026raise3 [p. 19]; @sec-11-prompts |
+| Dados e código | Dizer quais materiais estão públicos e onde; bases limpas em formato reutilizável (CSV), dicionário de variáveis, README e código | @page2021prisma [item 27]; @page2021explanation [item 27] |
+| Repositório | Material suplementar em repositório aberto e permanente, com link no relatório; a Campbell incentiva o compartilhamento segundo os princípios FAIR | @page2021explanation; @campbell2021policies [p. 19-20] |
+| Ausência | Revisão sem registro, sem protocolo ou sem dados públicos diz isso nos itens correspondentes | @page2021prisma [itens 24-27] |
+
+## Estrutura do projeto e versionamento {#sec-apb-estrutura}
+
+A reprodução começa pela organização das pastas. A skill `revisao-sistematica` cria um projeto com uma pasta por etapa e arquivos de estado na raiz (@sec-especificacao-contrato):
+
+```text
+00-protocolo/      protocolo vN, emendas, codebook v0, plano de IA
+01-busca/brutos/   exportações das bases, sem edição
+01-busca/strings/  versões das strings e do conjunto de estudos-âncora
+02-triagem/        lotes, prompts/vN.md, validação
+03-textos/pdfs/    textos completos (não vão para o pacote público)
+04-qualidade/      julgamentos de risco de viés por domínio
+05-decomposicao/   codebook, fichas, base extraída
+06-analise/        tabela de efeitos, código R, saídas
+07-relatorio/      relatório, fluxograma, checklists, declaração de IA
+dados/             registros.csv, registros_unicos.csv, decisoes.jsonl
+rs_estado.json     versões ativas e artefatos congelados (caminho, SHA-256, data)
+rs_log.jsonl       histórico de eventos, só acréscimo
+```
+
+Quatro regras de versionamento tornam a estrutura auditável:
+
+1. **Bruto é intocável.** Exportações das bases ficam como vieram, com *hash*; toda limpeza acontece em arquivo derivado (@sec-05-esquema).
+2. **Congelar é registrar.** Protocolo, critérios de triagem, prompts, codebook e filtros ganham versão (vN) e *hash* quando aprovados; a mudança seguinte gera vN+1 e um evento de emenda, e as decisões tomadas com a versão anterior continuam associadas a ela (@sec-03-registro).
+3. **Prompt é instrumento de medição.** `prompts/vN.md` guarda metadados, texto integral e *hash*; o modelo exato e os parâmetros vão junto; o prompt usado na validação é o mesmo da rodada completa (@sec-11-prompts).
+4. **Contagens não se digitam.** O fluxograma sai das tabelas de decisões, com somas conferidas; se não fecha, não é gerado (@sec-05-prisma).
+
+## Logs de decisão {#sec-apb-log}
+
+| Log | Campos mínimos | Onde é detalhado |
+|---|---|---|
+| Buscas | Identificador, fonte e interface, string (versão), data de execução, filtros aplicados na base, número bruto, arquivo e *hash* | @sec-04-skill |
+| Emendas e desvios | Data, versão anterior e nova, o que mudou, motivo, etapa em que a revisão estava, decisões afetadas | @sec-03-registro |
+| Decisões de triagem | `id_rs`, etapa, rodada, revisor e tipo de ator (humano, subagente, API, *script*), modelo e *hash* do prompt, decisão (incluir, excluir, incerto), critério que falhou, justificativa, trecho, lote, horário, correção e motivo | @sec-05-skill |
+| Extração e risco de viés | Valor, trecho literal e página; fórmula de conversão; julgamento por domínio com justificativa; quem codificou e quem conferiu | @sec-07-regras; @sec-06-regras |
+| Uso de IA | Ferramenta, modelo, versão, datas, parâmetros, papel por etapa, validação com intervalos, elusão, estabilidade e custo | @sec-11-relato |
+
+O log de desvios responde a uma pergunta que o leitor sempre faz: o que foi decidido depois de ver os dados? Uma mudança planejada como contingência no protocolo só precisa ser registrada como acionada; as demais entram como emenda justificada [@vandenakker2023increasing].
+
+## O pacote aberto {#sec-apb-pacote}
+
+A lista de arquivos do pacote, com o item PRISMA de cada um, está na @sec-10-passos. Antes de depositar, confira:
+
+1. **README** descreve cada arquivo, a versão da revisão e a ordem para reproduzir, do arquivo de registros ao relatório.
+2. **Fluxograma reproduzível**: as contagens publicadas saem das tabelas de registros e decisões incluídas no pacote.
+3. **Código roda do zero** num ambiente limpo, com as versões dos pacotes usados na análise registradas junto dos *scripts* (@sec-10-passos); quem usa programas de apontar e clicar descreve todos os passos [@page2021explanation, item 27].
+4. **Tabela de conversões** acompanha os dados extraídos, com fórmula e pressupostos de cada efeito convertido (@sec-07-efeitos).
+5. **Tabela-fonte da caixa de ferramentas** e a versão da regra de rótulos permitem refazer cada rótulo (@sec-10-painel).
+6. **Prompts, saídas brutas e métricas de validação** estão presentes quando houve uso de IA (@sec-11-relato).
+7. **Material protegido fica de fora**: exportações de bases bibliográficas costumam conter conteúdo licenciado, e as licenças devem ser lidas antes de compartilhar; no lugar dos resumos, publique identificadores e decisões [@page2021explanation, item 27]. PDFs dos estudos não entram no pacote.
+8. **Dados pessoais** (de autores contatados, de participantes de validação) são removidos ou tratados conforme a LGPD [@brasil2018lgpd].
+9. **Identificador persistente** do depósito aparece no artigo, na síntese de evidências e em cada produto derivado (@sec-10-passos).
+
+## Licenças e terceiros {#sec-apb-licencas}
+
+Três situações exigem cuidado. A primeira são os dados de terceiros: resumos e registros exportados de bases comerciais seguem a licença da base, não a da revisão [@page2021explanation, item 27]. A segunda é o envio de títulos, resumos e PDFs a provedores de IA: os termos de serviço podem permitir o uso para treino, e carregar texto protegido pode constituir reprodução, por isso os acordos de processamento e de confidencialidade são conferidos antes do uso e relatados [@thomas2026raise3, p. 29; @holst2025prismatraice]. A terceira é o material próprio da revisão (codebook, dados extraídos, código, tabela de achados): declare uma licença explícita no README de cada componente. A skill `revisao-sistematica` adota MIT para o código e CC BY 4.0 para textos, modelos e codebooks (@sec-especificacao-contrato). Para reutilizar materiais didáticos do MAPE/IESP-UERJ ou modelos de terceiros, como o fluxograma PRISMA, siga a licença e a atribuição indicadas pela fonte [@prisma2020flow].
