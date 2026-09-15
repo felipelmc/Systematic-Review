@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Apêndice D — Especificação metodológica desta base – Revisão sistemática de ponta a ponta</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../metodo/apendice-c-glossario.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c7ef8655bab0e55525918e061bda609f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../metodo/apendice-a-leituras.html">Apêndices</a></li><li class="breadcrumb-item"><a href="../metodo/apendice-d-especificacao.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Especificação metodológica desta base</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Revisão sistemática de ponta a ponta</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="Compartilhar" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Compartilhar"><i class="bi bi-share"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+              <i class="bi bi-twitter pe-1"></i>
+            Twitter
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+              <i class="bi bi-linkedin pe-1"></i>
+            LinkedIn
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/01-fundamentos-tipos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Fundamentos e família de revisões</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/02-pergunta-teoria.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Pergunta de pesquisa, teoria do programa e frameworks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/03-protocolo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Protocolo, pré-registro e emendas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/04-busca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Busca da literatura</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/05-organizacao-triagem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Organização dos registros, deduplicação e triagem</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/06-qualidade-risco-vies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Qualidade dos estudos e risco de viés</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/07-decomposicao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Decomposição dos estudos (extração de dados)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/08a-sintese-quantitativa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Síntese quantitativa: meta-análise, síntese sem meta-análise e testes combinados</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/08b-sintese-qualitativa-integracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Síntese qualitativa, realista, QCA e integração mista sequencial</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/09-certeza-evidencia-pratica.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Certeza da evidência e da evidência à prática</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/10-relato-divulgacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Relato e divulgação: PRISMA, formato OQF e tradução do conhecimento</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/11-ia-na-revisao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Inteligência artificial na revisão sistemática: usos, riscos e validação</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/apendice-a-leituras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Leituras comentadas por etapa</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/apendice-b-reprodutibilidade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Ciência aberta e reprodutibilidade</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/apendice-c-glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Glossário</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../metodo/apendice-d-especificacao.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Especificação metodológica desta base</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#sec-especificacao-regras" id="toc-sec-especificacao-regras" class="nav-link active" data-scroll-target="#sec-especificacao-regras"><span class="header-section-number">D.1</span> Regras metodológicas</a></li>
+  <li><a href="#sec-especificacao-tipos" id="toc-sec-especificacao-tipos" class="nav-link" data-scroll-target="#sec-especificacao-tipos"><span class="header-section-number">D.2</span> Matriz de tipos de revisão</a></li>
+  <li><a href="#sec-especificacao-ia" id="toc-sec-especificacao-ia" class="nav-link" data-scroll-target="#sec-especificacao-ia"><span class="header-section-number">D.3</span> Validação de IA</a></li>
+  <li><a href="#sec-especificacao-caixa" id="toc-sec-especificacao-caixa" class="nav-link" data-scroll-target="#sec-especificacao-caixa"><span class="header-section-number">D.4</span> Caixa de ferramentas e certeza</a></li>
+  <li><a href="#sec-especificacao-contrato" id="toc-sec-especificacao-contrato" class="nav-link" data-scroll-target="#sec-especificacao-contrato"><span class="header-section-number">D.5</span> Contrato da skill</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../metodo/apendice-a-leituras.html">Apêndices</a></li><li class="breadcrumb-item"><a href="../metodo/apendice-d-especificacao.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Especificação metodológica desta base</span></a></li></ol></nav>
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title"><span id="sec-especificacao" class="quarto-section-identifier">Apêndice D — Especificação metodológica desta base</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Os capítulos desta parte seguem três camadas de autoridade: as normas internacionais (Cochrane, Campbell, JBI, PRISMA, GRADE, CERQual, RAISE e afins), a especificação metodológica desta base e a proposta OQF <span class="citation" data-cites="schaefer_oqfunciona">(<a href="#ref-schaefer_oqfunciona" role="doc-biblioref">Schaefer et al. 2025</a>)</span>. A especificação é a camada do meio. Ela corrige fragilidades da proposta OQF, fixa convenções onde as normas deixam escolha e define o contrato da skill <code>revisao-sistematica</code>. Quando um capítulo escreve “especificação desta base” ou marca uma regra com “(E)”, é deste apêndice que está falando.</p>
+<p>Este apêndice é um índice das regras, e não a fundamentação delas. Cada item remete à seção onde a regra é discutida com as fontes. Três avisos valem para tudo o que segue:</p>
+<ol type="1">
+<li><strong>As normas prevalecem.</strong> Se uma norma for mais exigente que a especificação, vale a norma (exemplo: o mínimo de estudos para testar diferença entre subgrupos, na <a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a>).</li>
+<li><strong>Pontos de corte próprios são convenções.</strong> Limiares que não vêm de norma externa (por exemplo, ≥ 5 estudos e ≥ 70% na regra de rótulo sem meta-análise, ou a pontuação de implementação) precisam ser declarados no protocolo, com a versão da regra, e podem mudar por emenda justificada (<a href="03-protocolo.html#sec-03-registro" class="quarto-xref"><span>Seção 3.3</span></a>).</li>
+<li><strong>A skill está em construção.</strong> A <a href="#sec-especificacao-contrato" class="quarto-xref"><span>Seção D.5</span></a> descreve o contrato planejado; nomes de arquivos e comandos podem mudar até a primeira versão pública.</li>
+</ol>
+<section id="sec-especificacao-regras" class="level2" data-number="D.1">
+<h2 data-number="D.1" class="anchored" data-anchor-id="sec-especificacao-regras"><span class="header-section-number">D.1</span> Regras metodológicas</h2>
+<p>A numeração dos itens é a usada nas remissões dos capítulos (“item 3”, “item 8”).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Regra</th>
+<th>Onde está fundamentada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>Dicionários etiquetam e ordenam; não excluem.</strong> Exclusão por dicionário só se prevista no protocolo e validada por amostra de elusão. Registro sem resumo nunca é excluído por filtro textual. Expressões regulares usam fronteira de palavra e são testadas contra falsos acertos (SEM/sem, ols/bolsa, refis/Refiscalizar). Tipo de documento e idioma não excluem literatura cinzenta sem justificativa.</td>
+<td><a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>Direção pelo estimador pontual</strong>, relativa à <code>direcao_desejada</code> declarada por desfecho; significância em variável separada. Nenhum “sem efeito” por p &gt; 0,05. Contagem por direção usa teste de sinal <span class="citation" data-cites="mckenzie2024synthesizing">(<a href="#ref-mckenzie2024synthesizing" role="doc-biblioref">McKenzie e Brennan 2024</a>)</span>.</td>
+<td><a href="07-decomposicao.html#sec-07-efeitos" class="quarto-xref"><span>Seção 7.4</span></a>; <a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Estudo &gt; relato &gt; efeito</strong>, com identificadores próprios; versões preprint (ou <em>working paper</em>) e publicada ligadas como relatos do mesmo estudo desde a deduplicação, nunca fundidas, e os demais relatos ligados depois do texto completo. Revisões sistemáticas e meta-análises nunca entram como estudo primário: alimentam a bola de neve e a validação da busca, ou viram objeto de uma revisão de revisões.</td>
+<td><a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a>; <a href="01-fundamentos-tipos.html#sec-01-regras" class="quarto-xref"><span>Seção 1.1</span></a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>Dependência de efeitos.</strong> O protocolo fixa a regra de modelo principal. Por análise, um efeito por estudo, ou modelo CHE com variância robusta (CR2); graus de liberdade de Satterthwaite abaixo de 4 indicam resultado não confiável <span class="citation" data-cites="pustejovsky2018small pustejovsky2022meta">(<a href="#ref-pustejovsky2018small" role="doc-biblioref">Pustejovsky e Tipton 2018</a>, <a href="#ref-pustejovsky2022meta" role="doc-biblioref">2022</a>)</span>. Testes de combinação usam um p por estudo.</td>
+<td><a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a>; <a href="08a-sintese-quantitativa.html#sec-08a-fundamentos" class="quarto-xref"><span>Seção 8.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>Testes combinados da proposta OQF são análise secundária</strong>, com ressalva obrigatória: Stouffer ponderado com p unilateral na direção declarada; Cooper como teste de sinal exato sobre a direção; Fisher rotulado “não direcional”. Nenhum deles define sozinho o rótulo da caixa de ferramentas.</td>
+<td><a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>Conversões de tamanho de efeito</strong> por tabela com fórmula e pressupostos em cada linha; conversão fora da tabela é marcada como aproximada e testada em sensibilidade. Faixas de magnitude do campo são fixadas no protocolo, não as convenções genéricas de Cohen.</td>
+<td><a href="07-decomposicao.html#sec-07-efeitos" class="quarto-xref"><span>Seção 7.4</span></a>; <a href="03-protocolo.html#sec-03-regras" class="quarto-xref"><span>Seção 3.1</span></a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>Comparabilidade antes de agregar</strong> (família de intervenção, comparador, construto do desfecho, janela, população, estimando; randomizados e não randomizados separados). Mínimos: k ≥ 3 para agregar; τ² e intervalo de predição interpretados com k ≥ 5; ≥ 3 estudos por nível de subgrupo para estimar; cerca de 10 estudos por covariável na meta-regressão; funil, Egger e PET-PEESE com k ≥ 10. Modelo padrão de efeitos aleatórios com REML e HKSJ modificado, τ² com intervalo, I² e intervalo de predição; sensibilidade sem um estudo por vez, sem risco alto ou crítico e sem conversões aproximadas; modelo de seleção de três parâmetros como sensibilidade <span class="citation" data-cites="deeks2024analysing page2024assessing">(<a href="#ref-deeks2024analysing" role="doc-biblioref">Deeks et al. 2024</a>; <a href="#ref-page2024assessing" role="doc-biblioref">Page et al. 2024</a>)</span>.</td>
+<td><a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>Qualidade não é desenho.</strong> Escala de Maryland e hierarquias servem para critério de elegibilidade de desenho e para descrever estudos. O risco de viés é julgado por domínio, com a ferramenta do desenho: RoB 2 <span class="citation" data-cites="sterne2019rob2">(<a href="#ref-sterne2019rob2" role="doc-biblioref">Sterne et al. 2019</a>)</span>; ROBINS-I V2 com os critérios de Waddington e colegas para quase-experimentos <span class="citation" data-cites="sterne2025robinsi waddington2017quasi">(<a href="#ref-sterne2025robinsi" role="doc-biblioref">Sterne et al. 2025</a>; <a href="#ref-waddington2017quasi" role="doc-biblioref">Waddington et al. 2017</a>)</span>; critérios EPOC para séries temporais interrompidas e antes e depois controlado <span class="citation" data-cites="epoc2017suggested">(<a href="#ref-epoc2017suggested" role="doc-biblioref">Cochrane Effective Practice and Organisation of Care (EPOC) 2017</a>)</span>; CASP ou JBI para qualitativos <span class="citation" data-cites="casp2024qualitative jbi2024qualitative">(<a href="#ref-casp2024qualitative" role="doc-biblioref">Critical Appraisal Skills Programme 2024</a>; <a href="#ref-jbi2024qualitative" role="doc-biblioref">JBI 2024</a>)</span>; JBI transversal para quantitativos descritivos; MMAT para estudos primários mistos <span class="citation" data-cites="hong2018mmat">(<a href="#ref-hong2018mmat" role="doc-biblioref">Hong et al. 2018</a>)</span>; AMSTAR 2 ou ROBIS para revisões <span class="citation" data-cites="shea2017amstar whiting2016robis">(<a href="#ref-shea2017amstar" role="doc-biblioref">Shea et al. 2017</a>; <a href="#ref-whiting2016robis" role="doc-biblioref">Whiting et al. 2016</a>)</span>. O julgamento entra em sensibilidade, estratificação e GRADE, e não em exclusão automática.</td>
+<td><a href="06-qualidade-risco-vies.html#sec-06-regras" class="quarto-xref"><span>Seção 6.1</span></a>; <a href="06-qualidade-risco-vies.html#sec-06-ferramentas" class="quarto-xref"><span>Seção 6.3</span></a></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><strong>Busca revisada por pares</strong> com PRESS <span class="citation" data-cites="mcgowan2016press">(<a href="#ref-mcgowan2016press" role="doc-biblioref">McGowan et al. 2016</a>)</span>; conjunto de estudos-âncora montado sem usar as strings, para estimar recall relativo; alerta quando mais de 25% a 30% dos incluídos vêm de outros métodos; log no formato PRISMA-S <span class="citation" data-cites="rethlefsen2021prismas">(<a href="#ref-rethlefsen2021prismas" role="doc-biblioref">Rethlefsen et al. 2021</a>)</span>; alerta quando a última busca tem mais de 12 meses.</td>
+<td><a href="04-busca.html#sec-04-validacao" class="quarto-xref"><span>Seção 4.2</span></a>; <a href="04-busca.html#sec-04-regras" class="quarto-xref"><span>Seção 4.1</span></a></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><strong>Fluxograma PRISMA calculado das tabelas do projeto</strong>, com somas conferidas; “não revisado” é NA e fica fora do κ <span class="citation" data-cites="page2021prisma">(<a href="#ref-page2021prisma" role="doc-biblioref">Page et al. 2021</a>)</span>.</td>
+<td><a href="05-organizacao-triagem.html#sec-05-prisma" class="quarto-xref"><span>Seção 5.5</span></a></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><strong>Etapas que a proposta OQF não prevê</strong>: checagem de revisões existentes e registradas; registro no OSF <span class="citation" data-cites="vandenakker2023increasing">(<a href="#ref-vandenakker2023increasing" role="doc-biblioref">Akker et al. 2023</a>)</span>; checagem de retratações; contato com autores para dados faltantes; viés de relato (ROB-ME); unidade de análise em desenhos por <em>cluster</em>; lente de equidade PROGRESS-Plus <span class="citation" data-cites="oneill2014applying">(<a href="#ref-oneill2014applying" role="doc-biblioref">O’Neill et al. 2014</a>)</span>; log de desvios do protocolo; pacote de dados e código (PRISMA 2020, item 27); passagem da evidência à decisão com transferibilidade ao Brasil.</td>
+<td><a href="01-fundamentos-tipos.html#sec-01-regras" class="quarto-xref"><span>Seção 1.1</span></a>; <a href="03-protocolo.html#sec-03-registro" class="quarto-xref"><span>Seção 3.3</span></a>; <a href="05-organizacao-triagem.html#sec-05-retratacoes" class="quarto-xref"><span>Seção 5.6</span></a>; <a href="06-qualidade-risco-vies.html#sec-06-ferramentas" class="quarto-xref"><span>Seção 6.3</span></a>; <a href="02-pergunta-teoria.html#sec-02-regras" class="quarto-xref"><span>Seção 2.1</span></a>; <a href="09-certeza-evidencia-pratica.html#sec-09-etd" class="quarto-xref"><span>Seção 10.4</span></a>; <a href="apendice-b-reprodutibilidade.html#sec-apb-pacote" class="quarto-xref"><span>Seção B.4</span></a></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><strong>Ordem das etapas</strong>: o protocolo já contém codebook v0, ferramentas de risco de viés, plano de síntese e plano de IA; depois vêm busca, deduplicação, triagem de títulos e resumos, texto completo, ligação de relatos, piloto de extração, extração e risco de viés em paralelo, síntese, certeza e caixa de ferramentas. A bola de neve é triada com a mesma versão dos critérios e entra no ramo “outros métodos” do fluxograma.</td>
+<td><a href="03-protocolo.html#sec-03-regras" class="quarto-xref"><span>Seção 3.1</span></a>; <a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-especificacao-tipos" class="level2" data-number="D.2">
+<h2 data-number="D.2" class="anchored" data-anchor-id="sec-especificacao-tipos"><span class="header-section-number">D.2</span> Matriz de tipos de revisão</h2>
+<p>A matriz completa, com <em>framework</em>, busca, triagem, risco de viés, família de codebook, síntese, certeza, diretriz de relato e portões por tipo, está na <a href="01-fundamentos-tipos.html#sec-01-regras" class="quarto-xref"><span>Seção 1.1</span></a>. Os tipos reconhecidos são: efetividade com meta-análise; efetividade sem meta-análise (relato pelo SWiM <span class="citation" data-cites="campbell2020synthesis">(<a href="#ref-campbell2020synthesis" role="doc-biblioref">Campbell et al. 2020</a>)</span>); revisão mista e sequencial no formato OQF; revisão de escopo; mapa de evidências e lacunas; síntese de evidências qualitativas; revisão realista; revisão de métodos mistos, incluindo QCA; revisão rápida; e revisão guarda-chuva. Revisão narrativa, bibliometria isolada e resumo de literatura feito por IA não contam como revisão sistemática.</p>
+</section>
+<section id="sec-especificacao-ia" class="level2" data-number="D.3">
+<h2 data-number="D.3" class="anchored" data-anchor-id="sec-especificacao-ia"><span class="header-section-number">D.3</span> Validação de IA</h2>
+<p>O protocolo de validação completo (passos A a H), com limiares e remédios, está na <a href="11-ia-na-revisao.html#sec-11-regras" class="quarto-xref"><span>Seção 12.1</span></a> e na <a href="11-ia-na-revisao.html#sec-11-validacao" class="quarto-xref"><span>Seção 12.5</span></a>; a validação da extração, na <a href="11-ia-na-revisao.html#sec-11-extracao" class="quarto-xref"><span>Seção 12.6</span></a>. Em resumo:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Etapa</th>
+<th>Regra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Calibração humana da triagem</td>
+<td>Dupla humana em ≥ 100 registros ou ≥ 10 incluídos; κ ≥ 0,6 e concordância ≥ 75%</td>
+</tr>
+<tr class="even">
+<td>Prompt</td>
+<td>Desenvolvido só no conjunto de desenvolvimento e congelado (<code>prompts/vN.md</code>, modelo, parâmetros e <em>hash</em>)</td>
+</tr>
+<tr class="odd">
+<td>Validação</td>
+<td>Amostra nova com dupla humana, enriquecida para ≥ 60 incluídos; sensibilidade, especificidade, precisão, κ, PABAK e WSS com intervalo de Clopper-Pearson</td>
+</tr>
+<tr class="even">
+<td>Aceitação</td>
+<td>Recall ≥ 0,95 com limite inferior do IC 95% ≥ 0,90</td>
+</tr>
+<tr class="odd">
+<td>Depois da rodada</td>
+<td>Amostra de elusão dos excluídos (n ≥ 300 ou todos); reexecução de 5% a 10% para estabilidade</td>
+</tr>
+<tr class="even">
+<td>Texto completo</td>
+<td>O modelo só propõe, com trecho literal e página; a decisão é humana</td>
+</tr>
+<tr class="odd">
+<td>Extração numérica</td>
+<td>100% conferida com âncora de página, ou dupla extração com arbitragem</td>
+</tr>
+<tr class="even">
+<td>Extração categórica</td>
+<td>Segundo codificador cego em ≥ 20% dos estudos (mínimo 10); κ ou PABAK ≥ 0,7 e concordância ≥ 80% por variável</td>
+</tr>
+<tr class="odd">
+<td>Juízos</td>
+<td>Risco de viés, temas analíticos, configurações contexto-mecanismo-resultado, calibração de QCA e CERQual são humanos; o modelo pode rascunhar com trecho</td>
+</tr>
+<tr class="even">
+<td>Declaração de uso</td>
+<td>Gerada do log: ferramenta, modelo, versão, datas, parâmetros, papel por etapa, prompts com <em>hash</em>, validação, custo e responsabilidade humana <span class="citation" data-cites="thomas2026raise3 holst2025prismatraice">(<a href="#ref-thomas2026raise3" role="doc-biblioref"><span class="nocase">Thomas et al.</span> 2026</a>; <a href="#ref-holst2025prismatraice" role="doc-biblioref">Holst et al. 2025</a>)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-especificacao-caixa" class="level2" data-number="D.4">
+<h2 data-number="D.4" class="anchored" data-anchor-id="sec-especificacao-caixa"><span class="header-section-number">D.4</span> Caixa de ferramentas e certeza</h2>
+<p>As regras de rótulo estão na <a href="08b-sintese-qualitativa-integracao.html#sec-08b-caixa" class="quarto-xref"><span>Seção 9.4</span></a>, e a certeza, na <a href="09-certeza-evidencia-pratica.html#sec-09-regras" class="quarto-xref"><span>Seção 10.1</span></a>. A célula da caixa é família de intervenção × construto de desfecho e guarda a versão da regra, os estudos, as estimativas, a certeza e a assinatura de quem aprovou. Como randomizados e não randomizados não se agregam juntos, cada célula tem um corpo de evidência por classe de desenho e uma linha de painel que os resume.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Linha</th>
+<th>Regra resumida</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Efeito</td>
+<td>Positivo ou Negativo (estimativa com IC que exclui zero e certeza ao menos baixa; sem meta-análise, teste de sinal com p &lt; 0,05, ≥ 5 estudos, ≥ 70% na mesma direção e não só estudos de risco alto); Nulo (IC inteiro dentro de ±δ fixado <em>a priori</em> e certeza ao menos moderada); Misto (intervalo de predição cobre benefício e dano relevantes e há explicação por moderador pré-especificado ou achado qualitativo; na versão <code>caixa-3</code>, só com k ≥ 5, δ fixado <em>a priori</em> e achado explicativo com confiança própria, CERQual ou ICEMAN, ao menos baixa); Inconclusivo nos demais casos, inclusive quando a explicação é alegada sem esses requisitos. Ordem de aplicação na versão <code>caixa-3</code>: sem certeza, Pendente; certeza muito baixa, Inconclusivo; depois Misto (ou Inconclusivo por Misto não sustentado), Positivo ou Negativo, Nulo e Inconclusivo</td>
+</tr>
+<tr class="even">
+<td>Painel</td>
+<td>Uma linha por família × construto que resume os corpos por desenho: um só corpo, o rótulo dele; mesmo rótulo, esse rótulo com a maior certeza; rótulos diferentes, o do corpo de maior certeza, com o outro anotado; mesma certeza e rótulos diferentes, Inconclusivo por heterogeneidade entre desenhos; algum corpo pendente, Pendente (<a href="08b-sintese-qualitativa-integracao.html#sec-08b-caixa" class="quarto-xref"><span>Seção 9.4</span></a>; <a href="10-relato-divulgacao.html#sec-10-painel" class="quarto-xref"><span>Seção 11.3</span></a>)</td>
+</tr>
+<tr class="odd">
+<td>Escala</td>
+<td>Faixas de magnitude do campo declaradas no protocolo</td>
+</tr>
+<tr class="even">
+<td>Força</td>
+<td>Certeza GRADE da célula: alta = forte; moderada = moderada; baixa = fraca; muito baixa = insuficiente <span class="citation" data-cites="balshem2011grade">(<a href="#ref-balshem2011grade" role="doc-biblioref">Balshem et al. 2011</a>)</span></td>
+</tr>
+<tr class="odd">
+<td>Implementação</td>
+<td>Um ponto por critério presente (mais de dois componentes; mais de um nível de governo ou vários atores; nova infraestrutura ou pessoal; barreiras de fidelidade ou adoção em ≥ 2 estudos; longo tempo até o efeito): 0 a 1, Simples; 2 a 3, Moderada; 4 ou mais, Complexa</td>
+</tr>
+<tr class="even">
+<td>Mecanismo, moderador, percepção, custo</td>
+<td>Enunciados de achado com estudos de suporte e confiança CERQual <span class="citation" data-cites="lewin2018applying">(<a href="#ref-lewin2018applying" role="doc-biblioref">Lewin et al. 2018</a>)</span>; custo unitário ou custo-efetividade quando houver, senão “não reportado”</td>
+</tr>
+<tr class="odd">
+<td>Certeza</td>
+<td>GRADE por célula de efeito, com indireção que inclui contexto institucional, nível de governo e estimando; abordagem de Murad e colegas quando não há meta-análise <span class="citation" data-cites="murad2017rating">(<a href="#ref-murad2017rating" role="doc-biblioref">Murad et al. 2017</a>)</span>; CERQual por achado qualitativo; revisões realistas e QCA recebem enunciado narrativo, sem pseudo-GRADE (<a href="09-certeza-evidencia-pratica.html#sec-09-realista-qca" class="quarto-xref"><span>Seção 10.3</span></a>)</td>
+</tr>
+<tr class="even">
+<td>Da evidência à prática</td>
+<td>Critérios de <em>Evidence to Decision</em> reduzidos (benefícios e danos, certeza, custo, equidade, viabilidade, transferibilidade ao Brasil) <span class="citation" data-cites="moberg2018grade">(<a href="#ref-moberg2018grade" role="doc-biblioref">Moberg et al. 2018</a>)</span>; nenhuma implicação mais forte que a certeza (<a href="09-certeza-evidencia-pratica.html#sec-09-etd" class="quarto-xref"><span>Seção 10.4</span></a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Os rótulos se inspiram no EMMIE e no <em>Teaching and Learning Toolkit</em> <span class="citation" data-cites="johnson2015emmie eef2021toolkit">(<a href="#ref-johnson2015emmie" role="doc-biblioref">Johnson et al. 2015</a>; <a href="#ref-eef2021toolkit" role="doc-biblioref">Education Endowment Foundation 2021</a>)</span>. Os testes combinados nunca definem rótulo.</p>
+</section>
+<section id="sec-especificacao-contrato" class="level2" data-number="D.5">
+<h2 data-number="D.5" class="anchored" data-anchor-id="sec-especificacao-contrato"><span class="header-section-number">D.5</span> Contrato da skill</h2>
+<p>A skill <code>revisao-sistematica</code> operacionaliza as regras acima. O contrato abaixo resume o que os capítulos citam nas seções “Na skill”; o detalhe por etapa está nelas.</p>
+<p><strong>Fluxo e portões.</strong> 0 configuração e ambiente → 1 pergunta e tipo, com checagem de revisões existentes (<strong>G1</strong>) → 2 teoria do programa e <em>framework</em> → 3 protocolo com codebook v0, ferramentas de risco de viés, plano de síntese e plano de IA, registrado no OSF (<strong>G2</strong>) → 4 busca com strings por base, PRESS, estudos-âncora e log PRISMA-S (<strong>G3</strong>) → 5 importação, deduplicação e funil que etiqueta → 6 triagem de títulos e resumos com validação da IA (<strong>G4</strong>) → 7 textos completos, elegibilidade, ligação de relatos, bola de neve e retratações (<strong>G5</strong>) → 8 piloto de extração (<strong>G6</strong>) → 9 extração e risco de viés em paralelo, com efeitos verificados (<strong>G7</strong>) → 10 síntese, certeza e caixa de ferramentas (<strong>G8</strong>) → 11 relato com fluxograma calculado, checklists e declaração de IA (<strong>G9</strong>).</p>
+<p><strong>Modos.</strong> No modo de <em>checkpoints</em> (padrão), a skill para em todos os portões. No autopiloto, para só em G1 e G2; as demais validações humanas viram pendências registradas, e relatório e declaração de IA saem marcados como “RASCUNHO NÃO VALIDADO”, com a lista do que falta.</p>
+<p><strong>Estado e registro.</strong> O estado fica em <code>rs_estado.json</code>, o histórico em <code>rs_log.jsonl</code> (só acréscimo) e as decisões de triagem em <code>dados/decisoes.jsonl</code>. Só o <code>rs.py</code> escreve nesses arquivos; toda sessão começa por <code>rs.py status</code>. Artefatos congelados (protocolo, critérios, prompts, codebook, filtros) guardam caminho, SHA-256 e data. Na consolidação das decisões, a correção humana prevalece sobre o árbitro, e o árbitro sobre o consenso; o resto vai para leitura humana.</p>
+<p><strong>Identificadores e deduplicação.</strong> Cada linha importada recebe <code>id_registro</code>; cada registro único, <code>id_rs</code>; cada estudo, <code>id_estudo</code>; e a <code>chave</code> de citação liga a revisão às skills de PDFs, fichamento e BibTeX. Junções são sempre por identificador, nunca por título. A deduplicação compara pares dentro de blocos (mesmo DOI, mesmo identificador da fonte, mesmos quatro primeiros caracteres do título normalizado ou mesmo sobrenome do primeiro autor, com diferença de ano de até 1). Funde automaticamente por DOI, identificador da fonte ou título normalizado idêntico com sobrenome compatível; similaridade de título ≥ 95 com o mesmo sobrenome também funde, mas fica marcada para auditoria; similaridade entre 85 e 95, ou conflito de DOI, sobrenome ou ano, vira candidato para decisão humana. Tese e artigo do mesmo trabalho não se fundem: ligam-se como relatos do mesmo estudo. Preprint ou <em>working paper</em> e versão publicada também não: com similaridade ≥ 95, mesmo sobrenome e anos presentes, ligam-se automaticamente no mesmo <code>id_estudo</code> (sem nunca juntar dois relatos publicados no mesmo estudo); nos demais casos, viram candidatos a ligação para decisão humana. Cada relato segue para a triagem com seu <code>id_rs</code>. As regras e exemplos estão na <a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a> e na <a href="05-organizacao-triagem.html#sec-05-esquema" class="quarto-xref"><span>Seção 5.2</span></a>.</p>
+<p><strong>Harmonização e contagens.</strong> Arquivos brutos ficam intocados e com <em>hash</em>; colunas são mapeadas por nome, nunca por posição; idiomas são normalizados. O fluxograma sai das tabelas, e os invariantes (triados = excluídos na triagem + buscados; avaliados = buscados − não recuperados; avaliados = excluídos no texto completo + incluídos + aguardando classificação) encerram o comando com erro se não fecharem (<a href="05-organizacao-triagem.html#sec-05-prisma" class="quarto-xref"><span>Seção 5.5</span></a>).</p>
+<p><strong>Subagentes e salvaguardas.</strong> Triagem em lotes de 20 a 30 registros por <code>id_rs</code>, até quatro subagentes em paralelo, com resposta JSON validada por esquema e trecho literal conferido contra título e resumo; lote inválido é refeito por outro subagente. O resumo que um subagente devolve nunca é prova: só a validação programática confirma. Na extração e no risco de viés, trecho ausente do PDF é rejeitado pelo <em>gate</em> de citação e refeito. Acima de cerca de 1.500 registros recomenda-se o modo API, com dois modelos e árbitro de terceiro provedor que vê revisores anônimos (<a href="11-ia-na-revisao.html#sec-11-regras" class="quarto-xref"><span>Seção 12.1</span></a>).</p>
+<p><strong>Pedidos parciais.</strong> “Só a triagem” parte de uma exportação ou planilha e segue importação, deduplicação opcional, triagem e validação; “só a meta-análise” parte de uma tabela com médias e desvios, t e graus de liberdade ou coeficiente e erro-padrão e segue <code>analise preparar-efeitos</code> → <code>efeitos.R</code> → <code>meta.R</code>; “só o PRISMA” aceita contagens manuais e imprime “NR” onde o número é desconhecido. Pedidos de PDFs, fichamento ou BibTeX vão direto às skills irmãs.</p>
+<p><strong>Acréscimos do contrato (versão 1.1).</strong> Os nomes abaixo estão centralizados no esquema da skill (<code>esquema.py</code>) e detalhados em <code>docs/CONTRATOS.md</code>, seção “Contratos v1.1”.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tema</th>
+<th>O que a skill passou a registrar ou exigir</th>
+<th>Onde está a regra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Busca substituída</td>
+<td><code>importar --substituir &lt;busca&gt; --motivo</code> marca a busca antiga com <code>ativa: false</code>, sem apagar linhas; o <code>dedup</code> marca com a flag <code>busca_inativa</code> os registros únicos que só vinham dela; filtros, triagem (por lotes e via API), amostras de validação, bola de neve e fluxograma deixam esses registros de fora. A importação guarda os metadados do PRISMA-S (<code>--string-id</code>, <code>--executada-em</code>, <code>--n-base</code>, <code>--filtros-na-base</code>, <code>--plataforma</code>)</td>
+<td><a href="04-busca.html#sec-04-validacao" class="quarto-xref"><span>Seção 4.2</span></a>; <a href="04-busca.html#sec-04-regras" class="quarto-xref"><span>Seção 4.1</span></a></td>
+</tr>
+<tr class="even">
+<td>Estudos-âncora</td>
+<td><code>filtrar --ancoras</code> grava <code>01-busca/recall_ancoras.json</code> com recall combinado, por busca e por base; o portão <strong>G3</strong> avisa, sem bloquear, quando o arquivo falta ou quando o recall combinado fica abaixo de 1, com a lista das âncoras não achadas</td>
+<td><a href="04-busca.html#sec-04-validacao" class="quarto-xref"><span>Seção 4.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>Texto completo</td>
+<td>Decisão final <code>incluir</code>, <code>excluir</code> ou <code>aguardando</code> (no registro de decisões, “aguardando” é um <code>incerto</code> humano na etapa de texto completo); <code>recuperado</code> no inventário, com conferência humana em <code>03-textos/conferencia_pdfs.csv</code>; <code>textos retratacoes</code> (<code>03-textos/retratacoes.csv</code>) e <code>textos contato-autores</code> (<code>03-textos/contato_autores.csv</code>)</td>
+<td><a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a>; <a href="05-organizacao-triagem.html#sec-05-retratacoes" class="quarto-xref"><span>Seção 5.6</span></a>; <a href="05-organizacao-triagem.html#sec-05-prisma" class="quarto-xref"><span>Seção 5.5</span></a></td>
+</tr>
+<tr class="even">
+<td>Validação da triagem</td>
+<td>Cada cálculo declara a <code>finalidade</code> (calibração, desenvolvimento, validação, elusão ou estabilidade); só a validação da rodada ativa decide o <strong>G4</strong></td>
+<td><a href="11-ia-na-revisao.html#sec-11-validacao" class="quarto-xref"><span>Seção 12.5</span></a></td>
+</tr>
+<tr class="odd">
+<td>Conversões de efeito</td>
+<td><code>formula_id</code> novos para as rotas aproximadas: <code>r_d_n_total</code> (r sem <span class="math inline">\(n_1\)</span> e <span class="math inline">\(n_2\)</span>), <code>mediana_iqr_aprox</code> (amplitude interquartil sem quartis; <code>mediana_iqr_wan</code> só com os quartis) e <code>parcial_r_d_gl</code> (correlação parcial sem o número de preditores; com ele, <code>parcial_r_d</code>)</td>
+<td><a href="07-decomposicao.html#sec-07-efeitos" class="quarto-xref"><span>Seção 7.4</span></a></td>
+</tr>
+<tr class="even">
+<td>Viés por resultados faltantes</td>
+<td>PEESE só com intercepto do PET positivo e p &lt; 0,10; <code>--excluir-rob critico</code> tira da análise principal os resultados com risco crítico e os mantém em sensibilidade</td>
+<td><a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a></td>
+</tr>
+<tr class="odd">
+<td>Pendências</td>
+<td>Cada comando mantém no máximo uma pendência aberta por tipo e arquivo, atualiza o número de casos sem duplicar e fecha a pendência quando a condição some (conferência de elegibilidade, verificação humana dos efeitos, certeza da caixa, candidatos de duplicata, fila humana da triagem); no autopiloto, só a criação depende do modo</td>
+<td>Parágrafo <strong>Modos</strong>, acima</td>
+</tr>
+<tr class="even">
+<td>Portões e tipos</td>
+<td><code>portao GN --nao-se-aplica --motivo</code> dispensa portões que o tipo de revisão não usa (escopo: G7 e G8; mapa de evidências: G6 a G8; realista: G4); <code>init --variante rapida</code> registra a revisão rápida como variante do tipo de origem; o <strong>G9</strong> avisa, sem bloquear, quando falta o <code>.bib</code> ou quando a declaração de uso de IA é anterior ao último evento do registro</td>
+<td><a href="01-fundamentos-tipos.html#sec-01-regras" class="quarto-xref"><span>Seção 1.1</span></a>; <a href="#sec-especificacao-tipos" class="quarto-xref"><span>Seção D.2</span></a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Acréscimos do contrato (versão 1.2).</strong> Detalhados em <code>docs/CONTRATOS.md</code>, seção “Contratos v1.2”.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tema</th>
+<th>O que a skill passou a registrar ou exigir</th>
+<th>Onde está a regra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estado e retomada</td>
+<td>Trava entre processos em todo escritor de estado e registro, com número de sequência único mesmo com comandos em paralelo; estado corrompido encerra com erro e orientação de restaurar do controle de versão; <code>status</code> acha projetos em subpastas e <code>init</code> recusa criar outro por cima; a próxima ação sugerida traz marcadores <code>&lt;...&gt;</code> onde há valor a conferir, em vez de números</td>
+<td>Parágrafos <strong>Estado e registro</strong> e <strong>Modos</strong>, acima</td>
+</tr>
+<tr class="even">
+<td>Protocolo (<strong>G2</strong>)</td>
+<td>O portão exige, além do protocolo, o codebook v0 e o codebook de elegibilidade, e bloqueia com marcadores de modelo não preenchidos; o codebook v0 de efetividade é o bloco comum mais o bloco b2 do codebook OQF; os identificadores dos critérios são os mesmos no protocolo, na triagem e no codebook (C4 desenho, C5 estudo primário, C6 retratação, esta só no texto completo)</td>
+<td><a href="03-protocolo.html#sec-03-regras" class="quarto-xref"><span>Seção 3.1</span></a></td>
+</tr>
+<tr class="odd">
+<td>Busca (<strong>G3</strong>)</td>
+<td>O portão exige PRESS registrado (ou pendência de revisão por pares no autopiloto) e bloqueia com busca de teste truncada ainda ativa, que também deixa o fluxograma como rascunho; <code>buscar openalex --substituir</code> troca a busca de teste pela completa; o número de resultados declarado de uma busca do OpenAlex é conferido com o total informado pela API</td>
+<td><a href="04-busca.html#sec-04-validacao" class="quarto-xref"><span>Seção 4.2</span></a>; <a href="04-busca.html#sec-04-regras" class="quarto-xref"><span>Seção 4.1</span></a></td>
+</tr>
+<tr class="even">
+<td>Deduplicação</td>
+<td>Preprint e versão publicada viram relatos ligados, sem fusão (item 3); decisões humanas sobre pares exigem o papel de quem decidiu</td>
+<td><a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a></td>
+</tr>
+<tr class="odd">
+<td>Triagem (<strong>G4</strong>)</td>
+<td>Planilhas preenchidas por humanos são lidas com vírgula, ponto e vírgula, tabulação ou em <code>.xlsx</code>; a fila humana nunca é regravada com decisões ainda não aplicadas; exclusão humana exige um critério que exista na rodada; validação reprovada só pela largura do intervalo (sem falsos negativos) orienta ampliar a amostra ou, com menos de 36 incluídos possíveis, a dupla humana completa com aprovação humana forçada; na revisão rápida com o atalho aprovado no <strong>G1</strong>, o <strong>G4</strong> aceita dupla humana em ≥ 20% dos registros, κ calculado e segunda leitura de todos os excluídos pela IA no lugar do <em>recall</em> ≥ 0,95</td>
+<td><a href="11-ia-na-revisao.html#sec-11-validacao" class="quarto-xref"><span>Seção 12.5</span></a>; <a href="01-fundamentos-tipos.html#sec-01-regras" class="quarto-xref"><span>Seção 1.1</span></a></td>
+</tr>
+<tr class="even">
+<td>Texto completo</td>
+<td>Fila humana gerada por comando (<code>triagem fila --etapa tc</code>), com critério obrigatório nas exclusões; pendência de retratação fechada por humano não reabre enquanto os retratados forem os mesmos</td>
+<td><a href="05-organizacao-triagem.html#sec-05-regras" class="quarto-xref"><span>Seção 5.1</span></a>; <a href="05-organizacao-triagem.html#sec-05-retratacoes" class="quarto-xref"><span>Seção 5.6</span></a></td>
+</tr>
+<tr class="odd">
+<td>Risco de viés (<strong>G7</strong>)</td>
+<td><code>qualidade consolidar</code> mede a concordância de dois avaliadores por domínio, gera a fila de desacordos, exige consenso humano e aplica o algoritmo da ferramenta ao consenso (pior domínio no RoB 2 e no ROBINS-I V2, pior critério no EPOC); fora de escopo e mapa, o <strong>G7</strong> só aprova com o risco de viés consolidado e com os arquivos da consolidação inalterados; a concordância da extração categórica gera aviso; o codebook do ROBINS-I V2 usa os códigos de resposta oficiais, com as versões fraca e forte do sim e do não</td>
+<td><a href="06-qualidade-risco-vies.html#sec-06-skill" class="quarto-xref"><span>Seção 6.11</span></a>; <a href="06-qualidade-risco-vies.html#sec-06-ferramentas" class="quarto-xref"><span>Seção 6.3</span></a></td>
+</tr>
+<tr class="even">
+<td>Desfechos binários</td>
+<td>Proporções por grupo, efeitos em pontos percentuais de modelo de probabilidade linear, DiD ou RDD, e razão de riscos convertidos a d pelo log da razão de chances com a proporção do controle (<code>dif_prop_contagens</code>, <code>dif_prop_lpm</code>, <code>rr_logit</code>); as rotas de modelos ajustados e de razão de riscos são aproximadas e vão para a sensibilidade <span class="citation" data-cites="chinn2000simple zhang1998whats">(<a href="#ref-chinn2000simple" role="doc-biblioref">Chinn 2000</a>; <a href="#ref-zhang1998whats" role="doc-biblioref">Zhang e Yu 1998</a>)</span></td>
+<td><a href="07-decomposicao.html#sec-07-efeitos" class="quarto-xref"><span>Seção 7.4</span></a></td>
+</tr>
+<tr class="odd">
+<td>Síntese quantitativa</td>
+<td>PET-PEESE na variante de mínimos quadrados ponderados com erro multiplicativo e teste t, registrada no resultado; <code>--excluir-rob critico</code> também na síntese sem meta-análise e nos testes combinados, sempre depois de escolhido o efeito, a direção ou o p de cada estudo</td>
+<td><a href="08a-sintese-quantitativa.html#sec-08a-regras" class="quarto-xref"><span>Seção 8.1</span></a>; <a href="08a-sintese-quantitativa.html#sec-08a-skill" class="quarto-xref"><span>Seção 8.7</span></a></td>
+</tr>
+<tr class="even">
+<td>Caixa e certeza (<strong>G8</strong>)</td>
+<td>Versão de regra <code>caixa-3</code> (Misto só com k ≥ 5, δ e achado explicativo com confiança própria) e linha de painel por família × construto (tabela acima); o <strong>G8</strong> exige o arquivo de certeza com uma linha por célula de efeito e, em revisão OQF, a caixa</td>
+<td><a href="08b-sintese-qualitativa-integracao.html#sec-08b-caixa" class="quarto-xref"><span>Seção 9.4</span></a>; <a href="09-certeza-evidencia-pratica.html#sec-09-regras" class="quarto-xref"><span>Seção 10.1</span></a></td>
+</tr>
+<tr class="odd">
+<td>Relato (<strong>G9</strong>)</td>
+<td>A atualidade da declaração de uso de IA é conferida pelo evento que a gerou (último evento coberto), e não pelo texto; reexecuções sem mudança não contam</td>
+<td><a href="10-relato-divulgacao.html#sec-10-regras" class="quarto-xref"><span>Seção 11.1</span></a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Licenças.</strong> O código da skill é distribuído sob MIT, e os textos de referência, modelos e codebooks, sob CC BY 4.0; nenhum dado ou código do material didático do MAPE/IESP-UERJ é empacotado. Segredos (chaves de API) só por variável de ambiente.</p>
+
+
+<!-- -->
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-vandenakker2023increasing" class="csl-entry" role="listitem">
+Akker, Olmo R. van den, Gjalt-Jorn Ygram Peters, Caitlin J. Bakker, et al. 2023. <span>“Increasing the transparency of systematic reviews: presenting a generalized registration form”</span>. <em>Systematic Reviews</em> 12: 170. <a href="https://doi.org/10.1186/s13643-023-02281-7">https://doi.org/10.1186/s13643-023-02281-7</a>.
+</div>
+<div id="ref-balshem2011grade" class="csl-entry" role="listitem">
+Balshem, Howard, Mark Helfand, Holger J. Schünemann, et al. 2011. <span>“<span>GRADE</span> guidelines: 3. Rating the quality of evidence”</span>. <em>Journal of Clinical Epidemiology</em> 64 (4): 401–6. <a href="https://doi.org/10.1016/j.jclinepi.2010.07.015">https://doi.org/10.1016/j.jclinepi.2010.07.015</a>.
+</div>
+<div id="ref-campbell2020synthesis" class="csl-entry" role="listitem">
+Campbell, Mhairi, Joanne E. McKenzie, Amanda Sowden, et al. 2020. <span>“Synthesis without meta-analysis (<span>SWiM</span>) in systematic reviews: reporting guideline”</span>. <em>BMJ</em> 368: l6890. <a href="https://doi.org/10.1136/bmj.l6890">https://doi.org/10.1136/bmj.l6890</a>.
+</div>
+<div id="ref-chinn2000simple" class="csl-entry" role="listitem">
+Chinn, Susan. 2000. <span>“A simple method for converting an odds ratio to effect size for use in meta-analysis”</span>. <em>Statistics in Medicine</em> 19 (22): 3127–31. <a href="https://doi.org/10.1002/1097-0258(20001130)19:22<3127::AID-SIM784>3.0.CO;2-M">https://doi.org/10.1002/1097-0258(20001130)19:22&lt;3127::AID-SIM784&gt;3.0.CO;2-M</a>.
+</div>
+<div id="ref-epoc2017suggested" class="csl-entry" role="listitem">
+Cochrane Effective Practice and Organisation of Care (EPOC). 2017. <em>Suggested risk of bias criteria for <span>EPOC</span> reviews</em>. EPOC Resources for review authors. <a href="https://epoc.cochrane.org/sites/epoc.cochrane.org/files/uploads/Resources-for-authors2017/suggested_risk_of_bias_criteria_for_epoc_reviews.pdf">https://epoc.cochrane.org/sites/epoc.cochrane.org/files/uploads/Resources-for-authors2017/suggested_risk_of_bias_criteria_for_epoc_reviews.pdf</a>.
+</div>
+<div id="ref-casp2024qualitative" class="csl-entry" role="listitem">
+Critical Appraisal Skills Programme. 2024. <em><span>CASP</span> Checklist: For Qualitative Research</em>. CASP UK. <a href="https://casp-uk.net/casp-checklists/CASP-checklist-qualitative-2024.pdf">https://casp-uk.net/casp-checklists/CASP-checklist-qualitative-2024.pdf</a>.
+</div>
+<div id="ref-deeks2024analysing" class="csl-entry" role="listitem">
+Deeks, Jonathan J., Julian P. T. Higgins, Douglas G. Altman, Joanne E. McKenzie, e Areti Angeliki Veroniki. 2024. <span>“Chapter 10: Analysing data and undertaking meta-analyses”</span>. Em <em>Cochrane Handbook for Systematic Reviews of Interventions</em>, version 6.5, organizado por Julian P. T. Higgins, James Thomas, Jacqueline Chandler, et al. Cochrane. <a href="https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10">https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-10</a>.
+</div>
+<div id="ref-eef2021toolkit" class="csl-entry" role="listitem">
+Education Endowment Foundation. 2021. <em>Teaching and Learning / Early Years Toolkit guide</em>. Education Endowment Foundation. <a href="https://d2tic4wvo1iusb.cloudfront.net/documents/toolkit/EEF-Toolkit-guide.pdf">https://d2tic4wvo1iusb.cloudfront.net/documents/toolkit/EEF-Toolkit-guide.pdf</a>.
+</div>
+<div id="ref-holst2025prismatraice" class="csl-entry" role="listitem">
+Holst, Dirk, Keno Moenck, Julian Koch, Ole Schmedemann, e Thorsten Schüppstuhl. 2025. <span>“Transparent Reporting of <span>AI</span> in Systematic Literature Reviews: Development of the <span>PRISMA-trAIce</span> Checklist”</span>. <em>JMIR AI</em> 4: e80247. <a href="https://doi.org/10.2196/80247">https://doi.org/10.2196/80247</a>.
+</div>
+<div id="ref-hong2018mmat" class="csl-entry" role="listitem">
+Hong, Quan Nha, Sergi Fàbregues, Gillian Bartlett, et al. 2018. <span>“The Mixed Methods Appraisal Tool (<span>MMAT</span>) version 2018 for information professionals and researchers”</span>. <em>Education for Information</em> 34 (4): 285–91. <a href="https://doi.org/10.3233/EFI-180221">https://doi.org/10.3233/EFI-180221</a>.
+</div>
+<div id="ref-jbi2024qualitative" class="csl-entry" role="listitem">
+JBI. 2024. <em>Checklist for Qualitative Research</em>. Critical Appraisal Tools for use in JBI Systematic Reviews. <a href="https://jbi.global/critical-appraisal-tools">https://jbi.global/critical-appraisal-tools</a>.
+</div>
+<div id="ref-johnson2015emmie" class="csl-entry" role="listitem">
+Johnson, Shane D., Nick Tilley, e Kate J. Bowers. 2015. <span>“Introducing <span>EMMIE</span>: an evidence rating scale to encourage mixed-method crime prevention synthesis reviews”</span>. <em>Journal of Experimental Criminology</em> 11 (3): 459–73. <a href="https://doi.org/10.1007/s11292-015-9238-7">https://doi.org/10.1007/s11292-015-9238-7</a>.
+</div>
+<div id="ref-lewin2018applying" class="csl-entry" role="listitem">
+Lewin, Simon, Andrew Booth, Claire Glenton, et al. 2018. <span>“Applying <span>GRADE-CERQual</span> to qualitative evidence synthesis findings: introduction to the series”</span>. <em>Implementation Science</em> 13 (Suppl 1): 2. <a href="https://doi.org/10.1186/s13012-017-0688-3">https://doi.org/10.1186/s13012-017-0688-3</a>.
+</div>
+<div id="ref-mcgowan2016press" class="csl-entry" role="listitem">
+McGowan, Jessie, Margaret Sampson, Douglas M. Salzwedel, Elise Cogo, Vicki Foerster, e Carol Lefebvre. 2016. <span>“<span>PRESS</span> Peer Review of Electronic Search Strategies: 2015 Guideline Statement”</span>. <em>Journal of Clinical Epidemiology</em> 75: 40–46. <a href="https://doi.org/10.1016/j.jclinepi.2016.01.021">https://doi.org/10.1016/j.jclinepi.2016.01.021</a>.
+</div>
+<div id="ref-mckenzie2024synthesizing" class="csl-entry" role="listitem">
+McKenzie, Joanne E., e Sue E. Brennan. 2024. <span>“Chapter 12: Synthesizing and presenting findings using other methods”</span>. Em <em>Cochrane Handbook for Systematic Reviews of Interventions</em>, version 6.5, organizado por Julian P. T. Higgins, James Thomas, Jacqueline Chandler, et al. Cochrane. <a href="https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-12">https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-12</a>.
+</div>
+<div id="ref-moberg2018grade" class="csl-entry" role="listitem">
+Moberg, Jenny, Andrew D. Oxman, Sarah Rosenbaum, et al. 2018. <span>“The <span>GRADE</span> Evidence to Decision (<span>EtD</span>) framework for health system and public health decisions”</span>. <em>Health Research Policy and Systems</em> 16: 45. <a href="https://doi.org/10.1186/s12961-018-0320-2">https://doi.org/10.1186/s12961-018-0320-2</a>.
+</div>
+<div id="ref-murad2017rating" class="csl-entry" role="listitem">
+Murad, M. Hassan, Reem A. Mustafa, Holger J. Schünemann, Shahnaz Sultan, e Nancy Santesso. 2017. <span>“Rating the certainty in evidence in the absence of a single estimate of effect”</span>. <em>Evidence-Based Medicine</em> 22 (3): 85–87. <a href="https://doi.org/10.1136/ebmed-2017-110668">https://doi.org/10.1136/ebmed-2017-110668</a>.
+</div>
+<div id="ref-oneill2014applying" class="csl-entry" role="listitem">
+O’Neill, Jennifer, Hilary Tabish, Vivian Welch, et al. 2014. <span>“Applying an equity lens to interventions: using <span>PROGRESS</span> ensures consideration of socially stratifying factors to illuminate inequities in health”</span>. <em>Journal of Clinical Epidemiology</em> 67 (1): 56–64. <a href="https://doi.org/10.1016/j.jclinepi.2013.08.005">https://doi.org/10.1016/j.jclinepi.2013.08.005</a>.
+</div>
+<div id="ref-page2024assessing" class="csl-entry" role="listitem">
+Page, Matthew J., Julian P. T. Higgins, e Jonathan A. C. Sterne. 2024. <span>“Chapter 13: Assessing risk of bias due to missing evidence in a meta-analysis”</span>. Em <em>Cochrane Handbook for Systematic Reviews of Interventions</em>, version 6.5, organizado por Julian P. T. Higgins, James Thomas, Jacqueline Chandler, et al. Cochrane. <a href="https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-13">https://www.cochrane.org/authors/handbooks-and-manuals/handbook/current/chapter-13</a>.
+</div>
+<div id="ref-page2021prisma" class="csl-entry" role="listitem">
+Page, Matthew J., Joanne E. McKenzie, Patrick M. Bossuyt, et al. 2021. <span>“The <span>PRISMA</span> 2020 statement: an updated guideline for reporting systematic reviews”</span>. <em>BMJ</em> 372: n71. <a href="https://doi.org/10.1136/bmj.n71">https://doi.org/10.1136/bmj.n71</a>.
+</div>
+<div id="ref-pustejovsky2018small" class="csl-entry" role="listitem">
+Pustejovsky, James E., e Elizabeth Tipton. 2018. <span>“Small-sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models”</span>. <em>Journal of Business &amp; Economic Statistics</em> 36 (4): 672–83. <a href="https://doi.org/10.1080/07350015.2016.1247004">https://doi.org/10.1080/07350015.2016.1247004</a>.
+</div>
+<div id="ref-pustejovsky2022meta" class="csl-entry" role="listitem">
+Pustejovsky, James E., e Elizabeth Tipton. 2022. <span>“Meta-analysis with robust variance estimation: expanding the range of working models”</span>. <em>Prevention Science</em> 23 (3): 425–38. <a href="https://doi.org/10.1007/s11121-021-01246-3">https://doi.org/10.1007/s11121-021-01246-3</a>.
+</div>
+<div id="ref-rethlefsen2021prismas" class="csl-entry" role="listitem">
+Rethlefsen, Melissa L., Shona Kirtley, Siw Waffenschmidt, et al. 2021. <span>“<span>PRISMA-S</span>: an extension to the <span>PRISMA</span> Statement for Reporting Literature Searches in Systematic Reviews”</span>. <em>Systematic Reviews</em> 10 (1): 39. <a href="https://doi.org/10.1186/s13643-020-01542-z">https://doi.org/10.1186/s13643-020-01542-z</a>.
+</div>
+<div id="ref-schaefer_oqfunciona" class="csl-entry" role="listitem">
+Schaefer, Bruno Marques, Tomás Paixão Borges, e Carlos Barros Barreto Martins De Freitas. 2025. <em>O que funciona? <span>P</span>roposta metodológica para avaliação de políticas públicas através de revisão sistemática</em>. Preprint, OSF Preprints. <a href="https://doi.org/10.31219/osf.io/aht4j_v1">https://doi.org/10.31219/osf.io/aht4j_v1</a>.
+</div>
+<div id="ref-shea2017amstar" class="csl-entry" role="listitem">
+Shea, Beverley J., Barnaby C. Reeves, George Wells, et al. 2017. <span>“<span>AMSTAR</span> 2: a critical appraisal tool for systematic reviews that include randomised or non-randomised studies of healthcare interventions, or both”</span>. <em>BMJ</em> 358: j4008. <a href="https://doi.org/10.1136/bmj.j4008">https://doi.org/10.1136/bmj.j4008</a>.
+</div>
+<div id="ref-sterne2025robinsi" class="csl-entry" role="listitem">
+Sterne, Jonathan A. C., Julian P. T. Higgins, e ROBINS-I V2 development group. 2025. <em>The Risk Of Bias In Non-randomized Studies – of Interventions, Version 2 (<span>ROBINS-I V2</span>) assessment tool (for follow-up studies)</em>. Riskofbias.info. <a href="https://www.riskofbias.info/welcome/robins-i-v2">https://www.riskofbias.info/welcome/robins-i-v2</a>.
+</div>
+<div id="ref-sterne2019rob2" class="csl-entry" role="listitem">
+Sterne, Jonathan A. C., Jelena Savović, Matthew J. Page, et al. 2019. <span>“<span>RoB 2</span>: a revised tool for assessing risk of bias in randomised trials”</span>. <em>BMJ</em> 366: l4898. <a href="https://doi.org/10.1136/bmj.l4898">https://doi.org/10.1136/bmj.l4898</a>.
+</div>
+<div id="ref-thomas2026raise3" class="csl-entry" role="listitem">
+<span class="nocase">Thomas, James, Kaitlyn Hair, Anna Noel-Storr, et al.</span> 2026. <em>Responsible use of <span>AI</span> in evidence <span>SynthEsis</span> (<span>RAISE</span>) 3: selecting and using <span>AI</span> evidence synthesis tools</em>. Open Science Framework, rascunho, vers<span>ã</span>o 3.1 (13 mar. 2026). <a href="https://doi.org/10.17605/OSF.IO/FWAUD">https://doi.org/10.17605/OSF.IO/FWAUD</a>.
+</div>
+<div id="ref-waddington2017quasi" class="csl-entry" role="listitem">
+Waddington, Hugh, Ariel M. Aloe, Betsy Jane Becker, et al. 2017. <span>“Quasi-experimental study designs series—paper 6: risk of bias assessment”</span>. <em>Journal of Clinical Epidemiology</em> 89: 43–52. <a href="https://doi.org/10.1016/j.jclinepi.2017.02.015">https://doi.org/10.1016/j.jclinepi.2017.02.015</a>.
+</div>
+<div id="ref-whiting2016robis" class="csl-entry" role="listitem">
+Whiting, Penny, Jelena Savović, Julian P. T. Higgins, et al. 2016. <span>“<span>ROBIS</span>: A new tool to assess risk of bias in systematic reviews was developed”</span>. <em>Journal of Clinical Epidemiology</em> 69: 225–34. <a href="https://doi.org/10.1016/j.jclinepi.2015.06.005">https://doi.org/10.1016/j.jclinepi.2015.06.005</a>.
+</div>
+<div id="ref-zhang1998whats" class="csl-entry" role="listitem">
+Zhang, Jun, e Kai F. Yu. 1998. <span>“What’s the relative risk? <span>A</span> method of correcting the odds ratio in cohort studies of common outcomes”</span>. <em>JAMA</em> 280 (19): 1690–91. <a href="https://doi.org/10.1001/jama.280.19.1690">https://doi.org/10.1001/jama.280.19.1690</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../metodo/apendice-c-glossario.html" class="pagination-link" aria-label="Glossário">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Glossário</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Especificação metodológica desta base {#sec-especificacao}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Os capítulos desta parte seguem três camadas de autoridade: as normas internacionais (Cochrane, Campbell, JBI, PRISMA, GRADE, CERQual, RAISE e afins), a especificação metodológica desta base e a proposta OQF <span class="co">[</span><span class="ot">@schaefer_oqfunciona</span><span class="co">]</span>. A especificação é a camada do meio. Ela corrige fragilidades da proposta OQF, fixa convenções onde as normas deixam escolha e define o contrato da skill <span class="in">`revisao-sistematica`</span>. Quando um capítulo escreve "especificação desta base" ou marca uma regra com "(E)", é deste apêndice que está falando.</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Este apêndice é um índice das regras, e não a fundamentação delas. Cada item remete à seção onde a regra é discutida com as fontes. Três avisos valem para tudo o que segue:</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**As normas prevalecem.** Se uma norma for mais exigente que a especificação, vale a norma (exemplo: o mínimo de estudos para testar diferença entre subgrupos, na @sec-08a-regras).</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Pontos de corte próprios são convenções.** Limiares que não vêm de norma externa (por exemplo, ≥ 5 estudos e ≥ 70% na regra de rótulo sem meta-análise, ou a pontuação de implementação) precisam ser declarados no protocolo, com a versão da regra, e podem mudar por emenda justificada (@sec-03-registro).</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**A skill está em construção.** A @sec-especificacao-contrato descreve o contrato planejado; nomes de arquivos e comandos podem mudar até a primeira versão pública.</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regras metodológicas {#sec-especificacao-regras}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>A numeração dos itens é a usada nas remissões dos capítulos ("item 3", "item 8").</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Item <span class="pp">|</span> Regra <span class="pp">|</span> Onde está fundamentada <span class="pp">|</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 1 <span class="pp">|</span> **Dicionários etiquetam e ordenam; não excluem.** Exclusão por dicionário só se prevista no protocolo e validada por amostra de elusão. Registro sem resumo nunca é excluído por filtro textual. Expressões regulares usam fronteira de palavra e são testadas contra falsos acertos (SEM/sem, ols/bolsa, refis/Refiscalizar). Tipo de documento e idioma não excluem literatura cinzenta sem justificativa. <span class="pp">|</span> @sec-05-regras <span class="pp">|</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 2 <span class="pp">|</span> **Direção pelo estimador pontual**, relativa à <span class="in">`direcao_desejada`</span> declarada por desfecho; significância em variável separada. Nenhum "sem efeito" por p &gt; 0,05. Contagem por direção usa teste de sinal <span class="co">[</span><span class="ot">@mckenzie2024synthesizing</span><span class="co">]</span>. <span class="pp">|</span> @sec-07-efeitos; @sec-08a-regras <span class="pp">|</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 3 <span class="pp">|</span> **Estudo &gt; relato &gt; efeito**, com identificadores próprios; versões preprint (ou *working paper*) e publicada ligadas como relatos do mesmo estudo desde a deduplicação, nunca fundidas, e os demais relatos ligados depois do texto completo. Revisões sistemáticas e meta-análises nunca entram como estudo primário: alimentam a bola de neve e a validação da busca, ou viram objeto de uma revisão de revisões. <span class="pp">|</span> @sec-05-regras; @sec-01-regras <span class="pp">|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 4 <span class="pp">|</span> **Dependência de efeitos.** O protocolo fixa a regra de modelo principal. Por análise, um efeito por estudo, ou modelo CHE com variância robusta (CR2); graus de liberdade de Satterthwaite abaixo de 4 indicam resultado não confiável <span class="co">[</span><span class="ot">@pustejovsky2018small; @pustejovsky2022meta</span><span class="co">]</span>. Testes de combinação usam um p por estudo. <span class="pp">|</span> @sec-08a-regras; @sec-08a-fundamentos <span class="pp">|</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 5 <span class="pp">|</span> **Testes combinados da proposta OQF são análise secundária**, com ressalva obrigatória: Stouffer ponderado com p unilateral na direção declarada; Cooper como teste de sinal exato sobre a direção; Fisher rotulado "não direcional". Nenhum deles define sozinho o rótulo da caixa de ferramentas. <span class="pp">|</span> @sec-08a-regras <span class="pp">|</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 6 <span class="pp">|</span> **Conversões de tamanho de efeito** por tabela com fórmula e pressupostos em cada linha; conversão fora da tabela é marcada como aproximada e testada em sensibilidade. Faixas de magnitude do campo são fixadas no protocolo, não as convenções genéricas de Cohen. <span class="pp">|</span> @sec-07-efeitos; @sec-03-regras <span class="pp">|</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 7 <span class="pp">|</span> **Comparabilidade antes de agregar** (família de intervenção, comparador, construto do desfecho, janela, população, estimando; randomizados e não randomizados separados). Mínimos: k ≥ 3 para agregar; τ² e intervalo de predição interpretados com k ≥ 5; ≥ 3 estudos por nível de subgrupo para estimar; cerca de 10 estudos por covariável na meta-regressão; funil, Egger e PET-PEESE com k ≥ 10. Modelo padrão de efeitos aleatórios com REML e HKSJ modificado, τ² com intervalo, I² e intervalo de predição; sensibilidade sem um estudo por vez, sem risco alto ou crítico e sem conversões aproximadas; modelo de seleção de três parâmetros como sensibilidade <span class="co">[</span><span class="ot">@deeks2024analysing; @page2024assessing</span><span class="co">]</span>. <span class="pp">|</span> @sec-08a-regras <span class="pp">|</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 8 <span class="pp">|</span> **Qualidade não é desenho.** Escala de Maryland e hierarquias servem para critério de elegibilidade de desenho e para descrever estudos. O risco de viés é julgado por domínio, com a ferramenta do desenho: RoB 2 <span class="co">[</span><span class="ot">@sterne2019rob2</span><span class="co">]</span>; ROBINS-I V2 com os critérios de Waddington e colegas para quase-experimentos <span class="co">[</span><span class="ot">@sterne2025robinsi; @waddington2017quasi</span><span class="co">]</span>; critérios EPOC para séries temporais interrompidas e antes e depois controlado <span class="co">[</span><span class="ot">@epoc2017suggested</span><span class="co">]</span>; CASP ou JBI para qualitativos <span class="co">[</span><span class="ot">@casp2024qualitative; @jbi2024qualitative</span><span class="co">]</span>; JBI transversal para quantitativos descritivos; MMAT para estudos primários mistos <span class="co">[</span><span class="ot">@hong2018mmat</span><span class="co">]</span>; AMSTAR 2 ou ROBIS para revisões <span class="co">[</span><span class="ot">@shea2017amstar; @whiting2016robis</span><span class="co">]</span>. O julgamento entra em sensibilidade, estratificação e GRADE, e não em exclusão automática. <span class="pp">|</span> @sec-06-regras; @sec-06-ferramentas <span class="pp">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 9 <span class="pp">|</span> **Busca revisada por pares** com PRESS <span class="co">[</span><span class="ot">@mcgowan2016press</span><span class="co">]</span>; conjunto de estudos-âncora montado sem usar as strings, para estimar recall relativo; alerta quando mais de 25% a 30% dos incluídos vêm de outros métodos; log no formato PRISMA-S <span class="co">[</span><span class="ot">@rethlefsen2021prismas</span><span class="co">]</span>; alerta quando a última busca tem mais de 12 meses. <span class="pp">|</span> @sec-04-validacao; @sec-04-regras <span class="pp">|</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 10 <span class="pp">|</span> **Fluxograma PRISMA calculado das tabelas do projeto**, com somas conferidas; "não revisado" é NA e fica fora do κ <span class="co">[</span><span class="ot">@page2021prisma</span><span class="co">]</span>. <span class="pp">|</span> @sec-05-prisma <span class="pp">|</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 11 <span class="pp">|</span> **Etapas que a proposta OQF não prevê**: checagem de revisões existentes e registradas; registro no OSF <span class="co">[</span><span class="ot">@vandenakker2023increasing</span><span class="co">]</span>; checagem de retratações; contato com autores para dados faltantes; viés de relato (ROB-ME); unidade de análise em desenhos por *cluster*; lente de equidade PROGRESS-Plus <span class="co">[</span><span class="ot">@oneill2014applying</span><span class="co">]</span>; log de desvios do protocolo; pacote de dados e código (PRISMA 2020, item 27); passagem da evidência à decisão com transferibilidade ao Brasil. <span class="pp">|</span> @sec-01-regras; @sec-03-registro; @sec-05-retratacoes; @sec-06-ferramentas; @sec-02-regras; @sec-09-etd; @sec-apb-pacote <span class="pp">|</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 12 <span class="pp">|</span> **Ordem das etapas**: o protocolo já contém codebook v0, ferramentas de risco de viés, plano de síntese e plano de IA; depois vêm busca, deduplicação, triagem de títulos e resumos, texto completo, ligação de relatos, piloto de extração, extração e risco de viés em paralelo, síntese, certeza e caixa de ferramentas. A bola de neve é triada com a mesma versão dos critérios e entra no ramo "outros métodos" do fluxograma. <span class="pp">|</span> @sec-03-regras; @sec-05-regras <span class="pp">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Matriz de tipos de revisão {#sec-especificacao-tipos}</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>A matriz completa, com *framework*, busca, triagem, risco de viés, família de codebook, síntese, certeza, diretriz de relato e portões por tipo, está na @sec-01-regras. Os tipos reconhecidos são: efetividade com meta-análise; efetividade sem meta-análise (relato pelo SWiM <span class="co">[</span><span class="ot">@campbell2020synthesis</span><span class="co">]</span>); revisão mista e sequencial no formato OQF; revisão de escopo; mapa de evidências e lacunas; síntese de evidências qualitativas; revisão realista; revisão de métodos mistos, incluindo QCA; revisão rápida; e revisão guarda-chuva. Revisão narrativa, bibliometria isolada e resumo de literatura feito por IA não contam como revisão sistemática.</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Validação de IA {#sec-especificacao-ia}</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>O protocolo de validação completo (passos A a H), com limiares e remédios, está na @sec-11-regras e na @sec-11-validacao; a validação da extração, na @sec-11-extracao. Em resumo:</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Etapa <span class="pp">|</span> Regra <span class="pp">|</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Calibração humana da triagem <span class="pp">|</span> Dupla humana em ≥ 100 registros ou ≥ 10 incluídos; κ ≥ 0,6 e concordância ≥ 75% <span class="pp">|</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Prompt <span class="pp">|</span> Desenvolvido só no conjunto de desenvolvimento e congelado (<span class="in">`prompts/vN.md`</span>, modelo, parâmetros e *hash*) <span class="pp">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validação <span class="pp">|</span> Amostra nova com dupla humana, enriquecida para ≥ 60 incluídos; sensibilidade, especificidade, precisão, κ, PABAK e WSS com intervalo de Clopper-Pearson <span class="pp">|</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aceitação <span class="pp">|</span> Recall ≥ 0,95 com limite inferior do IC 95% ≥ 0,90 <span class="pp">|</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Depois da rodada <span class="pp">|</span> Amostra de elusão dos excluídos (n ≥ 300 ou todos); reexecução de 5% a 10% para estabilidade <span class="pp">|</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Texto completo <span class="pp">|</span> O modelo só propõe, com trecho literal e página; a decisão é humana <span class="pp">|</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Extração numérica <span class="pp">|</span> 100% conferida com âncora de página, ou dupla extração com arbitragem <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Extração categórica <span class="pp">|</span> Segundo codificador cego em ≥ 20% dos estudos (mínimo 10); κ ou PABAK ≥ 0,7 e concordância ≥ 80% por variável <span class="pp">|</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Juízos <span class="pp">|</span> Risco de viés, temas analíticos, configurações contexto-mecanismo-resultado, calibração de QCA e CERQual são humanos; o modelo pode rascunhar com trecho <span class="pp">|</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Declaração de uso <span class="pp">|</span> Gerada do log: ferramenta, modelo, versão, datas, parâmetros, papel por etapa, prompts com *hash*, validação, custo e responsabilidade humana <span class="co">[</span><span class="ot">@thomas2026raise3; @holst2025prismatraice</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Caixa de ferramentas e certeza {#sec-especificacao-caixa}</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>As regras de rótulo estão na @sec-08b-caixa, e a certeza, na @sec-09-regras. A célula da caixa é família de intervenção × construto de desfecho e guarda a versão da regra, os estudos, as estimativas, a certeza e a assinatura de quem aprovou. Como randomizados e não randomizados não se agregam juntos, cada célula tem um corpo de evidência por classe de desenho e uma linha de painel que os resume.</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Linha <span class="pp">|</span> Regra resumida <span class="pp">|</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Efeito <span class="pp">|</span> Positivo ou Negativo (estimativa com IC que exclui zero e certeza ao menos baixa; sem meta-análise, teste de sinal com p &lt; 0,05, ≥ 5 estudos, ≥ 70% na mesma direção e não só estudos de risco alto); Nulo (IC inteiro dentro de ±δ fixado *a priori* e certeza ao menos moderada); Misto (intervalo de predição cobre benefício e dano relevantes e há explicação por moderador pré-especificado ou achado qualitativo; na versão `caixa-3`, só com k ≥ 5, δ fixado *a priori* e achado explicativo com confiança própria, CERQual ou ICEMAN, ao menos baixa); Inconclusivo nos demais casos, inclusive quando a explicação é alegada sem esses requisitos. Ordem de aplicação na versão <span class="in">`caixa-3`</span>: sem certeza, Pendente; certeza muito baixa, Inconclusivo; depois Misto (ou Inconclusivo por Misto não sustentado), Positivo ou Negativo, Nulo e Inconclusivo <span class="pp">|</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Painel <span class="pp">|</span> Uma linha por família × construto que resume os corpos por desenho: um só corpo, o rótulo dele; mesmo rótulo, esse rótulo com a maior certeza; rótulos diferentes, o do corpo de maior certeza, com o outro anotado; mesma certeza e rótulos diferentes, Inconclusivo por heterogeneidade entre desenhos; algum corpo pendente, Pendente (@sec-08b-caixa; @sec-10-painel) <span class="pp">|</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Escala <span class="pp">|</span> Faixas de magnitude do campo declaradas no protocolo <span class="pp">|</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Força <span class="pp">|</span> Certeza GRADE da célula: alta = forte; moderada = moderada; baixa = fraca; muito baixa = insuficiente <span class="co">[</span><span class="ot">@balshem2011grade</span><span class="co">]</span> <span class="pp">|</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Implementação <span class="pp">|</span> Um ponto por critério presente (mais de dois componentes; mais de um nível de governo ou vários atores; nova infraestrutura ou pessoal; barreiras de fidelidade ou adoção em ≥ 2 estudos; longo tempo até o efeito): 0 a 1, Simples; 2 a 3, Moderada; 4 ou mais, Complexa <span class="pp">|</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Mecanismo, moderador, percepção, custo <span class="pp">|</span> Enunciados de achado com estudos de suporte e confiança CERQual <span class="co">[</span><span class="ot">@lewin2018applying</span><span class="co">]</span>; custo unitário ou custo-efetividade quando houver, senão "não reportado" <span class="pp">|</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Certeza <span class="pp">|</span> GRADE por célula de efeito, com indireção que inclui contexto institucional, nível de governo e estimando; abordagem de Murad e colegas quando não há meta-análise <span class="co">[</span><span class="ot">@murad2017rating</span><span class="co">]</span>; CERQual por achado qualitativo; revisões realistas e QCA recebem enunciado narrativo, sem pseudo-GRADE (@sec-09-realista-qca) <span class="pp">|</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Da evidência à prática <span class="pp">|</span> Critérios de *Evidence to Decision* reduzidos (benefícios e danos, certeza, custo, equidade, viabilidade, transferibilidade ao Brasil) <span class="co">[</span><span class="ot">@moberg2018grade</span><span class="co">]</span>; nenhuma implicação mais forte que a certeza (@sec-09-etd) <span class="pp">|</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>Os rótulos se inspiram no EMMIE e no *Teaching and Learning Toolkit* <span class="co">[</span><span class="ot">@johnson2015emmie; @eef2021toolkit</span><span class="co">]</span>. Os testes combinados nunca definem rótulo.</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Contrato da skill {#sec-especificacao-contrato}</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>A skill <span class="in">`revisao-sistematica`</span> operacionaliza as regras acima. O contrato abaixo resume o que os capítulos citam nas seções "Na skill"; o detalhe por etapa está nelas.</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>**Fluxo e portões.** 0 configuração e ambiente → 1 pergunta e tipo, com checagem de revisões existentes (**G1**) → 2 teoria do programa e *framework* → 3 protocolo com codebook v0, ferramentas de risco de viés, plano de síntese e plano de IA, registrado no OSF (**G2**) → 4 busca com strings por base, PRESS, estudos-âncora e log PRISMA-S (**G3**) → 5 importação, deduplicação e funil que etiqueta → 6 triagem de títulos e resumos com validação da IA (**G4**) → 7 textos completos, elegibilidade, ligação de relatos, bola de neve e retratações (**G5**) → 8 piloto de extração (**G6**) → 9 extração e risco de viés em paralelo, com efeitos verificados (**G7**) → 10 síntese, certeza e caixa de ferramentas (**G8**) → 11 relato com fluxograma calculado, checklists e declaração de IA (**G9**).</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>**Modos.** No modo de *checkpoints* (padrão), a skill para em todos os portões. No autopiloto, para só em G1 e G2; as demais validações humanas viram pendências registradas, e relatório e declaração de IA saem marcados como "RASCUNHO NÃO VALIDADO", com a lista do que falta.</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>**Estado e registro.** O estado fica em <span class="in">`rs_estado.json`</span>, o histórico em <span class="in">`rs_log.jsonl`</span> (só acréscimo) e as decisões de triagem em <span class="in">`dados/decisoes.jsonl`</span>. Só o <span class="in">`rs.py`</span> escreve nesses arquivos; toda sessão começa por <span class="in">`rs.py status`</span>. Artefatos congelados (protocolo, critérios, prompts, codebook, filtros) guardam caminho, SHA-256 e data. Na consolidação das decisões, a correção humana prevalece sobre o árbitro, e o árbitro sobre o consenso; o resto vai para leitura humana.</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>**Identificadores e deduplicação.** Cada linha importada recebe <span class="in">`id_registro`</span>; cada registro único, <span class="in">`id_rs`</span>; cada estudo, <span class="in">`id_estudo`</span>; e a <span class="in">`chave`</span> de citação liga a revisão às skills de PDFs, fichamento e BibTeX. Junções são sempre por identificador, nunca por título. A deduplicação compara pares dentro de blocos (mesmo DOI, mesmo identificador da fonte, mesmos quatro primeiros caracteres do título normalizado ou mesmo sobrenome do primeiro autor, com diferença de ano de até 1). Funde automaticamente por DOI, identificador da fonte ou título normalizado idêntico com sobrenome compatível; similaridade de título ≥ 95 com o mesmo sobrenome também funde, mas fica marcada para auditoria; similaridade entre 85 e 95, ou conflito de DOI, sobrenome ou ano, vira candidato para decisão humana. Tese e artigo do mesmo trabalho não se fundem: ligam-se como relatos do mesmo estudo. Preprint ou *working paper* e versão publicada também não: com similaridade ≥ 95, mesmo sobrenome e anos presentes, ligam-se automaticamente no mesmo <span class="in">`id_estudo`</span> (sem nunca juntar dois relatos publicados no mesmo estudo); nos demais casos, viram candidatos a ligação para decisão humana. Cada relato segue para a triagem com seu <span class="in">`id_rs`</span>. As regras e exemplos estão na @sec-05-regras e na @sec-05-esquema.</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>**Harmonização e contagens.** Arquivos brutos ficam intocados e com *hash*; colunas são mapeadas por nome, nunca por posição; idiomas são normalizados. O fluxograma sai das tabelas, e os invariantes (triados = excluídos na triagem + buscados; avaliados = buscados − não recuperados; avaliados = excluídos no texto completo + incluídos + aguardando classificação) encerram o comando com erro se não fecharem (@sec-05-prisma).</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>**Subagentes e salvaguardas.** Triagem em lotes de 20 a 30 registros por <span class="in">`id_rs`</span>, até quatro subagentes em paralelo, com resposta JSON validada por esquema e trecho literal conferido contra título e resumo; lote inválido é refeito por outro subagente. O resumo que um subagente devolve nunca é prova: só a validação programática confirma. Na extração e no risco de viés, trecho ausente do PDF é rejeitado pelo *gate* de citação e refeito. Acima de cerca de 1.500 registros recomenda-se o modo API, com dois modelos e árbitro de terceiro provedor que vê revisores anônimos (@sec-11-regras).</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>**Pedidos parciais.** "Só a triagem" parte de uma exportação ou planilha e segue importação, deduplicação opcional, triagem e validação; "só a meta-análise" parte de uma tabela com médias e desvios, t e graus de liberdade ou coeficiente e erro-padrão e segue <span class="in">`analise preparar-efeitos`</span> → <span class="in">`efeitos.R`</span> → <span class="in">`meta.R`</span>; "só o PRISMA" aceita contagens manuais e imprime "NR" onde o número é desconhecido. Pedidos de PDFs, fichamento ou BibTeX vão direto às skills irmãs.</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>**Acréscimos do contrato (versão 1.1).** Os nomes abaixo estão centralizados no esquema da skill (<span class="in">`esquema.py`</span>) e detalhados em <span class="in">`docs/CONTRATOS.md`</span>, seção "Contratos v1.1".</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tema <span class="pp">|</span> O que a skill passou a registrar ou exigir <span class="pp">|</span> Onde está a regra <span class="pp">|</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Busca substituída <span class="pp">|</span> <span class="in">`importar --substituir &lt;busca&gt; --motivo`</span> marca a busca antiga com <span class="in">`ativa: false`</span>, sem apagar linhas; o <span class="in">`dedup`</span> marca com a flag <span class="in">`busca_inativa`</span> os registros únicos que só vinham dela; filtros, triagem (por lotes e via API), amostras de validação, bola de neve e fluxograma deixam esses registros de fora. A importação guarda os metadados do PRISMA-S (<span class="in">`--string-id`</span>, <span class="in">`--executada-em`</span>, <span class="in">`--n-base`</span>, <span class="in">`--filtros-na-base`</span>, <span class="in">`--plataforma`</span>) <span class="pp">|</span> @sec-04-validacao; @sec-04-regras <span class="pp">|</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Estudos-âncora <span class="pp">|</span> <span class="in">`filtrar --ancoras`</span> grava <span class="in">`01-busca/recall_ancoras.json`</span> com recall combinado, por busca e por base; o portão **G3** avisa, sem bloquear, quando o arquivo falta ou quando o recall combinado fica abaixo de 1, com a lista das âncoras não achadas <span class="pp">|</span> @sec-04-validacao <span class="pp">|</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Texto completo <span class="pp">|</span> Decisão final <span class="in">`incluir`</span>, <span class="in">`excluir`</span> ou <span class="in">`aguardando`</span> (no registro de decisões, "aguardando" é um <span class="in">`incerto`</span> humano na etapa de texto completo); <span class="in">`recuperado`</span> no inventário, com conferência humana em <span class="in">`03-textos/conferencia_pdfs.csv`</span>; <span class="in">`textos retratacoes`</span> (<span class="in">`03-textos/retratacoes.csv`</span>) e <span class="in">`textos contato-autores`</span> (<span class="in">`03-textos/contato_autores.csv`</span>) <span class="pp">|</span> @sec-05-regras; @sec-05-retratacoes; @sec-05-prisma <span class="pp">|</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Validação da triagem <span class="pp">|</span> Cada cálculo declara a <span class="in">`finalidade`</span> (calibração, desenvolvimento, validação, elusão ou estabilidade); só a validação da rodada ativa decide o **G4** <span class="pp">|</span> @sec-11-validacao <span class="pp">|</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Conversões de efeito <span class="pp">|</span> <span class="in">`formula_id`</span> novos para as rotas aproximadas: <span class="in">`r_d_n_total`</span> (r sem $n_1$ e $n_2$), <span class="in">`mediana_iqr_aprox`</span> (amplitude interquartil sem quartis; <span class="in">`mediana_iqr_wan`</span> só com os quartis) e <span class="in">`parcial_r_d_gl`</span> (correlação parcial sem o número de preditores; com ele, <span class="in">`parcial_r_d`</span>) <span class="pp">|</span> @sec-07-efeitos <span class="pp">|</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Viés por resultados faltantes <span class="pp">|</span> PEESE só com intercepto do PET positivo e p &lt; 0,10; <span class="in">`--excluir-rob critico`</span> tira da análise principal os resultados com risco crítico e os mantém em sensibilidade <span class="pp">|</span> @sec-08a-regras <span class="pp">|</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Pendências <span class="pp">|</span> Cada comando mantém no máximo uma pendência aberta por tipo e arquivo, atualiza o número de casos sem duplicar e fecha a pendência quando a condição some (conferência de elegibilidade, verificação humana dos efeitos, certeza da caixa, candidatos de duplicata, fila humana da triagem); no autopiloto, só a criação depende do modo <span class="pp">|</span> Parágrafo **Modos**, acima <span class="pp">|</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Portões e tipos <span class="pp">|</span> <span class="in">`portao GN --nao-se-aplica --motivo`</span> dispensa portões que o tipo de revisão não usa (escopo: G7 e G8; mapa de evidências: G6 a G8; realista: G4); <span class="in">`init --variante rapida`</span> registra a revisão rápida como variante do tipo de origem; o **G9** avisa, sem bloquear, quando falta o <span class="in">`.bib`</span> ou quando a declaração de uso de IA é anterior ao último evento do registro <span class="pp">|</span> @sec-01-regras; @sec-especificacao-tipos <span class="pp">|</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>**Acréscimos do contrato (versão 1.2).** Detalhados em <span class="in">`docs/CONTRATOS.md`</span>, seção "Contratos v1.2".</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Tema <span class="pp">|</span> O que a skill passou a registrar ou exigir <span class="pp">|</span> Onde está a regra <span class="pp">|</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|---|</span></span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Estado e retomada <span class="pp">|</span> Trava entre processos em todo escritor de estado e registro, com número de sequência único mesmo com comandos em paralelo; estado corrompido encerra com erro e orientação de restaurar do controle de versão; <span class="in">`status`</span> acha projetos em subpastas e <span class="in">`init`</span> recusa criar outro por cima; a próxima ação sugerida traz marcadores <span class="in">`&lt;...&gt;`</span> onde há valor a conferir, em vez de números <span class="pp">|</span> Parágrafos **Estado e registro** e **Modos**, acima <span class="pp">|</span></span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Protocolo (**G2**) <span class="pp">|</span> O portão exige, além do protocolo, o codebook v0 e o codebook de elegibilidade, e bloqueia com marcadores de modelo não preenchidos; o codebook v0 de efetividade é o bloco comum mais o bloco b2 do codebook OQF; os identificadores dos critérios são os mesmos no protocolo, na triagem e no codebook (C4 desenho, C5 estudo primário, C6 retratação, esta só no texto completo) <span class="pp">|</span> @sec-03-regras <span class="pp">|</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Busca (**G3**) <span class="pp">|</span> O portão exige PRESS registrado (ou pendência de revisão por pares no autopiloto) e bloqueia com busca de teste truncada ainda ativa, que também deixa o fluxograma como rascunho; <span class="in">`buscar openalex --substituir`</span> troca a busca de teste pela completa; o número de resultados declarado de uma busca do OpenAlex é conferido com o total informado pela API <span class="pp">|</span> @sec-04-validacao; @sec-04-regras <span class="pp">|</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Deduplicação <span class="pp">|</span> Preprint e versão publicada viram relatos ligados, sem fusão (item 3); decisões humanas sobre pares exigem o papel de quem decidiu <span class="pp">|</span> @sec-05-regras <span class="pp">|</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Triagem (**G4**) | Planilhas preenchidas por humanos são lidas com vírgula, ponto e vírgula, tabulação ou em `.xlsx`; a fila humana nunca é regravada com decisões ainda não aplicadas; exclusão humana exige um critério que exista na rodada; validação reprovada só pela largura do intervalo (sem falsos negativos) orienta ampliar a amostra ou, com menos de 36 incluídos possíveis, a dupla humana completa com aprovação humana forçada; na revisão rápida com o atalho aprovado no **G1**, o **G4** aceita dupla humana em ≥ 20% dos registros, κ calculado e segunda leitura de todos os excluídos pela IA no lugar do *recall* ≥ 0,95 <span class="pp">|</span> @sec-11-validacao; @sec-01-regras <span class="pp">|</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Texto completo <span class="pp">|</span> Fila humana gerada por comando (<span class="in">`triagem fila --etapa tc`</span>), com critério obrigatório nas exclusões; pendência de retratação fechada por humano não reabre enquanto os retratados forem os mesmos <span class="pp">|</span> @sec-05-regras; @sec-05-retratacoes <span class="pp">|</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Risco de viés (**G7**) | `qualidade consolidar` mede a concordância de dois avaliadores por domínio, gera a fila de desacordos, exige consenso humano e aplica o algoritmo da ferramenta ao consenso (pior domínio no RoB 2 e no ROBINS-I V2, pior critério no EPOC); fora de escopo e mapa, o **G7** só aprova com o risco de viés consolidado e com os arquivos da consolidação inalterados; a concordância da extração categórica gera aviso; o codebook do ROBINS-I V2 usa os códigos de resposta oficiais, com as versões fraca e forte do sim e do não <span class="pp">|</span> @sec-06-skill; @sec-06-ferramentas <span class="pp">|</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Desfechos binários <span class="pp">|</span> Proporções por grupo, efeitos em pontos percentuais de modelo de probabilidade linear, DiD ou RDD, e razão de riscos convertidos a d pelo log da razão de chances com a proporção do controle (<span class="in">`dif_prop_contagens`</span>, <span class="in">`dif_prop_lpm`</span>, <span class="in">`rr_logit`</span>); as rotas de modelos ajustados e de razão de riscos são aproximadas e vão para a sensibilidade <span class="co">[</span><span class="ot">@chinn2000simple; @zhang1998whats</span><span class="co">]</span> <span class="pp">|</span> @sec-07-efeitos <span class="pp">|</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Síntese quantitativa <span class="pp">|</span> PET-PEESE na variante de mínimos quadrados ponderados com erro multiplicativo e teste t, registrada no resultado; <span class="in">`--excluir-rob critico`</span> também na síntese sem meta-análise e nos testes combinados, sempre depois de escolhido o efeito, a direção ou o p de cada estudo <span class="pp">|</span> @sec-08a-regras; @sec-08a-skill <span class="pp">|</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Caixa e certeza (**G8**) | Versão de regra `caixa-3` (Misto só com k ≥ 5, δ e achado explicativo com confiança própria) e linha de painel por família × construto (tabela acima); o **G8** exige o arquivo de certeza com uma linha por célula de efeito e, em revisão OQF, a caixa <span class="pp">|</span> @sec-08b-caixa; @sec-09-regras <span class="pp">|</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Relato (**G9**) <span class="pp">|</span> A atualidade da declaração de uso de IA é conferida pelo evento que a gerou (último evento coberto), e não pelo texto; reexecuções sem mudança não contam <span class="pp">|</span> @sec-10-regras <span class="pp">|</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>**Licenças.** O código da skill é distribuído sob MIT, e os textos de referência, modelos e codebooks, sob CC BY 4.0; nenhum dado ou código do material didático do MAPE/IESP-UERJ é empacotado. Segredos (chaves de API) só por variável de ambiente.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
