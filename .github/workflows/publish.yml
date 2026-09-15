@@ -23,22 +23,20 @@ jobs:
           r-version: "4.4"
           use-public-rspm: true
 
-      - name: Install system dependencies
-        run: sudo apt-get install -y libglpk-dev libxml2-dev
-
       - name: Install R packages
         run: |
-          Rscript -e "install.packages(c('knitr', 'rmarkdown', 'metafor', 'bibliometrix'))"
+          Rscript -e "install.packages(c('knitr', 'rmarkdown'))"
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render book
+        working-directory: livro
         run: quarto render
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./livro/docs
           publish_branch: gh-pages
