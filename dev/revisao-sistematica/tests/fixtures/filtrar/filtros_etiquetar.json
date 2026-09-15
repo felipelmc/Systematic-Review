@@ -1,0 +1,32 @@
+{
+  "versao": "filtros_v1",
+  "filtros": [
+    {
+      "nome": "ano",
+      "tipo": "ano",
+      "min": 2001
+    },
+    {
+      "nome": "tipo",
+      "tipo": "tipo",
+      "recusar": [
+        "editorial",
+        "errata"
+      ]
+    },
+    {
+      "nome": "idioma",
+      "tipo": "idioma",
+      "aceitar": [
+        "pt",
+        "en",
+        "es"
+      ]
+    },
+    {
+      "nome": "metodo",
+      "tipo": "dicionario",
+      "dicionario": "metodo_pt_en_es"
+    }
+  ]
+}

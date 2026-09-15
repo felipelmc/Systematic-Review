@@ -1,0 +1,3 @@
+id,grupo,doi,titulo,ano,primeiro_autor,origem,elegibilidade_conferida_por,indexada_em,observacao
+EX1,validacao,10.0000/exemplo.apagar,,,,<revisão anterior de onde veio (chave ou DOI)>,<papel de quem conferiu os critérios>,<openalex|scopus|wos (nome das bases) ou nenhuma>,apague as linhas EX*
+EX2,desenvolvimento,,<Título exato do estudo>,<AAAA>,<Sobrenome>,<busca exploratória>,<papel>,<scopus>,apague as linhas EX*

@@ -1,0 +1,245 @@
+---
+title: "{{TEXTO_TITULO_PERGUNTA_X_Y}}"
+subtitle: "Revisão sistemática mista e sequencial no formato O que funciona? (OQF)"
+author: "{{TEXTO_AUTORES}}"
+date: "{{TEXTO_DATA}}"
+lang: pt-BR
+# rascunho: true enquanto houver pendência aberta, célula pendente na caixa ou validação abaixo do limiar.
+# Só troque para false seguindo a regra de marca de rascunho da skill (nunca no autopiloto).
+rascunho: true
+bibliography: references.bib
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+---
+
+<!--
+COMO USAR ESTE TEMPLATE
+- Copie para 07-relatorio/relatorio.qmd. Na mesma pasta devem existir, gerados pela skill:
+  prisma.svg (rs.py prisma), declaracao_uso_ia.md (rs.py declaracao-ia) e references.bib (rs.py bib).
+  A caixa vem de ../06-analise/caixa_ferramentas.md (rs.py caixa).
+- Placeholders {{PREFIXO_NOME}}: o prefixo diz a fonte obrigatória do valor.
+  N_ = 07-relatorio/prisma_contagens.json; META_ = 06-analise/meta_resumo.json; SWIM_ = 06-analise/swim_resumo.json;
+  CAIXA_ = 06-analise/caixa_ferramentas.csv; CERTEZA_ = 06-analise/certeza.csv; BUSCA_ = 01-busca e estado;
+  PROTOCOLO_ = 00-protocolo; VALIDACAO_ = declaracao_uso_ia.md; TEXTO_ = autores (nunca números).
+- DOCX com SVG exige rsvg-convert; sem ele, troque prisma.svg por prisma.png (gerado junto por rs.py prisma) na figura do fluxograma.
+- Antes do render final: grep -nE '\{\{[A-Z0-9_]+\}\}' 07-relatorio/*.qmd deve voltar vazio.
+- Os itens de diretriz cumpridos por cada seção aparecem nos comentários e entre parênteses (ex.: PRISMA 16a).
+-->
+
+::: {.content-visible when-meta="rascunho"}
+::: {.callout-warning}
+## RASCUNHO NÃO VALIDADO
+
+Este relatório ainda tem validações humanas pendentes (lista em `rs.py pendencia listar`). Não circule nem cite.
+:::
+:::
+
+# Resumo {.unnumbered}
+
+<!-- PRISMA 2020 para resumos (12 itens). Escreva por último. Até 250 palavras se o destino for Campbell. -->
+
+**Objetivo.** {{TEXTO_OBJETIVO}}
+
+**Métodos.** Critérios: {{PROTOCOLO_CRITERIOS_RESUMO}}. Fontes: {{BUSCA_FONTES}}, busca até {{BUSCA_DATA_ULTIMA}}. Risco de viés: {{PROTOCOLO_FERRAMENTAS_ROB}}. Síntese: {{TEXTO_METODO_SINTESE}}. Certeza: GRADE por célula de efeito e GRADE-CERQual por achado qualitativo.
+
+**Resultados.** {{N_ESTUDOS_INCLUIDOS}} estudos ({{N_RELATOS_INCLUIDOS}} relatos). {{TEXTO_RESULTADOS_PRINCIPAIS_COM_IC_E_CERTEZA}}
+
+**Limitações.** {{TEXTO_LIMITACOES_EVIDENCIA}}
+
+**Conclusões e implicações.** {{TEXTO_CONCLUSAO_PROPORCIONAL_A_CERTEZA}}
+
+**Financiamento.** {{TEXTO_FINANCIAMENTO}} **Registro.** {{PROTOCOLO_REGISTRO}}
+
+# 1. Introdução
+
+<!-- PRISMA 3 e 4. X→Y, contexto da política e marco legal; teoria do programa; revisões existentes e por que esta. -->
+
+{{TEXTO_PROBLEMA_E_POLITICA}}
+
+**Teoria do programa.** {{TEXTO_TEORIA_DO_PROGRAMA}}
+
+<!-- Figura do DAG (positivo e com incentivos perversos), se existir no protocolo:
+![Teoria do programa: intervenção, mecanismos, moderadores e incentivos perversos.](../00-protocolo/dag.png){#fig-dag}
+-->
+
+**Revisões anteriores e justificativa.** {{TEXTO_REVISOES_EXISTENTES}}
+
+**Objetivo e pergunta.** {{TEXTO_PERGUNTA}}
+
+# 2. Metodologia
+
+<!-- PRISMA 5 e 24a-c. -->
+
+O protocolo foi registrado em {{PROTOCOLO_REGISTRO}} e congelado antes da busca. Emendas: {{PROTOCOLO_EMENDAS_RESUMO}}. A revisão segue o PRISMA 2020, com PRISMA-S para a busca, SWiM para as sínteses sem meta-análise e ENTREQ para a síntese qualitativa.
+
+| Elemento | Definição |
+|---|---|
+| População (P) | {{PROTOCOLO_P}} |
+| Intervenção (I) | {{PROTOCOLO_I}} |
+| Comparação (C) | {{PROTOCOLO_C}} |
+| Desfechos (O) e direção desejada | {{PROTOCOLO_O}} |
+| Contexto (Co) | {{PROTOCOLO_CO}} |
+| Mecanismos e moderadores (CMMO) | {{PROTOCOLO_CMMO}} |
+
+: Pergunta no formato PICOC e CMMO. {#tbl-picoc}
+
+## 2.1 Busca
+
+<!-- PRISMA 6 e 7; PRISMA-S 1-16 no apêndice. Uma linha por base, com a string exatamente como executada. -->
+
+| Base (plataforma) | String executada | Filtros na base | Data | Registros |
+|---|---|---|---|---|
+| {{BUSCA_BASE_1}} | {{BUSCA_STRING_1}} | {{BUSCA_FILTROS_1}} | {{BUSCA_DATA_1}} | {{BUSCA_N_1}} |
+
+: Quadro de strings por base. {#tbl-strings}
+
+Outros métodos: {{TEXTO_OUTROS_METODOS}} (bola de neve re-triada com a mesma versão dos critérios; literatura cinzenta; contato com autores).
+
+## 2.2 Seleção e elegibilidade
+
+<!-- PRISMA 8, 16a, 16b. Quem triou, independência, desempate, filtros formais e uso de IA com métricas de validação. -->
+
+{{TEXTO_PROCESSO_SELECAO}} A triagem com apoio de IA foi validada em amostra humana (recall {{VALIDACAO_RECALL}}, IC 95% {{VALIDACAO_RECALL_IC}}; κ {{VALIDACAO_KAPPA}}); detalhes na declaração de uso de IA (apêndice).
+
+![Fluxograma PRISMA 2020 calculado do ledger de decisões.](prisma.svg){#fig-prisma}
+
+Foram identificados {{N_BASES}} registros nas bases e {{N_OUTROS_METODOS}} por outros métodos; {{N_DUPLICATAS}} duplicatas, {{N_AUTOMACAO}} registros marcados por automação e {{N_OUTROS_MOTIVOS}} por outros motivos foram removidos antes da triagem; {{N_TRIADOS}} registros foram triados e {{N_EXCLUIDOS_TRIAGEM}} excluídos; {{N_BUSCADOS}} relatos foram buscados, {{N_NAO_RECUPERADOS}} não recuperados e {{N_AVALIADOS}} avaliados em texto completo, com {{N_EXCLUIDOS_TC}} exclusões (motivos na @fig-prisma) e {{N_AGUARDANDO_CLASSIFICACAO}} aguardando classificação; {{N_ESTUDOS_INCLUIDOS}} estudos ({{N_RELATOS_INCLUIDOS}} relatos) foram incluídos. Estudos limítrofes excluídos: {{TEXTO_EXCLUIDOS_LIMITROFES}}.
+
+## 2.3 Sistematização e análise
+
+<!-- PRISMA 9-15. Extração, codebook, RoB por desenho, métrica e conversões, comparabilidade, modelo, dependência, SWiM, síntese qualitativa, integração, certeza e regra da caixa. -->
+
+**Extração e decomposição.** {{TEXTO_EXTRACAO_E_VERIFICACAO}}
+
+**Risco de viés.** {{PROTOCOLO_FERRAMENTAS_ROB}}; {{TEXTO_PROCESSO_ROB}}
+
+**Síntese quantitativa.** {{TEXTO_METODO_QUANTI}} Medida de efeito: g de Hedges alinhado à direção desejada de cada desfecho (positivo = benéfico), com conversões registradas por fórmula. Modelo de efeitos aleatórios com τ² por REML e intervalo de Hartung-Knapp-Sidik-Jonkman modificado (metafor {{META_VERSAO_METAFOR}}), τ² com IC, I² e intervalo de predição; randomizados e não randomizados em separado; dependência: {{PROTOCOLO_DEPENDENCIA}}, com o modelo principal pela regra do protocolo ({{PROTOCOLO_REGRA_MODELO_PRINCIPAL}}). Moderadores pré-especificados: {{PROTOCOLO_MODERADORES}}. Sensibilidades: leave-one-out, sem estudos de risco alto, sem conversões aproximadas. Viés por resultados faltantes avaliado com ROB-ME; testes de assimetria só com dez ou mais estudos. Sem meta-análise: contagem pela direção da estimativa pontual com teste de sinal e *effect direction plot* (SWiM).
+
+**Síntese qualitativa e integração.** {{TEXTO_METODO_QUALI}} Desenho sequencial-explicativo com *joint display*.
+
+**Certeza e caixa de ferramentas.** GRADE por célula (família de intervenção × construto de desfecho × desenho) e GRADE-CERQual por achado. Rótulos pela regra `{{CAIXA_REGRA_VERSAO}}`, com δ = {{PROTOCOLO_DELTA}} e faixas de magnitude {{PROTOCOLO_FAIXAS}} fixados no protocolo.
+
+# 3. Resultados
+
+## 3.0 Estudos incluídos
+
+<!-- PRISMA 17 e 18: características e risco de viés por estudo (tabela ou apêndice). -->
+
+{{TEXTO_CARACTERISTICAS_E_ROB}}
+
+<!-- PRISMA 19: resultados de cada estudo por desfecho (estatísticas por grupo quando couber, estimativa e precisão), em tabela ou forest plot. -->
+
+{{TEXTO_TABELA_RESULTADOS_INDIVIDUAIS}}
+
+## 3.1 Efeito
+
+<!-- PRISMA 19-22. Uma subseção por célula. Direção pelo estimador; nunca "sem efeito" por p > 0,05. Certeza em cada frase. -->
+
+**{{CAIXA_FAMILIA}} × {{CAIXA_CONSTRUTO}}.** {{META_K}} estudos; g = {{META_G}} (IC 95% {{META_IC}}; τ² = {{META_TAU2}}; I² = {{META_I2}}; intervalo de predição {{META_PI}}). Sensibilidade: {{META_SENSIBILIDADE}}. Viés por resultados faltantes (PRISMA 21): {{TEXTO_RESULTADO_ROB_ME}}. Certeza {{CAIXA_CERTEZA}} ({{CERTEZA_JUSTIFICATIVA}}). {{TEXTO_FRASE_PADRONIZADA_POR_CERTEZA}}
+
+<!-- Sem meta-análise: {{SWIM_N_BENEFICOS}} de {{SWIM_N_ESTUDOS}} estudos com estimativa na direção benéfica (proporção {{SWIM_PROPORCAO}}; IC 95% {{SWIM_IC}}; teste de sinal p = {{SWIM_P}}).
+Figuras geradas pelos scripts (descomente e ajuste o nome do arquivo):
+![Forest plot com intervalo de predição.](../06-analise/figuras/forest_01_<grupo>.png)
+![Direção do efeito por estudo.](../06-analise/figuras/direcao_efeito.png)
+Testes combinados, se usados: copie a ressalva impressa por rs.py analise combinados junto do resultado. -->
+
+## 3.2 Mecanismo
+
+<!-- Enunciados de achado (recurso, raciocínio, contexto) com estudos de suporte e confiança CERQual. CMOCs de síntese realista e soluções de QCA não recebem nível CERQual: enunciado narrativo com status. Revisões não sustentam achado. -->
+
+{{CAIXA_MECANISMO_ENUNCIADOS}}
+
+## 3.3 Moderadores
+
+<!-- Moderador testado (subgrupo ou meta-regressão, com k por nível) separado de hipótese não testada. -->
+
+{{CAIXA_MODERADOR_ENUNCIADOS}}
+
+## 3.4 Percepção
+
+{{CAIXA_PERCEPCAO_ENUNCIADOS}}
+
+## 3.5 Implementação e custo
+
+Implementação: {{CAIXA_IMPLEMENTACAO_ROTULO}} ({{CAIXA_IMPLEMENTACAO_PONTOS}} pontos; confiança {{CAIXA_IMPLEMENTACAO_CERTEZA}}). Custo: {{CAIXA_CUSTO}}.
+
+## 3.6 Certeza da evidência
+
+<!-- PRISMA 15 e 22: tabela de resumo dos achados (SoF) e de achados qualitativos (SoQF). -->
+
+| Célula | Estudos (participantes) | Efeito (IC 95%; PI) | Certeza | Motivos de rebaixamento |
+|---|---|---|---|---|
+| {{CAIXA_CELULA_1}} | {{META_K_N_1}} | {{META_EFEITO_1}} | {{CAIXA_CERTEZA_1}} | {{CERTEZA_MOTIVOS_1}} |
+
+: Resumo dos achados de efeito (GRADE). {#tbl-sof}
+
+## 3.7 Integração
+
+| Hipótese (origem) | Evidência qualitativa (CERQual) | Evidência quantitativa (k por nível) | Teste ou motivo | Ajuste | Consequência para a caixa |
+|---|---|---|---|---|---|
+| {{TEXTO_JOINT_1}} | {{TEXTO_JOINT_QUALI_1}} | {{TEXTO_JOINT_QUANTI_1}} | {{TEXTO_JOINT_TESTE_1}} | {{TEXTO_JOINT_AJUSTE_1}} | {{TEXTO_JOINT_CONSEQUENCIA_1}} |
+
+: Joint display (de 06-analise/joint_display.csv). {#tbl-joint}
+
+# 4. Da evidência à prática: implicações
+
+<!-- PRISMA 23d. Caixa completa no apêndice. Implicações nunca mais fortes que a certeza; transferibilidade ao Brasil explícita. -->
+
+| Intervenção | Resultado | Efeito | Implementação | Custo |
+|---|---|---|---|---|
+| {{CAIXA_FAMILIA}} | {{CAIXA_CONSTRUTO}} | {{CAIXA_ROTULO}} · {{CAIXA_ESCALA}} · certeza {{CAIXA_CERTEZA}} · {{META_K}} estudos | {{CAIXA_IMPLEMENTACAO_ROTULO}} · {{CAIXA_IMPLEMENTACAO_PONTOS}} pontos | {{CAIXA_CUSTO}} |
+
+: Resumo da caixa de ferramentas (regra {{CAIXA_REGRA_VERSAO}}). {#tbl-caixa}
+
+**Evidência para decisão.** {{TEXTO_ETD_LITE}}
+
+**Transferibilidade ao Brasil.** {{TEXTO_TRANSFERIBILIDADE}}
+
+**Implicações para a política.** {{TEXTO_IMPLICACOES_PROPORCIONAIS}}
+
+**Implicações para a pesquisa.** {{TEXTO_IMPLICACOES_PESQUISA}}
+
+# 5. Conclusões e limitações
+
+{{TEXTO_CONCLUSOES}}
+
+## 5.1 Limitações da evidência
+
+<!-- PRISMA 23b: risco de viés, inconsistência, indireção, imprecisão, viés de publicação, ausência de estudos brasileiros. -->
+
+{{TEXTO_LIMITACOES_EVIDENCIA}}
+
+## 5.2 Limitações do processo da revisão
+
+<!-- PRISMA 23c: idiomas, bases, número de revisores, filtros automáticos, triagem por IA, relatos não recuperados, análises planejadas e não feitas. -->
+
+{{TEXTO_LIMITACOES_PROCESSO}}
+
+# Informações adicionais {.unnumbered}
+
+**Registro e protocolo** (PRISMA 24a-c). {{PROTOCOLO_REGISTRO}}; emendas: {{PROTOCOLO_EMENDAS_RESUMO}}.
+
+**Financiamento** (25). {{TEXTO_FINANCIAMENTO}}
+
+**Conflitos de interesse** (26). {{TEXTO_CONFLITOS}}
+
+**Disponibilidade de dados, código e materiais** (27). Estão em {{TEXTO_DOI_PACOTE}}: protocolo e emendas, strings e log de buscas, registros e decisões, contagens do fluxograma, codebooks e fichas, efeitos extraídos e verificados, resultados das análises, `certeza.csv`, caixa de ferramentas com a versão da regra, prompts com hash e métricas de validação. {{TEXTO_RESTRICOES_DE_LICENCA}}
+
+<!-- Texto curto de 07-relatorio/declaracao_uso_ia_texto.md (preenchido a partir de assets/templates/declaracao_uso_ia.md, com números copiados do arquivo gerado). -->
+
+**Uso de inteligência artificial.** {{VALIDACAO_TEXTO_CURTO_IA}} A declaração gerada do log do projeto está reproduzida no apêndice.
+
+# Referências {.unnumbered}
+
+::: {#refs}
+:::
+
+<!-- Apêndices: os arquivos gerados trazem o próprio título. Não edite o conteúdo incluído; regenere com os comandos. -->
+
+{{< include ../06-analise/caixa_ferramentas.md >}}
+
+{{< include declaracao_uso_ia.md >}}

@@ -1,0 +1,23 @@
+item,secao,topico,descricao
+1,Título,Título,Identificar o trabalho como revisão de escopo.
+2,Resumo,Resumo estruturado,"Resumir contexto, objetivos, critérios, fontes, métodos de mapeamento, resultados e conclusões."
+3,Introdução,Justificativa,Explicar a revisão diante do que já se sabe e por que o formato de escopo é adequado.
+4,Introdução,Objetivos,"Declarar perguntas e objetivos com seus elementos (por exemplo, população, conceito e contexto)."
+5,Métodos,Protocolo e registro,"Informar se há protocolo, onde acessá-lo e o registro, se houver."
+6,Métodos,Critérios de elegibilidade,Especificar as características das fontes usadas como critérios e justificá-las.
+7,Métodos,Fontes de informação,Descrever todas as fontes consultadas e a data da busca mais recente.
+8,Métodos,Busca,"Apresentar a estratégia completa de pelo menos uma base, com limites, de forma reprodutível."
+9,Métodos,Seleção das fontes de evidência,Descrever o processo de seleção (triagem e elegibilidade).
+10,Métodos,Processo de mapeamento dos dados,"Descrever como os dados foram mapeados, com formulários testados, independência e confirmação com autores."
+11,Métodos,Itens de dados,Listar e definir as variáveis buscadas e os pressupostos.
+12,Métodos,Avaliação crítica das fontes (opcional),"Se feita, justificar e descrever os métodos e o uso dos resultados."
+13,Métodos,Síntese dos resultados,Descrever como os dados mapeados foram tratados e resumidos.
+14,Resultados,Seleção das fontes de evidência,"Informar números triados, avaliados e incluídos, com motivos de exclusão, de preferência em fluxograma."
+15,Resultados,Características das fontes,Apresentar as características de cada fonte de evidência mapeada.
+16,Resultados,Avaliação crítica nas fontes (opcional),"Se feita, apresentar os dados da avaliação crítica."
+17,Resultados,Resultados das fontes individuais,Apresentar os dados relevantes de cada fonte em relação às perguntas.
+18,Resultados,Síntese dos resultados,Resumir e apresentar os resultados do mapeamento em relação às perguntas.
+19,Discussão,Resumo das evidências,Resumir os principais achados e conectá-los às perguntas e ao público.
+20,Discussão,Limitações,Discutir as limitações do processo de revisão de escopo.
+21,Discussão,Conclusões,Interpretar os resultados em relação às perguntas e apontar implicações e próximos passos.
+22,Financiamento,Financiamento,Descrever fontes de financiamento das fontes incluídas e da revisão e o papel dos financiadores.

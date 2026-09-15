@@ -1,0 +1,7 @@
+﻿Key,Item Type,Publication Year,Author,Title,Publication Title,ISBN,ISSN,DOI,Url,Abstract Note,Date,Pages,Issue,Volume,Publisher,Place,Language,Type,Extra,Manual Tags,Automatic Tags
+PLUCK001,journalArticle,2024,"Gomes, Cristina Sá; Silva, Alana Gomes da",Insegurança alimentar em adolescentes,Saúde em Fictício,,0103-0000,10.9999/2358-289820241418373p,http://www.scielo.example/x,ABSTRACT Food insecurity.,2024-06,,141,48,,,pt-BR,,,Adolescente; Covid-19,Food insecurity
+PLUCK002,bookSection,2019,"Okafor, Adaeze",Tax morale chapter,Fictional Handbook,978-0-000,,,,,2019,10-30,,,Fictional Press,London,en,,,,
+PLUCK003,thesis,2020,"Rocha, Tiago",Parcelamentos e arrecadação municipal,,,,,https://repositorio.exemplo.org/t/3,Resumo da dissertação.,2020,,,,Universidade Fictícia,Recife,Português,Dissertação (Mestrado),,,
+PLUCK001,report,2021,Instituto Fictício de Pesquisa Econômica,Texto para discussão sobre REFIS,,,,,,Relatório técnico.,2021,,,,Instituto Fictício,Brasília,por,Texto para Discussão,"DOI: 10.9999/td.2021.7
+Citation Key: ifpe2021",,
+PLUCK005,preprint,2022,"Lima, Pedro; Souza, Ana",Amnesties and compliance: a preprint,SocArXiv,,,,https://doi.org/10.31235/osf.io/abcd1,Preprint.,2022-05,,,,,,en,,,,

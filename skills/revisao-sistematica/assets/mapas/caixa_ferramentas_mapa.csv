@@ -1,0 +1,14 @@
+dimensao_caixa,papel,variavel_master,criterio,valores_sim,limiar_estudos,descricao
+celula,celula_familia,familia_intervencao,,,,Família de intervenção (linha da caixa de ferramentas); variável familia_intervencao do codebook oqf_decomposicao
+celula,celula_outcome,construto_outcome,,,,Construto de outcome (coluna da caixa; implementação é avaliada por família); variável construto_outcome do codebook oqf_decomposicao
+implementacao,criterio_implementacao,impl_componentes,componentes,sim|s|1|yes|true,1,Intervenção com mais de 2 componentes
+implementacao,criterio_implementacao,impl_multinivel,multinivel,sim|s|1|yes|true,1,Mais de um nível de governo ou múltiplos atores envolvidos
+implementacao,criterio_implementacao,impl_infraestrutura,infraestrutura,sim|s|1|yes|true,1,Exige nova infraestrutura ou novo pessoal
+implementacao,criterio_implementacao,impl_barreiras_fidelidade,barreiras,sim|s|1|yes|true,2,Barreiras de fidelidade ou adoção relatadas (conta só com pelo menos 2 estudos)
+implementacao,criterio_implementacao,impl_tempo_longo,tempo_longo,sim|s|1|yes|true,1,Longo tempo até o efeito aparecer
+mecanismo,achado,mecanismo_id,,sim|s|1|yes|true,1,Estudo discute mecanismo (trecho na evidência de mecanismo_id; detalhe em mecanismo_tipo_evidencia e mecanismo_descricao)
+moderador,achado,moderador_id,,sim|s|1|yes|true,1,Estudo relata moderador ou efeito heterogêneo (trecho na evidência de moderador_id; detalhe em moderador_descricao)
+percepcao,achado,percepcao_id,,sim|s|1|yes|true,1,Estudo relata percepção de atores (trecho na evidência de percepcao_id; detalhe em percepcao_descricao)
+custo,achado,custo_id,,sim|s|1|yes|true,1,Estudo relata custo (trecho na evidência de custo_id; valor em custo_unitario)
+custo,custo_unitario,custo_unitario,,,,Custo unitário ou razão de custo-efetividade reportada
+risco,rob,rob_geral,,alto|muito_alto|critico|grave|serio|high|critical|serious,,"Risco de viés geral do resultado, julgamento humano de consenso juntado ao master por chave (bloqueia rótulo por teste de sinal quando só há risco alto)"

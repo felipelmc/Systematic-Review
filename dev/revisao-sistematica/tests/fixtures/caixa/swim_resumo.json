@@ -1,0 +1,8 @@
+[
+  {"familia_intervencao": "Transferência condicionada", "construto_outcome": "evasao", "metodo": "teste de sinal",
+   "n_estudos": 6, "n_beneficos": 6, "n_danosos": 0, "p_sinal": 0.031, "estudos": ["Alves2020", "Dias2021"]},
+  {"familia_intervencao": "Merenda escolar", "construto_outcome": "notas", "metodo": "teste de sinal",
+   "n_estudos": 5, "n_beneficos": 5, "n_danosos": 0, "p_sinal": 0.0625},
+  {"familia_intervencao": "Merenda escolar", "construto_outcome": "peso", "metodo": "Fisher (não direcional)",
+   "n_estudos": 8, "n_beneficos": 8, "p": 0.001}
+]

@@ -1,0 +1,65 @@
+{
+  "resultCount": 2,
+  "status": "OK",
+  "records": [
+    {
+      "id": "UFXX_0123456789abcdef",
+      "title": "Autonomia fiscal: o caso de um município fictício",
+      "authors": {
+        "primary": {
+          "Gusmão, Débora": {
+            "profile": []
+          }
+        },
+        "secondary": {
+          "Orientador, Fictício": {}
+        },
+        "corporate": []
+      },
+      "formats": [
+        "doctoralThesis"
+      ],
+      "languages": [
+        "por"
+      ],
+      "publicationDates": [
+        "2017"
+      ],
+      "subjects": [
+        [
+          "Federalismo"
+        ],
+        [
+          "Finanças públicas"
+        ]
+      ],
+      "urls": [
+        {
+          "url": "http://www.bdtd.exemplo.br/handle/1/12452",
+          "desc": "link"
+        }
+      ]
+    },
+    {
+      "id": "UFYY_fedcba9876543210",
+      "title": "Refinanciamento de dívidas e adimplência",
+      "authors": {
+        "primary": {
+          "ROCHA, TIAGO": {}
+        },
+        "secondary": [],
+        "corporate": []
+      },
+      "formats": [
+        "masterThesis"
+      ],
+      "languages": [
+        "eng"
+      ],
+      "publicationDates": [
+        "2019"
+      ],
+      "urls": []
+    }
+  ]
+}

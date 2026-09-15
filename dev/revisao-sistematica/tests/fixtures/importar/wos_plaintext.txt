@@ -1,0 +1,83 @@
+﻿FN Clarivate Analytics Web of Science
+VR 1.0
+PT J
+AU Almeida, BC
+   Rocha, T
+   Nakamura, K
+AF Almeida, Beatriz Costa
+   Rocha, Tiago
+   Nakamura, Ken
+TI Tax amnesty programs and compliance: evidence from municipal
+   panels
+SO JOURNAL OF FICTIONAL PUBLIC FINANCE
+LA English
+DT Article
+DE tax amnesty; compliance; municipal
+   finance; panel data
+ID TAX EVASION
+AB We study repeated tax amnesty programs using a synthetic panel of
+   municipalities.
+C1 [Almeida, Beatriz Costa; Rocha, Tiago] Univ Ficticia Sul, Dept Econ, Porto Alegre, RS, Brazil.
+   [Nakamura, Ken] State Univ Example, Sch Publ Policy, Springfield, IL 62701 USA.
+C3 Universidade Ficticia do Sul; State University
+   of Example
+TC 3
+Z9 4
+PY 2021
+VL 12
+IS 3
+BP 101
+EP 130
+DI 10.9999/jfpf.2021.0003
+UT WOS:000000000000001
+DA 2025-01-10
+ER
+
+PT J
+AU Pereira, JF
+AF Pereira, Joana Francisca
+TI Parcelamentos especiais e arrecadacao: uma revisao
+SO REVISTA FICTICIA DE ADMINISTRACAO
+LA Portuguese
+DT Review; Early Access
+AB Revisamos estudos sobre parcelamentos especiais.
+EA MAR 2024
+AR e2024001
+UT WOS:000000000000002
+DA 2025-01-10
+ER
+
+PT J
+CA Grupo de Estudos Fiscais Ficticios
+TI Editorial: the future of tax policy research
+SO JOURNAL OF FICTIONAL PUBLIC FINANCE
+LA English
+DT Editorial Material
+PY 2022
+UT WOS:000000000000003
+ER
+
+PT C
+AU Okafor, A
+AF Okafor, Adaeze
+TI Behavioral responses to tax installment plans
+SO PROCEEDINGS OF THE FICTIONAL CONFERENCE ON TAXATION
+LA English
+DT Proceedings Paper
+PY 2020
+DI https://doi.org/10.9999/FCT.2020.ABC
+UT WOS:000000000000004
+ER
+
+PT J
+AU Lima, ML
+AF Lima, Mariana Lopes
+TI Parcelamento tributario e agressividade fiscal
+SO Revista Ficticia de Contabilidade
+LA Portuguese
+DT research-article
+PY 2019
+UT SCIELO:S0000-00002019000100001
+ER
+
+EF

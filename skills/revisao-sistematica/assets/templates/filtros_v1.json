@@ -1,0 +1,45 @@
+{
+  "_instrucoes": "Modelo do funil formal para `rs.py filtrar --config 01-busca/filtros_v1.json`. Copie para 01-busca/, ajuste os valores e apague as chaves que começam com '_' se quiser (o script as ignora). Todos os filtros abaixo ETIQUETAM: quem falha segue para a triagem com etiqueta. Troque 'min' pelo marco do protocolo (ex.: ano da lei) e 'aceitar' pelos idiomas do protocolo. Registros sem ano, tipo ou idioma ficam sem_dado e seguem; registros sem resumo nunca são reprovados por dicionário. Nova versão = novo arquivo (filtros_v2.json) com 'versao' novo.",
+  "versao": "filtros_v1",
+  "previsto_no_protocolo": false,
+  "filtros": [
+    {
+      "nome": "ano",
+      "tipo": "ano",
+      "min": 2000,
+      "_nota": "min/max inclusivos, inteiros. Use o marco do protocolo; sem teto, omita 'max' (o limite superior é a data da busca)."
+    },
+    {
+      "nome": "tipo",
+      "tipo": "tipo",
+      "recusar": ["editorial", "errata"],
+      "_nota": "Valores válidos: artigo, capitulo, livro, tese, dissertacao, evento, preprint, relatorio, revisao, editorial, errata, outro. Não recuse literatura cinzenta (tese, dissertacao, relatorio, evento, preprint, livro, capitulo) sem justificativa."
+    },
+    {
+      "nome": "idioma",
+      "tipo": "idioma",
+      "aceitar": ["pt", "en", "es"],
+      "_nota": "Códigos ISO 639-1. Idioma é critério de triagem, não de busca."
+    },
+    {
+      "nome": "metodo",
+      "tipo": "dicionario",
+      "dicionario": "metodo_pt_en_es",
+      "grupos": ["quantitativo", "experimental", "causalidade", "qualitativo", "misto", "metodos"],
+      "campos": ["titulo", "resumo", "palavras_chave"],
+      "modo": "etiquetar",
+      "_nota": "Grupos disponíveis em assets/dicionarios/metodo_pt_en_es.csv: causalidade, experimental, metodos, misto, qualitativo, quantitativo, revisao. Dicionário substantivo do projeto: CSV com colunas termo,idioma,grupo,sensivel_caixa (1 para siglas) em 01-busca/, referenciado pelo caminho."
+    }
+  ],
+  "_exemplo_exclusao": {
+    "_nota": "NÃO é lido pelo script. Para excluir de verdade, mova um filtro assim para a lista 'filtros' SOMENTE se o protocolo congelado no G2 previr a exclusão. Sem previsto_no_protocolo=true o comando sai com código 2; dicionário em modo excluir exige validacao_elusao (o JSON de métricas gerado por `rs.py filtrar --amostra-elusao N --semente S` e, depois da codificação humana, `rs.py filtrar --calcular-elusao <planilha>`; a assinatura do filtro é conferida); idioma em modo excluir e tipo que atinja literatura cinzenta exigem justificativa.",
+    "nome": "metodo_excluir",
+    "tipo": "dicionario",
+    "dicionario": "metodo_pt_en_es",
+    "grupos": ["quantitativo", "experimental", "causalidade"],
+    "modo": "excluir",
+    "previsto_no_protocolo": true,
+    "validacao_elusao": "02-triagem/validacao/elusao_filtros_v1_metricas.json",
+    "justificativa": "<seção do protocolo e motivo>"
+  }
+}

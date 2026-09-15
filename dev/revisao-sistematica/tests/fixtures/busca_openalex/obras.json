@@ -1,0 +1,48 @@
+[
+  {
+    "id": "https://openalex.org/W1001",
+    "doi": "https://doi.org/10.1234/ABC.2020.01",
+    "title": "Conditional cash transfers and <i>school</i> attendance",
+    "display_name": "Conditional cash transfers and school attendance",
+    "publication_year": 2020,
+    "publication_date": "2020-03-01",
+    "type": "article",
+    "language": "en",
+    "primary_location": {"landing_page_url": "https://example.org/a1", "source": {"display_name": "Journal of Policy Tests"}},
+    "authorships": [
+      {"author": {"display_name": "João da Silva Filho"}, "countries": ["BR"], "institutions": [{"display_name": "Universidade Exemplo"}]},
+      {"author": {"display_name": "Maria Souza"}, "countries": ["BR", "PT"], "institutions": []}
+    ],
+    "abstract_inverted_index": {"Transfers": [0], "raise": [1], "attendance": [2], "in": [3], "schools": [4]},
+    "cited_by_count": 12,
+    "biblio": {"volume": "7", "issue": "2", "first_page": "10", "last_page": "25"},
+    "keywords": [{"display_name": "cash transfers"}, {"display_name": "education"}],
+    "referenced_works": ["https://openalex.org/W9"]
+  },
+  {
+    "id": "https://openalex.org/W1002",
+    "doi": null,
+    "title": "Avaliação de um programa de transferência",
+    "publication_year": 2018,
+    "type": "dissertation",
+    "language": "pt",
+    "primary_location": null,
+    "authorships": [{"author": {"display_name": "Ana Lima"}}],
+    "abstract_inverted_index": null,
+    "cited_by_count": 0,
+    "biblio": {},
+    "keywords": []
+  },
+  {
+    "id": "https://openalex.org/W1003",
+    "doi": "10.5555/xyz",
+    "title": "A preprint on transfers",
+    "publication_year": 2023,
+    "type": "preprint",
+    "language": "es",
+    "primary_location": {"source": null},
+    "authorships": [],
+    "abstract_inverted_index": {"Short": [0], "abstract": [1]},
+    "cited_by_count": 3
+  }
+]

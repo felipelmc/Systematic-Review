@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-lote-resposta/1",
+  "title": "Resposta de um subagente triador para um lote (lote_NNN.resposta.json)",
+  "type": "object",
+  "required": ["lote_id", "rodada", "revisor", "criterios_sha", "decisoes"],
+  "additionalProperties": false,
+  "properties": {
+    "lote_id": {"type": "string"},
+    "rodada": {"type": "string"},
+    "revisor": {"type": "string"},
+    "criterios_sha": {"type": "string"},
+    "decisoes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id_rs", "decisao", "criterio_falhou", "justificativa", "trecho"],
+        "additionalProperties": false,
+        "properties": {
+          "id_rs": {"type": "string", "pattern": "^RS[0-9]{4,}$"},
+          "decisao": {"enum": ["incluir", "excluir", "incerto"]},
+          "criterio_falhou": {"type": ["string", "null"], "description": "id do critério (C1, C2...) ou null se incluir"},
+          "justificativa": {"type": "string", "maxLength": 400},
+          "trecho": {"type": ["string", "null"], "description": "fragmento verbatim do título ou resumo, até 25 palavras"}
+        }
+      }
+    }
+  }
+}

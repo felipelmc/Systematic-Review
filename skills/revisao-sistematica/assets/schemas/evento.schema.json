@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-evento/1",
+  "title": "Evento do rs_log.jsonl (append-only)",
+  "type": "object",
+  "required": [
+    "seq",
+    "ts",
+    "evento",
+    "etapa",
+    "ator",
+    "dados"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "seq": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "ts": {
+      "type": "string",
+      "description": "ISO 8601 UTC"
+    },
+    "evento": {
+      "enum": [
+        "projeto_criado",
+        "modo_definido",
+        "ambiente_verificado",
+        "artefato_versionado",
+        "emenda_protocolo",
+        "busca_registrada",
+        "importacao",
+        "dedup_executado",
+        "dedup_revisado",
+        "filtro_formal",
+        "lote_preparado",
+        "lote_mesclado",
+        "lote_rejeitado",
+        "decisao_override",
+        "triagem_consolidada",
+        "validacao_calculada",
+        "portao",
+        "pendencia_aberta",
+        "pendencia_fechada",
+        "textos_atualizados",
+        "ligacao_relatos",
+        "extracao_consolidada",
+        "efeitos_verificados",
+        "analise_executada",
+        "caixa_gerada",
+        "prisma_gerado",
+        "relatorio_gerado",
+        "erro",
+        "busca_substituida",
+        "retratacoes_verificadas",
+        "contato_autores",
+        "etapa_nao_aplicavel",
+        "rob_consolidado",
+        "fila_gerada"
+      ]
+    },
+    "etapa": {
+      "type": "string"
+    },
+    "ator": {
+      "type": "object",
+      "required": [
+        "tipo",
+        "id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tipo": {
+          "enum": [
+            "humano",
+            "ia_coordenador",
+            "ia_subagente",
+            "ia_api",
+            "script",
+            "regra"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "id de papel (ex.: revisor_humano_1, revisor_A); nomes reais só no estado"
+        },
+        "modelo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "dados": {
+      "type": "object"
+    },
+    "artefatos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "caminho",
+          "sha256"
+        ],
+        "properties": {
+          "caminho": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "motivo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

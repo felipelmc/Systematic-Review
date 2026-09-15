@@ -1,0 +1,93 @@
+---
+title: "{{TEXTO_TITULO_PERGUNTA_OU_MENSAGEM}}"
+subtitle: "Síntese de evidências para gestores"
+author: "{{TEXTO_AUTORES}}"
+date: "{{TEXTO_DATA}}"
+lang: pt-BR
+# rascunho: true enquanto o relatório de origem tiver pendências abertas (regra de marca de rascunho da skill).
+rascunho: true
+bibliography: references.bib
+format:
+  html:
+    toc: false
+  docx:
+    toc: false
+---
+
+<!--
+COMO USAR ESTE TEMPLATE (produto derivado; até ~8 páginas).
+- Copie para 07-relatorio/policy_brief.qmd depois do G8. Todo número, rótulo e nível de certeza é copiado da mesma
+  fonte do relatório: 06-analise/caixa_ferramentas.csv (CAIXA_), meta_resumo.json (META_), swim_resumo.json (SWIM_),
+  prisma_contagens.json (N_). Mesmos números e mesmas palavras do relatório completo.
+- Comece pelo problema de política, não pela revisão. Nenhuma implicação mais forte que a certeza.
+- Frases por certeza (efeito médio): alta "X aumenta/reduz Y"; moderada "X provavelmente aumenta/reduz Y";
+  baixa "X pode aumentar/reduzir Y"; muito baixa "A evidência é muito incerta sobre o efeito de X em Y".
+- Proibido: "Neutro", "sem efeito" com IC que inclui zero, rótulo sem certeza, recomendação categórica com certeza baixa.
+- Antes do render final: grep -nE '\{\{[A-Z0-9_]+\}\}' 07-relatorio/*.qmd deve voltar vazio.
+-->
+
+::: {.content-visible when-meta="rascunho"}
+::: {.callout-warning}
+## RASCUNHO NÃO VALIDADO
+
+A revisão de origem ainda tem validações humanas pendentes. Não circule.
+:::
+:::
+
+::: {.callout-note}
+## Mensagens principais
+
+- {{TEXTO_MENSAGEM_1_COM_FRASE_DE_CERTEZA}}
+- {{TEXTO_MENSAGEM_2_COM_FRASE_DE_CERTEZA}}
+- {{TEXTO_MENSAGEM_3_COM_FRASE_DE_CERTEZA}}
+:::
+
+## O problema e a decisão em jogo
+
+{{TEXTO_PROBLEMA_MARCO_LEGAL_E_DECISAO_NO_BRASIL}}
+
+## O que foi feito
+
+Revisão sistemática com busca em {{BUSCA_FONTES}} até {{BUSCA_DATA_ULTIMA}}. Foram incluídos {{N_ESTUDOS_INCLUIDOS}} estudos ({{TEXTO_DESENHOS_E_PAISES}}; estudos brasileiros: {{TEXTO_ESTUDOS_BRASILEIROS}}). A confiança em cada achado foi avaliada com GRADE (efeitos) e GRADE-CERQual (achados qualitativos); os rótulos seguem regras publicadas (versão {{CAIXA_REGRA_VERSAO}}).
+
+## O que a evidência mostra
+
+| Intervenção | Resultado | Efeito | Confiança na evidência | Implementação | Custo |
+|---|---|---|---|---|---|
+| {{CAIXA_FAMILIA}} | {{CAIXA_CONSTRUTO}} | {{CAIXA_ROTULO}} · {{CAIXA_ESCALA}} | {{CAIXA_CERTEZA}} ({{META_K}} estudos) | {{CAIXA_IMPLEMENTACAO_ROTULO}} | {{CAIXA_CUSTO}} |
+
+: Resumo por intervenção e resultado. {#tbl-resumo}
+
+<!-- Figura-resumo com a mesma métrica e IC visível (descomente e ajuste):
+![Efeito por estudo e estimativa combinada.](../06-analise/figuras/forest_01_<grupo>.png) -->
+
+**Efeito.** {{TEXTO_FRASE_PADRONIZADA_EFEITO}} (g = {{META_G}}; IC 95% {{META_IC}}; intervalo de predição {{META_PI}}).
+
+**Como funciona (mecanismo).** {{CAIXA_MECANISMO_ENUNCIADOS}}
+
+**Para quem e onde (moderadores).** {{CAIXA_MODERADOR_ENUNCIADOS}}
+
+**Como os atores percebem.** {{CAIXA_PERCEPCAO_ENUNCIADOS}}
+
+**Implementação e custo.** {{CAIXA_IMPLEMENTACAO_ENUNCIADO}} Custo: {{CAIXA_CUSTO}}.
+
+## O que isso significa para a política
+
+<!-- Implicações proporcionais à certeza e às condições de transferibilidade ao contexto de uso. Diga o que mudaria a conclusão. -->
+
+{{TEXTO_IMPLICACOES_PROPORCIONAIS}}
+
+**Condições para funcionar no Brasil.** {{TEXTO_TRANSFERIBILIDADE}}
+
+## Limitações
+
+{{TEXTO_LIMITACOES_PRINCIPAIS}}
+
+## Saber mais
+
+Revisão completa: {{TEXTO_LINK_REVISAO}}. Dados, código e tabela de achados: {{TEXTO_DOI_PACOTE}}.
+
+## Referências {.unnumbered}
+
+::: {#refs}
+:::

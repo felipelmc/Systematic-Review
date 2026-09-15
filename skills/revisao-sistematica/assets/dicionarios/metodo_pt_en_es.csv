@@ -1,0 +1,351 @@
+termo,idioma,grupo,sensivel_caixa
+methods,en,metodos,0
+methodology,en,metodos,0
+methodological,en,metodos,0
+quantitative methods,en,metodos,0
+qualitative methods,en,metodos,0
+quantitative analysis,en,metodos,0
+qualitative analysis,en,metodos,0
+quantitative,en,metodos,0
+qualitative,en,metodos,0
+research design,en,metodos,0
+research techniques,en,metodos,0
+empirical,en,metodos,0
+empirical study,en,metodos,0
+empirical analysis,en,metodos,0
+empirical evidence,en,metodos,0
+métodos,pt,metodos,0
+metodologia,pt,metodos,0
+metodológic*,pt,metodos,0
+métodos quantitativos,pt,metodos,0
+métodos qualitativos,pt,metodos,0
+análise quantitativa,pt,metodos,0
+análise qualitativa,pt,metodos,0
+quantitativ*,pt,metodos,0
+qualitativ*,pt,metodos,0
+desenho de pesquisa,pt,metodos,0
+técnicas de pesquisa,pt,metodos,0
+empíric*,pt,metodos,0
+estudo empírico,pt,metodos,0
+análise empírica,pt,metodos,0
+evidência empírica,pt,metodos,0
+métodos,es,metodos,0
+metodología,es,metodos,0
+metodológic*,es,metodos,0
+métodos cuantitativos,es,metodos,0
+métodos cualitativos,es,metodos,0
+análisis cuantitativo,es,metodos,0
+análisis cualitativo,es,metodos,0
+cuantitativ*,es,metodos,0
+cualitativ*,es,metodos,0
+diseño de investigación,es,metodos,0
+técnicas de investigación,es,metodos,0
+estudio empírico,es,metodos,0
+análisis empírico,es,metodos,0
+evidencia empírica,es,metodos,0
+causality,en,causalidade,0
+causal,en,causalidade,0
+causal inference,en,causalidade,0
+causal effect*,en,causalidade,0
+causal impact*,en,causalidade,0
+counterfactual*,en,causalidade,0
+endogeneity,en,causalidade,0
+exogeneity,en,causalidade,0
+exogenous variation,en,causalidade,0
+identification strategy,en,causalidade,0
+causalidade,pt,causalidade,0
+inferência causal,pt,causalidade,0
+efeito causal,pt,causalidade,0
+efeitos causais,pt,causalidade,0
+contrafactua*,pt,causalidade,0
+endogeneidade,pt,causalidade,0
+exogeneidade,pt,causalidade,0
+estratégia de identificação,pt,causalidade,0
+causalidad,es,causalidade,0
+inferencia causal,es,causalidade,0
+efecto causal,es,causalidade,0
+efectos causales,es,causalidade,0
+contrafactua*,es,causalidade,0
+endogeneidad,es,causalidade,0
+exogeneidad,es,causalidade,0
+estrategia de identificación,es,causalidade,0
+experiment*,en,experimental,0
+experimental design,en,experimental,0
+field experiment*,en,experimental,0
+natural experiment*,en,experimental,0
+survey experiment*,en,experimental,0
+randomized controlled trial*,en,experimental,0
+randomised controlled trial*,en,experimental,0
+randomized,en,experimental,0
+randomised,en,experimental,0
+randomization,en,experimental,0
+randomisation,en,experimental,0
+quasi-experiment*,en,experimental,0
+quasiexperiment*,en,experimental,0
+difference* in difference*,en,experimental,0
+diff in diff,en,experimental,0
+regression discontinuity,en,experimental,0
+synthetic control*,en,experimental,0
+propensity score*,en,experimental,0
+propensity score matching,en,experimental,0
+matching estimator*,en,experimental,0
+coarsened exact matching,en,experimental,0
+instrumental variable*,en,experimental,0
+treatment group*,en,experimental,0
+control group*,en,experimental,0
+RCT,en,experimental,1
+RCTs,en,experimental,1
+RDD,en,experimental,1
+PSM,en,experimental,1
+DiD,en,experimental,1
+experimento,pt,experimental,0
+experimentos,pt,experimental,0
+experimental,pt,experimental,0
+desenho experimental,pt,experimental,0
+quase-experiment*,pt,experimental,0
+quaseexperiment*,pt,experimental,0
+experimento natural,pt,experimental,0
+experimento de campo,pt,experimental,0
+ensaio controlado randomizado,pt,experimental,0
+ensaio clínico randomizado,pt,experimental,0
+randomizad*,pt,experimental,0
+randomização,pt,experimental,0
+aleatorizad*,pt,experimental,0
+diferença* em diferença*,pt,experimental,0
+regressão descontínua,pt,experimental,0
+descontinuidade de regressão,pt,experimental,0
+descontinuidade na regressão,pt,experimental,0
+controle sintético,pt,experimental,0
+pareamento,pt,experimental,0
+escore de propensão,pt,experimental,0
+variáveis instrumentais,pt,experimental,0
+variável instrumental,pt,experimental,0
+grupo de tratamento,pt,experimental,0
+grupo de controle,pt,experimental,0
+grupo controle,pt,experimental,0
+experimento,es,experimental,0
+experimentos,es,experimental,0
+experimental,es,experimental,0
+diseño experimental,es,experimental,0
+cuasi-experiment*,es,experimental,0
+cuasiexperiment*,es,experimental,0
+experimento natural,es,experimental,0
+experimento de campo,es,experimental,0
+ensayo controlado aleatorio,es,experimental,0
+ensayo aleatorizado,es,experimental,0
+aleatorizad*,es,experimental,0
+aleatorización,es,experimental,0
+diferencia* en diferencia*,es,experimental,0
+regresión discontinua,es,experimental,0
+discontinuidad en la regresión,es,experimental,0
+control sintético,es,experimental,0
+emparejamiento,es,experimental,0
+puntaje de propensión,es,experimental,0
+variables instrumentales,es,experimental,0
+variable instrumental,es,experimental,0
+grupo de tratamiento,es,experimental,0
+grupo de control,es,experimental,0
+regression,en,quantitativo,0
+regressions,en,quantitativo,0
+regression analysis,en,quantitativo,0
+linear regression,en,quantitativo,0
+logistic regression,en,quantitativo,0
+logit,en,quantitativo,0
+probit,en,quantitativo,0
+factor analysis,en,quantitativo,0
+correspondence analysis,en,quantitativo,0
+structural equation*,en,quantitativo,0
+structural equation model*,en,quantitativo,0
+cluster analysis,en,quantitativo,0
+multilevel,en,quantitativo,0
+multilevel model*,en,quantitativo,0
+hierarchical linear model*,en,quantitativo,0
+two-stage least squares,en,quantitativo,0
+ordinary least squares,en,quantitativo,0
+principal component*,en,quantitativo,0
+correlation*,en,quantitativo,0
+panel data,en,quantitativo,0
+fixed effect*,en,quantitativo,0
+random effect*,en,quantitativo,0
+time series,en,quantitativo,0
+survival analysis,en,quantitativo,0
+event stud*,en,quantitativo,0
+bayesian,en,quantitativo,0
+bootstrap*,en,quantitativo,0
+quantile regression*,en,quantitativo,0
+poisson regression*,en,quantitativo,0
+negative binomial,en,quantitativo,0
+generalized method of moments,en,quantitativo,0
+SEM,en,quantitativo,1
+OLS,en,quantitativo,1
+PCA,en,quantitativo,1
+HLM,en,quantitativo,1
+2SLS,en,quantitativo,1
+GMM,en,quantitativo,1
+regressão,pt,quantitativo,0
+regressões,pt,quantitativo,0
+análise de regressão,pt,quantitativo,0
+regressão linear,pt,quantitativo,0
+regressão logística,pt,quantitativo,0
+análise fatorial,pt,quantitativo,0
+análise de correspondência*,pt,quantitativo,0
+equações estruturais,pt,quantitativo,0
+modelagem de equações estruturais,pt,quantitativo,0
+análise de cluster*,pt,quantitativo,0
+análise de agrupamento*,pt,quantitativo,0
+multinível,pt,quantitativo,0
+modelo linear hierárquico,pt,quantitativo,0
+mínimos quadrados ordinários,pt,quantitativo,0
+mínimos quadrados em dois estágios,pt,quantitativo,0
+componentes principais,pt,quantitativo,0
+correlação,pt,quantitativo,0
+correlações,pt,quantitativo,0
+dados em painel,pt,quantitativo,0
+dados de painel,pt,quantitativo,0
+efeitos fixos,pt,quantitativo,0
+efeitos aleatórios,pt,quantitativo,0
+séries temporais,pt,quantitativo,0
+série temporal,pt,quantitativo,0
+análise de sobrevivência,pt,quantitativo,0
+estudo de evento*,pt,quantitativo,0
+bayesian*,pt,quantitativo,0
+regressão quantílica,pt,quantitativo,0
+regressão de poisson,pt,quantitativo,0
+binomial negativ*,pt,quantitativo,0
+método generalizado dos momentos,pt,quantitativo,0
+MQO,pt,quantitativo,1
+regresión,es,quantitativo,0
+regresiones,es,quantitativo,0
+análisis de regresión,es,quantitativo,0
+regresión lineal,es,quantitativo,0
+regresión logística,es,quantitativo,0
+análisis factorial,es,quantitativo,0
+análisis de correspondencia*,es,quantitativo,0
+ecuaciones estructurales,es,quantitativo,0
+modelado de ecuaciones estructurales,es,quantitativo,0
+análisis de conglomerados,es,quantitativo,0
+multinivel,es,quantitativo,0
+modelo lineal jerárquico,es,quantitativo,0
+mínimos cuadrados ordinarios,es,quantitativo,0
+mínimos cuadrados en dos etapas,es,quantitativo,0
+componentes principales,es,quantitativo,0
+correlación,es,quantitativo,0
+correlaciones,es,quantitativo,0
+datos de panel,es,quantitativo,0
+efectos fijos,es,quantitativo,0
+efectos aleatorios,es,quantitativo,0
+series de tiempo,es,quantitativo,0
+series temporales,es,quantitativo,0
+análisis de supervivencia,es,quantitativo,0
+estudio de evento*,es,quantitativo,0
+bayesian*,es,quantitativo,0
+regresión cuantílica,es,quantitativo,0
+regresión de poisson,es,quantitativo,0
+binomial negativ*,es,quantitativo,0
+MCO,es,quantitativo,1
+ethnograph*,en,qualitativo,0
+participant observation,en,qualitativo,0
+focus group*,en,qualitativo,0
+interview*,en,qualitativo,0
+in-depth interview*,en,qualitativo,0
+semi-structured interview*,en,qualitativo,0
+content analysis,en,qualitativo,0
+discourse analysis,en,qualitativo,0
+narrative analysis,en,qualitativo,0
+thematic analysis,en,qualitativo,0
+grounded theory,en,qualitativo,0
+case stud*,en,qualitativo,0
+process tracing,en,qualitativo,0
+qualitative comparative analysis,en,qualitativo,0
+documentary analysis,en,qualitativo,0
+document analysis,en,qualitativo,0
+archival research,en,qualitativo,0
+phenomenolog*,en,qualitativo,0
+hermeneutic*,en,qualitativo,0
+QCA,en,qualitativo,1
+etnograf*,pt,qualitativo,0
+observação participante,pt,qualitativo,0
+grupo focal,pt,qualitativo,0
+grupos focais,pt,qualitativo,0
+entrevista*,pt,qualitativo,0
+entrevistas em profundidade,pt,qualitativo,0
+análise de conteúdo,pt,qualitativo,0
+análise do discurso,pt,qualitativo,0
+análise de discurso,pt,qualitativo,0
+análise narrativa,pt,qualitativo,0
+análise temática,pt,qualitativo,0
+teoria fundamentada,pt,qualitativo,0
+estudo de caso,pt,qualitativo,0
+estudos de caso,pt,qualitativo,0
+rastreamento de processo*,pt,qualitativo,0
+análise comparativa qualitativa,pt,qualitativo,0
+análise documental,pt,qualitativo,0
+pesquisa documental,pt,qualitativo,0
+pesquisa arquivística,pt,qualitativo,0
+fenomenolog*,pt,qualitativo,0
+hermenêutic*,pt,qualitativo,0
+etnograf*,es,qualitativo,0
+observación participante,es,qualitativo,0
+grupo focal,es,qualitativo,0
+grupos focales,es,qualitativo,0
+entrevista*,es,qualitativo,0
+entrevista en profundidad,es,qualitativo,0
+análisis de contenido,es,qualitativo,0
+análisis del discurso,es,qualitativo,0
+análisis narrativo,es,qualitativo,0
+análisis temático,es,qualitativo,0
+teoría fundamentada,es,qualitativo,0
+estudio de caso,es,qualitativo,0
+estudios de caso,es,qualitativo,0
+rastreo de proceso*,es,qualitativo,0
+análisis comparativo cualitativo,es,qualitativo,0
+análisis documental,es,qualitativo,0
+investigación documental,es,qualitativo,0
+fenomenolog*,es,qualitativo,0
+hermenéutic*,es,qualitativo,0
+mixed method*,en,misto,0
+triangulation,en,misto,0
+multi-method*,en,misto,0
+multimethod*,en,misto,0
+explanatory sequential,en,misto,0
+exploratory sequential,en,misto,0
+sequential explanatory,en,misto,0
+concurrent design,en,misto,0
+convergent design,en,misto,0
+métodos mistos,pt,misto,0
+método misto,pt,misto,0
+abordagem mista,pt,misto,0
+triangulação,pt,misto,0
+multimétodo*,pt,misto,0
+desenho sequencial,pt,misto,0
+desenho concomitante,pt,misto,0
+sequencial explanatório,pt,misto,0
+métodos mixtos,es,misto,0
+método mixto,es,misto,0
+triangulación,es,misto,0
+multimétodo*,es,misto,0
+diseño secuencial,es,misto,0
+diseño concurrente,es,misto,0
+systematic review*,en,revisao,0
+meta-analys*,en,revisao,0
+metaanalys*,en,revisao,0
+meta-regression*,en,revisao,0
+scoping review*,en,revisao,0
+umbrella review*,en,revisao,0
+rapid review*,en,revisao,0
+evidence synthesis,en,revisao,0
+revisão sistemática,pt,revisao,0
+revisões sistemáticas,pt,revisao,0
+meta-análise*,pt,revisao,0
+metanálise*,pt,revisao,0
+metaanálise*,pt,revisao,0
+meta-regressão,pt,revisao,0
+revisão de escopo,pt,revisao,0
+síntese de evidência*,pt,revisao,0
+revisión sistemática,es,revisao,0
+revisiones sistemáticas,es,revisao,0
+metaanálisis,es,revisao,0
+meta-análisis,es,revisao,0
+metarregresión,es,revisao,0
+revisión de alcance,es,revisao,0
+síntesis de evidencia*,es,revisao,0

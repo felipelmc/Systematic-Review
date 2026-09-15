@@ -1,0 +1,6 @@
+dimensao,variavel,descricao,prompt,tipo,aplicavel_se
+Identificacao,desenho_resumo,Desenho em uma frase,"Descreva o desenho do estudo.",textual,
+Criterios de elegibilidade,C1_populacao,População elegível,"O estudo analisa a população do protocolo? Responda Sim ou Não.",categorica,
+Criterios de elegibilidade,C2_desenho,Desenho empírico,"O estudo estima empiricamente o efeito? Responda Sim ou Não.",categorica,
+Criterios de elegibilidade,C3_outcome,Outcome do protocolo,"O estudo mede um outcome do protocolo? Responda Sim ou Não.",categorica,
+Notas,observacoes,Observações,"Anote dúvidas.",textual,

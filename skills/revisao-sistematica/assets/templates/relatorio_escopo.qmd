@@ -1,0 +1,167 @@
+---
+title: "{{TEXTO_TITULO_COM_REVISAO_DE_ESCOPO}}"
+author: "{{TEXTO_AUTORES}}"
+date: "{{TEXTO_DATA}}"
+lang: pt-BR
+# rascunho: true enquanto houver pendência aberta ou validação abaixo do limiar (regra de marca de rascunho da skill).
+rascunho: true
+bibliography: references.bib
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+---
+
+<!--
+COMO USAR ESTE TEMPLATE (PRISMA-ScR: 20 itens essenciais + 2 opcionais; também para mapa de evidências e lacunas).
+- Copie para 07-relatorio/relatorio_escopo.qmd. Na mesma pasta: prisma.svg gerado com `rs.py prisma` (padrão scr em escopo e mapa),
+  declaracao_uso_ia.md (rs.py declaracao-ia) e references.bib (rs.py bib).
+- Revisão de escopo não estima efeito nem atribui certeza GRADE; mapeia a evidência. Avaliação crítica só se o protocolo previu (itens 12 e 16).
+- Placeholders {{PREFIXO_NOME}}: N_ = prisma_contagens.json; BUSCA_ = 01-busca e estado; PROTOCOLO_ = 00-protocolo;
+  MAPA_ = tabelas do mapeamento (fichamentos_master.csv e tabelas derivadas); VALIDACAO_ = declaracao_uso_ia.md; TEXTO_ = autores (nunca números).
+- Os números entre parênteses nos títulos são os itens do PRISMA-ScR cumpridos pela seção.
+- DOCX com SVG exige rsvg-convert; sem ele, troque prisma.svg por prisma.png (gerado junto por rs.py prisma) na figura do fluxograma.
+- Antes do render final: grep -nE '\{\{[A-Z0-9_]+\}\}' 07-relatorio/*.qmd deve voltar vazio.
+-->
+
+::: {.content-visible when-meta="rascunho"}
+::: {.callout-warning}
+## RASCUNHO NÃO VALIDADO
+
+Este relatório ainda tem validações humanas pendentes (lista em `rs.py pendencia listar`). Não circule nem cite.
+:::
+:::
+
+# Resumo estruturado (2) {.unnumbered}
+
+**Contexto.** {{TEXTO_CONTEXTO}} **Objetivos.** {{TEXTO_OBJETIVOS}} **Critérios de elegibilidade.** {{PROTOCOLO_PCC_RESUMO}} **Fontes de evidência.** {{BUSCA_FONTES}}, última busca em {{BUSCA_DATA_ULTIMA}}. **Métodos de mapeamento.** {{TEXTO_METODO_MAPEAMENTO}} **Resultados.** {{N_ESTUDOS_INCLUIDOS}} fontes de evidência incluídas. {{TEXTO_RESULTADOS_PRINCIPAIS}} **Conclusões.** {{TEXTO_CONCLUSOES}}
+
+# Introdução
+
+## Justificativa (3)
+
+{{TEXTO_JUSTIFICATIVA_E_POR_QUE_ESCOPO}}
+
+## Objetivos (4)
+
+| Elemento | Definição |
+|---|---|
+| População (P) | {{PROTOCOLO_P}} |
+| Conceito (C) | {{PROTOCOLO_CONCEITO}} |
+| Contexto (C) | {{PROTOCOLO_CONTEXTO}} |
+
+: Pergunta no formato PCC. {#tbl-pcc}
+
+{{TEXTO_PERGUNTAS_DA_REVISAO}}
+
+# Métodos
+
+## Protocolo e registro (5)
+
+{{PROTOCOLO_REGISTRO}}. Emendas: {{PROTOCOLO_EMENDAS_RESUMO}}.
+
+## Critérios de elegibilidade (6)
+
+{{PROTOCOLO_CRITERIOS_COMPLETOS}}
+
+## Fontes de informação (7)
+
+| Fonte (plataforma) | Data da última busca |
+|---|---|
+| {{BUSCA_BASE_1}} | {{BUSCA_DATA_1}} |
+
+: Fontes consultadas. {#tbl-fontes}
+
+## Busca (8)
+
+Estratégias completas de todas as bases, exatamente como executadas, no apêndice (PRISMA-S). {{TEXTO_OUTROS_METODOS}}
+
+## Seleção das fontes de evidência (9)
+
+{{TEXTO_PROCESSO_SELECAO}} Apoio de IA validado em amostra humana (recall {{VALIDACAO_RECALL}}, IC 95% {{VALIDACAO_RECALL_IC}}).
+
+## Processo de mapeamento dos dados (10)
+
+{{TEXTO_PROCESSO_CHARTING_PILOTO_E_INDEPENDENCIA}}
+
+## Itens de dados (11)
+
+{{PROTOCOLO_VARIAVEIS_DO_CODEBOOK}}
+
+## Avaliação crítica das fontes (12, opcional)
+
+{{TEXTO_AVALIACAO_CRITICA_OU_NAO_FEITA}}
+
+## Síntese dos resultados (13)
+
+{{TEXTO_METODO_SINTESE_DO_MAPEAMENTO}}
+
+# Resultados
+
+## Seleção das fontes de evidência (14)
+
+![Fluxograma PRISMA-ScR calculado do ledger de decisões.](prisma.svg){#fig-prisma}
+
+Foram identificados {{N_BASES}} registros nas bases e {{N_OUTROS_METODOS}} por outros métodos; {{N_DUPLICATAS}} duplicados removidos; {{N_TRIADOS}} triados e {{N_EXCLUIDOS_TRIAGEM}} excluídos; {{N_AVALIADOS}} avaliados em texto completo e {{N_EXCLUIDOS_TC}} excluídos (motivos na @fig-prisma); {{N_ESTUDOS_INCLUIDOS}} fontes incluídas.
+
+## Características das fontes de evidência (15)
+
+{{MAPA_TABELA_CARACTERISTICAS}}
+
+## Avaliação crítica nas fontes (16, opcional)
+
+{{TEXTO_RESULTADO_AVALIACAO_CRITICA_OU_NAO_SE_APLICA}}
+
+## Resultados das fontes individuais (17)
+
+{{MAPA_TABELA_POR_FONTE}}
+
+## Síntese dos resultados (18)
+
+<!-- Mapa: matriz intervenção × desfecho (ou conceito × contexto) com número de fontes por célula.
+Um estudo pode aparecer em várias células: informe o total de estudos à parte, separando estudos primários e revisões. -->
+
+| {{MAPA_LINHA}} \\ {{MAPA_COLUNA}} | {{MAPA_COLUNA_1}} | {{MAPA_COLUNA_2}} |
+|---|---|---|
+| {{MAPA_LINHA_1}} | {{MAPA_N_1_1}} | {{MAPA_N_1_2}} |
+
+: Distribuição das fontes de evidência. Total de estudos distintos: {{N_ESTUDOS_INCLUIDOS}}. {#tbl-mapa}
+
+{{TEXTO_LACUNAS}}
+
+# Discussão
+
+## Resumo das evidências (19)
+
+{{TEXTO_RESUMO_DAS_EVIDENCIAS}}
+
+## Limitações (20)
+
+<!-- Limitações do processo: idiomas, bases, filtros, número de revisores, triagem por IA, fontes não recuperadas. -->
+
+{{TEXTO_LIMITACOES_PROCESSO}}
+
+## Conclusões (21)
+
+{{TEXTO_CONCLUSOES_E_PROXIMOS_PASSOS}}
+
+# Financiamento (22) {.unnumbered}
+
+{{TEXTO_FINANCIAMENTO_DA_REVISAO_E_DAS_FONTES}}
+
+**Disponibilidade de dados e materiais.** {{TEXTO_DOI_PACOTE}}
+
+<!-- Texto curto de 07-relatorio/declaracao_uso_ia_texto.md (preenchido a partir de assets/templates/declaracao_uso_ia.md, com números copiados do arquivo gerado). -->
+
+**Uso de inteligência artificial.** {{VALIDACAO_TEXTO_CURTO_IA}} A declaração gerada do log do projeto está reproduzida no apêndice.
+
+# Referências {.unnumbered}
+
+::: {#refs}
+:::
+
+<!-- Apêndice gerado: não edite; regenere com rs.py declaracao-ia. -->
+
+{{< include declaracao_uso_ia.md >}}

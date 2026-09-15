@@ -1,0 +1,101 @@
+{
+ "meta": {
+  "count": 2,
+  "page": 1
+ },
+ "results": [
+  {
+   "id": "https://openalex.org/W2000000004",
+   "doi": null,
+   "title": "Página de API",
+   "display_name": "Página de API",
+   "publication_year": 2020,
+   "type": "article",
+   "language": "en",
+   "is_retracted": false,
+   "cited_by_count": 4,
+   "primary_location": {
+    "landing_page_url": "https://example.org/artigo/4",
+    "source": {
+     "display_name": "Fictional Review of Policy"
+    }
+   },
+   "biblio": {
+    "volume": "7",
+    "issue": "2",
+    "first_page": "11",
+    "last_page": "29"
+   },
+   "keywords": [],
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Tiago Rocha"
+     },
+     "countries": [
+      "BR"
+     ],
+     "institutions": [
+      {
+       "display_name": "Universidade Fictícia",
+       "country_code": "BR"
+      }
+     ]
+    }
+   ],
+   "abstract_inverted_index": {
+    "Texto": [
+     0
+    ],
+    "curto": [
+     1
+    ]
+   }
+  },
+  {
+   "id": "https://openalex.org/W2000000005",
+   "doi": null,
+   "title": "Outra obra da página",
+   "display_name": "Outra obra da página",
+   "publication_year": 2016,
+   "type": "book",
+   "language": "en",
+   "is_retracted": false,
+   "cited_by_count": 5,
+   "primary_location": {
+    "landing_page_url": "https://example.org/artigo/5",
+    "source": {
+     "display_name": "Fictional Review of Policy"
+    }
+   },
+   "biblio": {
+    "volume": "7",
+    "issue": "2",
+    "first_page": "11",
+    "last_page": "29"
+   },
+   "keywords": [],
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Mariana Lopes Lima"
+     },
+     "countries": [
+      "BR"
+     ],
+     "institutions": [
+      {
+       "display_name": "Universidade Fictícia",
+       "country_code": "BR"
+      }
+     ]
+    }
+   ],
+   "abstract_inverted_index": {
+    "Livro.": [
+     0
+    ]
+   }
+  }
+ ]
+}

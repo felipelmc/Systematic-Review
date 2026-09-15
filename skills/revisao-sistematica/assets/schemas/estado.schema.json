@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-estado/1",
+  "title": "rs_estado.json (cache do estado; artefatos e log são a fonte de verdade)",
+  "type": "object",
+  "required": ["schema", "projeto", "modo", "versoes_ativas", "etapas", "buscas", "pendencias", "ultimo_seq"],
+  "properties": {
+    "schema": {"const": "rs-estado/1"},
+    "projeto": {
+      "type": "object",
+      "required": ["titulo", "tipo_revisao", "idioma_produtos", "criado_em"],
+      "properties": {
+        "titulo": {"type": "string"},
+        "pergunta": {"type": "string"},
+        "tipo_revisao": {"enum": ["efetividade_meta", "efetividade_swim", "oqf_mista_sequencial", "escopo", "mapa_evidencias", "qualitativa", "realista", "metodos_mistos", "rapida", "guarda_chuva", "indefinido"]},
+        "idioma_produtos": {"type": "string"},
+        "criado_em": {"type": "string"},
+        "parcial": {"type": ["string", "null"]},
+        "etapas_ignoradas": {"type": "array", "items": {"type": "string"}},
+        "variante": {"enum": ["rapida", null], "description": "v1.1: variante do tipo de origem (init --variante; critério variante do G1); esquema.VARIANTES_REVISAO; não muda portões"}
+      }
+    },
+    "modo": {
+      "type": "object",
+      "required": ["autonomia", "triagem"],
+      "properties": {
+        "autonomia": {"enum": ["checkpoints", "autopiloto"]},
+        "triagem": {"enum": ["subagentes", "api"]},
+        "definido_em": {"type": ["string", "null"]}
+      }
+    },
+    "ambiente": {"type": "object"},
+    "papeis": {"type": "object", "description": "mapa id de papel -> nome (opcional, local)"},
+    "preferencias": {"type": "object"},
+    "versoes_ativas": {"type": "object", "additionalProperties": {"type": "string"}},
+    "artefatos": {"type": "object"},
+    "etapas": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": {"enum": ["pendente", "em_andamento", "concluida", "ignorada"]},
+          "portao": {"type": ["string", "null"]},
+          "aprovado_por": {"type": ["string", "null"]},
+          "em": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "buscas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "fonte"],
+        "properties": {
+          "id": {"type": "string", "description": "busca_id: letras maiúsculas + número (B01, SN1, CZ1, MN1), regra de importar/buscas.RE_BUSCA_ID"},
+          "fonte": {"type": "string"},
+          "string_id": {"type": ["string", "null"], "description": "PRISMA-S item 8: string arquivada em 01-busca/strings/<string_id>.txt|.md"},
+          "executada_em": {"type": ["string", "null"], "description": "PRISMA-S item 13: data da busca (AAAA-MM-DD)"},
+          "executada_em_origem": {"enum": ["arquivo", "declarada", null], "description": "v1.1: data lida da exportação ou declarada em importar --executada-em"},
+          "n_bruto": {"type": ["integer", "null"], "description": "PRISMA-S item 16: registros informados pela base (importar --n-base)"},
+          "n_importado": {"type": ["integer", "null"]},
+          "filtros_na_base": {"type": ["string", "null"], "description": "PRISMA-S item 9: limites e filtros aplicados na interface"},
+          "plataforma": {"type": ["string", "null"], "description": "PRISMA-S item 1: interface ou plataforma (ex.: Web of Science Core Collection)"},
+          "metodo_identificacao": {"type": ["string", "null"], "description": "base|citacao|cinzenta|manual"},
+          "estrutura": {"type": ["string", "null"]},
+          "arquivo": {"type": ["string", "null"]},
+          "sha256": {"type": ["string", "null"]},
+          "arquivos": {"type": "array", "items": {"type": "object"}},
+          "importada": {"type": "boolean"},
+          "ativa": {"type": "boolean", "description": "v1.1 (esquema.CAMPO_BUSCA_ATIVA): false quando substituída por importar --substituir; ausente = ativa. dedup, filtrar, triagem, validar, bola-de-neve, status e prisma ignoram buscas inativas"},
+          "substituida_por": {"type": ["string", "null"]},
+          "substituida_em": {"type": ["string", "null"]},
+          "motivo_substituicao": {"type": ["string", "null"]},
+          "substitui": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "pendencias": {"type": "array", "items": {"type": "object", "required": ["id", "tipo", "etapa", "status"], "properties": {"id": {"type": "string"}, "tipo": {"type": "string"}, "etapa": {"type": "string"}, "portao": {"type": ["string", "null"]}, "descricao": {"type": "string"}, "n": {"type": ["integer", "null"]}, "arquivo": {"type": ["string", "null"]}, "status": {"enum": ["aberta", "fechada"]}}}},
+    "contagens_cache": {"type": "object"},
+    "ultimo_seq": {"type": "integer", "minimum": 0}
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rs-decisao/1",
+  "title": "Linha de dados/decisoes.jsonl",
+  "description": "Uma decisão por linha, append-only; a última linha por (id_rs, etapa, rodada, revisor) vence. Decisões finais de texto completo (esquema.DECISOES_TC_FINAL: incluir|excluir|aguardando) ficam em 03-textos/elegibilidade_tc_final.csv; aqui 'aguardando' é gravado como incerto humano na etapa tc.",
+  "type": "object",
+  "required": ["id_rs", "etapa", "rodada", "revisor", "tipo_ator", "decisao", "ts"],
+  "additionalProperties": false,
+  "properties": {
+    "id_rs": {"type": "string", "pattern": "^RS[0-9]{4,}$"},
+    "etapa": {"enum": ["ta", "tc", "qualidade", "dedup"]},
+    "rodada": {"type": "string", "description": "ex.: ta_v2"},
+    "revisor": {"type": "string", "description": "A|B|arbitro|humano_1|regra"},
+    "tipo_ator": {"enum": ["humano", "ia_coordenador", "ia_subagente", "ia_api", "script", "regra"]},
+    "modelo": {"type": ["string", "null"]},
+    "prompt_sha": {"type": ["string", "null"]},
+    "decisao": {"enum": ["incluir", "excluir", "incerto"], "description": "Convenção v1.1: o ledger não tem 'aguardando'. `incerto` com tipo_ator humano na etapa tc significa aguardando classificação (triagem override --etapa tc --decisao aguardando grava assim; textos elegibilidade consolidar lê como esquema.DECISAO_TC_AGUARDANDO). Em ta, incerto segue para o texto completo."},
+    "criterio_falhou": {"type": ["string", "null"]},
+    "justificativa": {"type": ["string", "null"], "maxLength": 600},
+    "trecho": {"type": ["string", "null"]},
+    "lote": {"type": ["string", "null"]},
+    "ts": {"type": "string"},
+    "override_de": {"type": ["string", "null"]},
+    "motivo_override": {"type": ["string", "null"]}
+  }
+}

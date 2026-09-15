@@ -1,0 +1,5 @@
+dimensao,variavel,descricao,prompt,tipo,aplicavel_se
+Identificacao,titulo,Título completo,"Extraia o título completo do trabalho, exatamente como aparece na primeira página.",textual,
+Identificacao,ano,Ano de publicação,"Extraia o ano de publicação do trabalho.",numerica_int,
+Metodo,tipo_estudo,Tipo de estudo,"Classifique o texto em: empirico-quantitativo | empirico-qualitativo | teorico | revisao-de-literatura. Baseie-se na estratégia metodológica declarada, não no tema.",categorica,
+Resultados,principal_achado,Principal achado,"Resuma em 1-2 frases o achado ou argumento central do trabalho.",textual,

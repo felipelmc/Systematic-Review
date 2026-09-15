@@ -1,0 +1,199 @@
+{
+  "skill": "revisao-sistematica",
+  "versao": 1,
+  "como_ler": "Cada pedido roda numa sessão nova de `claude -p`, numa pasta vazia (sem CLAUDE.md), com as skills irmãs instaladas. `esperado` é a skill que deve ser invocada pela ferramenta Skill no primeiro turno; `nenhuma` significa que nenhuma skill deve ser invocada. Itens com `limitrofe: true` medem precisão em pedidos parecidos: relate-os em separado e não os use sozinhos para reprovar a descrição.",
+  "criterio_de_aprovacao": {
+    "deve_acionar": "pelo menos 12 dos 13 pedidos em pt/en de `deve_acionar` (P01 a P13) invocam revisao-sistematica; P14, em espanhol, é relatado à parte",
+    "nao_deve_acionar": "nenhum dos 9 pedidos não limítrofes de `nao_deve_acionar` invoca revisao-sistematica; dos 5 com irmã como destino (N01 a N05), pelo menos 4 invocam a irmã esperada"
+  },
+  "deve_acionar": [
+    {
+      "id": "P01",
+      "idioma": "pt",
+      "pedido": "Quero fazer uma revisão sistemática sobre o efeito da proibição de celulares nas escolas sobre o desempenho dos alunos. Por onde eu começo?",
+      "esperado": "revisao-sistematica",
+      "cobre": "início de projeto, etapa 1"
+    },
+    {
+      "id": "P02",
+      "idioma": "pt",
+      "pedido": "Continua a minha revisão sistemática de onde parou ontem.",
+      "esperado": "revisao-sistematica",
+      "cobre": "retomada numa pasta com projeto",
+      "preparar": "python3 \"$RSPY\" init --titulo \"Revisão em andamento\" --sem-r"
+    },
+    {
+      "id": "P03",
+      "idioma": "pt",
+      "pedido": "Me ajuda a montar o protocolo da revisão com PICOC, critérios de elegibilidade e plano de síntese, para registrar no OSF.",
+      "esperado": "revisao-sistematica",
+      "cobre": "protocolo, G2"
+    },
+    {
+      "id": "P04",
+      "idioma": "pt",
+      "pedido": "Tenho as exportações do Web of Science (savedrecs.txt) e do Scopus (scopus.csv). Deduplica as bases e me diz quantos registros únicos sobraram.",
+      "esperado": "revisao-sistematica",
+      "cobre": "importação e dedup"
+    },
+    {
+      "id": "P05",
+      "idioma": "pt",
+      "pedido": "Tria os títulos e resumos desta planilha de 900 registros com dois revisores de IA e depois valida contra a codificação humana.",
+      "esperado": "revisao-sistematica",
+      "cobre": "pedido parcial: só a triagem"
+    },
+    {
+      "id": "P06",
+      "idioma": "pt",
+      "pedido": "Gera o fluxograma PRISMA da minha revisão a partir das contagens do projeto.",
+      "esperado": "revisao-sistematica",
+      "cobre": "PRISMA calculado"
+    },
+    {
+      "id": "P07",
+      "idioma": "pt",
+      "pedido": "Roda a meta-análise destes efeitos (médias, desvios-padrão e n por grupo) com efeitos aleatórios e intervalo de predição.",
+      "esperado": "revisao-sistematica",
+      "cobre": "pedido parcial: só a meta-análise"
+    },
+    {
+      "id": "P08",
+      "idioma": "pt",
+      "pedido": "Quero avaliar o programa Pé-de-Meia com uma revisão sistemática no formato \"O que funciona?\", com caixa de ferramentas no final.",
+      "esperado": "revisao-sistematica",
+      "cobre": "OQF misto e sequencial"
+    },
+    {
+      "id": "P09",
+      "idioma": "pt",
+      "pedido": "Monta as strings de busca para Scopus, Web of Science e SciELO, em português, inglês e espanhol, para uma revisão de escopo sobre orçamento participativo.",
+      "esperado": "revisao-sistematica",
+      "cobre": "pedido parcial: só as strings"
+    },
+    {
+      "id": "P10",
+      "idioma": "en",
+      "pedido": "I need to run a systematic review on conditional cash transfers and school attendance, end to end, with human sign-off at each stage.",
+      "esperado": "revisao-sistematica",
+      "cobre": "início de projeto em inglês"
+    },
+    {
+      "id": "P11",
+      "idioma": "en",
+      "pedido": "Help me screen about 2,000 abstracts for my scoping review with LLMs and report recall and Cohen's kappa against two human coders.",
+      "esperado": "revisao-sistematica",
+      "cobre": "abstract screening e validação de IA"
+    },
+    {
+      "id": "P12",
+      "idioma": "en",
+      "pedido": "Build a PRISMA 2020 flow diagram for my review: 1,240 records identified, 340 duplicates removed, 900 screened, 815 excluded, 85 reports sought, 5 not retrieved, 80 assessed, 60 excluded, 20 included.",
+      "esperado": "revisao-sistematica",
+      "cobre": "pedido parcial: só o PRISMA, sem projeto"
+    },
+    {
+      "id": "P13",
+      "idioma": "en",
+      "pedido": "Set up a rapid review protocol on remote learning during COVID-19 school closures and tell me which gates I must approve.",
+      "esperado": "revisao-sistematica",
+      "cobre": "variante rápida"
+    },
+    {
+      "id": "P14",
+      "idioma": "es",
+      "pedido": "Necesito hacer una síntesis sin metaanálisis (SWiM) de los estudios incluidos en mi revisión sistemática y evaluar la certeza con GRADE.",
+      "esperado": "revisao-sistematica",
+      "cobre": "SWiM e GRADE; espanhol como teste extra"
+    }
+  ],
+  "nao_deve_acionar": [
+    {
+      "id": "N01",
+      "idioma": "pt",
+      "pedido": "Baixa os PDFs destes 30 DOIs que estão na planilha papers.xlsx.",
+      "esperado": "baixar-pdfs-academicos",
+      "motivo": "download de textos é da irmã; a SKILL.md manda delegar sem abrir projeto"
+    },
+    {
+      "id": "N02",
+      "idioma": "en",
+      "pedido": "Can you get me the full text of this article? DOI 10.1016/j.jpubeco.2020.104251",
+      "esperado": "baixar-pdfs-academicos",
+      "motivo": "um único artigo, sem revisão"
+    },
+    {
+      "id": "N03",
+      "idioma": "pt",
+      "pedido": "Ficha estes 25 artigos com o meu codebook e calcula a concordância com um segundo codificador.",
+      "esperado": "fichamento-sistematico",
+      "motivo": "extração em lote é da irmã"
+    },
+    {
+      "id": "N04",
+      "idioma": "pt",
+      "pedido": "Gera o arquivo .bib desta planilha de papers para eu usar no Overleaf.",
+      "esperado": "gerar-bibtex",
+      "motivo": "referências a partir de planilha"
+    },
+    {
+      "id": "N05",
+      "idioma": "pt",
+      "pedido": "Revisa este parágrafo da minha tese para não parecer escrito por IA.",
+      "esperado": "tirar-cara-de-ia",
+      "motivo": "\"revisa\" é revisão de estilo, não revisão sistemática"
+    },
+    {
+      "id": "N06",
+      "idioma": "pt",
+      "pedido": "Roda uma regressão com efeitos fixos de município e ano nestes dados de painel, em R.",
+      "esperado": "nenhuma",
+      "motivo": "análise de dados primários, sem síntese de estudos"
+    },
+    {
+      "id": "N07",
+      "idioma": "en",
+      "pedido": "Review my pull request and point out bugs in the Python code.",
+      "esperado": "nenhuma",
+      "motivo": "\"review\" de código; pode acionar uma skill de code review, nunca esta"
+    },
+    {
+      "id": "N08",
+      "idioma": "pt",
+      "pedido": "Traduz este resumo de artigo para o inglês acadêmico.",
+      "esperado": "nenhuma",
+      "motivo": "tradução de texto"
+    },
+    {
+      "id": "N09",
+      "idioma": "pt",
+      "pedido": "Faz um gráfico de barras com o número de artigos publicados por ano nesta planilha.",
+      "esperado": "nenhuma",
+      "motivo": "visualização de dados; pode acionar uma skill de gráficos, nunca esta"
+    },
+    {
+      "id": "N10",
+      "idioma": "pt",
+      "pedido": "Escreve dois parágrafos de revisão de literatura narrativa sobre populismo para a introdução do meu artigo.",
+      "esperado": "nenhuma",
+      "limitrofe": true,
+      "motivo": "revisão narrativa curta, sem busca sistemática; se acionar, a skill deve reconhecer que não é RS"
+    },
+    {
+      "id": "N11",
+      "idioma": "en",
+      "pedido": "In two sentences, what is the difference between PRISMA 2020 and PRISMA-ScR?",
+      "esperado": "nenhuma",
+      "limitrofe": true,
+      "motivo": "pergunta conceitual que se responde sem projeto nem scripts"
+    },
+    {
+      "id": "N12",
+      "idioma": "pt",
+      "pedido": "Calcula o kappa de Cohen entre as duas colunas desta planilha de avaliação de redações.",
+      "esperado": "nenhuma",
+      "limitrofe": true,
+      "motivo": "concordância fora de revisão sistemática"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "fonte": "generico",
+  "separador_autores": "/",
+  "colunas": {
+    "titulo": "Nome do trabalho",
+    "autores": "Quem escreveu",
+    "ano": "Quando",
+    "doi": "Identificador DOI",
+    "resumo": "Sumário",
+    "veiculo": "Onde saiu",
+    "palavras_chave": [
+      "Temas",
+      "Outros temas"
+    ]
+  }
+}

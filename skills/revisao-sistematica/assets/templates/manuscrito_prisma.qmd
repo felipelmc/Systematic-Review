@@ -1,0 +1,203 @@
+---
+title: "{{TEXTO_TITULO_COM_REVISAO_SISTEMATICA}}"
+author: "{{TEXTO_AUTORES}}"
+date: "{{TEXTO_DATA}}"
+lang: pt-BR
+# rascunho: true enquanto houver pendência aberta ou validação abaixo do limiar (regra de marca de rascunho da skill).
+rascunho: true
+bibliography: references.bib
+format:
+  html:
+    toc: true
+    toc-depth: 3
+  docx:
+    toc: true
+---
+
+<!--
+COMO USAR ESTE TEMPLATE (PRISMA 2020; serve também de base para revisões rápidas, qualitativas, realistas e guarda-chuva,
+trocando a diretriz complementar: SWiM, ENTREQ/eMERGe, RAMESES ou PRIOR).
+- Copie para 07-relatorio/manuscrito.qmd. Na mesma pasta: prisma.svg (rs.py prisma), declaracao_uso_ia.md
+  (rs.py declaracao-ia) e references.bib (rs.py bib).
+- Placeholders {{PREFIXO_NOME}}: N_ = prisma_contagens.json; META_ = meta_resumo.json; SWIM_ = swim_resumo.json;
+  CERTEZA_ = certeza.csv; BUSCA_ = 01-busca e estado; PROTOCOLO_ = 00-protocolo; VALIDACAO_ = declaracao_uso_ia.md;
+  TEXTO_ = autores (nunca números).
+- Os números entre parênteses nos títulos são os itens do PRISMA 2020 cumpridos pela seção.
+- DOCX com SVG exige rsvg-convert; sem ele, troque prisma.svg por prisma.png (gerado junto por rs.py prisma) na figura do fluxograma.
+- Antes do render final: grep -nE '\{\{[A-Z0-9_]+\}\}' 07-relatorio/*.qmd deve voltar vazio.
+-->
+
+::: {.content-visible when-meta="rascunho"}
+::: {.callout-warning}
+## RASCUNHO NÃO VALIDADO
+
+Este manuscrito ainda tem validações humanas pendentes (lista em `rs.py pendencia listar`). Não circule nem cite.
+:::
+:::
+
+# Resumo {.unnumbered}
+
+<!-- (2) Checklist PRISMA 2020 para resumos, 12 itens. Escreva por último. -->
+
+**Contexto e objetivos.** {{TEXTO_OBJETIVOS}}
+
+**Métodos.** Critérios de elegibilidade: {{PROTOCOLO_CRITERIOS_RESUMO}}. Fontes: {{BUSCA_FONTES}}, última busca em {{BUSCA_DATA_ULTIMA}}. Risco de viés: {{PROTOCOLO_FERRAMENTAS_ROB}}. Síntese: {{TEXTO_METODO_SINTESE}}.
+
+**Resultados.** {{N_ESTUDOS_INCLUIDOS}} estudos ({{N_RELATOS_INCLUIDOS}} relatos; {{TEXTO_PARTICIPANTES}}). {{TEXTO_RESULTADOS_COM_IC_DIRECAO_E_CERTEZA}}
+
+**Discussão.** Limitações da evidência: {{TEXTO_LIMITACOES_EVIDENCIA}}. Interpretação: {{TEXTO_INTERPRETACAO}}
+
+**Outras informações.** Financiamento: {{TEXTO_FINANCIAMENTO}}. Registro: {{PROTOCOLO_REGISTRO}}.
+
+# Introdução
+
+## Justificativa (3)
+
+{{TEXTO_JUSTIFICATIVA_E_REVISOES_EXISTENTES}}
+
+## Objetivos (4)
+
+{{TEXTO_OBJETIVOS_E_PERGUNTA}}
+
+# Métodos
+
+## Critérios de elegibilidade (5)
+
+{{PROTOCOLO_CRITERIOS_COMPLETOS}} Agrupamento para as sínteses: {{PROTOCOLO_CELULAS}}.
+
+## Fontes de informação (6)
+
+| Fonte (plataforma) | Data da última consulta |
+|---|---|
+| {{BUSCA_BASE_1}} | {{BUSCA_DATA_1}} |
+
+: Fontes consultadas. {#tbl-fontes}
+
+## Estratégia de busca (7)
+
+Estratégias completas, exatamente como executadas, no apêndice (PRISMA-S). {{TEXTO_OUTROS_METODOS}}
+
+## Processo de seleção (8)
+
+{{TEXTO_PROCESSO_SELECAO}} Ferramentas de automação: {{TEXTO_AUTOMACAO}}; validação humana com recall {{VALIDACAO_RECALL}} (IC 95% {{VALIDACAO_RECALL_IC}}) e κ {{VALIDACAO_KAPPA}}.
+
+## Processo de coleta de dados (9)
+
+{{TEXTO_PROCESSO_COLETA}} Dados numéricos de efeito verificados na página do texto completo.
+
+## Itens de dados (10a, 10b)
+
+{{PROTOCOLO_DESFECHOS_E_REGRA_MODELO_PRINCIPAL}} {{PROTOCOLO_OUTRAS_VARIAVEIS}}
+
+## Avaliação do risco de viés (11)
+
+{{PROTOCOLO_FERRAMENTAS_ROB}}; {{TEXTO_PROCESSO_ROB}}
+
+## Medidas de efeito (12)
+
+g de Hedges alinhado à direção desejada de cada desfecho (positivo = benéfico). {{TEXTO_OUTRAS_MEDIDAS}}
+
+## Métodos de síntese (13a-13f)
+
+- **13a Elegibilidade para cada síntese:** {{TEXTO_REGRA_AGRUPAMENTO_E_COMPARABILIDADE}}
+- **13b Preparação dos dados:** conversões com fórmula registrada; conversões aproximadas analisadas em sensibilidade. {{TEXTO_DADOS_FALTANTES}}
+- **13c Tabulação e gráficos:** {{TEXTO_TABELAS_E_GRAFICOS}}
+- **13d Síntese:** efeitos aleatórios com τ² por REML e intervalo de Hartung-Knapp-Sidik-Jonkman modificado, τ² com IC, I² e intervalo de predição (metafor {{META_VERSAO_METAFOR}}); randomizados e não randomizados em separado; {{PROTOCOLO_DEPENDENCIA}}. Sem meta-análise: {{TEXTO_METODO_SWIM}}
+- **13e Heterogeneidade:** {{PROTOCOLO_MODERADORES}}
+- **13f Sensibilidade:** leave-one-out, sem estudos de risco alto, sem conversões aproximadas. {{TEXTO_OUTRAS_SENSIBILIDADES}}
+
+## Avaliação de viés de relato (14)
+
+ROB-ME; funil, Egger, PET-PEESE e modelo de seleção só com dez ou mais estudos. {{TEXTO_VIES_RELATO}}
+
+## Avaliação da certeza (15)
+
+GRADE por desfecho, com randomizados e não randomizados em corpos separados; δ = {{PROTOCOLO_DELTA}}. {{TEXTO_PROCESSO_CERTEZA}}
+
+# Resultados
+
+## Seleção dos estudos (16a, 16b)
+
+![Fluxograma PRISMA 2020 calculado do ledger de decisões.](prisma.svg){#fig-prisma}
+
+A busca identificou {{N_BASES}} registros nas bases e {{N_OUTROS_METODOS}} por outros métodos. Antes da triagem, foram removidos {{N_DUPLICATAS}} duplicados, {{N_AUTOMACAO}} marcados por automação e {{N_OUTROS_MOTIVOS}} por outros motivos. Foram triados {{N_TRIADOS}} registros ({{N_EXCLUIDOS_TRIAGEM}} excluídos); {{N_BUSCADOS}} relatos buscados, {{N_NAO_RECUPERADOS}} não recuperados, {{N_AVALIADOS}} avaliados, {{N_EXCLUIDOS_TC}} excluídos e {{N_AGUARDANDO_CLASSIFICACAO}} aguardando classificação. Foram incluídos {{N_ESTUDOS_INCLUIDOS}} estudos ({{N_RELATOS_INCLUIDOS}} relatos). Estudos que pareciam elegíveis e foram excluídos: {{TEXTO_EXCLUIDOS_LIMITROFES}}.
+
+## Características dos estudos (17)
+
+{{TEXTO_TABELA_CARACTERISTICAS}}
+
+## Risco de viés nos estudos (18)
+
+{{TEXTO_TABELA_ROB_POR_DOMINIO}}
+
+## Resultados dos estudos individuais (19)
+
+{{TEXTO_TABELA_RESULTADOS_INDIVIDUAIS}}
+
+## Resultados das sínteses (20a-20d)
+
+<!-- Por desfecho: características e RoB dos estudos da síntese (20a); estimativa, IC, τ², I², PI e direção (20b);
+moderadores (20c); sensibilidade (20d). Sem meta-análise, SWiM itens 7 e 8. Testes combinados só com a ressalva do script. -->
+
+**{{TEXTO_DESFECHO_1}}.** {{META_K}} estudos; g = {{META_G}} (IC 95% {{META_IC}}; τ² = {{META_TAU2}}; I² = {{META_I2}}; intervalo de predição {{META_PI}}). Heterogeneidade: {{META_MODERADORES}}. Sensibilidade: {{META_SENSIBILIDADE}}.
+
+<!-- Sem meta-análise (SWiM 8): {{SWIM_N_BENEFICOS}} de {{SWIM_N_ESTUDOS}} estudos com estimativa na direção benéfica (proporção {{SWIM_PROPORCAO}}; IC 95% {{SWIM_IC}}; teste de sinal p = {{SWIM_P}}), com a certeza da evidência na mesma frase. Nunca "n estudos significativos". -->
+
+<!-- Figuras dos scripts (descomente e ajuste):
+![Forest plot com intervalo de predição.](../06-analise/figuras/forest_01_<grupo>.png)
+![Direção do efeito por estudo.](../06-analise/figuras/direcao_efeito.png) -->
+
+## Vieses de relato (21)
+
+{{TEXTO_RESULTADO_ROB_ME}}
+
+## Certeza da evidência (22)
+
+| Desfecho | Estudos (participantes) | Efeito (IC 95%; PI) | Certeza | Explicação |
+|---|---|---|---|---|
+| {{TEXTO_DESFECHO_1}} | {{META_K_N_1}} | {{META_EFEITO_1}} | {{CERTEZA_NIVEL_1}} | {{CERTEZA_MOTIVOS_1}} |
+
+: Resumo dos achados (GRADE). {#tbl-sof}
+
+# Discussão
+
+## Interpretação (23a)
+
+{{TEXTO_INTERPRETACAO_A_LUZ_DE_OUTRAS_EVIDENCIAS}}
+
+## Limitações da evidência (23b)
+
+{{TEXTO_LIMITACOES_EVIDENCIA}}
+
+## Limitações do processo da revisão (23c)
+
+{{TEXTO_LIMITACOES_PROCESSO}}
+
+## Implicações para prática, política e pesquisa (23d)
+
+<!-- Proporcionais à certeza; frases padronizadas por nível de certeza; nada de "sem efeito" quando o IC inclui zero. -->
+
+{{TEXTO_IMPLICACOES}}
+
+# Outras informações {.unnumbered}
+
+**Registro e protocolo (24a-24c).** {{PROTOCOLO_REGISTRO}}. Emendas: {{PROTOCOLO_EMENDAS_RESUMO}}.
+
+**Apoio (25).** {{TEXTO_FINANCIAMENTO}}
+
+**Conflitos de interesse (26).** {{TEXTO_CONFLITOS}}
+
+**Disponibilidade de dados, código e materiais (27).** {{TEXTO_DOI_PACOTE}}. {{TEXTO_RESTRICOES_DE_LICENCA}}
+
+<!-- Texto curto de 07-relatorio/declaracao_uso_ia_texto.md (preenchido a partir de assets/templates/declaracao_uso_ia.md, com números copiados do arquivo gerado). -->
+
+**Uso de inteligência artificial.** {{VALIDACAO_TEXTO_CURTO_IA}} A declaração gerada do log do projeto está reproduzida no apêndice.
+
+# Referências {.unnumbered}
+
+::: {#refs}
+:::
+
+<!-- Apêndice gerado: não edite; regenere com rs.py declaracao-ia. Checklists preenchidos: 07-relatorio/checklist_*.csv. -->
+
+{{< include declaracao_uso_ia.md >}}

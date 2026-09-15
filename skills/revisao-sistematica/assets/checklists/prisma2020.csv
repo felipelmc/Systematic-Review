@@ -1,0 +1,43 @@
+item,secao,topico,descricao
+1,Título,Título,Identificar o trabalho como revisão sistemática.
+2,Resumo,Resumo,Seguir o checklist PRISMA 2020 para resumos.
+3,Introdução,Justificativa,Explicar por que a revisão é necessária diante do conhecimento existente.
+4,Introdução,Objetivos,Declarar de forma explícita os objetivos ou perguntas da revisão.
+5,Métodos,Critérios de elegibilidade,Especificar critérios de inclusão e exclusão e como os estudos foram agrupados para as sínteses.
+6,Métodos,Fontes de informação,"Listar bases, registros, sites, organizações, listas de referências e outras fontes consultadas, com a data da última consulta a cada uma."
+7,Métodos,Estratégia de busca,"Apresentar as estratégias de busca completas de cada base, registro e site, com filtros e limites."
+8,Métodos,Processo de seleção,"Descrever como se decidiu a inclusão: quantos revisores avaliaram cada registro e relatório, se de forma independente e, se houver, as ferramentas de automação usadas."
+9,Métodos,Processo de coleta de dados,"Descrever como os dados foram extraídos dos relatórios: quantos revisores, independência, confirmação com autores e ferramentas de automação usadas."
+10a,Métodos,Itens de dados,"Listar e definir os desfechos buscados e dizer se todos os resultados compatíveis com cada domínio foram coletados; se não, como se escolheu quais coletar."
+10b,Métodos,Itens de dados,Listar e definir as demais variáveis coletadas e os pressupostos adotados para informação ausente ou pouco clara.
+11,Métodos,Avaliação do risco de viés dos estudos,"Especificar as ferramentas de risco de viés, quantos revisores avaliaram cada estudo, se de forma independente e as ferramentas de automação usadas."
+12,Métodos,Medidas de efeito,Especificar para cada desfecho as medidas de efeito usadas na síntese ou apresentação.
+13a,Métodos,Métodos de síntese,Descrever como se decidiu quais estudos entram em cada síntese.
+13b,Métodos,Métodos de síntese,"Descrever a preparação dos dados para síntese, como tratamento de estatísticas ausentes e conversões."
+13c,Métodos,Métodos de síntese,Descrever como os resultados individuais e as sínteses foram tabulados ou exibidos graficamente.
+13d,Métodos,Métodos de síntese,"Descrever e justificar os métodos de síntese; em meta-análise, informar modelo, avaliação da heterogeneidade e software."
+13e,Métodos,Métodos de síntese,"Descrever métodos para explorar causas de heterogeneidade, como subgrupos e meta-regressão."
+13f,Métodos,Métodos de síntese,Descrever as análises de sensibilidade usadas para testar a robustez dos resultados.
+14,Métodos,Avaliação de viés de relato,Descrever como se avaliou o risco de viés por resultados ausentes numa síntese.
+15,Métodos,Avaliação da certeza,Descrever como se avaliou a certeza ou confiança no corpo de evidências de cada desfecho.
+16a,Resultados,Seleção dos estudos,"Relatar o resultado da busca e da seleção, do número de registros identificados ao de estudos incluídos, de preferência com fluxograma."
+16b,Resultados,Seleção dos estudos,Citar estudos que pareciam elegíveis mas foram excluídos e explicar o motivo.
+17,Resultados,Características dos estudos,Citar cada estudo incluído e apresentar suas características.
+18,Resultados,Risco de viés nos estudos,Apresentar a avaliação de risco de viés de cada estudo incluído.
+19,Resultados,Resultados dos estudos individuais,"Para cada desfecho e estudo, apresentar estatísticas por grupo quando couber e a estimativa de efeito com sua precisão, de preferência em tabelas ou gráficos."
+20a,Resultados,Resultados das sínteses,Resumir as características e o risco de viés dos estudos que contribuem para cada síntese.
+20b,Resultados,Resultados das sínteses,"Apresentar os resultados de todas as sínteses estatísticas; em meta-análise, estimativa agregada, precisão e heterogeneidade; ao comparar grupos, a direção do efeito."
+20c,Resultados,Resultados das sínteses,Apresentar os resultados das investigações sobre causas de heterogeneidade.
+20d,Resultados,Resultados das sínteses,Apresentar os resultados das análises de sensibilidade.
+21,Resultados,Vieses de relato,Apresentar a avaliação do risco de viés por resultados ausentes em cada síntese avaliada.
+22,Resultados,Certeza da evidência,Apresentar a avaliação da certeza ou confiança no corpo de evidências de cada desfecho avaliado.
+23a,Discussão,Discussão,Interpretar os resultados à luz de outras evidências.
+23b,Discussão,Discussão,Discutir as limitações das evidências incluídas.
+23c,Discussão,Discussão,Discutir as limitações dos processos da revisão.
+23d,Discussão,Discussão,"Discutir implicações para a prática, a política e pesquisas futuras."
+24a,Outras informações,Registro e protocolo,"Informar o registro da revisão (nome do registro e número) ou declarar que não foi registrada."
+24b,Outras informações,Registro e protocolo,Indicar onde o protocolo pode ser acessado ou declarar que não houve protocolo.
+24c,Outras informações,Registro e protocolo,Descrever e justificar emendas ao registro ou ao protocolo.
+25,Outras informações,Apoio,Descrever fontes de apoio financeiro ou não financeiro e o papel dos financiadores.
+26,Outras informações,Conflitos de interesse,Declarar conflitos de interesse dos autores.
+27,Outras informações,"Disponibilidade de dados, código e materiais","Informar quais materiais estão públicos e onde: formulários de coleta, dados extraídos, dados das análises, código e outros materiais."

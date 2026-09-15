@@ -1,0 +1,6 @@
+ficha_id,citekey,familia_intervencao,impl_componentes,impl_multinivel,impl_infraestrutura,impl_barreiras_fidelidade,impl_tempo_longo,mecanismo_id,moderador_id,rob_geral
+Alves2020,Alves2020,Transferência condicionada,Sim,Sim,Não,Sim — atraso nos pagamentos,Não,Sim,Sim,baixo
+Borges2019,Borges2019,Transferência condicionada,Não,Não,Não,Não,Sim — anos até efeito,Não,Não,alto
+Castro2018,Castro2018,Transferência condicionada,999,Não,999,Não,Não,Sim,Não,moderado
+Dias2021,Dias2021,Transferência condicionada,Não,Não,Não,Não,Não,Não,Não,alto
+Gomes2016,Gomes2016,Merenda escolar,Não,Não,Não,Não,Não,Não,Não,alto

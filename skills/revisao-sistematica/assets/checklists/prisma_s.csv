@@ -1,0 +1,18 @@
+# Paráfrase curta em português do PRISMA-S (Rethlefsen ML, Kirtley S, Waffenschmidt S, et al. PRISMA-S: an extension to the PRISMA Statement for Reporting Literature Searches in Systematic Reviews. Systematic Reviews 2021;10:39; licença CC BY 4.0). Consulte o documento original para o texto integral e a explicação de cada item. Primeira linha = atribuição; o cabeçalho CSV está na linha 2.
+item,secao,topico,descricao
+1,Fontes e métodos,Nome da base,"Nomear cada base buscada e a plataforma (interface) usada em cada uma."
+2,Fontes e métodos,Busca multibase,"Se várias bases foram buscadas juntas numa mesma plataforma, nomear a plataforma e listar todas as bases."
+3,Fontes e métodos,Registros de estudos,"Listar os registros de estudos consultados (ex.: registros de protocolos e de ensaios)."
+4,Fontes e métodos,Recursos on-line e navegação,"Descrever as fontes on-line ou impressas buscadas ou navegadas de propósito (sites, sumários, anais) e como isso foi feito."
+5,Fontes e métodos,Busca por citações,"Dizer se referências citadas ou citantes foram examinadas e com que método (listas de referências, índice de citação, alertas)."
+6,Fontes e métodos,Contatos,"Dizer se estudos ou dados adicionais foram procurados com autores, especialistas, fabricantes ou outros."
+7,Fontes e métodos,Outros métodos,"Descrever qualquer outra fonte de informação ou método de busca usado."
+8,Estratégias de busca,Estratégias completas,"Apresentar a estratégia de cada base e fonte copiada exatamente como foi executada."
+9,Estratégias de busca,Limites e restrições,"Declarar que não houve limites ou descrever e justificar cada limite aplicado (data, idioma, desenho etc.)."
+10,Estratégias de busca,Filtros de busca,"Dizer se foram usados filtros de busca publicados (originais ou modificados) e citá-los."
+11,Estratégias de busca,Trabalhos anteriores,"Dizer quando estratégias de outras revisões foram adaptadas ou reutilizadas em parte relevante da busca, citando-as."
+12,Estratégias de busca,Atualizações,"Relatar os métodos usados para atualizar as buscas (reexecução, alertas)."
+13,Estratégias de busca,Datas das buscas,"Informar, para cada estratégia, a data da última execução."
+14,Revisão por pares,Revisão por pares,"Descrever o processo de revisão por pares da estratégia de busca, se houve."
+15,Gestão dos registros,Total de registros,"Informar o total de registros identificados em cada base e em cada outra fonte."
+16,Gestão dos registros,Deduplicação,"Descrever o processo e o software usados para deduplicar os registros das várias fontes."

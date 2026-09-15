@@ -1,0 +1,12 @@
+# Paráfrase curta em português do checklist SWiM (Campbell M, McKenzie JE, Sowden A, et al. Synthesis without meta-analysis (SWiM) in systematic reviews: reporting guideline. BMJ 2020;368:l6890). Consulte o original para o texto integral e a explicação de cada item. Usar junto do PRISMA 2020: os itens 13 e 20 do PRISMA são relatados seguindo estes itens quando houver síntese sem meta-análise. Primeira linha = atribuição; o cabeçalho CSV está na linha 2.
+item,secao,topico,descricao
+1a,Métodos,Agrupamento dos estudos para a síntese,"Descrever os grupos de estudos de cada síntese (população, intervenção, comparação, desfecho, desenho) e o racional, de preferência derivado da teoria da mudança."
+1b,Métodos,Agrupamento dos estudos para a síntese,"Detalhar e justificar mudanças nos agrupamentos feitas depois do protocolo."
+2,Métodos,Métrica padronizada e transformação,"Descrever a métrica padronizada de cada desfecho, por que foi escolhida e os métodos usados para transformar os dados."
+3,Métodos,Métodos de síntese,"Descrever e justificar o método de síntese usado para cada desfecho (por exemplo, contagem pela direção com teste de sinal, combinação de valores-p, resumo das estimativas)."
+4,Métodos,Critérios para priorizar resultados,"Descrever os critérios usados para priorizar estudos na síntese (desenho, risco de viés, proximidade com a pergunta), se houver."
+5,Métodos,Heterogeneidade dos efeitos,"Descrever os métodos usados para examinar a heterogeneidade dos efeitos relatados."
+6,Métodos,Certeza da evidência,"Descrever os métodos usados para avaliar a certeza dos achados da síntese."
+7,Métodos,Apresentação dos dados,"Descrever os métodos gráficos e tabulares usados e as características usadas para ordenar os estudos."
+8,Resultados,Relato dos resultados,"Para cada comparação e desfecho, descrever os achados da síntese e sua certeza em linguagem coerente com a pergunta, indicando os estudos que contribuem."
+9,Discussão,Limitações da síntese,"Relatar as limitações do método de síntese usado e dos agrupamentos."

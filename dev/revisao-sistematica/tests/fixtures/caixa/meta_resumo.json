@@ -1,0 +1,17 @@
+{
+  "gerado_por": "meta.R (fixture sintética)",
+  "grupos": [
+    {"familia_intervencao": "Transferência condicionada", "construto_outcome": "frequencia", "k": [6],
+     "modelo": {"b": [0.25], "ci.lb": [0.10], "ci.ub": [0.40], "pi.lb": [0.02], "pi.ub": [0.48]},
+     "estudos": ["Alves2020", "Borges2019", "Castro2018", "Dias2021", "Esteves2022", "Faria2017"],
+     "stouffer": {"z": 4.1, "p": 0.0001}},
+    {"grupo": "Transferência condicionada :: notas", "k": 4, "estimativa": 0.02, "ci_lo": -0.05, "ci_hi": 0.08,
+     "estudos": "Alves2020|Borges2019|Castro2018|Dias2021"},
+    {"familia_intervencao": "Transferência condicionada", "construto_outcome": "evasao", "k": 2,
+     "estimativa": 0.30, "ci_lo": 0.10, "ci_hi": 0.50},
+    {"familia_intervencao": "Transferência condicionada", "construto_outcome": "trabalho_infantil",
+     "metodo": "Stouffer ponderado", "k": 5, "estimativa": 0.5, "ci_lo": 0.2, "ci_hi": 0.8},
+    {"familia_intervencao": "Merenda escolar", "construto_outcome": "frequencia", "k": 7, "estimativa": 0.15,
+     "ci_lo": 0.05, "ci_hi": 0.30, "pi_lo": -0.30, "pi_hi": 0.60, "estudos": ["Gomes2016", "Hora2015"]}
+  ]
+}

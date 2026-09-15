@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "Se usar esta skill, cite-a e cite a proposta metodológica OQF."
+title: "revisao-sistematica: skill do Claude Code para revisões sistemáticas de ponta a ponta"
+type: software
+authors:
+  - family-names: Lamarca
+    given-names: Felipe
+license:
+  - MIT
+  - CC-BY-4.0
+references:
+  - type: article
+    title: "O que funciona? Proposta metodológica para avaliação de políticas públicas através de revisão sistemática"
+    authors:
+      - family-names: Schaefer
+        given-names: Bruno Marques
+      - family-names: Borges
+        given-names: Tomás Paixão
+      - family-names: Freitas
+        given-names: Carlos Barros Barreto Martins de
+    year: 2025
+    url: "https://osf.io/preprints/osf/aht4j_v1"
+  - type: article
+    title: "The PRISMA 2020 statement: an updated guideline for reporting systematic reviews"
+    authors:
+      - family-names: Page
+        given-names: Matthew J.
+    year: 2021
+    journal: BMJ
+    doi: "10.1136/bmj.n71"

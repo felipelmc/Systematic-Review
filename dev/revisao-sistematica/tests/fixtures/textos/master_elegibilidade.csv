@@ -1,0 +1,10 @@
+ficha_id,citekey,n_fichas_do_texto,desenho_resumo,desenho_resumo__evidencia,C1_populacao,C1_populacao__evidencia,C2_desenho,C2_desenho__evidencia,C3_outcome,C3_outcome__evidencia,observacoes,observacoes__evidencia,pdf_path,paginacao,offset_pagina,agente_fichador,data_fichamento,notas_codificador
+Alves2020,Alves2020,1,RCT,"""randomized"" (p. 2)",Sim,"""municipal schools"" (p. 2)",Sim,"""we randomized"" (p. 3)",Sim,"""attendance"" (p. 4)",,,pdfs/Alves2020.pdf,impressa,0,fichador,2026-01-01,
+Borges2019,Borges2019,1,ensaio,"""essay"" (p. 1)",Sim,"""schools"" (p. 1)","Não — ensaio teórico","""this theoretical essay argues"" (p. 3)",Sim,"""attendance"" (p. 5)",,,pdfs/Borges2019.pdf,impressa,0,fichador,2026-01-01,
+Castro2018,Castro2018,1,painel,"""panel"" (p. 2)",999,999,Nao,"""descriptive only"" (p. 7)",Não,"""no outcome"" (p. 8)",,,pdfs/Castro2018.pdf,impressa,0,fichador,2026-01-01,
+Dias2021,Dias2021,1,DiD,"""difference"" (p. 2)",Sim,"""schools"" (p. 2)",999,999,Sim,"""attendance"" (p. 6)",,,pdfs/Dias2021.pdf,impressa,0,fichador,2026-01-01,
+Esteves2022,Esteves2022,1,RDD,"""discontinuity"" (p. 3)",Sim,"""schools"" (p. 3)",Sim,"""regression discontinuity"" (p. 4)",NA_secao,NA_secao,,,pdfs/Esteves2022.pdf,impressa,0,fichador,2026-01-01,
+Faria2017#a1,Faria2017,2,quali,"""interviews"" (p. 2)",Sim,"""schools"" (p. 2)",Não,"""interviews only"" (p. 3)",Sim,"""attendance"" (p. 4)",,,pdfs/Faria2017.pdf,impressa,0,fichador,2026-01-01,
+Faria2017#b2,Faria2017,2,quanti,"""regression"" (p. 9)",Sim,"""schools"" (p. 9)",Sim,"""we estimate"" (p. 10)",Sim,"""attendance"" (p. 11)",,,pdfs/Faria2017.pdf,impressa,0,fichador,2026-01-01,
+Gomes2016,Gomes2016,1,RCT,"""trial"" (p. 1)",Sim,"""schools"" (p. 1)",Sim,"""trial"" (p. 2)",Sim,"""attendance"" (p. 2)",,,pdfs/Gomes2016.pdf,impressa,0,fichador,2026-01-01,
+Desconhecido2000,Desconhecido2000,1,RCT,,Sim,,Sim,,Sim,,,,,,,,,

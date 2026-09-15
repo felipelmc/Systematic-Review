@@ -1,0 +1,19 @@
+Os textos de referência (skills/revisao-sistematica/references/), os prompts de agentes
+(skills/revisao-sistematica/agentes/), os modelos, codebooks e checklists
+(skills/revisao-sistematica/assets/) e a documentação estão licenciados sob a
+Creative Commons Attribution 4.0 International (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+Essa licença cobre o texto e a organização escritos para esta skill. Os checklists
+e as ferramentas de avaliação que os CSV de assets/checklists/ e assets/codebooks/
+parafraseiam continuam sob os termos dos seus autores, que não mudam por causa desta
+licença. Alguns são CC BY 4.0 (PRISMA 2020, Page et al., 2021, BMJ 372:n71; PRISMA-S);
+outros têm termos mais restritivos, como o guia do RoB 2 (CC BY-NC-ND 4.0), o CASP
+(CC BY-NC-SA 4.0) e o MMAT (registro de direito autoral); PRISMA-ScR, PRESS 2015, SWiM,
+EPOC, ROBINS-I, JBI e Maryland SMS seguem os termos das respectivas publicações. As
+fontes de cada arquivo estão em assets/checklists/README.md e
+assets/codebooks/README.md. Antes de reutilizar essas paráfrases fora desta skill,
+sobretudo com fim comercial, confira os termos originais.
+
+Nenhum texto integral protegido por direitos autorais de terceiros (artigos, livros,
+material didático ou bases de dados) é redistribuído.

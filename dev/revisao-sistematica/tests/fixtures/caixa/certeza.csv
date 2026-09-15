@@ -1,0 +1,13 @@
+familia_intervencao,construto_outcome,dimensao,certeza,abordagem,enunciado,estudos,justificativa,delta,moderador_explica,explica_heterogeneidade
+Transferência condicionada,frequencia,efeito,moderada,GRADE,,,rebaixada por inconsistência,,,
+Transferência condicionada,notas,efeito,Moderada,GRADE,,,,0.1,,
+Transferência condicionada,evasao,efeito,baixa,GRADE,,,,,,
+Transferência condicionada,trabalho_infantil,efeito,baixa,GRADE,,,,,,
+Transferência condicionada,saude,efeito,,GRADE,,,,,,
+Merenda escolar,frequencia,efeito,moderada,GRADE,,,,0.1,pre_especificado,
+Merenda escolar,notas,efeito,alta,GRADE,,,,,,
+Merenda escolar,peso,efeito,alta,GRADE,,,,,,
+Transferência condicionada,,implementacao,moderada,CERQual,Implementação exige coordenação entre níveis de governo,Alves2020|Borges2019,,,,
+Transferência condicionada,,mecanismo,baixa,CERQual,Condicionalidade reduz o custo de oportunidade da escola,Alves2020|Castro2018,,,,
+Transferência condicionada,,percepcao,moderada,CERQual,,Borges2019,,,,
+Merenda escolar,frequencia,moderador,moderada,CERQual,Efeito maior onde a merenda substitui refeição em casa,Gomes2016|Hora2015,,,,sim

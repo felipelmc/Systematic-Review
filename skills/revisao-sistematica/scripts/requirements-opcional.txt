@@ -1,0 +1,9 @@
+# Melhoram desempenho ou habilitam modos opcionais; a skill degrada sem eles (ver `rs.py ambiente`).
+rapidfuzz>=3.0        # deduplicação fuzzy rápida (fallback: difflib)
+pyalex>=0.13          # busca OpenAlex (fallback: requests)
+jsonschema>=4.0       # validação de schemas (fallback: validador manual)
+bibtexparser>=1.4     # importação de BibTeX (fallback: mini-parser)
+rispy>=0.8            # importação de RIS (fallback: mini-parser)
+anthropic>=0.40       # modo de triagem via API
+openai>=1.40          # modo de triagem via API
+pdfplumber>=0.10      # extração de texto alternativa
