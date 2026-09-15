@@ -3,14 +3,12 @@ project:
   output-dir: docs
 
 book:
-  title: "Revisão Sistemática e Avaliação de Políticas Públicas"
-  subtitle: "Anotações de Aula"
+  title: "Revisão sistemática de ponta a ponta"
+  subtitle: "Protocolos metodológicos para revisões sistemáticas e avaliação de políticas públicas"
   author: "Felipe Lamarca"
   date: today
   date-format: "DD/MM/YYYY"
   search: true
-  repo-url: https://github.com/felipelmc/Systematic-Review
-  repo-actions: [edit, issue]
   sharing: [twitter, linkedin]
   sidebar:
     style: docked
@@ -18,12 +16,27 @@ book:
 
   chapters:
     - index.qmd
-    - part: "Aulas"
-      chapters:
-        - aulas/aula-01.qmd
-        - aulas/aula-02.qmd
+    - metodo/01-fundamentos-tipos.qmd
+    - metodo/02-pergunta-teoria.qmd
+    - metodo/03-protocolo.qmd
+    - metodo/04-busca.qmd
+    - metodo/05-organizacao-triagem.qmd
+    - metodo/06-qualidade-risco-vies.qmd
+    - metodo/07-decomposicao.qmd
+    - metodo/08a-sintese-quantitativa.qmd
+    - metodo/08b-sintese-qualitativa-integracao.qmd
+    - metodo/09-certeza-evidencia-pratica.qmd
+    - metodo/10-relato-divulgacao.qmd
+    - metodo/11-ia-na-revisao.qmd
+
+  appendices:
+    - metodo/apendice-a-leituras.qmd
+    - metodo/apendice-b-reprodutibilidade.qmd
+    - metodo/apendice-c-glossario.qmd
+    - metodo/apendice-d-especificacao.qmd
 
 bibliography: references.bib
+lang: pt-BR
 
 format:
   html:

@@ -1,52 +1,21 @@
 # Apresentação {.unnumbered}
 
-Este site reúne minhas anotações das aulas de **Revisão Sistemática e Avaliação de Políticas Públicas**, disciplina do programa de pós-graduação do [IESP-UERJ](https://iesp.uerj.br) (PPGCP). As anotações são produzidas em [Quarto](https://quarto.org) e publicadas automaticamente via GitHub Pages.
+Estas anotações são inspiradas em tudo o que o professor Bruno Marques Schaefer disponibilizou no curso de revisão sistemática para políticas públicas, por iniciativa do [MAPE, Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ](https://iesp.uerj.br): textos, slides, códigos em R, bases de exemplo e, sobretudo, a proposta metodológica "O que funciona?" [@schaefer_oqfunciona]. A partir desse material, e das normas internacionais de síntese de evidências, o livro sistematiza protocolos metodológicos para conduzir e avaliar revisões sistemáticas.
 
-## Sobre a disciplina
+## O que está aqui
 
-A disciplina capacita estudantes a avaliar políticas públicas a partir do uso de revisões sistemáticas da literatura, articulando o debate metodológico sobre evidências com problemas substantivos de políticas públicas. A pergunta central que orienta o curso é: *"o que funciona, para quem, em que contextos e por quê?"*. São exploradas técnicas como meta-análise, sínteses qualitativas, QCA e abordagens de métodos mistos, bem como ferramentas computacionais em R para apoio às diferentes etapas do processo.
+Os doze capítulos formam um guia operacional que vai da escolha do tipo de revisão e da pergunta até o relato, a divulgação e o uso de inteligência artificial. Cada etapa traz regras de decisão, limiares, passos, os itens das diretrizes que se aplicam, exemplos trabalhados (proibição de celulares nas escolas e programas de refinanciamento tributário, o REFIS) e os erros mais comuns. O foco é a avaliação de políticas públicas, mas os protocolos servem a revisões de efetividade, de escopo, qualitativas, realistas, de métodos mistos, rápidas e guarda-chuva.
 
-**Professor:** Bruno Marques Schaefer ([brunoschaefer@iesp.uerj.br](mailto:brunoschaefer@iesp.uerj.br))
+Quando as fontes divergem, vale esta ordem de autoridade: primeiro as normas internacionais (Cochrane, Campbell, JBI, PRISMA, GRADE, CERQual, RAISE); depois a especificação metodológica desta base, reunida no [Apêndice D](metodo/apendice-d-especificacao.qmd); por fim, a proposta OQF, que é a âncora do formato de avaliação de políticas por revisão sistemática mista e sequencial. Os capítulos dizem o que muda, e por quê, sempre que as normas pedem mais do que a proposta original.
 
-**Laboratório:** [MAPE — Laboratório de Monitoramento e Avaliação de Políticas e Eleições do IESP-UERJ](https://iesp.uerj.br)
+## Relação com as skills
 
-**Período:** 1º semestre de 2026 · Sextas-feiras, 16–18h · Híbrido (20 vagas presenciais, 16 online)
+O livro é também a base de conhecimento de um conjunto de skills do Claude Code para revisão sistemática, guardadas no mesmo repositório. A principal, `revisao-sistematica`, conduz uma revisão de ponta a ponta com estado auditável e portões de decisão humana; cada capítulo tem uma seção "Na skill" que descreve como a etapa é executada ali.
 
-**Materiais:** Repositório no [Open Science Framework](https://osf.io/zs6h4/overview)
+## Como usar
 
-## Avaliação
-
-| Componente | Peso |
-|---|---|
-| Presença mínima (75%) | Condição para certificado |
-| Trabalho final (avaliação de política pública via RS, formato OQF) | 100% |
-
-## Plano de aulas
-
-| Aula | Data | Tópico |
-|---|---|---|
-| 1 | 27/03 | Tipos de revisão sistemática |
-| 2 | 10/04 | Definição do protocolo inicial |
-| 3 | 24/04 | Busca do material |
-| 4 | 11/05 | Filtragem e controle de qualidade |
-| 5 | 22/05 | Extração de dados — decomposição |
-| 6 | 05/06 | Análise de dados: perspectivas quali, quanti e mista |
-| 7 | 19/06 | Reportar e divulgar os resultados |
-
-## Leituras principais
-
-- @xiao2019guidance
-- @dacombe2018systematic
-- @rogers2008programme
-- @harrer2021doing
-- @thomas2008methods
-- @kopittke2021funciona
-- @schaefer_oqfunciona
-
-## Como usar estas notas
-
-As anotações estão organizadas por aula na barra lateral à esquerda. Cada página corresponde a uma aula e cobre os principais tópicos discutidos.
+Os capítulos podem ser lidos em sequência ou consultados por etapa, a partir da seção "Decisões e regras" de cada um. Os apêndices trazem as leituras comentadas por etapa, orientações de ciência aberta e reprodutibilidade, um glossário e a especificação metodológica.
 
 ::: callout-note
-Estas são anotações pessoais e podem conter imprecisões. Use-as como complemento, não como substituto do material oficial da disciplina.
+São notas pessoais de estudo e trabalho, e podem conter imprecisões. Não substituem as fontes originais citadas em cada capítulo.
 :::
