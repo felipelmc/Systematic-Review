@@ -1137,3 +1137,56 @@ def test_regressao_escritas_da_triagem_com_permissao_de_arquivo_comum(projeto_va
     esperado = estado.modo_arquivo_padrao()
     for arq in (raiz / esquema.ARQ_TRIAGEM_TA_FINAL, fila, tl.caminho_manifesto(raiz, "ta_v2", "A")):
         assert stat.S_IMODE(arq.stat().st_mode) == esperado, arq
+
+
+# ---------------------------------------------------------------------------
+# Ids absorvidos pelo dedup depois da triagem (v1.4)
+# ---------------------------------------------------------------------------
+def _res(id_rs, decisao, por="consenso"):
+    return {"id_rs": id_rs, "decisao_final": decisao, "decidido_por": por, "criterio_falhou": None,
+            "divergente": 0, "revisado_humano": int(por == "humano"), "na_fila": False, "motivo_fila": None,
+            "primarias": {}, "arbitro": None, "override": None}
+
+
+def test_fundir_absorvidos_regra_pura():
+    final = {
+        "RS0001": _res("RS0001", "excluir"), "RS0011": _res("RS0011", "incerto"),        # mais inclusiva vence
+        "RS0002": _res("RS0002", "incluir"), "RS0012": _res("RS0012", "excluir"),        # destino mantém
+        "RS0003": _res("RS0003", "incluir"), "RS0013": _res("RS0013", "excluir", "humano"),  # override vence IA
+        "RS0014": _res("RS0014", "incerto"),                                              # destino sem decisão
+        "RS0015": _res("RS0015", "incluir"),                                              # sem destino: cai
+        "RS0004": _res("RS0004", "incerto"), "RS0016": _res("RS0016", "incerto"),        # empate: destino
+    }
+    mapa = {"RS0011": "RS0001", "RS0012": "RS0002", "RS0013": "RS0003", "RS0014": "RS0005", "RS0015": "",
+            "RS0016": "RS0004"}
+    final, relatos = tl.fundir_absorvidos(final, mapa)
+    assert not set(mapa) & set(final)
+    assert (final["RS0001"]["decisao_final"], final["RS0001"]["id_rs"]) == ("incerto", "RS0001")
+    assert final["RS0002"]["decisao_final"] == "incluir"
+    assert (final["RS0003"]["decisao_final"], final["RS0003"]["decidido_por"]) == ("excluir", "humano")
+    assert final["RS0005"]["decisao_final"] == "incerto" and final["RS0005"]["id_rs"] == "RS0005"
+    assert final["RS0004"]["decisao_final"] == "incerto"
+    por = {r["absorvido"]: r["resultado"] for r in relatos}
+    assert por == {"RS0011": "substituida", "RS0012": "mantida", "RS0013": "substituida", "RS0014": "herdada",
+                   "RS0015": "descartada", "RS0016": "mantida"}
+    assert tl.fundir_absorvidos({"RS0001": _res("RS0001", "incluir")}, {}) == ({"RS0001": _res("RS0001", "incluir")}, [])
+
+
+def test_consolidar_leva_decisao_de_absorvido_ao_registro_que_absorveu(projeto_vazio, capsys):
+    raiz = projeto_vazio
+    criar_registros(raiz, n=4)  # RS0005 foi absorvido por RS0002 e não está mais em registros_unicos
+    tl.registrar_decisoes(raiz, _dup("RS0001", "ta_v2", "incluir") + _dup("RS0002", "ta_v2", "excluir",
+                                                                           criterio_falhou="C1")
+                          + _dup("RS0003", "ta_v2", "excluir", criterio_falhou="C1")
+                          + _dup("RS0004", "ta_v2", "incluir") + _dup("RS0005", "ta_v2", "incerto"))
+    estado.registrar_evento(raiz, "dedup_executado", "05_organizacao", "script", "dedup",
+                            dados={"ids_rs_aposentados": {"RS0005": {"absorvido_por": "RS0002", "chave": "Autor2005"}}})
+    codigo, res = rodar(capsys, raiz, "triagem", "consolidar", "--rodada", "ta_v2", "--regra", "liberal")
+    assert codigo == 0 and res["n_absorvidos_dedup"] == 1
+    with open(raiz / esquema.ARQ_TRIAGEM_TA_FINAL, encoding="utf-8") as f:
+        final = {l["id_rs"]: l for l in csv.DictReader(f)}
+    assert "RS0005" not in final and final["RS0002"]["decisao_final"] == "incerto"
+    assert any("absorvidos pelo dedup" in a for a in res["avisos"])
+    ev = eventos(raiz, "triagem_consolidada")[-1]["dados"]
+    assert ev["absorvidos_dedup"] == [{"absorvido": "RS0005", "destino": "RS0002", "decisao_absorvido": "incerto",
+                                       "decisao_destino": "excluir", "resultado": "substituida"}]

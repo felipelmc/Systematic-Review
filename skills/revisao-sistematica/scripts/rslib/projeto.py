@@ -149,8 +149,9 @@ INVARIANTE_ETAPA = {
     "filtro_ids_desconhecidos": "05_organizacao", "identificacao_fecha": "05_organizacao",
     "duplicatas_nao_negativo": "05_organizacao", "a_triar_nao_negativo": "05_organizacao",
     "triagem_ids_desconhecidos": "06_triagem_ta", "triagem_de_excluidos_por_automacao": "06_triagem_ta",
-    "triagem_fecha": "06_triagem_ta",
+    "triagem_fecha": "06_triagem_ta", "triagem_ids_absorvidos": "06_triagem_ta",
     "decisoes_de_busca_substituida": "07_textos_elegibilidade", "avaliado_nao_recuperado": "07_textos_elegibilidade",
+    "elegibilidade_ids_absorvidos": "07_textos_elegibilidade",
 }
 SEM_PROJETO_IGNORAR = {".git", "node_modules", "__pycache__", ".venv", "venv", ".quarto", "_site", "docs"}
 PROFUNDIDADE_SUBPROJETOS = 2

@@ -656,3 +656,33 @@ def test_regressao_planilhas_humanas_com_ponto_e_virgula(projeto_vazio, capsys, 
     ids.write_text("id_rs;chave\nRS0001;Alves2020\nRS0003;Castro2018\n", encoding="utf-8")
     codigo, r = rodar(["--dir", str(raiz), "textos", "para-baixar", "--ids", str(ids)], capsys)
     assert codigo == 0 and r["n"] == 2
+
+
+# ---------------------------------------------------------------------------
+# Ids absorvidos pelo dedup depois da triagem (v1.4)
+# ---------------------------------------------------------------------------
+def test_elegibilidade_leva_ficha_e_decisao_de_absorvido_ao_registro_que_absorveu(projeto_vazio, capsys):
+    from rslib import esquema, estado
+    from rslib.handoff import ler_linhas
+    raiz = projeto_vazio
+    escrever_unicos(raiz, chaves=CHAVES[:6])  # Gomes2016 (RS0007) foi absorvido por Faria2017 (RS0006)
+    estado.registrar_evento(raiz, "dedup_executado", "05_organizacao", "script", "dedup",
+                            dados={"ids_rs_aposentados": {"RS0007": {"absorvido_por": "RS0006", "chave": "Gomes2016"}}})
+    codigo, r1 = rodar(_argv_eleg(raiz), capsys)
+    assert codigo == 0
+    d = {l["chave"]: l for l in ler_linhas(raiz / esquema.ARQ_ELEGIBILIDADE_TC_FINAL)}
+    assert "Gomes2016" not in d and d["Faria2017"]["id_rs"] == "RS0006"
+    assert any("Gomes2016→Faria2017" in a for a in r1["avisos"])
+    assert not any("Gomes2016" in a and "sem chave" in a for a in r1["avisos"])
+
+    humana_tc(raiz, "RS0007", "excluir", "C2_desenho", "decidido antes da fusão")
+    codigo, r2 = rodar(_argv_eleg(raiz), capsys)
+    d = {l["chave"]: l for l in ler_linhas(raiz / esquema.ARQ_ELEGIBILIDADE_TC_FINAL)}
+    assert (d["Faria2017"]["decisao"], d["Faria2017"]["criterio_falhou"]) == ("excluir", "C2_desenho")
+    assert any("RS0007 passou a RS0006" in a for a in r2["avisos"])
+
+    humana_tc(raiz, "RS0006", "incluir", motivo="decisão própria do registro que absorveu")
+    codigo, r3 = rodar(_argv_eleg(raiz), capsys)
+    d = {l["chave"]: l for l in ler_linhas(raiz / esquema.ARQ_ELEGIBILIDADE_TC_FINAL)}
+    assert d["Faria2017"]["decisao"] == "incluir"
+    assert any("RS0006 já tem decisão humana própria" in a for a in r3["avisos"])

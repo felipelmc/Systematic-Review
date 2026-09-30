@@ -537,3 +537,216 @@ def test_markdown_da_caixa_nao_cita_documento_interno(projeto_vazio, capsys, tmp
     assert codigo == 0, resumo
     md = (projeto_vazio / ARQ_CAIXA_MD).read_text(encoding="utf-8")
     assert "Apêndice B" not in md and "PLANO" not in md and "references/" in md
+
+
+# ---------------------------------------------------------------------------
+# Regressões (subcelulas-1): certeza.csv mais fino que a célula da caixa (comparador, alvo...)
+# ---------------------------------------------------------------------------
+CAB_SUB = "familia_intervencao,construto_outcome,dimensao,classe_desenho,certeza,estudos,delta,validado_humano,comparador_tipo"
+
+
+def _meta_json(tmp_path, grupos):
+    m = tmp_path / "meta.json"
+    m.write_text(json.dumps({"grupos": grupos}), encoding="utf-8")
+    return m
+
+
+def _efeitos(linhas):
+    return {l["celula_id"]: l for l in linhas if l["dimensao"] == "efeito"}
+
+
+def test_regressao_subcelulas_nao_escondem_certeza_maior(tmp_path):
+    """Regressão: com duas linhas na célula valia só a última, e a moderada sumia atrás da muito baixa."""
+    from rslib.caixa import montar_caixa
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,moderada,Gerber2020,0.046,0,outro_resultado",
+                            "F,y,efeito,randomizado,muito_baixa,Agranov2017|Erlich2023,0.046,0,sem_pesquisa"],
+                 cabecalho=CAB_SUB)
+    linhas, avisos = montar_caixa(certeza_arq=c)
+    ef = _efeitos(linhas)["F × y [randomizado]"]
+    assert (ef["rotulo"], ef["regra_aplicada"], ef["certeza"], ef["forca"]) == \
+        ("Inconclusivo", "subcelulas_mesmo_rotulo", "moderada", "moderada")
+    assert ef["status_rotulo"] == "rascunho" and ef["rotulo_proposto"] == "Inconclusivo"
+    assert ef["estudos"] == "Agranov2017|Erlich2023|Gerber2020" and ef["n_estudos"] == "3"
+    assert ef["fontes"] == "certeza.csv:linha 2 ; certeza.csv:linha 3"
+    assert ef["justificativa"].startswith(
+        "agregação subcelulas-1 (subcelulas_mesmo_rotulo): a célula reúne 2 linhas de certeza que diferem em "
+        "comparador_tipo; certeza das subcélulas: muito_baixa a moderada")
+    for trecho in ("[1] certeza.csv:linha 2 (comparador_tipo = outro_resultado): Inconclusivo, status rascunho, "
+                   "certeza moderada, δ = 0.046, estudos Gerber2020; inconclusivo_sem_sintese:",
+                   "[2] certeza.csv:linha 3 (comparador_tipo = sem_pesquisa): Inconclusivo", "certeza_muito_baixa:"):
+        assert trecho in ef["justificativa"], ef["justificativa"]
+    assert ef["enunciado"] == "" and ef["regra_versao"] == "caixa-3" and avisos == []
+    # o painel também passa a ver a certeza moderada (antes ficava com a do outro desenho)
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,moderada,Gerber2020,,0,outro_resultado",
+                            "F,y,efeito,randomizado,muito_baixa,Agranov2017,,0,sem_pesquisa",
+                            "F,y,efeito,nao_randomizado,baixa,Klor2017,,0,sem_pesquisa"], cabecalho=CAB_SUB)
+    painel = [l for l in montar_caixa(certeza_arq=c)[0] if l["dimensao"] == "efeito_painel"]
+    assert [(p["regra_aplicada"], p["certeza"]) for p in painel] == [("painel_mesmo_rotulo", "moderada")]
+    assert painel[0]["estudos"] == "Agranov2017|Gerber2020|Klor2017"
+
+
+def test_regressao_subcelulas_rotulos_diferentes_vale_a_maior_certeza(tmp_path):
+    from rslib.caixa import montar_caixa
+    m = _meta_json(tmp_path, [{"familia_intervencao": "F", "construto_outcome": "y", "classe_desenho": "randomizado",
+                               "k": 5, "estimativa": 0.25, "ci_lo": 0.1, "ci_hi": 0.4, "estudos": ["A2020"]}])
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,muito_baixa,B2021,,sim,sem_pesquisa",
+                            "F,y,efeito,randomizado,moderada,C2022,,sim,outro_resultado"], cabecalho=CAB_SUB)
+    linhas, _ = montar_caixa(meta_arq=m, certeza_arq=c)
+    ef = _efeitos(linhas)["F × y [randomizado]"]
+    assert (ef["rotulo"], ef["regra_aplicada"], ef["certeza"], ef["forca"], ef["status_rotulo"]) == \
+        ("Positivo", "subcelulas_maior_certeza", "moderada", "moderada", "definido")
+    assert "vale o da subcélula de maior certeza (certeza.csv:linha 3); anotadas: certeza.csv:linha 2 (Inconclusivo)" \
+        in ef["justificativa"]
+    assert "[1] certeza.csv:linha 2 (comparador_tipo = sem_pesquisa): Inconclusivo" in ef["justificativa"]
+    assert "positivo_ic: IC [0.1; 0.4] exclui 0" in ef["justificativa"]
+    assert ef["fontes"] == "meta.json#grupos[0] ; certeza.csv:linha 2 ; certeza.csv:linha 3"
+    assert ef["estudos"] == "A2020|B2021|C2022" and (ef["estimativa"], ef["k"]) == ("0.25", "5")
+
+
+def test_regressao_subcelulas_empate_vira_inconclusivo(tmp_path):
+    from rslib.caixa import montar_caixa
+    m = _meta_json(tmp_path, [{"familia_intervencao": "F", "construto_outcome": "y", "k": 5, "estimativa": 0.01,
+                               "ci_lo": -0.05, "ci_hi": 0.08}])
+    c = _certeza(tmp_path, ["F,y,efeito,,moderada,,0.1,sim,a", "F,y,efeito,,moderada,,,sim,b"], cabecalho=CAB_SUB)
+    linhas, _ = montar_caixa(meta_arq=m, certeza_arq=c)
+    ef = [l for l in linhas if l["dimensao"] == "efeito"][0]
+    assert (ef["rotulo"], ef["regra_aplicada"], ef["certeza"], ef["forca"], ef["status_rotulo"]) == \
+        ("Inconclusivo", "subcelulas_empate", "moderada", "moderada", "definido")
+    assert "certeza.csv:linha 2: Nulo, certeza.csv:linha 3: Inconclusivo" in ef["justificativa"]
+    assert "nulo_equivalencia" in ef["justificativa"] and "inconclusivo_ma" in ef["justificativa"]
+
+
+def test_regressao_subcelula_pendente_deixa_a_celula_pendente(tmp_path):
+    from rslib.caixa import montar_caixa
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,alta,A2020,,sim,a", "F,y,efeito,randomizado,,B2021,,sim,b"],
+                 cabecalho=CAB_SUB)
+    linhas, _ = montar_caixa(certeza_arq=c)
+    ef = _efeitos(linhas)["F × y [randomizado]"]
+    assert (ef["rotulo"], ef["regra_aplicada"], ef["status_rotulo"], ef["rotulo_proposto"]) == \
+        ("Pendente", "subcelulas_pendente", "pendente", "")
+    assert (ef["certeza"], ef["forca"]) == ("", "")
+    assert "certeza das subcélulas: alta (sem certeza em 1)" in ef["justificativa"]
+    assert "subcélula(s) sem rótulo definido: certeza.csv:linha 3" in ef["justificativa"]
+    painel = [l for l in linhas if l["dimensao"] == "efeito_painel"][0]
+    assert (painel["rotulo"], painel["status_rotulo"]) == ("Pendente", "pendente")
+
+
+@pytest.mark.parametrize("subs,rotulo,regra,status,escolhido", [
+    ([("Positivo", "baixa", "definido"), ("Positivo", "alta", "definido")],
+     "Positivo", "subcelulas_mesmo_rotulo", "definido", 1),
+    ([("Positivo", "moderada", "definido"), ("Inconclusivo", "baixa", "rascunho")],
+     "Positivo", "subcelulas_maior_certeza", "rascunho", 0),
+    ([("Positivo", "baixa", "definido"), ("Negativo", "baixa", "definido"), ("Nulo", "muito_baixa", "definido")],
+     "Inconclusivo", "subcelulas_empate", "definido", 0),
+    ([("Positivo", "alta", "rascunho"), ("Pendente", "", "pendente")], "Pendente", "subcelulas_pendente", "pendente", None),
+])
+def test_agregar_subcelulas_regras(subs, rotulo, regra, status, escolhido):
+    from rslib.caixa import agregar_subcelulas
+    entradas = [{"fonte": f"certeza.csv:linha {i + 2}", "valores": {"celula_alvo": f"alvo{i}"}, "rotulo": r,
+                 "status_rotulo": st, "certeza": cert, "regra": "x", "justificativa": "j", "delta": None,
+                 "estudos": [f"E{i}"]} for i, (r, cert, st) in enumerate(subs)]
+    a = agregar_subcelulas(entradas, ["celula_alvo"])
+    assert (a["rotulo"], a["regra"], a["status"]) == (rotulo, regra, status), a
+    assert a["escolhido"] is (None if escolhido is None else entradas[escolhido])
+    assert a["justificativa"].startswith(f"agregação subcelulas-1 ({regra}): a célula reúne {len(subs)} linhas")
+    assert all(f"[{i + 1}] certeza.csv:linha {i + 2} (celula_alvo = alvo{i})" in a["justificativa"]
+               for i in range(len(subs)))
+
+
+def test_regressao_duplicatas_mantem_a_ultima_com_aviso(tmp_path):
+    """Linhas que só diferem nas colunas do contrato (ou em caixa/acento das extras) são duplicatas: vale a última."""
+    from rslib.caixa import colunas_de_subcelula, montar_caixa
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,moderada,A2020,,sim,Outro_resultado",
+                            "F,y,efeito,randomizado,baixa,B2021,,sim,outro_resultado"], cabecalho=CAB_SUB)
+    linhas, avisos = montar_caixa(certeza_arq=c)
+    ef = _efeitos(linhas)["F × y [randomizado]"]
+    assert (ef["certeza"], ef["regra_aplicada"], ef["fontes"], ef["estudos"]) == \
+        ("baixa", "inconclusivo_sem_sintese", "certeza.csv:linha 3", "B2021")
+    assert any("2 linhas de certeza sem coluna que as distinga (certeza.csv:linha 2, certeza.csv:linha 3); "
+               "vale a última (certeza.csv:linha 3)" in a for a in avisos), avisos
+    # só colunas fora do contrato e sem prefixo "_" separam subcélulas
+    assert colunas_de_subcelula([{"certeza": "alta", "_fonte": "1", "alvo": "a", "x": "1"},
+                                 {"certeza": "baixa", "_fonte": "2", "alvo": "b", "x": "1"}]) == ["alvo"]
+    assert colunas_de_subcelula([{"estudos": "A", "delta": "0.1"}, {"estudos": "B", "delta": ""}]) == []
+
+
+def test_regressao_linha_unica_nao_muda_com_colunas_extras(tmp_path):
+    """Célula com uma linha de certeza: saída idêntica (inclusive a assinatura) com ou sem colunas extras."""
+    from rslib.caixa import montar_caixa
+    m = _meta_json(tmp_path, [{"familia_intervencao": "F", "construto_outcome": "y", "classe_desenho": "randomizado",
+                               "k": 5, "estimativa": 0.25, "ci_lo": 0.1, "ci_hi": 0.4, "estudos": ["A2020"]}])
+    base = ["F,y,efeito,randomizado,moderada,A2020,0.1,sim", "F,z,efeito,nao_randomizado,muito_baixa,B2021,,nao"]
+    sem = _certeza(tmp_path, base, cabecalho=CAB_SUB.rsplit(",", 1)[0])
+    antes, avisos_antes = montar_caixa(meta_arq=m, certeza_arq=sem)
+    com = _certeza(tmp_path, [b + ",outro_resultado" for b in base], cabecalho=CAB_SUB)
+    depois, avisos_depois = montar_caixa(meta_arq=m, certeza_arq=com)
+    assert depois == antes and avisos_depois == avisos_antes
+    assert not any(l["regra_aplicada"].startswith("subcelulas_") for l in depois)
+
+
+def test_regressao_subcelulas_aplicam_achado_explicativo_por_linha(tmp_path):
+    """Cada subcélula passa pelas regras caixa-3 inteiras (δ próprio, achado explicativo); a fonte do achado entra uma vez."""
+    from rslib.caixa import montar_caixa
+    m = _meta_json(tmp_path, [{"familia_intervencao": "F", "construto_outcome": "y", "k": 8, "estimativa": 0.2,
+                               "ci_lo": 0.05, "ci_hi": 0.35, "pi_lo": -0.4, "pi_hi": 0.8}])
+    c = tmp_path / "certeza.csv"
+    c.write_text("familia_intervencao,construto_outcome,dimensao,certeza,enunciado,delta,moderador_explica,"
+                 "explica_heterogeneidade,validado_humano,celula_alvo\n"
+                 "F,y,efeito,moderada,,0.1,sim,,sim,principal\n"
+                 "F,y,efeito,moderada,,,sim,,sim,viabilidade\n"
+                 "F,y,moderador,moderada,Maior em rurais,,,sim,sim,\n", encoding="utf-8")
+    linhas, _ = montar_caixa(meta_arq=m, certeza_arq=c)
+    ef = [l for l in linhas if l["dimensao"] == "efeito"][0]
+    assert (ef["rotulo"], ef["regra_aplicada"]) == ("Inconclusivo", "subcelulas_empate")
+    assert "certeza.csv:linha 2: Misto, certeza.csv:linha 3: Inconclusivo" in ef["justificativa"]
+    assert "δ não declarado" in ef["justificativa"]
+    assert ef["fontes"].split(" ; ") == ["meta.json#grupos[0]", "certeza.csv:linha 2", "certeza.csv:linha 3",
+                                         "certeza.csv:linha 4"]
+
+
+def test_regressao_implementacao_com_varias_linhas(tmp_path):
+    """Implementação: vale a maior CERQual (a última no empate), rascunho se alguma linha não estiver validada."""
+    from rslib.caixa import montar_caixa
+    cab = "familia_intervencao,construto_outcome,dimensao,certeza,abordagem,enunciado,validado_humano"
+    c = _certeza(tmp_path, ["F,,implementacao,moderada,CERQual,Exige coordenação,nao",
+                            "F,,implementacao,baixa,CERQual,Exige pessoal novo,sim"], cabecalho=cab)
+    linhas, avisos = montar_caixa(master=_master_impl(tmp_path, "999"), certeza_arq=c)
+    impl = [l for l in linhas if l["dimensao"] == "implementacao"][0]
+    assert (impl["certeza"], impl["enunciado"], impl["status_rotulo"]) == \
+        ("moderada", "Exige coordenação", "rascunho")
+    assert "certeza.csv:linha 2 ; certeza.csv:linha 3" in impl["fontes"]
+    assert ("2 linhas de implementação em certeza.csv (certeza.csv:linha 2: moderada, certeza.csv:linha 3: baixa); "
+            "vale a de maior confiança CERQual (certeza.csv:linha 2)") in impl["justificativa"]
+    assert any("linhas de implementação em certeza.csv" in a for a in avisos)
+    # a linha escolhida validada não basta: a outra (não validada) também sustenta a escolha
+    c = _certeza(tmp_path, ["F,,implementacao,moderada,CERQual,Exige coordenação,sim",
+                            "F,,implementacao,baixa,CERQual,Exige pessoal novo,nao"], cabecalho=cab)
+    impl = [l for l in montar_caixa(master=_master_impl(tmp_path, "999"), certeza_arq=c)[0]
+            if l["dimensao"] == "implementacao"][0]
+    assert impl["status_rotulo"] == "rascunho" and "validado_humano não marcado" in impl["justificativa"]
+    # empate de CERQual: a última, como antes; todas validadas: definido
+    c = _certeza(tmp_path, ["F,,implementacao,baixa,CERQual,Primeira,sim",
+                            "F,,implementacao,baixa,CERQual,Segunda,sim"], cabecalho=cab)
+    impl = [l for l in montar_caixa(master=_master_impl(tmp_path, "999"), certeza_arq=c)[0]
+            if l["dimensao"] == "implementacao"][0]
+    assert (impl["enunciado"], impl["status_rotulo"]) == ("Segunda", "definido")
+
+
+def test_evento_e_resumo_trazem_a_regra_de_agregacao(projeto_vazio, capsys, tmp_path):
+    from rslib import estado
+    from rslib.caixa import ARQ_CAIXA_MD
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,moderada,A2020,,0,a", "F,y,efeito,randomizado,baixa,B2021,,0,b",
+                            "F,z,efeito,randomizado,baixa,B2021,,0,a"], cabecalho=CAB_SUB)
+    codigo, resumo = rodar(["--dir", str(projeto_vazio), "caixa", "--certeza", str(c)], capsys)
+    assert codigo == 0, resumo
+    ev = [e for e in estado.ler_log(projeto_vazio) if e["evento"] == "caixa_gerada"][-1]
+    assert ev["dados"]["regra_agregacao"] == resumo["regra_agregacao"] == "subcelulas-1"
+    assert ev["dados"]["n_celulas_agregadas"] == resumo["n_celulas_agregadas"] == 1
+    assert ev["dados"]["regra_versao"] == "caixa-3" and ev["dados"]["n_pendentes"] == resumo["n_pendentes"]
+    md = (projeto_vazio / ARQ_CAIXA_MD).read_text(encoding="utf-8")
+    assert "Agregação `subcelulas-1`: 1 células de efeito" in md
+    # sem subcélulas: campo zerado e cabeçalho do .md como antes
+    c = _certeza(tmp_path, ["F,y,efeito,randomizado,moderada,A2020,,0,a"], cabecalho=CAB_SUB)
+    codigo, resumo = rodar(["--dir", str(projeto_vazio), "caixa", "--certeza", str(c)], capsys)
+    assert codigo == 0 and resumo["n_celulas_agregadas"] == 0
+    assert "Agregação" not in (projeto_vazio / ARQ_CAIXA_MD).read_text(encoding="utf-8")

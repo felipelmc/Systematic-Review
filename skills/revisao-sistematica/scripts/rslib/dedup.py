@@ -90,6 +90,17 @@ DECISÕES HUMANAS
     se ligam em `textos ligar-relatos`). Candidatos pendentes abrem uma pendência
     no autopiloto ou aparecem no resumo em checkpoints.
 
+IDS ABSORVIDOS DEPOIS DA TRIAGEM
+    Uma fusão aplicada depois da triagem aposenta ids que já têm decisão no ledger,
+    em triagem_ta_final.csv e, às vezes, em elegibilidade_tc_final.csv. O dedup não
+    mexe nessas decisões: registra `n_absorvidos` e `n_absorvidos_com_triagem` no
+    evento e avisa para rodar `filtrar`, `triagem consolidar` e, se for o caso,
+    `textos elegibilidade consolidar` antes do `prisma`. `mapa_absorvidos(raiz)` e
+    `chaves_absorvidas(raiz)` dão o destino de cada id ou chave aposentado (cadeia
+    seguida, todos os eventos dedup_executado); a consolidação leva a decisão ao
+    registro que absorveu, e o PRISMA acusa ids absorvidos ainda presentes nos
+    arquivos finais (references/03-organizacao-triagem.md, seção 3).
+
 CANDIDATOS PENDENTES
     Um candidato cujo par já ficou no mesmo cluster (ou estudo, em versões) por outras
     arestas continua com decisao=candidato em dedup_pares.csv, com a marca
@@ -1102,6 +1113,43 @@ def _seguir_aposentados(id_rs, aposentados):
     return id_rs
 
 
+def _aposentados_do_log(raiz):
+    """{id_rs aposentado: {absorvido_por, chave}} somando todos os eventos dedup_executado (cada um só traz os
+    ids aposentados naquela execução)."""
+    aposentados = {}
+    for ev in estado.ler_log(raiz):
+        if ev.get("evento") == "dedup_executado":
+            aposentados.update((ev.get("dados") or {}).get("ids_rs_aposentados") or {})
+    return aposentados
+
+
+def mapa_absorvidos(raiz, ids_vigentes=None):
+    """{id_rs aposentado: id_rs que o absorveu hoje}, com a cadeia de absorções seguida até o fim.
+
+    Um id aposentado por fusão depois da triagem ainda pode ter decisões no ledger e nos arquivos finais; quem
+    consolida (triagem, elegibilidade) usa este mapa para levar a decisão ao registro que o absorveu, e o PRISMA,
+    para dizer o que rodar de novo. Com `ids_vigentes`, destino fora do conjunto vira "" (a decisão não tem para
+    onde ir). Sem evento dedup_executado com aposentados, devolve {} e nada muda.
+    """
+    aposentados = _aposentados_do_log(raiz)
+    mapa = {}
+    for velho in aposentados:
+        destino = _seguir_aposentados(velho, aposentados)
+        mapa[velho] = destino if (ids_vigentes is None or destino in ids_vigentes) else ""
+    return mapa
+
+
+def chaves_absorvidas(raiz, ids_vigentes=None):
+    """{chave de id aposentado: id_rs que o absorveu hoje} (mesma regra de `mapa_absorvidos`).
+
+    Fichas de texto completo são indexadas pela chave: a ficha de um relato absorvido passa a valer para o
+    registro que o absorveu."""
+    aposentados = _aposentados_do_log(raiz)
+    mapa = mapa_absorvidos(raiz, ids_vigentes)
+    return {normalizar.texto((info or {}).get("chave")): mapa[velho]
+            for velho, info in aposentados.items() if normalizar.texto((info or {}).get("chave"))}
+
+
 def pares_preservados(raiz, info_anterior=None, aposentados=None, ids_validos=None):
     """Pares id_rs de 03-textos/ligacao_relatos.csv que não vieram do dedup (ligações humanas).
 
@@ -1240,6 +1288,16 @@ def executar(args):
     if ligacao["aviso"]:
         r["avisos"].append(ligacao["aviso"])
     sem_mudancas = sha_antes == {a: _sha(raiz / a) for a in saidas}
+    # Fusão depois da triagem: as decisões dos ids absorvidos ficam no ledger e nos arquivos finais até a próxima
+    # consolidação, que as leva ao registro que absorveu (triagem_lotes.fundir_absorvidos).
+    absorvidos_com_triagem = sorted(set(r["aposentados"]) & ids_com_decisao_de_triagem(raiz),
+                                    key=lambda i: (_num_id(i) or 0, i))
+    if absorvidos_com_triagem:
+        r["avisos"].append(
+            f"{len(absorvidos_com_triagem)} ids absorvidos nesta execução já tinham decisão de triagem "
+            f"(ex.: {', '.join(absorvidos_com_triagem[:5])}): rode `filtrar`, `triagem consolidar` e, se houver "
+            "decisão de texto completo, `textos elegibilidade consolidar` antes do `prisma`; a decisão vai ao "
+            "registro que absorveu (references/03-organizacao-triagem.md, seção 3)")
 
     ativos = unicos_ativos(r["unicos"])
     removidas = {}
@@ -1265,6 +1323,7 @@ def executar(args):
         "candidatos_resolvidos_transitivamente": n_resolvidos,
         **parametros,
         "ultimo_id_rs_num": r["maior"], "ids_rs_aposentados": r["aposentados"],
+        "n_absorvidos": len(r["aposentados"]), "n_absorvidos_com_triagem": len(absorvidos_com_triagem),
         "buscas_inativas": r["buscas_inativas"], "n_registros_inativos": r["n_registros_inativos"],
         "n_unicos_inativos": len(r["ids_rs_inativos"]), "ids_rs_inativos": r["ids_rs_inativos"],
         "chaves_inativas": r["chaves_inativas"], "n_retratados": n_retratados,
@@ -1311,6 +1370,7 @@ def executar(args):
         "pares_por_decisao": _contar(r["pares"], "decisao"), "candidatos_pendentes": len(r["pendentes"]),
         "candidatos_resolvidos_transitivamente": n_resolvidos,
         "decisoes_novas": len(novas), "pendencia": pendencia, "avisos": len(r["avisos"]),
+        "n_absorvidos": len(r["aposentados"]), "n_absorvidos_com_triagem": len(absorvidos_com_triagem),
         "buscas_inativas": r["buscas_inativas"], "n_registros_inativos": r["n_registros_inativos"],
         "n_unicos_inativos": len(r["ids_rs_inativos"]), "n_retratados": n_retratados,
         "n_versoes_ligadas": len(r["pares_versao"]), "n_estudos": n_estudos,

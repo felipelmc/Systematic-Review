@@ -366,12 +366,26 @@ def calcular(raiz, estado_projeto=None, tipo="2020"):
                                f"ignoradas (ex.: {', '.join(achados[:5])}).")
         return {i: v for i, v in ids.items() if i not in retirados}
 
+    # Ids aposentados por um dedup depois da triagem (fusão): não estão em registros_unicos.csv, mas podem seguir
+    # nos arquivos finais até a próxima consolidação. Em vez de "id desconhecido", diz o que rodar de novo.
+    from . import dedup  # import tardio: dedup não é necessário para as contagens sem fusões aplicadas
+    absorvidos = {v: d for v, d in dedup.mapa_absorvidos(raiz).items() if v not in unico_por_id}
+
+    def exemplos_absorvidos(ids):
+        return ", ".join(f"{i}→{absorvidos[i] or '?'}" for i in ids[:5])
+
     # Automação (filtro formal em modo excluir) ------------------------------
     excl_auto = {}
     for linha in filtro or []:
         if linha.get("resultado") == "exclui":
             excl_auto.setdefault(linha.get("id_rs", ""), linha.get("filtro") or "filtro")
     excl_auto = ignorar_retirados(excl_auto, "filtro formal")
+    filtro_absorvidos = sorted(i for i in excl_auto if i in absorvidos)
+    if filtro_absorvidos:
+        c["avisos"].append(f"{len(filtro_absorvidos)} linhas de filtro_formal.csv são de ids absorvidos pelo dedup "
+                           f"(ex.: {exemplos_absorvidos(filtro_absorvidos)}) e foram ignoradas: rode `rs.py filtrar` "
+                           "de novo.")
+        excl_auto = {i: v for i, v in excl_auto.items() if i not in absorvidos}
     fora = sorted(i for i in excl_auto if i not in ramo_de)
     if fora:
         falha("filtro_ids_desconhecidos", "geral",
@@ -403,7 +417,13 @@ def calcular(raiz, estado_projeto=None, tipo="2020"):
     for linha in ta:
         decisao_ta[linha.get("id_rs", "")] = (linha.get("decisao_final") or "").lower()
     decisao_ta = ignorar_retirados(decisao_ta, "triagem de título/resumo")
-    desconhecidos_ta = sorted(i for i in decisao_ta if i not in ramo_de)
+    ta_absorvidos = sorted(i for i in decisao_ta if i in absorvidos)
+    if ta_absorvidos:
+        falha("triagem_ids_absorvidos", "geral",
+              f"{len(ta_absorvidos)} id_rs da triagem foram absorvidos pelo dedup (ex.: "
+              f"{exemplos_absorvidos(ta_absorvidos)}); rode `rs.py triagem consolidar` de novo, que leva a decisão "
+              "ao registro que absorveu.")
+    desconhecidos_ta = sorted(i for i in decisao_ta if i not in ramo_de and i not in absorvidos)
     if desconhecidos_ta:
         falha("triagem_ids_desconhecidos", "geral",
               f"{len(desconhecidos_ta)} id_rs da triagem não existem em registros_unicos.csv (ex.: {', '.join(desconhecidos_ta[:5])}).")
@@ -438,7 +458,13 @@ def calcular(raiz, estado_projeto=None, tipo="2020"):
             falha("decisoes_de_busca_substituida", "geral",
                   f"{len(tc_retirados)} relatórios com decisão no texto completo só vieram de buscas substituídas "
                   f"(ex.: {', '.join(tc_retirados[:5])}); retire-os de elegibilidade_tc_final.csv ou reative a busca.")
-        fora_tc = sorted(i for i in decisao_tc if i not in buscados_ids and i not in retirados)
+        tc_absorvidos = sorted(i for i in decisao_tc if i in absorvidos)
+        if tc_absorvidos:
+            falha("elegibilidade_ids_absorvidos", "geral",
+                  f"{len(tc_absorvidos)} relatórios de elegibilidade_tc_final.csv foram absorvidos pelo dedup (ex.: "
+                  f"{exemplos_absorvidos(tc_absorvidos)}); rode `rs.py textos elegibilidade consolidar` de novo.")
+        fora_tc = sorted(i for i in decisao_tc if i not in buscados_ids and i not in retirados
+                         and i not in absorvidos)
         if fora_tc:
             falha("elegibilidade_fora_dos_buscados", "geral",
                   f"{len(fora_tc)} relatórios avaliados no texto completo não passaram pela triagem "

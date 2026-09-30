@@ -559,3 +559,24 @@ def test_regressao_saidas_do_prisma_com_permissao_de_arquivo_comum(projeto_vazio
     for nome in ("prisma_contagens.json", "prisma.svg", "prisma.mermaid", "checklist_prisma.csv"):
         assert stat.S_IMODE(os.stat(projeto_vazio / "07-relatorio" / nome).st_mode) == estado.modo_arquivo_padrao(), nome
     assert not [p for p in (projeto_vazio / "07-relatorio").iterdir() if p.name.endswith(".tmp")]
+
+
+# ---------------------------------------------------------------------------
+# Ids absorvidos pelo dedup ainda nos arquivos finais (v1.4)
+# ---------------------------------------------------------------------------
+def test_ids_absorvidos_pedem_reconsolidacao(projeto_vazio):
+    from rslib import estado, prisma
+    raiz = projeto_vazio
+    montar_ledger(raiz, triagem=TRIAGEM + [("RS0010", "incluir")],
+                  elegibilidade=ELEGIBILIDADE + [("RS0010", "Velho2020", "excluir", "desenho")])
+    with open(raiz / "02-triagem" / "filtro_formal.csv", "a", encoding="utf-8", newline="") as f:
+        f.write("RS0010,ano,exclui,1990 < 2000\n")
+    estado.registrar_evento(raiz, "dedup_executado", "05_organizacao", "script", "dedup",
+                            dados={"ids_rs_aposentados": {"RS0010": {"absorvido_por": "RS0002", "chave": "Velho2020"}}})
+    c = prisma.calcular(raiz, estado.carregar_estado(raiz))
+    nomes = {i["nome"]: i["detalhe"] for i in prisma.invariantes_quebradas(c)}
+    assert "triagem_ids_absorvidos" in nomes and "RS0010→RS0002" in nomes["triagem_ids_absorvidos"]
+    assert "elegibilidade_ids_absorvidos" in nomes
+    assert "triagem_ids_desconhecidos" not in nomes and "filtro_ids_desconhecidos" not in nomes
+    assert "elegibilidade_fora_dos_buscados" not in nomes
+    assert any("rode `rs.py filtrar`" in a for a in c["avisos"])

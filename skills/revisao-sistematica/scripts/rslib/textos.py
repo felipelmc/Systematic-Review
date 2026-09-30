@@ -520,12 +520,27 @@ def propostas_elegibilidade(raiz, master, codebook, criterios_explicitos=None, v
         raise ValueError(f"critérios ausentes do master: {faltam}")
     gate_ruim = _problemas_gate(verificacao)
     por_texto, desconhecidas, propostas = {}, [], {}
+    # Ficha de relato absorvido por um dedup depois da triagem vale para o registro que o absorveu; a regra de
+    # escolha abaixo (incluir, depois incerto) junta as avaliações dos dois.
+    absorvidas = {}
+    if unicos:
+        from . import dedup  # import tardio: dedup usa textos para ligar relatos
+        absorvidas = {c: d for c, d in dedup.chaves_absorvidas(raiz, set(unicos)).items() if d and c not in por_chave}
+    chave_de = {i: r["chave"].strip() for i, r in unicos.items() if r.get("chave", "").strip()}
+    remapeadas = []
     for ficha in fichas:
         chave = ficha.get("citekey", "").strip()
         if chave not in por_chave:
-            desconhecidas.append(chave)
-            continue
+            destino = chave_de.get(absorvidas.get(chave, ""))
+            if not destino:
+                desconhecidas.append(chave)
+                continue
+            remapeadas.append(f"{chave}→{destino}")
+            chave = destino
         por_texto.setdefault(chave, []).append(avaliar_ficha(ficha, criterios, gate_ruim))
+    if remapeadas:
+        avisos.append(f"{len(remapeadas)} fichas de relatos absorvidos pelo dedup passaram ao registro que os absorveu: "
+                      f"{remapeadas[:10]}")
     for chave, avaliacoes in por_texto.items():
         escolhida = (next((a for a in avaliacoes if a["decisao"] == "incluir"), None)
                      or next((a for a in avaliacoes if a["decisao"] == "incerto"), None)
@@ -547,7 +562,24 @@ def consolidar_elegibilidade(raiz, master=None, codebook=None, criterios_explici
     if master is not None:
         linhas, criterios, desconhecidas, avisos = propostas_elegibilidade(raiz, master, codebook, criterios_explicitos,
                                                                           verificacao, unicos)
-    for id_rs, humana in decisoes_humanas_tc(raiz).items():
+    humanas = decisoes_humanas_tc(raiz)
+    if any(i not in unicos for i in humanas):
+        # Decisão humana sobre id absorvido por um dedup depois da triagem: vai ao registro que absorveu, a não ser
+        # que ele já tenha decisão humana própria (que prevalece).
+        from . import dedup  # import tardio: dedup usa textos para ligar relatos
+        mapa = dedup.mapa_absorvidos(raiz, set(unicos))
+        for velho in sorted(i for i in list(humanas) if i in mapa and i not in unicos):
+            linha, destino = humanas.pop(velho), mapa[velho]
+            if not destino:
+                avisos.append(f"decisão humana de texto completo para {velho}, absorvido pelo dedup sem destino "
+                              "no conjunto ativo: ignorada")
+            elif destino in humanas:
+                avisos.append(f"decisão humana de texto completo para {velho} (absorvido por {destino}) ignorada: "
+                              f"{destino} já tem decisão humana própria")
+            else:
+                humanas[destino] = linha
+                avisos.append(f"decisão humana de texto completo para {velho} passou a {destino}, que o absorveu no dedup")
+    for id_rs, humana in humanas.items():
         reg = unicos.get(id_rs)
         if reg is None or not reg.get("chave", "").strip():
             avisos.append(f"decisão humana de texto completo para {id_rs} sem chave em {esquema.ARQ_UNICOS}: ignorada")

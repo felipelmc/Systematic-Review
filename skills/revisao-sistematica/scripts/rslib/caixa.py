@@ -23,7 +23,8 @@ Classe de desenho (randomizado × não randomizado)
     Certeza: uma linha de certeza.csv com `classe_desenho` preenchida vale só para essa
     classe; sem a coluna (ou vazia), vale para todas as classes da célula, com aviso,
     porque o GRADE parte de certeza alta para ECR e baixa para não randomizados e o
-    juízo deveria ser feito por classe.
+    juízo deveria ser feito por classe. Mais de uma linha de efeito para a mesma célula
+    e classe segue a seção "Subcélulas": nenhuma linha é descartada em silêncio.
     Família: um grupo da síntese sem família (agrupado só por construto_outcome) herda a
     família quando ela é única entre as linhas de efeito de certeza.csv daquele outcome
     (ou, sem elas, a única família de certeza.csv e do master); com mais de uma, a
@@ -88,6 +89,37 @@ Painel (linha `dimensao = efeito_painel`, uma por família × construto)
     Status `rascunho` se algum corpo estiver em rascunho. As linhas de painel entram em
     `n_pendentes` como qualquer outra linha não definida.
 
+Subcélulas (regra de agregação `REGRA_AGREGACAO` = subcelulas-1)
+    certeza.csv pode ser mais fino que a célula da caixa: colunas fora do contrato
+    (`COLUNAS_CERTEZA`), como comparador_tipo ou celula_alvo, separam juízos GRADE dentro
+    da mesma família × construto × classe. Até a caixa-3 original valia só a última linha,
+    e as demais sumiam sem aviso (uma certeza moderada podia ficar escondida atrás de uma
+    muito baixa). Agora, para as linhas de efeito da célula:
+    - uma linha ......................... o caminho de sempre (saída idêntica à anterior);
+    - várias, sem coluna que as distinga  duplicatas: vale a última, como antes, com aviso
+                                          que lista as linhas;
+    - várias, que diferem em colunas fora do contrato (`colunas_de_subcelula`): cada linha
+      passa sozinha pelas regras caixa-3 (δ, moderador_explica, risco alto, achado
+      explicativo, validado_humano, ajuste do Misto) e `agregar_subcelulas` combina as
+      subcélulas como o painel combina os corpos:
+      alguma subcélula pendente ......... Pendente (`subcelulas_pendente`)
+      todas com o mesmo rótulo .......... esse rótulo, com a maior certeza (`subcelulas_mesmo_rotulo`)
+      rótulos diferentes ................ o rótulo da subcélula de maior certeza, com as demais
+                                          anotadas na justificativa (`subcelulas_maior_certeza`)
+      empate na maior certeza com rótulos diferentes  Inconclusivo (`subcelulas_empate`)
+    Status: pendente se alguma subcélula estiver pendente, senão rascunho se alguma estiver
+    em rascunho, senão definido. Certeza e força vêm da subcélula escolhida (a primeira do
+    arquivo no empate); `estudos` é a união (síntese e subcélulas); `fontes` lista todas as
+    linhas de certeza.csv; a justificativa começa por "agregação subcelulas-1 (<regra>)" e
+    descreve cada subcélula (linha, valores que a distinguem, rótulo, certeza, δ, estudos e
+    a justificativa das regras caixa-3). Vale a maior certeza pela mesma razão do painel:
+    um juízo menos certo não pode esconder um mais certo, e o que discorda fica à vista; no
+    empate não há como escolher a direção, e a célula não afirma nenhuma. As subcélulas
+    continuam no certeza.csv e no relatório.
+    Implementação com mais de uma linha para a família: vale a de maior confiança CERQual
+    (a última no empate, a regra anterior), a linha sai rascunho se alguma não estiver
+    validada, e todas vão para `fontes` e para a justificativa, com aviso.
+
 Implementação (por família): 1 ponto por critério do mapa (> 2 componentes; > 1
 nível de governo ou múltiplos atores; nova infraestrutura/pessoal; barreiras de
 fidelidade/adoção em >= 2 estudos; longo tempo até o efeito) → 0-1 Simples,
@@ -109,7 +141,9 @@ célula pendente ou pendências abertas no projeto.
 
 Evento `caixa_gerada` (lido por `rs.py status`): dados = {regra_versao, n_linhas,
 rotulos_efeito, rotulos_painel, n_pendentes (linhas com status_rotulo != definido, isto é,
-pendente ou rascunho), n_rascunho, rascunho}.
+pendente ou rascunho), n_rascunho, rascunho, regra_agregacao, n_celulas_agregadas (linhas
+de efeito com regra subcelulas_*)}. Os dois últimos campos são acréscimos: quem lê o evento
+só pelos anteriores não muda.
 """
 
 import json
@@ -121,6 +155,7 @@ from .handoff import (DIR_ASSETS, escrever_csv, escrever_texto, exigir_raiz, fal
 
 ATOR = "rs.py caixa"
 REGRA_VERSAO = "caixa-3"
+REGRA_AGREGACAO = "subcelulas-1"  # várias linhas de certeza numa célula (seção "Subcélulas" da docstring)
 ARQ_CAIXA = esquema.ARQ_CAIXA
 ARQ_CAIXA_MD = "06-analise/caixa_ferramentas.md"
 MAPA_PADRAO = DIR_ASSETS / "mapas" / "caixa_ferramentas_mapa.csv"
@@ -139,6 +174,12 @@ COLUNAS_CAIXA = [
     "status_rotulo", "forca", "certeza", "abordagem_certeza", "escala", "estimativa", "ci_lo", "ci_hi", "pi_lo",
     "pi_hi", "k", "n_estudos", "pontos_implementacao", "criterios_implementacao", "enunciado", "regra_aplicada",
     "regra_versao", "estudos", "fontes", "justificativa", "assinatura",
+]
+# Colunas do contrato de certeza.csv (seção "Entradas"). Qualquer outra coluna, como comparador_tipo ou
+# celula_alvo, é do projeto: quando ela separa as linhas de uma célula, as linhas são subcélulas.
+COLUNAS_CERTEZA = [
+    "familia_intervencao", "construto_outcome", "dimensao", "classe_desenho", "certeza", "abordagem", "enunciado",
+    "estudos", "justificativa", "delta", "moderador_explica", "explica_heterogeneidade", "validado_humano",
 ]
 _SEPARADORES_GRUPO = (" :: ", " | ", " × ", "::", "|")
 CLASSES_DESENHO = ("randomizado", "nao_randomizado", "desenho_nao_informado")  # classe_desenho() de scripts/R/_cli.R
@@ -603,6 +644,79 @@ def painel_efeito(corpos):
                              + "; ".join(descrever(c) for c in topo) + ")"}
 
 
+def colunas_de_subcelula(linhas):
+    """Colunas fora do contrato de certeza.csv cujos valores diferem entre as linhas de uma célula.
+
+    Ignora as colunas do contrato (`COLUNAS_CERTEZA`: elas são o próprio juízo, não o recorte) e as
+    internas com prefixo "_". A comparação dobra acento e caixa, como as chaves da célula. Lista vazia
+    com mais de uma linha quer dizer duplicata; ordem = ordem das colunas no arquivo.
+    """
+    colunas = []
+    for linha in linhas:
+        for c in linha:
+            if c and not c.startswith("_") and c not in COLUNAS_CERTEZA and c not in colunas:
+                colunas.append(c)
+    return [c for c in colunas if len({_dobrar(linha.get(c) or "") for linha in linhas}) > 1]
+
+
+def agregar_subcelulas(subs, colunas):
+    """Rótulo de uma célula de efeito com várias linhas de certeza (subcélulas), regra subcelulas-1.
+
+    `subs`: uma entrada por linha de certeza.csv, na ordem do arquivo, com fonte, valores (das
+    `colunas` que distinguem as subcélulas), rotulo, status_rotulo, certeza, regra, justificativa,
+    delta e estudos (os da linha), já avaliados pelas regras caixa-3. Espelha `painel_efeito`, um
+    nível abaixo; regras na docstring do módulo (seção "Subcélulas"). Devolve dict com rotulo,
+    status, regra, justificativa e a subcélula escolhida (None só quando alguma está pendente; no
+    empate é a primeira do arquivo entre as de maior certeza, e dá só a certeza e a força).
+    """
+    def nivel(c):
+        return NIVEL_CERTEZA.get(c.get("certeza"), 0)
+
+    def descrever(i, c):
+        valores = "; ".join(f"{col} = {c['valores'].get(col) or 'vazio'}" for col in colunas)
+        partes = [c["rotulo"], f"status {c['status_rotulo']}", f"certeza {c.get('certeza') or 'ausente'}"]
+        if c.get("delta"):
+            partes.append(f"δ = {c['delta']:g}")
+        partes.append(f"estudos {'|'.join(c.get('estudos') or []) or 'não informados'}")
+        return f"[{i}] {c['fonte']} ({valores}): {', '.join(partes)}; {c['regra']}: {c['justificativa']}."
+
+    if any(c["status_rotulo"] == "pendente" for c in subs):
+        status = "pendente"
+    elif any(c["status_rotulo"] == "rascunho" for c in subs):
+        status = "rascunho"
+    else:
+        status = "definido"
+    niveis = sorted({c["certeza"] for c in subs if nivel(c)}, key=NIVEL_CERTEZA.get)
+    faixa = (niveis[0] if len(niveis) == 1 else f"{niveis[0]} a {niveis[-1]}") if niveis else "ausente"
+    sem_certeza = sum(1 for c in subs if not nivel(c))
+    if niveis and sem_certeza:
+        faixa += f" (sem certeza em {sem_certeza})"
+
+    pendentes = [c for c in subs if c["status_rotulo"] == "pendente"]
+    if pendentes:
+        rotulo, regra, escolhido = "Pendente", "subcelulas_pendente", None
+        nota = "subcélula(s) sem rótulo definido: " + ", ".join(c["fonte"] for c in pendentes)
+    else:
+        maior = max(nivel(c) for c in subs)
+        topo = [c for c in subs if nivel(c) == maior]
+        escolhido = topo[0]
+        if len({c["rotulo"] for c in subs}) == 1:
+            rotulo, regra = escolhido["rotulo"], "subcelulas_mesmo_rotulo"
+            nota = f"todas com o rótulo {rotulo}; vale a maior certeza ({escolhido['fonte']})"
+        elif len({c["rotulo"] for c in topo}) == 1:
+            rotulo, regra = escolhido["rotulo"], "subcelulas_maior_certeza"
+            nota = (f"rótulos diferentes; vale o da subcélula de maior certeza ({escolhido['fonte']}); anotadas: "
+                    + ", ".join(f"{c['fonte']} ({c['rotulo']})" for c in subs if c not in topo))
+        else:
+            rotulo, regra = "Inconclusivo", "subcelulas_empate"
+            nota = ("subcélulas com a mesma certeza máxima e rótulos diferentes ("
+                    + ", ".join(f"{c['fonte']}: {c['rotulo']}" for c in topo) + "): nenhuma direção é afirmada")
+    justificativa = (f"agregação {REGRA_AGREGACAO} ({regra}): a célula reúne {len(subs)} linhas de certeza que "
+                     f"diferem em {', '.join(colunas)}; certeza das subcélulas: {faixa}; {nota}. "
+                     + " ".join(descrever(i, c) for i, c in enumerate(subs, start=1)))
+    return {"rotulo": rotulo, "status": status, "regra": regra, "escolhido": escolhido, "justificativa": justificativa}
+
+
 # ---------------------------------------------------------------------------
 # Montagem
 # ---------------------------------------------------------------------------
@@ -683,6 +797,30 @@ def montar_caixa(master=None, meta_arq=None, swim_arq=None, certeza_arq=None, ma
 
     linhas = []
     avisados_classe = set()
+
+    def avaliar(cert, m, s, chave, classe):
+        """Regras caixa-3 para uma linha de certeza de efeito da célula (ou {} sem linha).
+
+        É o corpo de sempre do laço de efeito, isolado para ser aplicado a cada subcélula. Devolve
+        (resultado de rotular_efeito, status, δ, estudos da célula, fontes do achado explicativo).
+        """
+        d = _num(cert.get("delta")) if cert.get("delta") else delta
+        moderador = _dobrar(cert.get("moderador_explica")) in {"sim", "s", "1", "true", "pre_especificado",
+                                                                "pre-especificado", "quali", "qualitativo"}
+        estudos = sorted(set((m or {}).get("estudos", []) + (s or {}).get("estudos", []) + _lista(cert.get("estudos"))))
+        so_alto = bool(estudos) and bool(rob_alto) and all(e in rob_alto for e in estudos)
+        achado = achado_explicativo(certezas, chave[0], chave[1], classe)
+        r = rotular_efeito(m, s, cert.get("certeza"), d, moderador, k_min, so_risco_alto=so_alto,
+                           achado_explicativo=achado)
+        status = _status_validado(r["status"], cert)
+        fontes_achado = []
+        if achado and r["regra"] in ("misto_pi_moderador", "inconclusivo_misto_nao_sustentado"):
+            fontes_achado.append(achado["fonte"])
+            if r["regra"] == "misto_pi_moderador" and status == "definido" and _validado(achado["_linha"]) is False:
+                status = "rascunho"
+                r = dict(r, justificativa=r["justificativa"] + "; validado_humano do achado explicativo não marcado")
+        return r, status, d, estudos, fontes_achado
+
     # --- efeito ---------------------------------------------------------------
     for chave, (fam, out, classe) in sorted(celulas.items()):
         m, s = meta.get(chave), swim.get(chave)
@@ -693,24 +831,41 @@ def montar_caixa(master=None, meta_arq=None, swim_arq=None, certeza_arq=None, ma
         classes_da_celula = {k[2] for k in celulas if k[:2] == chave[:2]}
         if cert and not cert["_classe"] and len(classes_da_celula - {""}) > 1 and chave[:2] not in avisados_classe:
             avisados_classe.add(chave[:2])
-            avisos.append(f"{cert['_fonte']}: certeza sem classe_desenho aplicada a "
+            avisos.append(f"{', '.join(c['_fonte'] for c in cert_linhas)}: certeza sem classe_desenho aplicada a "
                           f"{' e '.join(sorted(classes_da_celula - {''}))} de {fam or '*'} × {out or '*'}; "
                           "o GRADE julga randomizados e não randomizados separadamente: declare uma linha por classe")
-        d = _num(cert.get("delta")) if cert.get("delta") else delta
-        moderador = _dobrar(cert.get("moderador_explica")) in {"sim", "s", "1", "true", "pre_especificado",
-                                                                "pre-especificado", "quali", "qualitativo"}
-        estudos = sorted(set((m or {}).get("estudos", []) + (s or {}).get("estudos", []) + _lista(cert.get("estudos"))))
-        so_alto = bool(estudos) and bool(rob_alto) and all(e in rob_alto for e in estudos)
-        achado = achado_explicativo(certezas, chave[0], chave[1], classe)
-        r = rotular_efeito(m, s, cert.get("certeza"), d, moderador, k_min, so_risco_alto=so_alto,
-                           achado_explicativo=achado)
-        status = _status_validado(r["status"], cert)
-        fontes = [x["fonte"] for x in (m, s) if x] + ([cert["_fonte"]] if cert else [])
-        if achado and r["regra"] in ("misto_pi_moderador", "inconclusivo_misto_nao_sustentado"):
-            fontes.append(achado["fonte"])
-            if r["regra"] == "misto_pi_moderador" and status == "definido" and _validado(achado["_linha"]) is False:
-                status = "rascunho"
-                r = dict(r, justificativa=r["justificativa"] + "; validado_humano do achado explicativo não marcado")
+        colunas_sub = colunas_de_subcelula(cert_linhas) if len(cert_linhas) > 1 else []
+        if len(cert_linhas) > 1 and not colunas_sub:
+            avisos.append(f"{fam or '*'} × {out or '*'} [{classe or 'sem classe'}]: {len(cert_linhas)} linhas de "
+                          f"certeza sem coluna que as distinga ({', '.join(c['_fonte'] for c in cert_linhas)}); vale a "
+                          f"última ({cert['_fonte']}): apague as duplicatas ou declare a coluna que separa as subcélulas")
+        if colunas_sub:
+            # subcélulas (regra subcelulas-1): cada linha pelas regras caixa-3, depois a agregação
+            subs, estudos, fontes = [], set(), [x["fonte"] for x in (m, s) if x] + [c["_fonte"] for c in cert_linhas]
+            for c in cert_linhas:
+                r, status, d, estudos_c, fontes_achado = avaliar(c, m, s, chave, classe)
+                estudos.update(estudos_c)
+                fontes += [f for f in fontes_achado if f not in fontes]
+                subs.append({"fonte": c["_fonte"], "valores": {col: normalizar.texto(c.get(col)) for col in colunas_sub},
+                             "rotulo": r["rotulo"], "status_rotulo": status, "certeza": normalizar_certeza(c.get("certeza")),
+                             "forca": r["forca"], "regra": r["regra"], "justificativa": r["justificativa"], "delta": d,
+                             "estudos": _lista(c.get("estudos")), "abordagem": c.get("abordagem", "GRADE")})
+            ag = agregar_subcelulas(subs, colunas_sub)
+            esc = ag["escolhido"] or {}
+            estudos = sorted(estudos)
+            pendente = ag["regra"] == "subcelulas_pendente"
+            linhas.append(_linha(
+                fam, out, "efeito", classe, rotulo=ag["rotulo"], rotulo_proposto="" if pendente else ag["rotulo"],
+                status_rotulo=ag["status"], forca=esc.get("forca", ""), certeza=esc.get("certeza", ""),
+                abordagem_certeza=(esc or subs[-1])["abordagem"], escala=escala((m or {}).get("estimativa"), faixas),
+                estimativa=(m or {}).get("estimativa"), ci_lo=(m or {}).get("ci_lo"), ci_hi=(m or {}).get("ci_hi"),
+                pi_lo=(m or {}).get("pi_lo"), pi_hi=(m or {}).get("pi_hi"), k=(m or {}).get("k"),
+                n_estudos=str(len(estudos)) if estudos else ((s or {}).get("n") and f"{s['n']:g}") or "",
+                regra_aplicada=ag["regra"], estudos="|".join(estudos), fontes=" ; ".join(fontes),
+                justificativa=ag["justificativa"]))
+            continue
+        r, status, d, estudos, fontes_achado = avaliar(cert, m, s, chave, classe)
+        fontes = [x["fonte"] for x in (m, s) if x] + ([cert["_fonte"]] if cert else []) + fontes_achado
         if not fontes:
             fontes = ["nenhum resumo de síntese nem certeza para a célula"]
         linhas.append(_linha(
@@ -755,11 +910,22 @@ def montar_caixa(master=None, meta_arq=None, swim_arq=None, certeza_arq=None, ma
         cert_linhas = [c for c in certezas if c["_dim"] == "implementacao"
                        and _dobrar(c.get("familia_intervencao")) == chave_fam]
         cert = cert_linhas[-1] if cert_linhas else {}
+        nota_varias = ""
+        if len(cert_linhas) > 1:
+            # várias linhas para a família: a de maior CERQual (a última no empate, a regra anterior); todas nas fontes
+            cert = max(enumerate(cert_linhas),
+                       key=lambda x: (NIVEL_CERTEZA.get(normalizar_certeza(x[1].get("certeza")), 0), x[0]))[1]
+            nota_varias = (f"; {len(cert_linhas)} linhas de implementação em certeza.csv ("
+                           + ", ".join(f"{c['_fonte']}: {normalizar_certeza(c.get('certeza')) or 'sem CERQual'}"
+                                       for c in cert_linhas)
+                           + f"); vale a de maior confiança CERQual ({cert['_fonte']})")
+            avisos.append(f"{fam or '*'}: {len(cert_linhas)} linhas de implementação em certeza.csv "
+                          f"({', '.join(c['_fonte'] for c in cert_linhas)}); vale a de maior confiança CERQual "
+                          f"({cert['_fonte']}) e a linha sai rascunho se alguma não estiver validada")
         fontes = [f"{Path(mapa_arq).name} (critérios de implementação)"]
         if fichas_fam:
             fontes.append(f"{nome_master}: {len(fichas_fam)} fichas")
-        if cert:
-            fontes.append(cert["_fonte"])
+        fontes += [c["_fonte"] for c in cert_linhas]
         pontos, detalhes, estudos, avaliavel = pontuar_implementacao(fichas_fam, mapa, colunas_master)
         if not avaliavel:
             rotulo, proposto, status, just = "Não avaliada", "", "pendente", \
@@ -775,8 +941,11 @@ def montar_caixa(master=None, meta_arq=None, swim_arq=None, certeza_arq=None, ma
             if sem_dado:
                 just += f"; pontuação mínima ({len(sem_dado)} critérios sem dado)"
             status = _status_validado(status, cert)
+            if status == "definido" and any(_validado(c) is False for c in cert_linhas):
+                status = "rascunho"  # uma linha não validada basta: o juízo escolhido depende de todas
             if status == "rascunho":
                 just += "; validado_humano não marcado"
+        just += nota_varias
         linhas.append(_linha(
             fam, "", "implementacao", rotulo=rotulo, rotulo_proposto=proposto, status_rotulo=status,
             certeza=normalizar_certeza(cert.get("certeza")),
@@ -834,14 +1003,23 @@ def montar_caixa(master=None, meta_arq=None, swim_arq=None, certeza_arq=None, ma
     return [_assinar(l) for l in linhas], avisos
 
 
+def contar_agregadas(linhas):
+    """Linhas de efeito rotuladas pela regra de subcélulas (regra_aplicada subcelulas_*)."""
+    return sum(1 for l in linhas if l["dimensao"] == "efeito" and l["regra_aplicada"].startswith("subcelulas_"))
+
+
 def markdown_caixa(linhas, rascunho, fontes_entrada):
     cab = ["# Caixa de ferramentas", ""]
     if rascunho:
         cab += [f"**{esquema.MARCA_RASCUNHO}**: há rótulos pendentes ou pendências abertas no projeto.", ""]
     cab += [f"Regras: `{REGRA_VERSAO}` ({REF_REGRAS_CAIXA}). Entradas: {', '.join(fontes_entrada) or 'nenhuma'}.",
             "Testes combinados não definem rótulos. Linhas `efeito_painel` resumem os corpos por desenho "
-            "de cada família × outcome.", "",
-            "| Família × outcome | Dimensão | Rótulo | Status | Força/certeza | Escala | Estudos | Fontes |",
+            "de cada família × outcome."]
+    n_agregadas = contar_agregadas(linhas)
+    if n_agregadas:  # sem subcélulas, o cabeçalho fica como antes
+        cab.append(f"Agregação `{REGRA_AGREGACAO}`: {n_agregadas} células de efeito reúnem mais de uma linha de "
+                   "certeza (subcélulas); o rótulo vem da regra de subcélulas e a justificativa descreve cada uma.")
+    cab += ["", "| Família × outcome | Dimensão | Rótulo | Status | Força/certeza | Escala | Estudos | Fontes |",
             "|---|---|---|---|---|---|---|---|"]
     for l in linhas:
         forca = " / ".join(x for x in (l["forca"], l["certeza"]) if x)
@@ -904,10 +1082,12 @@ def cmd_caixa(args):
             contagem[l["rotulo"]] = contagem.get(l["rotulo"], 0) + 1
         elif l["dimensao"] == DIMENSAO_PAINEL:
             painel[l["rotulo"]] = painel.get(l["rotulo"], 0) + 1
+    n_agregadas = contar_agregadas(linhas)
     estado.registrar_evento(raiz, "caixa_gerada", "10_sintese", "script", ATOR,
                             dados={"regra_versao": REGRA_VERSAO, "n_linhas": len(linhas), "rotulos_efeito": contagem,
                                    "rotulos_painel": painel, "n_pendentes": len(pendentes), "n_rascunho": n_rascunho,
-                                   "rascunho": rascunho},
+                                   "rascunho": rascunho, "regra_agregacao": REGRA_AGREGACAO,
+                                   "n_celulas_agregadas": n_agregadas},
                             artefatos=[ARQ_CAIXA, ARQ_CAIXA_MD] + entradas)
     pendencia = None
     if pendentes:  # n diferente atualiza a pendência aberta sem duplicar
@@ -916,7 +1096,7 @@ def cmd_caixa(args):
                                                 len(pendentes), portao="G8", arquivo=ARQ_CAIXA, ator_id=ATOR)
     estado.resumo({"comando": comando, "ok": True, "n_linhas": len(linhas), "rotulos_efeito": contagem,
                    "rotulos_painel": painel, "n_pendentes": len(pendentes), "n_rascunho": n_rascunho, "rascunho": rascunho,
-                   "regra_versao": REGRA_VERSAO,
+                   "regra_versao": REGRA_VERSAO, "regra_agregacao": REGRA_AGREGACAO, "n_celulas_agregadas": n_agregadas,
                    "arquivos": [ARQ_CAIXA, ARQ_CAIXA_MD], "pendencia": pendencia, "avisos": avisos})
     return 0
 

@@ -940,3 +940,24 @@ def test_regressao_saidas_do_dedup_com_permissao_de_arquivo_comum(projeto_vazio)
     assert rodar(projeto_vazio) == 0
     for rel in (esquema.ARQ_UNICOS, esquema.ARQ_DEDUP_PARES):
         assert stat.S_IMODE((projeto_vazio / rel).stat().st_mode) == estado.modo_arquivo_padrao(), rel
+
+
+# ---------------------------------------------------------------------------
+# Ids absorvidos depois da triagem (v1.4)
+# ---------------------------------------------------------------------------
+def _dedup_com_aposentados(raiz, aposentados):
+    from rslib import estado
+    estado.registrar_evento(raiz, "dedup_executado", "05_organizacao", "script", "dedup",
+                            dados={"ids_rs_aposentados": aposentados})
+
+
+def test_mapa_absorvidos_segue_cadeia_e_filtra_destino(projeto_vazio):
+    from rslib import dedup
+    raiz = projeto_vazio
+    assert dedup.mapa_absorvidos(raiz) == {} and dedup.chaves_absorvidas(raiz) == {}
+    _dedup_com_aposentados(raiz, {"RS0005": {"absorvido_por": "RS0003", "chave": "Dias2016"}})
+    _dedup_com_aposentados(raiz, {"RS0003": {"absorvido_por": "RS0002", "chave": "Lima2021"},
+                                  "RS0009": {"absorvido_por": "", "chave": ""}})
+    assert dedup.mapa_absorvidos(raiz) == {"RS0005": "RS0002", "RS0003": "RS0002", "RS0009": ""}
+    assert dedup.mapa_absorvidos(raiz, {"RS0001"}) == {"RS0005": "", "RS0003": "", "RS0009": ""}
+    assert dedup.chaves_absorvidas(raiz, {"RS0002"}) == {"Dias2016": "RS0002", "Lima2021": "RS0002"}

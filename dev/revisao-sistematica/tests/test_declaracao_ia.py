@@ -227,3 +227,241 @@ def test_regressao_declaracao_com_estado_corrompido_sai_com_erro(projeto_vazio, 
     (projeto_vazio / "rs_estado.json").write_text("{", encoding="utf-8")
     codigo, resumo = rodar(["--dir", str(projeto_vazio), "declaracao-ia"], capsys)
     assert codigo == 1 and resumo["ok"] is False and "corrompido" in resumo["detalhe"]
+
+
+# ---------------------------------------------------------------------------
+# Seção 7 montada dos dados e seção 6 com notas sobre as pendências citadas (v1.3)
+# ---------------------------------------------------------------------------
+TEXTO_SECAO_7_LIMPA = (
+    "## 7. Declaração de responsabilidade\n\n"
+    "As ferramentas de IA listadas foram usadas como apoio sob supervisão humana. Critérios, protocolo, "
+    "juízos de risco de viés, de certeza (GRADE/CERQual), rótulos da caixa de ferramentas e conclusões são "
+    "responsabilidade dos revisores humanos, que conferiram as saídas conforme os portões e as validações "
+    "acima. Decisões de IA não validadas estão sinalizadas como pendências.\n")
+
+
+def _certeza(raiz, nome, validados):
+    pasta = raiz / "06-analise"
+    pasta.mkdir(parents=True, exist_ok=True)
+    linhas = ["familia_intervencao,construto_outcome,certeza,validado_humano"]
+    linhas += [f"fam,desfecho{i},baixa,{v}" for i, v in enumerate(validados)]
+    (pasta / nome).write_text("\n".join(linhas) + "\n", encoding="utf-8")
+    return f"06-analise/{nome}"
+
+
+def _rob(raiz, ferramenta, n_resultados, n_validados):
+    from rslib import estado
+    return estado.registrar_evento(raiz, "rob_consolidado", "09_extracao_rob", "script", "rs.py qualidade",
+                                   dados={"ferramenta": ferramenta, "n_resultados": n_resultados,
+                                          "n_validados_humano": n_validados,
+                                          "todos_validados_humano": n_validados == n_resultados})
+
+
+def _efeitos(raiz, n, n_nao_aptos):
+    from rslib import estado
+    return estado.registrar_evento(raiz, "efeitos_verificados", "09_extracao_rob", "script", "rs.py analise",
+                                   dados={"n_efeitos": n, "n_nao_aptos": n_nao_aptos,
+                                          "pode_seguir_g7": n_nao_aptos == 0})
+
+
+def _caixa(raiz, n_linhas, n_pendentes):
+    from rslib import estado
+    return estado.registrar_evento(raiz, "caixa_gerada", "10_sintese", "script", "rs.py caixa",
+                                   dados={"n_linhas": n_linhas, "n_pendentes": n_pendentes})
+
+
+def _portao_automatico(raiz, g, confirmar=None):
+    """Aprovação pelo autopiloto com a pendência de confirmação; `confirmar` = tipo do ator que a fecha."""
+    from rslib import esquema, estado
+    ev = estado.registrar_portao(raiz, g, "autopiloto", ator_tipo="ia_coordenador")
+    pid = estado.abrir_pendencia(raiz, "revisao_humana_portao", esquema.PORTOES[g],
+                                 f"confirmar a aprovação automática do {g}", portao=g, ator_id="autopiloto")
+    if confirmar:
+        estado.fechar_pendencia(raiz, pid, "confirmado", ator_tipo=confirmar,
+                                ator_id="revisor_humano_1" if confirmar == "humano" else "script")
+    return ev, pid
+
+
+def _secao(md, numero):
+    return md.split(f"## {numero}. ")[1].split("\n## ")[0]
+
+
+def test_tudo_validado_mantem_a_secao_7_de_sempre(projeto_vazio, capsys):
+    """Sem nada em aberto, a seção 7 sai byte a byte como antes (projetos limpos não ganham versão nova)."""
+    from rslib import esquema, estado
+    raiz = projeto_vazio
+    processo_com_ia(raiz)
+    _efeitos(raiz, 10, 0)
+    _rob(raiz, "rob2", 4, 4)
+    certeza = _certeza(raiz, "certeza.csv", ["sim", "1", "x"])
+    _caixa(raiz, 3, 0)
+    _portao_automatico(raiz, "G7", confirmar="humano")
+    codigo, resumo = rodar(["--dir", str(raiz), "declaracao-ia"], capsys)
+    md = (raiz / esquema.ARQ_DECLARACAO_IA).read_text(encoding="utf-8")
+    assert codigo == 0 and resumo["rascunho"] is False and esquema.MARCA_RASCUNHO not in md
+    assert md.endswith("## 6. Pendências abertas\n\nNenhuma.\n\n" + TEXTO_SECAO_7_LIMPA)
+    ev = estado.ler_log(raiz)[-1]
+    assert {"caminho": certeza, "sha256": estado.sha256_arquivo(raiz / certeza)} in ev["artefatos"]
+
+
+def test_juizos_sem_validacao_humana_listados_na_secao_7(projeto_vazio, capsys):
+    from rslib import esquema, estado
+    raiz = projeto_vazio
+    _decisao_ia(raiz)  # IA na triagem sem validação que decide
+    _efeitos(raiz, 10, 3)
+    ev_rob2 = _rob(raiz, "rob2", 5, 0)
+    _rob(raiz, "robins_i", 2, 2)
+    certeza = _certeza(raiz, "certeza.csv", ["1", "0", ""])
+    amplo = _certeza(raiz, "certeza_agrupamento_amplo.csv", ["nao", "nao"])
+    (raiz / "06-analise/superado").mkdir()
+    _certeza(raiz, "superado/certeza_antiga.csv", ["0"])  # subpasta: não é lida
+    _caixa(raiz, 4, 2)
+    _, p_g5 = _portao_automatico(raiz, "G5", confirmar="humano")
+    _portao_automatico(raiz, "G6", confirmar="humano")
+    ev_g6 = estado.registrar_portao(raiz, "G6", "autopiloto", ator_tipo="ia_coordenador")  # nova aprovação depois
+    ev_g7, p_g7 = _portao_automatico(raiz, "G7")
+    ev_g8 = estado.registrar_portao(raiz, "G8", "autopiloto", ator_tipo="ia_coordenador")  # sem pendência
+    _portao_automatico(raiz, "G9", confirmar="script")  # fechada sem humano
+    estado.registrar_portao(raiz, "G3", "autopiloto", ator_tipo="ia_coordenador")
+    estado.registrar_portao(raiz, "G3", "revisor_humano_1")  # a última decisão é humana: nada a declarar
+    p_dedup = estado.abrir_pendencia(raiz, "dedup_candidatos", "05_organizacao", "12 pares candidatos", n=12)
+
+    codigo, resumo = rodar(["--dir", str(raiz), "declaracao-ia"], capsys)
+    md = (raiz / esquema.ARQ_DECLARACAO_IA).read_text(encoding="utf-8")
+    assert codigo == 0 and resumo["rascunho"] is True
+    assert "; juízos de IA sem validação humana (seção 7))." in md.splitlines()[2]
+    s7 = _secao(md, 7)
+    assert TEXTO_SECAO_7_LIMPA.split("\n\n")[1].strip() not in s7
+    assert "exceto nos juízos listados abaixo" in s7 and "são rascunhos de IA" in s7
+    sha_certeza, sha_amplo = (estado.sha256_arquivo(raiz / c)[:16] for c in (certeza, amplo))
+    esperados = [
+        "- Dados de efeito: 3 de 10 efeitos não aptos para o G7",
+        f"- Risco de viés (rob2): 5 de 5 resultados sem validação humana na consolidação (`rob_consolidado`, "
+        f"seq {ev_rob2['seq']},",
+        f"- Certeza da evidência (GRADE/CERQual) em `{certeza}` (sha256 `{sha_certeza}…`): 2 de 3 linhas sem "
+        "`validado_humano`.",
+        f"- Certeza da evidência (GRADE/CERQual) em `{amplo}` (sha256 `{sha_amplo}…`): 2 de 2 linhas sem "
+        "`validado_humano`.",
+        "- Rótulos da caixa de ferramentas: 2 de 4 linhas pendentes ou em rascunho",
+        f"- Portão G6 (08_piloto_extracao), aprovado por autopiloto (ia_coordenador) em "
+        f"{ev_g6['ts'][:10]} (seq {ev_g6['seq']}): sem confirmação humana registrada.",
+        f"- Portão G7 (09_extracao_rob), aprovado por autopiloto (ia_coordenador) em {ev_g7['ts'][:10]} "
+        f"(seq {ev_g7['seq']}): confirmação humana pendente ({p_g7}).",
+        f"- Portão G8 (10_sintese), aprovado por autopiloto (ia_coordenador) em {ev_g8['ts'][:10]} "
+        f"(seq {ev_g8['seq']}): sem confirmação humana registrada.",
+        "- Portão G9 (11_relato), aprovado por autopiloto (ia_coordenador) em",
+        "- Triagem de títulos e resumos: decisões de IA sem validação calculada com finalidade validação da rodada "
+        "ativa (seção 4).",
+        f"- Pendências abertas em organização e deduplicação (05_organizacao): {p_dedup} (dedup_candidatos); "
+        "descrição na seção 6.",
+    ]
+    posicoes = [s7.index(e) for e in esperados]
+    assert posicoes == sorted(posicoes)
+    assert "Portão G3" not in s7 and "certeza_antiga" not in md
+    assert p_g7 not in s7.split("- Pendências abertas")[1]  # já listada no portão, não se repete
+    assert f"Portões aprovados sem humano e confirmados depois por humano: G5 ({p_g5}, fechada em" in s7
+    assert "G6 (" not in s7.split("Portões aprovados sem humano")[1]  # confirmação anterior à nova aprovação
+    assert "Validação humana completa registrada: risco de viés (robins_i), 2 de 2 resultados" in s7
+    assert s7.rstrip().endswith("Decisões de IA não validadas estão sinalizadas como pendências.")
+    ev = estado.ler_log(raiz)[-1]
+    assert {a["caminho"] for a in ev["artefatos"]} >= {certeza, amplo}
+
+
+def test_secao_7_so_com_pendencia_aberta_nao_repete_o_texto_limpo(projeto_vazio, capsys):
+    """Pendência aberta sem juízo de IA: exceção na seção 7, sem o motivo de juízos no cabeçalho."""
+    from rslib import esquema, estado
+    estado.abrir_pendencia(projeto_vazio, "revisao_press", "04_busca", "PRESS por humano", portao="G3")
+    codigo, resumo = rodar(["--dir", str(projeto_vazio), "declaracao-ia"], capsys)
+    md = (projeto_vazio / esquema.ARQ_DECLARACAO_IA).read_text(encoding="utf-8")
+    assert resumo["rascunho"] is True and "(1 pendências abertas)." in md and "juízos de IA" not in md
+    assert "- Pendências abertas em busca (04_busca): P001 (revisao_press); descrição na seção 6." in _secao(md, 7)
+
+
+def test_sucessoras_so_entre_pendencias_do_mesmo_tipo():
+    """A confirmação de portão copia o "[substitui ...]" de outra pendência e não pode virar sucessora dela."""
+    from rslib import declaracao_ia
+
+    def ab(seq, pid, tipo, descricao):
+        return pid, {"seq": seq, "evento": "pendencia_aberta", "dados": {"pendencia": pid, "tipo": tipo,
+                                                                          "descricao": descricao}}
+    aberturas = dict([ab(1, "P001", "verificacao_humana_efeitos", "conferir 10 efeitos"),
+                      ab(2, "P003", "revisao_humana_portao", "confirmar o G7: P002 aberta: conferir [substitui P001]"),
+                      ab(3, "P002", "verificacao_humana_efeitos", "conferir 12 efeitos [substitui P001]"),
+                      ab(4, "P005", "certeza_humana", "GRADE de 7 células"),
+                      ab(5, "P006", "certeza_humana", "GRADE refeito"),
+                      ab(6, "P007", "outro_tipo", "x [substitui P006]")])
+    fechamentos = {"P005": {"seq": 7, "motivo": "substituída por P006 (mesma tarefa)"},
+                   "P006": {"seq": 8, "motivo": "substituida por P007"}}
+    suc = declaracao_ia.sucessoras_de_pendencias({"pendencias": []}, aberturas, fechamentos)
+    assert suc == {"P001": "P002", "P005": "P006"}
+    assert declaracao_ia.cadeia_de_sucessoras("P001", {"P001": "P002", "P002": "P004", "P004": "P001"}) == [
+        "P002", "P004"]  # ciclo não trava
+
+
+def test_secao_6_anota_citadas_fechadas_com_sucessoras(projeto_vazio, capsys):
+    from rslib import esquema, estado
+    raiz = projeto_vazio
+
+    def abrir(tipo, etapa, descricao, portao=None):
+        return estado.abrir_pendencia(raiz, tipo, etapa, descricao, portao=portao)
+
+    def fechar(pid, motivo, ator_tipo="script"):
+        estado.fechar_pendencia(raiz, pid, motivo, ator_tipo=ator_tipo, ator_id="teste")
+        return estado.ler_log(raiz)[-1]
+
+    ef = "verificacao_humana_efeitos"
+    p1 = abrir(ef, "09_extracao_rob", "conferir 10 efeitos", "G7")                                 # P001
+    f1 = fechar(p1, "atualizada automaticamente: n 10 -> 12")
+    p2 = abrir(ef, "09_extracao_rob", f"conferir 12 efeitos [substitui {p1}]", "G7")                # P002
+    p3 = abrir("revisao_humana_portao", "09_extracao_rob",                                           # P003
+               f"confirmar a aprovação automática do G7: 12 efeitos sem verificação; {p2} aberta: conferir 12 "
+               f"efeitos [substitui {p1}]", "G7")
+    f2 = fechar(p2, "atualizada automaticamente: n 12 -> 15")
+    p4 = abrir(ef, "09_extracao_rob", f"conferir 15 efeitos [substitui {p2}]", "G7")                # P004
+    f4 = fechar(p4, "conferidos", ator_tipo="humano")
+    p5 = abrir("dedup_candidatos", "05_organizacao", "10 pares")                                    # P005
+    fechar(p5, "atualizada automaticamente: n 10 -> 12")
+    p6 = abrir("dedup_candidatos", "05_organizacao", f"12 pares [substitui {p5}]")                  # P006
+    p7 = abrir("certeza_humana", "10_sintese", "GRADE de 7 células")                                # P007
+    p8 = abrir("certeza_humana", "10_sintese", "GRADE refeito: 9 células")                          # P008
+    f7 = fechar(p7, f"substituída por {p8} (mesma tarefa humana)", ator_tipo="humano")
+    p9 = abrir("revisao_humana_portao", "10_sintese",                                               # P009
+               f"confirmar a aprovação automática do G8: {p7} aberta: GRADE de 7 células; P999 citada", "G8")
+
+    codigo, _ = rodar(["--dir", str(raiz), "declaracao-ia"], capsys)
+    md = (raiz / esquema.ARQ_DECLARACAO_IA).read_text(encoding="utf-8")
+    s6 = _secao(md, 6)
+    assert "As descrições estão como foram registradas na abertura de cada pendência" in s6
+    assert "| Id | Tipo | Etapa | Portão | Aberta em | Descrição (como registrada na abertura) | N |" in s6
+    linhas = {l.split(" | ")[0][2:]: l for l in s6.splitlines() if l.startswith("| P")}
+    assert set(linhas) == {p3, p6, p8, p9}
+    ab3 = next(e for e in estado.ler_log(raiz) if e["evento"] == "pendencia_aberta"
+               and e["dados"]["pendencia"] == p3)
+    assert f"| {ab3['ts'][:10]} (seq {ab3['seq']}) |" in linhas[p3]
+    d = lambda ev: ev["ts"][:10]
+    assert linhas[p3].endswith(
+        f"[substitui {p1}] [{p2}: fechada em {d(f2)} (seq {f2['seq']}); substituída por {p4}, fechada em {d(f4)}] "
+        f"[{p1}: fechada em {d(f1)} (seq {f1['seq']}); substituída por {p2} → {p4}, fechada em {d(f4)}] |  |")
+    assert linhas[p6].endswith(f"12 pares [substitui {p5}] |  |")  # sem nota: a cadeia da citada chega nela
+    assert f"[{p5}:" not in linhas[p6]
+    assert linhas[p9].endswith(f"P999 citada [{p7}: fechada em {d(f7)} (seq {f7['seq']}); substituída por {p8}, "
+                               "aberta] |  |")
+    assert "P999:" not in linhas[p9] and f"{p9}:" not in linhas[p9]
+
+
+def test_certeza_sem_coluna_validado_humano_segue_a_regra_da_caixa(projeto_vazio, capsys):
+    """Sem a coluna, a caixa não rebaixa a rascunho; a declaração concorda e só cita o arquivo na seção 7."""
+    from rslib import esquema, estado
+    raiz = projeto_vazio
+    pasta = raiz / "06-analise"
+    pasta.mkdir(parents=True, exist_ok=True)
+    (pasta / "certeza.csv").write_text("familia_intervencao,construto_outcome,certeza\nfam,desfecho,baixa\n",
+                                       encoding="utf-8")
+    codigo, resumo = rodar(["--dir", str(raiz), "declaracao-ia"], capsys)
+    md = (raiz / esquema.ARQ_DECLARACAO_IA).read_text(encoding="utf-8")
+    assert codigo == 0 and resumo["rascunho"] is False and md.endswith(TEXTO_SECAO_7_LIMPA)
+    estado.abrir_pendencia(raiz, "dedup_candidatos", "05_organizacao", "3 pares", n=3)
+    codigo, resumo = rodar(["--dir", str(raiz), "declaracao-ia"], capsys)
+    s7 = _secao((raiz / esquema.ARQ_DECLARACAO_IA).read_text(encoding="utf-8"), 7)
+    assert "Certeza sem a coluna `validado_humano`" in s7 and "`06-analise/certeza.csv` (sha256" in s7
+    assert "- Certeza da evidência" not in s7

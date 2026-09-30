@@ -45,6 +45,12 @@ RODADA ATIVA E FILA HUMANA
       fila com `motivo_fila=arbitrada` e fica pendente até um override humano (que pode repetir a
       decisão do árbitro). `motivo_fila`: divergencia | divergencia_regra_liberal | arbitrada.
     - Clusters `busca_inativa` (buscas substituídas) saem do arquivo final e da fila (`n_inativos_ignorados`).
+    - Ids absorvidos por um dedup depois da triagem (dedup.mapa_absorvidos) não ficam no arquivo final: a
+      decisão vai ao registro que absorveu (`fundir_absorvidos`). Precedência: override > decisão de IA;
+      depois incluir > incerto > excluir (recall primeiro, como a regra liberal); no empate fica a do
+      registro que absorveu; sem decisão nele, herda a do absorvido; destino fora do conjunto ativo, a
+      decisão cai. Cada divergência vira aviso e vai ao evento (`absorvidos_dedup`); para decidir outra
+      coisa, `triagem override --id <registro que absorveu>`.
     - A fila é do humano: se ela tem linhas preenchidas (decisao_humana, criterio_humano ou motivo) ainda
       não aplicadas no ledger, `consolidar` NÃO a regrava (avisa e manda aplicar com `override --fila`);
       cabeçalho sem `id_rs` e `decisao_humana` aborta o comando sem tocar em nada.
@@ -472,6 +478,43 @@ def consolidar_decisoes(vigentes, regra="consenso", usar_overrides=True, sem_res
             "override": override,
         }
     return resultado
+
+
+ORDEM_INCLUSIVA = {"excluir": 0, "incerto": 1, "incluir": 2}
+
+
+def _forca_decisao(res):
+    """Chave de precedência na fusão de absorvidos: override primeiro, depois a decisão mais inclusiva."""
+    return (res.get("decidido_por") == "humano", ORDEM_INCLUSIVA.get(res.get("decisao_final"), -1))
+
+
+def fundir_absorvidos(final, mapa):
+    """Leva as decisões de ids absorvidos pelo dedup ao registro que os absorveu. Função pura.
+
+    `final` é {id_rs: resultado de consolidar_decisoes}; `mapa`, {id aposentado: id que absorveu ou ""}
+    (dedup.mapa_absorvidos). A decisão do absorvido só substitui a do registro que absorveu se for mais forte
+    (`_forca_decisao`: override > IA, depois incluir > incerto > excluir): assim o resultado não depende de
+    qual id o dedup manteve (o de menor número) e nada que a triagem mandou ao texto completo se perde. Sem
+    decisão no registro que absorveu, ele herda a do absorvido; destino vazio, a decisão cai.
+    Devolve (final, relatos) com um relato por id absorvido encontrado: {absorvido, destino, decisao_absorvido,
+    decisao_destino, resultado} (resultado: herdada|mantida|substituida|descartada).
+    """
+    relatos = []
+    for velho in sorted(i for i in list(final) if i in mapa):
+        res = final.pop(velho)
+        destino = mapa[velho]
+        relato = {"absorvido": velho, "destino": destino, "decisao_absorvido": res["decisao_final"],
+                  "decisao_destino": None, "resultado": "descartada"}
+        if destino:
+            atual = final.get(destino)
+            relato["decisao_destino"] = atual["decisao_final"] if atual else None
+            if atual is None or _forca_decisao(res) > _forca_decisao(atual):
+                final[destino] = {**res, "id_rs": destino}
+                relato["resultado"] = "herdada" if atual is None else "substituida"
+            else:
+                relato["resultado"] = "mantida"
+        relatos.append(relato)
+    return final, relatos
 
 
 # ---------------------------------------------------------------------------
@@ -1280,6 +1323,17 @@ def cmd_consolidar(args):
             raise ErroUso(f"nenhuma decisão da etapa {args.etapa} na rodada {rodada}")
         for id_rs, res in consolidar_decisoes(vig, args.regra, True, sem_resumo).items():
             final[id_rs] = res  # rodada posterior na lista prevalece
+    # Ids absorvidos por um dedup depois da triagem: a decisão vai ao registro que absorveu (antes do funil e dos
+    # inativos, que então valem para o destino).
+    from . import dedup  # import tardio: evita ciclo (dedup importa triagem_lotes sob demanda)
+    final, fundidos = fundir_absorvidos(final, dedup.mapa_absorvidos(raiz, set(unicos) or None))
+    if fundidos:
+        divergentes = [f for f in fundidos if f["decisao_destino"] not in (None, f["decisao_absorvido"])]
+        exemplos = "; ".join(f"{f['absorvido']}→{f['destino'] or '(sem destino)'}: {f['decisao_absorvido']} × "
+                             f"{f['decisao_destino']} = {f['resultado']}" for f in divergentes[:10])
+        avisos.append(f"{len(fundidos)} ids absorvidos pelo dedup tinham decisão e saíram do arquivo final "
+                      f"({dict(sorted(Counter(f['resultado'] for f in fundidos).items()))}); decisões diferentes da do registro que "
+                      f"absorveu: {len(divergentes)}" + (f" ({exemplos})" if exemplos else ""))
     excluidos_funil = ids_excluidos_funil(raiz)
     em_funil = sorted(set(final) & excluidos_funil)
     if em_funil:
@@ -1373,6 +1427,7 @@ def cmd_consolidar(args):
                    "fila_humana": len(fila), "motivos_fila": motivos_fila, "arbitradas_na_fila": n_arbitradas,
                    "sem_decisao": len(sem_decisao), "rodada_ativa": rodada_consolidada,
                    "n_inativos_ignorados": len(em_inativos), "fila_preservada": fila_preservada,
+                   "n_absorvidos_dedup": len(fundidos), "absorvidos_dedup": fundidos[:200],
                    "arquivo": rel_final, "sha_final": sha_final, "sha_fila": sha_fila},
             artefatos=[rel_final, rel_fila], estado=est)
     elif mudou_ativa:
@@ -1391,6 +1446,7 @@ def cmd_consolidar(args):
         "decidido_por": por, "divergentes": sum(r["divergente"] for r in final.values()),
         "fila_humana": len(fila), "motivos_fila": motivos_fila, "arbitradas_na_fila": n_arbitradas,
         "sem_decisao": len(sem_decisao), "pendencia": pendencia, "n_inativos_ignorados": len(em_inativos),
+        "n_absorvidos_dedup": len(fundidos),
         "fila_preservada": fila_preservada, "linhas_fila_nao_aplicadas": nao_aplicadas[:50],
         "rodada_ativa": rodada_consolidada, "arquivo": rel_final, "fila": rel_fila, "avisos": avisos,
         "proxima_acao": (f"triagem override --fila {rel_fila} (decisões humanas preenchidas) e consolidar de novo"
