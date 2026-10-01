@@ -140,8 +140,8 @@
       "id": "N05",
       "idioma": "pt",
       "pedido": "Revisa este parágrafo da minha tese para não parecer escrito por IA.",
-      "esperado": "tirar-cara-de-ia",
-      "motivo": "\"revisa\" é revisão de estilo, não revisão sistemática"
+      "esperado": "nenhuma",
+      "motivo": "\"revisa\" é revisão de estilo, não revisão sistemática (nenhuma skill deste repositório faz revisão de estilo)"
     },
     {
       "id": "N06",

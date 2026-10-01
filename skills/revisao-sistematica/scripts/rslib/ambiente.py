@@ -60,7 +60,6 @@ SKILLS_IRMAS = {
     "baixar-pdfs-academicos": "sem download em cascata: usar checklist manual de PDFs",
     "fichamento-sistematico": "sem fichamento em lote: usar protocolo mínimo de extração inline",
     "gerar-bibtex": "usar `rs.py bib` (bib mínimo com chave)",
-    "tirar-cara-de-ia": "revisão final de estilo manual",
 }
 PY_MINIMO = (3, 10)
 

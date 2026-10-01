@@ -11,7 +11,7 @@ Etapa 11, fechada no portão **G9**. Para a caixa de ferramentas e `certeza.csv`
 5. Formato OQF: seção por seção, com itens PRISMA
 6. Painel OQF e policy brief
 7. Checklists
-8. Revisão de estilo
+8. Passe de estilo (opcional, fora da skill)
 9. Marca de rascunho
 10. Pacote aberto (PRISMA 2020 item 27)
 11. O que o G9 exige
@@ -59,7 +59,7 @@ Sem `--tipo`, `prisma` usa `scr` para `escopo` e `mapa_evidencias` e `2020` nos 
 7. Checklists (seção 7).
 8. Declaração de IA por último, depois de todos os eventos: `$RS declaracao-ia` (escreve `07-relatorio/declaracao_uso_ia.md` a partir do log; nunca editar à mão; `--out` só para outro caminho). A parte narrativa que o log não escreve sai do modelo `assets/templates/declaracao_uso_ia.md`, salvo como `07-relatorio/declaracao_uso_ia_texto.md`, com números copiados do arquivo gerado; o texto curto dele preenche `{{VALIDACAO_TEXTO_CURTO_IA}}` e o arquivo gerado entra no apêndice por include.
 9. Render: `quarto render 07-relatorio/relatorio.qmd` (HTML e DOCX; o DOCX só embute `prisma.svg` com `rsvg-convert` instalado; sem ele, troque `prisma.svg` por `prisma.png` na figura do `.qmd` antes do render DOCX). Antes, confira que não sobrou placeholder: `grep -nE '\{\{[A-Z0-9_]+\}\}' 07-relatorio/*.qmd` deve voltar vazio.
-10. Revisão de estilo (seção 8) e novo render.
+10. Passe de estilo, se houver (seção 8), e novo render.
 11. Marca de rascunho (seção 9) e G9 (seção 11).
 
 Ao fechar pendências (`$RS pendencia fechar <id> --motivo "..."`), o comando devolve `regenerar`; rode os comandos listados, `$RS caixa` se a pendência era de certeza, e renderize de novo.
@@ -139,13 +139,14 @@ Policy brief (`policy_brief.qmd`), até ~8 páginas: título como pergunta ou me
 - ENTREQ, eMERGe, RAMESES e PRIOR não têm CSV na skill: preencher a partir do documento oficial e declarar no apêndice.
 - Nenhum checklist substitui a auditoria: ele prova que o leitor pode julgar, não que a revisão é boa.
 
-## 8. Revisão de estilo
+## 8. Passe de estilo (opcional, fora da skill)
+
+A skill não faz revisão de linguagem. Se o usuário quiser um passe de estilo, feito por ele ou por uma ferramenta que ele escolher, proteja o relatório assim:
 
 1. Salve a versão pré-estilo: `cp 07-relatorio/relatorio.qmd 07-relatorio/relatorio_pre_estilo.qmd`.
-2. Invoque a skill `tirar-cara-de-ia` sobre `07-relatorio/relatorio.qmd`, com estas restrições explícitas: não alterar números, ICs, rótulos (Positivo, Inconclusivo...), frases padronizadas de certeza, citações `@chave`, YAML, shortcodes `{{< include >}}`, tabelas geradas, blocos de código nem a marca de rascunho; métodos no passado; sem tutorial de método dentro da Metodologia; adjetivo nunca no lugar de número.
+2. O passe não pode alterar números, ICs, rótulos (Positivo, Inconclusivo...), frases padronizadas de certeza, citações `@chave`, YAML, shortcodes `{{< include >}}`, tabelas geradas, blocos de código nem a marca de rascunho; métodos ficam no passado, sem tutorial de método dentro da Metodologia, e adjetivo nunca entra no lugar de número.
 3. Confira que nenhum número mudou: `diff <(grep -oE '[0-9]+([.,][0-9]+)?' 07-relatorio/relatorio_pre_estilo.qmd) <(grep -oE '[0-9]+([.,][0-9]+)?' 07-relatorio/relatorio.qmd)` deve voltar vazio; se não, restaure os trechos.
-4. Preferência de voz própria do usuário só quando ele pedir, antes do passo 2.
-5. Renderize de novo e apague `relatorio_pre_estilo.qmd` só depois do G9.
+4. Renderize de novo e apague `relatorio_pre_estilo.qmd` só depois do G9.
 
 ## 9. Marca de rascunho
 

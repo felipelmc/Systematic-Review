@@ -51,7 +51,7 @@ As duas cópias são independentes: `skills/revisao-sistematica` é a versionada
 
 Requisitos: Python 3.10 ou superior. R 4.2 ou superior (com metafor recente) é opcional e só é necessário para a síntese quantitativa. Quarto é opcional, para renderizar o relatório. `python3 ~/.claude/skills/revisao-sistematica/scripts/rs.py ambiente` mostra o que falta e como a skill degrada.
 
-As skills irmãs (`baixar-pdfs-academicos`, `fichamento-sistematico`, `gerar-bibtex`, `tirar-cara-de-ia`) ficam em `skills/<nome>` neste repositório, são instaladas da mesma forma (cópia para `~/.claude/skills/<nome>`) e são opcionais. Sem elas, a skill usa fallbacks mais simples, descritos nas referências de cada etapa, e `rs.py ambiente` lista as ausentes.
+As skills irmãs (`baixar-pdfs-academicos`, `fichamento-sistematico`, `gerar-bibtex`) ficam em `skills/<nome>` neste repositório, são instaladas da mesma forma (cópia para `~/.claude/skills/<nome>`) e são opcionais. Sem elas, a skill usa fallbacks mais simples, descritos nas referências de cada etapa, e `rs.py ambiente` lista as ausentes.
 
 ## Uso
 

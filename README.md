@@ -18,7 +18,6 @@ skills/                    cópia versionada das skills (espelho de ~/.claude/sk
   baixar-pdfs-academicos/  textos completos por fontes legítimas em cascata
   fichamento-sistematico/  extração em lote dirigida por codebook, com gate de citação e concordância
   gerar-bibtex/            .bib a partir de planilhas de papers
-  tirar-cara-de-ia/        revisão de estilo de textos
 dev/revisao-sistematica/   testes (pytest e testthat), evals e contratos de desenvolvimento da skill principal
 ```
 

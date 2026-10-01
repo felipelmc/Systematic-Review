@@ -244,7 +244,7 @@ O item 27 do PRISMA 2020 pede que se diga quais materiais estão públicos e ond
 
 ### Revisão de estilo
 
-A seção de métodos relata o que foi feito, no passado, e toda mudança não trivial em relação ao protocolo é reconhecida e explicada [@campbell2021policies, p. 44]. O relatório deve ser revisto pela equipe inteira antes de circular [@xiao2019guidance, passo 8]. O passe final de linguagem usa a *skill* `tirar-cara-de-ia`, prevista no fluxo da `revisao-sistematica`.
+A seção de métodos relata o que foi feito, no passado, e toda mudança não trivial em relação ao protocolo é reconhecida e explicada [@campbell2021policies, p. 44]. O relatório deve ser revisto pela equipe inteira antes de circular [@xiao2019guidance, passo 8]. Um passe final de linguagem, feito pela equipe ou por uma ferramenta, não pode mudar números, rótulos de certeza nem citações.
 
 | Problema | Exemplo | Como reescrever |
 |---|---|---|
@@ -399,8 +399,7 @@ O relato é a etapa 11 do fluxo e termina no portão G9. A skill está em constr
 - **Caixa e painel.** `rs.py caixa` monta a tabela rastreável a partir do master de extração, do resumo da meta-análise ou do SWiM, de `certeza.csv`, de δ e das faixas do protocolo; toda célula tem fontes e `regra_versao`, e os testes combinados nunca definem rótulo. A tabela traz, para cada família × construto, uma linha de painel (`efeito_painel`) com a regra de combinação aplicada; painel e *policy brief* leem essa linha, e o relatório, as linhas por desenho.
 - **Declaração de IA.** `rs.py declaracao-ia` gera `07-relatorio/declaracao_uso_ia.md` a partir do log (ferramenta, modelo, versão, datas, parâmetros, papel por etapa, prompts com *hash*, validação com IC e limiares), conforme a @sec-11-relato.
 - **Referências.** `rs.py incluidos` escreve `07-relatorio/incluidos.csv`; `rs.py bib` delega o `.bib` à `gerar-bibtex`, com junção por `chave`, ou escreve um `.bib` mínimo com `--sem-irma`.
-- **Estilo.** Passe final com `tirar-cara-de-ia`; `my-voice` só como preferência local, se existir.
-- **Portão G9.** Nos *checkpoints*, `rs.py portao G9 --aprovar --por <papel>` registra a aprovação humana do relatório no template do tipo, do PRISMA do *ledger*, dos checklists, da declaração de IA, do `.bib` e do passe de estilo. No autopiloto, relatório e declaração saem marcados "RASCUNHO NÃO VALIDADO", com a lista de pendências; fechar uma pendência regenera o que depende dela.
+- **Portão G9.** Nos *checkpoints*, `rs.py portao G9 --aprovar --por <papel>` registra a aprovação humana do relatório no template do tipo, do PRISMA do *ledger*, dos checklists, da declaração de IA, do `.bib`. No autopiloto, relatório e declaração saem marcados "RASCUNHO NÃO VALIDADO", com a lista de pendências; fechar uma pendência regenera o que depende dela.
 - **Log e testes.** Eventos `prisma_gerado` e `relatorio_gerado`; testes `test_prisma` (invariantes) e `test_caixa` (toda célula com fontes).
 - **Fora da v1.** Mapa de evidências interativo: a skill reconhece o pedido, orienta por este capítulo e declara o limite.
 

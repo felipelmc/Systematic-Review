@@ -16,7 +16,7 @@ livro/                     Quarto book (publicly published via GitHub Pages)
   metodo/                  chapters 01…07, 08a, 08b, 09, 10, 11 + apendice-a…d
   _notas-leitura/          reading notes + _GUIA.md (ignored by Quarto; versioned, never published)
 skills/                    versioned copies of the skills (mirror of ~/.claude/skills)
-  revisao-sistematica/  baixar-pdfs-academicos/  fichamento-sistematico/  gerar-bibtex/  tirar-cara-de-ia/
+  revisao-sistematica/  baixar-pdfs-academicos/  fichamento-sistematico/  gerar-bibtex/
 dev/revisao-sistematica/   tests/ (pytest + tests/R testthat + e2e), evals/, CONTRATOS.md, README.md
 ```
 

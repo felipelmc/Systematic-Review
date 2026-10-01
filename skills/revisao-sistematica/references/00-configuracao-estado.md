@@ -207,7 +207,7 @@ Diga ao usuário, no início, que num projeto parcial as etapas anteriores não 
 | metafor | sem `analise meta` (código 3) | `analise efeitos`, `swim`, `combinados` e `caixa` seguem |
 | clubSandwich | sem `--dependencia che` | um efeito por estudo |
 | Quarto | sem render dos relatórios `.qmd` | entregar Markdown |
-| Skill irmã | `baixar-pdfs-academicos`: checklist manual de PDFs; `fichamento-sistematico`: extração inline mínima; `gerar-bibtex`: `$RS bib --sem-irma`; `tirar-cara-de-ia`: revisão de estilo manual | usar o fallback e registrar |
+| Skill irmã | `baixar-pdfs-academicos`: checklist manual de PDFs; `fichamento-sistematico`: extração inline mínima; `gerar-bibtex`: `$RS bib --sem-irma` | usar o fallback e registrar |
 
 Credenciais só por variável de ambiente, lidas como booleanos: `RS_EMAIL` (fila educada do OpenAlex), `OPENALEX_API_KEY`, `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`. Nunca leia `.env`, nunca escreva valores em arquivo ou log. Preferência pessoal de estilo do usuário é só preferência: registre-a em `00-protocolo/pergunta.md` (seção "Preferências"), nunca como regra da skill.
 
